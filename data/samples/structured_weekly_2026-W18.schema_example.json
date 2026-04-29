@@ -1,0 +1,133 @@
+{
+  "schemaVersion": "stage4.structured_weekly.v1",
+  "exampleOnly": true,
+  "exampleNote": "This file demonstrates the stage 4 structured weekly JSON contract. It is not a real analysis result and must not be treated as observed sentiment or topic data.",
+  "sourceSchemaVersion": "stage3.weekly_raw.v1",
+  "reportWeek": "2026-W18",
+  "timeRange": {
+    "start": "2026-04-24T00:00:00+08:00",
+    "end": "2026-04-30T23:59:59+08:00",
+    "timezone": "Asia/Shanghai"
+  },
+  "generatedAt": "2026-04-29T00:00:00+08:00",
+  "dataSource": "browser_automation",
+  "processingStatus": "schema_example_only",
+  "sourceStatus": {
+    "confirmedGroups": 6,
+    "activeGroups": 6,
+    "dataCompleteness": "pending_real_crawl",
+    "limitations": [
+      "No real weekly raw crawl has been processed in this schema example.",
+      "Topic, sentiment, risk, and translation examples below are placeholders for schema validation only."
+    ]
+  },
+  "cleaningRules": {
+    "dedupe": "postUrl first, then normalized text and time bucket",
+    "removeEmpty": true,
+    "removePureEmoji": true,
+    "removeUnrelated": true,
+    "keepRiskContent": true,
+    "identityFieldsRemoved": true
+  },
+  "items": [
+    {
+      "recordType": "post",
+      "anonymousContentId": "content_sha256_example",
+      "anonymousAuthorId": "author_sha256_example",
+      "sourceGroup": "Example Group",
+      "groupUrl": "https://www.facebook.com/groups/example/",
+      "postUrl": "https://www.facebook.com/groups/example/posts/example-post-id/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": "2026-04-28T15:30:00+08:00",
+      "originalText": "Example Vietnamese Roco-related post text.",
+      "translationZh": "示例中文翻译文本。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "攻略分享",
+      "topics": [
+        "攻略分享",
+        "宠物、角色、养成"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.9,
+      "lowConfidenceReason": null,
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "notes": "Schema example only."
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "comment_sha256_example",
+      "anonymousAuthorId": "author_sha256_example_2",
+      "sourceGroup": "Example Group",
+      "groupUrl": "https://www.facebook.com/groups/example/",
+      "postUrl": "https://www.facebook.com/groups/example/posts/example-post-id/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "parentPostId": "content_sha256_example",
+      "parentCommentId": null,
+      "commentDepth": 1,
+      "publishedAt": "2026-04-28T16:00:00+08:00",
+      "originalText": "Example comment text.",
+      "translationZh": "示例评论翻译。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "社群互动、组队、公会",
+      "topics": [
+        "社群互动、组队、公会"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.85,
+      "lowConfidenceReason": null,
+      "marketObservationValue": "low",
+      "futureLaunchSignal": false,
+      "notes": "Schema example only."
+    }
+  ],
+  "topicSummary": [
+    {
+      "topic": "攻略分享",
+      "itemCount": 0,
+      "sentimentMix": {
+        "positive": 0,
+        "neutral": 0,
+        "negative": 0,
+        "mixed": 0,
+        "highRiskNegative": 0
+      },
+      "exampleOnly": true
+    }
+  ],
+  "sentimentSummary": {
+    "positive": 0,
+    "neutral": 0,
+    "negative": 0,
+    "mixed": 0,
+    "highRiskNegative": 0,
+    "exampleOnly": true
+  },
+  "riskSummary": [
+    {
+      "riskLabel": "诈骗链接",
+      "itemCount": 0,
+      "representativePostUrl": null,
+      "evidenceSummary": "No real risk data processed in this schema example.",
+      "exampleOnly": true
+    }
+  ],
+  "lowConfidenceItems": [
+    {
+      "anonymousContentId": "low_confidence_example",
+      "sourceGroup": "Example Group",
+      "postUrl": "https://www.facebook.com/groups/example/posts/example-post-id/",
+      "reason": "media-only post or truncated context",
+      "suggestedHandling": "Keep for manual review; do not use as strong evidence until post detail is available.",
+      "exampleOnly": true
+    }
+  ],
+  "readyForWeeklyReport": false,
+  "readyForWeeklyReportReason": "No real weekly raw data has been processed in this schema example."
+}

@@ -1,0 +1,138 @@
+{
+  "schemaVersion": "stage5.weekly_report.v1",
+  "exampleOnly": true,
+  "exampleNote": "This file demonstrates the stage 5 weekly report JSON contract. It is not a real weekly public-opinion report and must not be treated as observed data.",
+  "sourceSchemaVersion": "stage4.structured_weekly.v1",
+  "reportTitle": "Roco Kingdom 越南 Facebook Group 每周舆情监测报告",
+  "reportWeek": "2026-W18",
+  "dateGenerated": "2026-04-29",
+  "timeRange": {
+    "start": "2026-04-24T00:00:00+08:00",
+    "end": "2026-04-30T23:59:59+08:00",
+    "timezone": "Asia/Shanghai"
+  },
+  "sourceStatus": {
+    "confirmedGroups": 6,
+    "activeGroups": 6,
+    "dataAccessMethod": "browser_automation",
+    "feedSortPreference": "newest_first",
+    "feedSortUiLabelZh": "新帖子",
+    "dataCompleteness": "pending_real_crawl",
+    "limitations": [
+      "No real structured weekly data has been processed in this schema example.",
+      "Newest-first sorting should be selected before weekly feed scrolling when available.",
+      "Trend comparison is unavailable until at least two real weekly reports exist."
+    ]
+  },
+  "header": {
+    "confirmedGroupCount": 6,
+    "validContentCount": 0,
+    "postCount": 0,
+    "commentCount": 0,
+    "mainLanguageDistribution": [],
+    "dataCompletenessNote": "Schema example only; no real crawl data."
+  },
+  "summary": "结构样例：真实周报将在处理真实 structured weekly JSON 后生成。本字段不包含真实舆情判断。",
+  "metrics": {
+    "totalDiscussionVolume": 0,
+    "validRocoRelatedContent": 0,
+    "highRelevanceRate": 0,
+    "positiveRate": 0,
+    "neutralRate": 0,
+    "negativeRate": 0,
+    "highRiskCount": 0,
+    "activeGroupCount": 0,
+    "top5HotTopics": [],
+    "sentimentHealthScore": 0,
+    "futureLaunchSignalScore": 0
+  },
+  "groupSourceStatus": [
+    {
+      "groupName": "Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
+      "accessStatus": "joined_public_group",
+      "weeklyContentVolume": 0,
+      "dataCompleteness": "pending_real_crawl",
+      "includedInFormalMonitoring": true,
+      "notes": "Schema example only."
+    },
+    {
+      "groupName": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "accessStatus": "joined_public_group",
+      "weeklyContentVolume": 0,
+      "dataCompleteness": "pending_real_crawl",
+      "includedInFormalMonitoring": true,
+      "notes": "Schema example only."
+    },
+    {
+      "groupName": "Roco Kingdom: World Viet Nam Official",
+      "groupUrl": "https://www.facebook.com/groups/1729046980837718/",
+      "accessStatus": "joined_public_group",
+      "weeklyContentVolume": 0,
+      "dataCompleteness": "pending_real_crawl",
+      "includedInFormalMonitoring": true,
+      "notes": "Group name contains Official; this is not treated as verified official status."
+    },
+    {
+      "groupName": "ROCO KINGDOM VN",
+      "groupUrl": "https://www.facebook.com/groups/3072730653028573/",
+      "accessStatus": "joined_public_group",
+      "weeklyContentVolume": 0,
+      "dataCompleteness": "pending_real_crawl",
+      "includedInFormalMonitoring": true,
+      "notes": "Schema example only."
+    },
+    {
+      "groupName": "ROCO KINGDOM VIET NAM",
+      "groupUrl": "https://www.facebook.com/groups/947481474801675/",
+      "accessStatus": "joined_public_group",
+      "weeklyContentVolume": 0,
+      "dataCompleteness": "pending_real_crawl",
+      "includedInFormalMonitoring": true,
+      "notes": "Schema example only."
+    },
+    {
+      "groupName": "Roco Kingdom Mobile Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/3223551104630521/",
+      "accessStatus": "joined_public_group",
+      "weeklyContentVolume": 0,
+      "dataCompleteness": "pending_real_crawl",
+      "includedInFormalMonitoring": true,
+      "notes": "Schema example only."
+    }
+  ],
+  "hotTopics": [],
+  "sentimentAnalysis": {
+    "positivePlayersExpect": [],
+    "neutralPlayersAsk": [],
+    "negativePlayersConcern": [],
+    "mixedSentimentContradictions": []
+  },
+  "futureVietnamLaunchSignals": {
+    "naturalInterestPoints": [],
+    "frequentQuestions": [],
+    "potentialPaymentConcerns": [],
+    "localizationConcerns": [],
+    "communitySelfSpreadSignals": [],
+    "preLaunchAwarenessIssues": []
+  },
+  "riskObservations": [],
+  "representativeVoices": [],
+  "trendObservation": {
+    "discussionVolumeTrend": "unavailable_first_or_example_week",
+    "activeGroupTrend": "unavailable_first_or_example_week",
+    "sentimentTrend": "unavailable_first_or_example_week",
+    "topicTrend": "unavailable_first_or_example_week",
+    "riskTrend": "unavailable_first_or_example_week",
+    "interestHeatingUp": "not_evaluable_from_schema_example"
+  },
+  "weeklyConclusion": {
+    "naturalCommunityActive": "not_evaluable_from_schema_example",
+    "continueMonitoring": true,
+    "futureLaunchOpportunitySignal": "not_evaluable_from_schema_example",
+    "preLaunchRiskOrAwarenessIssue": "not_evaluable_from_schema_example"
+  },
+  "readyForDashboard": false,
+  "readyForDashboardReason": "No real structured weekly data has been processed in this schema example."
+}

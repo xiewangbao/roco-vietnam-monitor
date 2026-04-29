@@ -1,0 +1,141 @@
+{
+  "schemaVersion": "stage3.weekly_raw.v1",
+  "exampleOnly": true,
+  "exampleNote": "This file demonstrates the stage 3 weekly raw JSON contract. It is not a real crawl result and must not be treated as observed data.",
+  "reportWeek": "2026-W18",
+  "timeRange": {
+    "start": "2026-04-24T00:00:00+08:00",
+    "end": "2026-04-30T23:59:59+08:00",
+    "timezone": "Asia/Shanghai"
+  },
+  "generatedAt": "2026-04-29T00:00:00+08:00",
+  "dataSource": "browser_automation",
+  "sourceGroups": [
+    {
+      "groupName": "Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
+      "permissionStatus": "joined_public_group",
+      "crawlStatus": "not_run_schema_example",
+      "failureReason": null,
+      "dataCompleteness": "pending_real_crawl"
+    },
+    {
+      "groupName": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "permissionStatus": "joined_public_group",
+      "crawlStatus": "not_run_schema_example",
+      "failureReason": null,
+      "dataCompleteness": "pending_real_crawl"
+    },
+    {
+      "groupName": "Roco Kingdom: World Viet Nam Official",
+      "groupUrl": "https://www.facebook.com/groups/1729046980837718/",
+      "permissionStatus": "joined_public_group",
+      "crawlStatus": "not_run_schema_example",
+      "failureReason": null,
+      "dataCompleteness": "pending_real_crawl"
+    },
+    {
+      "groupName": "ROCO KINGDOM VN",
+      "groupUrl": "https://www.facebook.com/groups/3072730653028573/",
+      "permissionStatus": "joined_public_group",
+      "crawlStatus": "not_run_schema_example",
+      "failureReason": null,
+      "dataCompleteness": "pending_real_crawl"
+    },
+    {
+      "groupName": "ROCO KINGDOM VIET NAM",
+      "groupUrl": "https://www.facebook.com/groups/947481474801675/",
+      "permissionStatus": "joined_public_group",
+      "crawlStatus": "not_run_schema_example",
+      "failureReason": null,
+      "dataCompleteness": "pending_real_crawl"
+    },
+    {
+      "groupName": "Roco Kingdom Mobile Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/3223551104630521/",
+      "permissionStatus": "joined_public_group",
+      "crawlStatus": "not_run_schema_example",
+      "failureReason": null,
+      "dataCompleteness": "pending_real_crawl"
+    }
+  ],
+  "records": [
+    {
+      "recordType": "post",
+      "groupName": "Example Group",
+      "groupUrl": "https://www.facebook.com/groups/example/",
+      "postUrl": "https://www.facebook.com/groups/example/posts/example-post-id/",
+      "anonymousContentId": "content_sha256_example",
+      "anonymousAuthorId": "author_sha256_example",
+      "publishedAt": "2026-04-28T15:30:00+08:00",
+      "text": "Example post text. Real output stores raw content text without personal identity fields.",
+      "contentLanguage": "vi",
+      "reactionCount": 0,
+      "commentCount": 0,
+      "shareCount": 0,
+      "hasImage": false,
+      "hasVideo": false,
+      "hasLink": false,
+      "mediaTypes": [],
+      "crawlTime": "2026-04-29T00:00:00+08:00",
+      "dataSource": "browser_automation",
+      "permissionStatus": "joined_public_group",
+      "crawlStatus": "success",
+      "failureReason": null,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "complete",
+        "text": "complete",
+        "reactions": "available",
+        "comments": "not_expanded_in_example"
+      }
+    },
+    {
+      "recordType": "comment",
+      "groupName": "Example Group",
+      "groupUrl": "https://www.facebook.com/groups/example/",
+      "postUrl": "https://www.facebook.com/groups/example/posts/example-post-id/",
+      "parentPostId": "content_sha256_example",
+      "parentCommentId": null,
+      "commentDepth": 1,
+      "anonymousContentId": "comment_sha256_example",
+      "anonymousAuthorId": "author_sha256_example_2",
+      "publishedAt": "2026-04-28T16:00:00+08:00",
+      "text": "Example comment text. Real output stores anonymous content only.",
+      "contentLanguage": "vi",
+      "reactionCount": 0,
+      "crawlTime": "2026-04-29T00:00:00+08:00",
+      "dataSource": "browser_automation",
+      "permissionStatus": "joined_public_group",
+      "crawlStatus": "success",
+      "failureReason": null,
+      "dataCompleteness": {
+        "commentText": "complete",
+        "commentDepth": "complete",
+        "parentLink": "complete"
+      }
+    }
+  ],
+  "failures": [
+    {
+      "runId": "2026-W18-example",
+      "reportWeek": "2026-W18",
+      "groupName": "Example Group",
+      "groupUrl": "https://www.facebook.com/groups/example/",
+      "targetType": "comment_section",
+      "targetUrl": "https://www.facebook.com/groups/example/posts/example-post-id/",
+      "status": "partial",
+      "failureReason": "comment_collapsed",
+      "missingFields": [
+        "full_comment_thread"
+      ],
+      "expectedCount": 20,
+      "capturedCount": 12,
+      "impact": "medium",
+      "needsHumanPermission": false,
+      "crawlTime": "2026-04-29T00:00:00+08:00",
+      "notes": "Example failure record only."
+    }
+  ]
+}
