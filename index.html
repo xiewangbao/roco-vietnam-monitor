@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Roco Kingdom 越南 Facebook Group 周度舆情监测</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --ink: #17202c;
+      --muted: #667085;
+      --line: #d9dee8;
+      --panel: #ffffff;
+      --blue: #1f6feb;
+      --green: #18864b;
+      --amber: #b7791f;
+      --red: #c2413b;
+      --cyan: #087990;
+      --violet: #7254b6;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      letter-spacing: 0;
+    }
+    header {
+      background: #111827;
+      color: white;
+      padding: 20px 28px 18px;
+      border-bottom: 4px solid var(--blue);
+    }
+    header h1 { margin: 0 0 8px; font-size: 24px; line-height: 1.25; }
+    header .meta { display: flex; flex-wrap: wrap; gap: 10px 18px; color: #d1d5db; font-size: 13px; }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      padding: 10px 28px;
+      background: rgba(247,248,251,.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(8px);
+    }
+    nav a {
+      color: var(--ink);
+      text-decoration: none;
+      padding: 7px 10px;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    nav a:hover { background: #e8edf7; }
+    main { padding: 22px 28px 40px; max-width: 1440px; margin: 0 auto; }
+    section { margin-bottom: 26px; }
+    h2 { font-size: 18px; margin: 0 0 12px; }
+    h3 { font-size: 15px; margin: 0 0 8px; }
+    .notice {
+      border-left: 4px solid var(--amber);
+      background: #fff8e6;
+      padding: 10px 12px;
+      color: #5f430b;
+      margin-bottom: 18px;
+      line-height: 1.55;
+    }
+    .grid { display: grid; gap: 12px; }
+    .metrics { grid-template-columns: repeat(6, minmax(130px, 1fr)); }
+    .metric, .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .metric .label { color: var(--muted); font-size: 12px; }
+    .metric .value { font-size: 24px; font-weight: 700; margin-top: 6px; }
+    .metric .sub { color: var(--muted); font-size: 12px; margin-top: 4px; }
+    .two { grid-template-columns: 1.3fr .7fr; }
+    table { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+    th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 13px; }
+    th { background: #eef2f7; color: #344054; font-weight: 700; }
+    tr:last-child td { border-bottom: 0; }
+    .tag { display: inline-flex; align-items: center; min-height: 22px; padding: 2px 7px; border-radius: 999px; border: 1px solid var(--line); background: #f9fafb; font-size: 12px; margin: 2px 4px 2px 0; }
+    .tag.green { color: var(--green); border-color: #a8d5bd; background: #eefaf3; }
+    .tag.red { color: var(--red); border-color: #f0b6b2; background: #fff1f1; }
+    .tag.blue { color: var(--blue); border-color: #bdd3ff; background: #f0f5ff; }
+    .tag.amber { color: var(--amber); border-color: #ead19b; background: #fff8e6; }
+    .bar { height: 9px; background: #edf0f5; border-radius: 999px; overflow: hidden; }
+    .bar span { display: block; height: 100%; background: var(--blue); }
+    .bar.green span { background: var(--green); }
+    .bar.red span { background: var(--red); }
+    .bar.amber span { background: var(--amber); }
+    .voice { border-top: 1px solid var(--line); padding: 12px 0; }
+    .voice:first-child { border-top: 0; padding-top: 0; }
+    .voice blockquote { margin: 8px 0; padding-left: 10px; border-left: 3px solid var(--cyan); color: #344054; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 9px;
+      border-radius: 6px;
+      background: #eef4ff;
+      color: var(--blue);
+      text-decoration: none;
+      font-size: 12px;
+      border: 1px solid #bdd3ff;
+    }
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+    select, input {
+      min-height: 34px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 6px 8px;
+      background: white;
+      color: var(--ink);
+    }
+    .muted { color: var(--muted); }
+    .small { font-size: 12px; }
+    @media (max-width: 980px) {
+      .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .two { grid-template-columns: 1fr; }
+      main, header, nav { padding-left: 16px; padding-right: 16px; }
+      table { display: block; overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Roco Kingdom 越南 Facebook Group 每周舆情监测报告</h1>
+    <div class="meta">
+      <span>报告周：2026-W18</span>
+      <span>生成日期：2026-04-29</span>
+      <span>统计范围：2026-04-24T00:00:00+08:00 至 2026-04-29T08:24:46.014Z</span>
+      <span>数据方式：浏览器自动化</span>
+    </div>
+  </header>
+  <nav>
+    <a href="#latest">最新周报</a>
+    <a href="#groups">Group</a>
+    <a href="#topics">热点</a>
+    <a href="#risks">风险</a>
+    <a href="#voices">玩家声音</a>
+    <a href="#trends">趋势</a>
+  </nav>
+  <main>
+    <div class="notice">进行中周数据；评论线程不完整；4/30 不补跑，后续周跑覆盖。</div>
+
+    <section id="latest">
+      <h2>本周总览</h2>
+      <div class="grid two">
+        <div class="panel">本次进行中周抓取显示，越南玩家社区已经出现持续的自然讨论，核心集中在宠物养成、任务攻略、好友地图/借宠完成任务、Battle Pass 相关宠物和设备/权限问题。讨论多为玩家互助和攻略询问，说明当前社区有自发学习和传播动力。负面内容主要不是大规模口碑崩坏，而是任务理解、账号/名称找回、设备权限和本地化理解上的摩擦。风险侧出现少量账号/道具交易、充值渠道询问，以及“是否正式版/已经正式”的认知混淆。由于 Roco Kingdom 尚未在越南正式发行，这些讨论更适合作为未来发行前的兴趣、认知和风险观察信号，而不是即时运营响应对象。</div>
+        <div class="panel">
+          <h3>周选择</h3>
+          <select aria-label="选择周报"><option>2026-W18</option></select>
+          <p class="small muted">当前仅有首个真实抓取周。后续周报会自动进入历史列表。</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>核心指标</h2>
+      <div class="grid metrics">
+        <div class="metric"><div class="label">有效内容</div><div class="value">108</div><div class="sub">83 帖 / 25 评论</div></div>
+        <div class="metric"><div class="label">高相关占比</div><div class="value">31.5%</div><div class="sub">未来发行参考信号</div></div>
+        <div class="metric"><div class="label">正面占比</div><div class="value">14.8%</div><div class="sub">玩家期待/分享</div></div>
+        <div class="metric"><div class="label">中性占比</div><div class="value">53.7%</div><div class="sub">求助和询问为主</div></div>
+        <div class="metric"><div class="label">负面占比</div><div class="value">21.3%</div><div class="sub">含高风险负面</div></div>
+        <div class="metric"><div class="label">发行参考分</div><div class="value">82</div><div class="sub">健康度 38</div></div>
+      </div>
+    </section>
+
+    <section id="groups">
+      <h2>Group 监测源</h2>
+      <table>
+        <thead><tr><th>Group</th><th>本周内容量</th><th>访问状态</th><th>数据完整性</th><th>备注</th></tr></thead>
+        <tbody>
+          <tr><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/" target="_blank" rel="noreferrer">查看 Group</a><br>Roco Kingdom Viet Nam</td><td>25</td><td>已加入 / 公开小组</td><td>进行中周可见内容已抓取，评论不完整</td><td>正式监测源。</td></tr><tr><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/" target="_blank" rel="noreferrer">查看 Group</a><br>Cong Hoi Roco Kingdom Viet Nam</td><td>33</td><td>已加入 / 公开小组</td><td>进行中周可见内容已抓取，评论不完整</td><td>正式监测源。</td></tr><tr><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/" target="_blank" rel="noreferrer">查看 Group</a><br>Roco Kingdom: World Viet Nam Official</td><td>13</td><td>已加入 / 公开小组</td><td>进行中周可见内容已抓取，评论不完整</td><td>名称含 Official，但不默认认定为官方渠道。</td></tr><tr><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/" target="_blank" rel="noreferrer">查看 Group</a><br>ROCO KINGDOM VN</td><td>17</td><td>已加入 / 公开小组</td><td>进行中周可见内容已抓取，评论不完整</td><td>正式监测源。</td></tr><tr><td><a class="btn" href="https://www.facebook.com/groups/947481474801675/" target="_blank" rel="noreferrer">查看 Group</a><br>ROCO KINGDOM VIET NAM</td><td>12</td><td>已加入 / 公开小组</td><td>进行中周可见内容已抓取，评论不完整</td><td>正式监测源。</td></tr><tr><td><a class="btn" href="https://www.facebook.com/groups/3223551104630521/" target="_blank" rel="noreferrer">查看 Group</a><br>Roco Kingdom Mobile Viet Nam</td><td>8</td><td>已加入 / 公开小组</td><td>进行中周可见内容已抓取，评论不完整</td><td>正式监测源。</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="topics">
+      <h2>热点排行</h2>
+      <table>
+        <thead><tr><th>排名</th><th>热点</th><th>内容量</th><th>情绪</th><th>热度</th><th>市场观察价值</th><th>代表 case</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>宠物、角色、养成</td><td>64</td><td><span class="tag blue">中性</span></td><td><div class="bar"><span style="width:100%"></span></div></td><td>高</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2123147308478341/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>2</td><td>玩法机制</td><td>51</td><td><span class="tag blue">中性</span></td><td><div class="bar"><span style="width:100%"></span></div></td><td>高</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2123147308478341/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>3</td><td>越南玩家自发讨论</td><td>19</td><td><span class="tag blue">中性</span></td><td><div class="bar"><span style="width:95%"></span></div></td><td>高</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2123045795155159/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>4</td><td>社群互动、组队、公会</td><td>13</td><td><span class="tag blue">中性</span></td><td><div class="bar"><span style="width:65%"></span></div></td><td>高</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122985531827852/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>5</td><td>充值、付费、礼包</td><td>10</td><td><span class="tag blue">中性</span></td><td><div class="bar"><span style="width:50%"></span></div></td><td>高</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122985531827852/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>6</td><td>越南本地化期待</td><td>9</td><td><span class="tag blue">中性</span></td><td><div class="bar"><span style="width:45%"></span></div></td><td>中</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122447108548361/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>7</td><td>诈骗、外挂、私服、黑产风险</td><td>4</td><td><span class="tag blue">高风险负面</span></td><td><div class="bar"><span style="width:20%"></span></div></td><td>中</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122985531827852/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>8</td><td>活动与福利</td><td>4</td><td><span class="tag blue">中性</span></td><td><div class="bar"><span style="width:20%"></span></div></td><td>中</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1760611484904441/" target="_blank" rel="noreferrer">查看原帖</a></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>情绪分布</h2>
+      <div class="grid two">
+        <div class="panel">
+          <p><strong>正面</strong> 14.8%</p><div class="bar green"><span style="width:14.8%"></span></div>
+          <p><strong>中性</strong> 53.7%</p><div class="bar blue"><span style="width:53.7%"></span></div>
+          <p><strong>负面</strong> 21.3%</p><div class="bar red"><span style="width:21.3%"></span></div>
+        </div>
+        <div class="panel">
+          <h3>未来越南发行参考信号</h3>
+          <p><strong>自然兴趣点：</strong>宠物养成；异色/孵蛋；任务攻略；好友互助捕捉；Battle Pass 宠物</p><p><strong>高频疑问：</strong>任务如何完成；宠物如何进化；如何进入好友地图；设备能否运行；当前是否正式版</p><p><strong>潜在付费关注点：</strong>Battle Pass、月卡、gem pass、充值渠道相关内容已出现，需要观察非官方渠道风险。</p><p><strong>本地化关注点：</strong>任务说明、宠物名称、攻略翻译和中文内容转译是高频理解门槛。</p><p><strong>社区自传播线索：</strong>攻略帖、视频/音频讲解、跨 Group 重复转发已出现。</p><p><strong>发行前认知问题：</strong>部分玩家可能误以为已有越南正式版本；需持续区分中国区正式发行与越南区未正式发行。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="risks">
+      <h2>风险观察</h2>
+      <table>
+        <thead><tr><th>风险</th><th>等级</th><th>证据摘要</th><th>数量</th><th>影响判断</th><th>代表 case</th></tr></thead>
+        <tbody>
+          <tr><td>账号买卖</td><td><span class="tag red">P1</span></td><td>B cày k .mình cho acc có pass nè</td><td>4</td><td>可能造成玩家交易/充值误导或社区信任风险。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122985531827852/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>其他</td><td><span class="tag amber">P3</span></td><td>&quot;Xin chào mọi người, sau này tôi sẽ liên tục đăng tải các video về khoa học phổ thông, cách vượt qua các màn chơi, và kiến thức nhỏ về thú cưng. Mọi người hãy theo dõi 
+内容暂时无法显示
+这种</td><td>3</td><td>可能造成玩家交易/充值误导或社区信任风险。</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2344548049287605/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>玩家误以为越南区已正式发行</td><td><span class="tag amber">P2</span></td><td>Game hiện tại là bản test hay đã là bản chính thức r vậy m.n</td><td>2</td><td>可能影响未来越南发行前的认知管理。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1761043891527867/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>充值骗局</td><td><span class="tag amber">P2</span></td><td>Any game top up shop in here? I need to buy monthly gem pass</td><td>1</td><td>可能造成玩家交易/充值误导或社区信任风险。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4020635961571366/" target="_blank" rel="noreferrer">查看原帖</a></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="voices">
+      <h2>代表性玩家声音</h2>
+      <div class="panel">
+        <div class="voice"><span class="tag blue">宠物、角色、养成</span><span class="tag">正面</span><span class="tag">Roco Kingdom Viet Nam</span><blockquote>Game này mình có thể đổi lại tính cách của pet ko mn ơi
+Với lại đổi ntn và tính cách sau khi đổi là ngẫu nhiên hay mình được chọn ạ</blockquote><p>玩家询问宠物性格是否可以重置、如何重置，以及重置后是随机还是可选择。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2123147308478341/" target="_blank" rel="noreferrer">查看原帖</a> <span class="small muted">需 Facebook / Group 权限</span></div><div class="voice"><span class="tag blue">社群互动、组队、公会</span><span class="tag">中性</span><span class="tag">Roco Kingdom Viet Nam</span><blockquote>Mn ai có hạt sồi pet battle pass cho em bắt ké làm nv với ạ con nào cũng được em cảm ơn.</blockquote><p>玩家想借他人的 Battle Pass 相关宠物/道具来完成任务或图鉴。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122985531827852/" target="_blank" rel="noreferrer">查看原帖</a> <span class="small muted">需 Facebook / Group 权限</span></div><div class="voice"><span class="tag blue">发行时间猜测</span><span class="tag">正面</span><span class="tag">Cong Hoi Roco Kingdom Viet Nam</span><blockquote>Game hiện tại là bản test hay đã là bản chính thức r vậy m.n</blockquote><p>玩家询问当前版本是测试版还是正式版；评论中有人误称已经正式。</p><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1761043891527867/" target="_blank" rel="noreferrer">查看原帖</a> <span class="small muted">需 Facebook / Group 权限</span></div><div class="voice"><span class="tag blue">社群互动、组队、公会</span><span class="tag">高风险负面</span><span class="tag">ROCO KINGDOM VN</span><blockquote>Any game top up shop in here? I need to buy monthly gem pass</blockquote><p>玩家寻找充值或月卡购买渠道，存在支付/充值风险观察价值。</p><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4020635961571366/" target="_blank" rel="noreferrer">查看原帖</a> <span class="small muted">需 Facebook / Group 权限</span></div><div class="voice"><span class="tag blue">宠物、角色、养成</span><span class="tag">负面</span><span class="tag">Roco Kingdom: World Viet Nam Official</span><blockquote>Điều kiện bắt buộc để ấp trứng dị màu
+Một đực một cái:
+Đây là điều kiện cơ bản nhất. Nếu là cùng giới tính hoặc không có giới tính (ví dụ như hệ cơ khí, thần thú) thì sẽ không thể sinh trứng.
+Cùng một “nhóm trứng”:（ ảnh thứ 2 ）
+Đây là yếu tố quan trọng nhất để quyết định có thể sinh trứng hay không! Không phải dựa vào hệ (thuộc tính), mà là dựa vào “nhóm trứng” ẩn. Chỉ cần hai con thuộc cùng một nhóm trứng, hoặc mỗi con thuộc hai nhóm nhưng có điểm chung (ví dụ: A thuộc “nhóm độ</blockquote><p>内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。</p><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2345357909206619/" target="_blank" rel="noreferrer">查看原帖</a> <span class="small muted">需 Facebook / Group 权限</span></div>
+      </div>
+    </section>
+
+    <section id="trends">
+      <h2>趋势观察</h2>
+      <div class="panel">
+        <p>首个真实抓取周，暂无环比。</p><p>6 个 Group 均有可见内容，后续需按周比较活跃度。</p><p>暂无历史趋势；本轮以中性求助为主。</p><p>暂无历史趋势；本轮宠物养成和任务机制占比最高。</p><p>暂无历史趋势；账号/道具交易、充值渠道和正式版认知混淆需持续观察。</p><p>从进行中周看已有自然讨论活跃迹象，但是否升温需至少两周数据确认。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>数据完整性说明</h2>
+      <div class="panel">
+        <p>本报告基于 2026-04-24 至 2026-04-29 的进行中周可见内容。评论仅覆盖可见/部分展开内容。</p>
+        <p>有效结构化内容 108 条；剔除窗口外、空文本、重复或纯媒体内容 22 条；低置信度待复核 73 条。</p>
+        <p>最终展示不包含用户真实姓名、头像、主页链接或 Facebook ID。原帖按钮仅指向帖子 URL。</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
