@@ -5,6 +5,14 @@ const structuredPath = process.argv[3] || 'data/structured/structured_weekly_202
 const report = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
 const structured = JSON.parse(fs.readFileSync(structuredPath, 'utf8'));
 fs.mkdirSync('site/topics', { recursive: true });
+fs.mkdirSync('site/reports', { recursive: true });
+const availableReports = fs.readdirSync('data/reports')
+  .filter((file) => /^weekly_report_.*_real\.json$/.test(file))
+  .map((file) => {
+    const data = JSON.parse(fs.readFileSync(`data/reports/${file}`, 'utf8'));
+    return { week: data.reportWeek, file: `reports/${data.reportWeek}.html`, valid: data.header?.validContentCount || 0 };
+  })
+  .sort((a, b) => a.week.localeCompare(b.week));
 
 function topicSlug(topic) {
   return Buffer.from(topic).toString('base64url');
@@ -48,7 +56,7 @@ function buildTopicDetail(topicRow) {
     <div class="meta"><span>报告周：${report.reportWeek}</span><span>内容量：${topicItems.length}</span><span>阈值：内容量超过 10 自动生成</span></div>
   </header>
   <main>
-    <p><a class="btn" href="../index.html#topics">返回 Dashboard</a></p>
+    <p><a class="btn" href="../reports/${report.reportWeek}.html#topics">返回本周 Dashboard</a></p>
     <section><h2>概览</h2><div class="grid metrics">
       ${metric('内容量', topicItems.length, `${recordTypes.post || 0} 帖 / ${recordTypes.comment || 0} 评论`)}
       ${metric('主要情绪', Object.entries(sentiment).sort((a,b)=>b[1]-a[1])[0]?.[0] || '无', '该 topic 内')}
@@ -107,8 +115,8 @@ const html = `<!doctype html>
         <div class="panel">${report.summary}</div>
         <div class="panel">
           <h3>周选择</h3>
-          <select aria-label="选择周报"><option>${report.reportWeek}</option></select>
-          <p class="small muted">当前展示最新生成周报。历史 JSON 会保留在 site 目录。</p>
+          <div class="filters">${availableReports.map((r) => `<a class="btn" href="${r.file}">${r.week}</a>`).join('')}</div>
+          <p class="small muted">当前展示 ${report.reportWeek}。历史周页面已生成，可按周查看。</p>
         </div>
       </div>
     </section>
@@ -365,6 +373,10 @@ function escapeHtml(value) {
     .replaceAll("'", '&#039;');
 }
 
+const reportHtml = html
+  .replaceAll('href="reports/', 'href="../reports/')
+  .replaceAll('href="topics/', 'href="../topics/');
+fs.writeFileSync(`site/reports/${report.reportWeek}.html`, reportHtml);
 fs.writeFileSync('site/index.html', html);
 fs.copyFileSync(reportPath, `site/weekly_report_${report.reportWeek}_real.json`);
 fs.copyFileSync(structuredPath, `site/structured_weekly_${report.reportWeek}_real.json`);
