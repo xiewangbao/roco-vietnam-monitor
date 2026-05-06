@@ -1,0 +1,97 @@
+{
+  "schemaVersion": "data_quality.v1",
+  "reportWeek": "2026-W19",
+  "generatedAt": "2026-05-06T03:49:15.866Z",
+  "status": "needs_user_review",
+  "thresholds": {
+    "minValidItems": 50,
+    "minCommentItems": 20,
+    "minCommentRate": 0.2,
+    "minRecordsPerActiveGroup": 5,
+    "expectedGroups": 6
+  },
+  "summary": {
+    "validItems": 23,
+    "postItems": 16,
+    "commentItems": 7,
+    "commentRate": 0.304,
+    "activeGroups": 6,
+    "expectedGroups": 6,
+    "failureCount": 3
+  },
+  "groups": [
+    {
+      "groupName": "Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
+      "capturedRecordCount": 22,
+      "failureCount": 3,
+      "status": "ok"
+    },
+    {
+      "groupName": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "capturedRecordCount": 1,
+      "failureCount": 0,
+      "status": "low_volume"
+    },
+    {
+      "groupName": "Roco Kingdom: World Viet Nam Official",
+      "groupUrl": "https://www.facebook.com/groups/1729046980837718/",
+      "capturedRecordCount": 1,
+      "failureCount": 0,
+      "status": "low_volume"
+    },
+    {
+      "groupName": "ROCO KINGDOM VN",
+      "groupUrl": "https://www.facebook.com/groups/3072730653028573/",
+      "capturedRecordCount": 2,
+      "failureCount": 0,
+      "status": "low_volume"
+    },
+    {
+      "groupName": "ROCO KINGDOM VIET NAM",
+      "groupUrl": "https://www.facebook.com/groups/947481474801675/",
+      "capturedRecordCount": 2,
+      "failureCount": 0,
+      "status": "low_volume"
+    },
+    {
+      "groupName": "Roco Kingdom Mobile Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/3223551104630521/",
+      "capturedRecordCount": 2,
+      "failureCount": 0,
+      "status": "low_volume"
+    }
+  ],
+  "issues": [
+    {
+      "severity": "high",
+      "code": "LOW_VALID_CONTENT",
+      "title": "有效内容量低于阈值",
+      "detail": "本轮有效内容 23 条，低于阈值 50 条。",
+      "recommendedAction": "先不要把本轮报告当作完整周结论；和用户确认是否按单 Group 重跑、加深滚动或接受可见样本。"
+    },
+    {
+      "severity": "high",
+      "code": "LOW_COMMENT_SAMPLE",
+      "title": "评论样本量不足",
+      "detail": "本轮评论样本 7 条，低于阈值 20 条。",
+      "recommendedAction": "优先执行帖子详情页评论加深抓取；如仍不足，向用户说明评论覆盖缺口后再决定是否出报告。"
+    },
+    {
+      "severity": "medium",
+      "code": "LOW_GROUP_VOLUME",
+      "title": "部分 Group 内容量异常低",
+      "detail": "Cong Hoi Roco Kingdom Viet Nam: 1；Roco Kingdom: World Viet Nam Official: 1；ROCO KINGDOM VN: 2；ROCO KINGDOM VIET NAM: 2；Roco Kingdom Mobile Viet Nam: 2",
+      "recommendedAction": "先向用户反馈低量 Group 清单；必要时按这些 Group 单独重跑。"
+    },
+    {
+      "severity": "medium",
+      "code": "CRAWL_GAPS",
+      "title": "存在抓取缺口日志",
+      "detail": "本轮失败/缺口记录 3 条。",
+      "recommendedAction": "查看 failure JSONL，确认是否评论折叠、权限变化、选择器变化或网络中断。"
+    }
+  ],
+  "userReviewRule": "If status is needs_user_review, pause before treating the run as final and discuss remediation options with the user."
+}

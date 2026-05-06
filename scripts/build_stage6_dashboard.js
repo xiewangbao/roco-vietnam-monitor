@@ -6,6 +6,8 @@ const report = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
 const structured = JSON.parse(fs.readFileSync(structuredPath, 'utf8'));
 fs.mkdirSync('site/topics', { recursive: true });
 fs.mkdirSync('site/reports', { recursive: true });
+const qualityPath = `data/quality/data_quality_${report.reportWeek}.json`;
+const quality = fs.existsSync(qualityPath) ? JSON.parse(fs.readFileSync(qualityPath, 'utf8')) : null;
 const availableReports = fs.readdirSync('data/reports')
   .filter((file) => /^weekly_report_.*_real\.json$/.test(file))
   .map((file) => {
@@ -108,6 +110,7 @@ const html = `<!doctype html>
   </nav>
   <main>
     <div class="notice">${report.sourceStatus.dataCompleteness}</div>
+    ${quality && quality.status !== 'pass' ? `<div class="notice"><strong>数据质量需要复核：</strong>${quality.issues.map((issue) => issue.title).join('；')}。本轮不应直接视为完整成品，请先确认是否重跑、加深评论或接受可见样本。</div>` : ''}
 
     <section id="latest">
       <h2>本周总览</h2>
@@ -213,6 +216,7 @@ const html = `<!doctype html>
       <h2>数据完整性说明</h2>
       <div class="panel">
         <p>${report.header.dataCompletenessNote}</p>
+        ${quality ? `<p>数据质量状态：<strong>${quality.status}</strong>。有效内容 ${quality.summary.validItems} 条，评论 ${quality.summary.commentItems} 条，活跃 Group ${quality.summary.activeGroups}/${quality.summary.expectedGroups}。</p>` : ''}
         <p>有效结构化内容 ${structured.items.length} 条；剔除窗口外、空文本、重复或纯媒体内容 ${structured.invalidItems.length} 条；低置信度待复核 ${structured.lowConfidenceItems.length} 条。</p>
         <p>最终展示不包含用户真实姓名、头像、主页链接或 Facebook ID。原帖按钮仅指向帖子 URL。</p>
       </div>
