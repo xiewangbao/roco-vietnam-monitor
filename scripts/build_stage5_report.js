@@ -150,6 +150,33 @@ const report = {
     sentimentHealthScore: healthScore,
     futureLaunchSignalScore: launchSignalScore,
   },
+  commentOpinion: {
+    commentCount: comments.length,
+    sentimentSummary: comments.reduce((acc, item) => {
+      acc[item.sentiment] = (acc[item.sentiment] || 0) + 1;
+      return acc;
+    }, {}),
+    topCommentTopics: Object.entries(comments.reduce((acc, item) => {
+      for (const topic of item.topics) acc[topic] = (acc[topic] || 0) + 1;
+      return acc;
+    }, {})).sort((a, b) => b[1] - a[1]).slice(0, 6).map(([topic, count]) => ({ topic, count })),
+    representativeComments: comments
+      .filter((item) => item.originalText && item.originalText.length >= 4)
+      .slice(0, 8)
+      .map((item) => ({
+        originalText: item.originalText,
+        translationZh: item.translationZh,
+        sentiment: item.sentiment,
+        topic: item.primaryTopic,
+        sourceGroup: item.sourceGroup,
+        postUrl: item.postUrl,
+        riskLabels: item.riskLabels,
+      })),
+    limitations: [
+      '评论舆情基于 Facebook feed 中可见和已展开的评论。',
+      '未完全展开的完整评论线程已进入缺口日志，因此评论舆情代表可见样本，不代表全量评论。',
+    ],
+  },
   groupSourceStatus: groupStats(),
   hotTopics: topTopics,
   sentimentAnalysis: {
@@ -241,6 +268,16 @@ ${report.hotTopics.map((t) => `${t.rank}. ${t.title}：${t.volume} 条，情绪�
 负面：${report.sentimentAnalysis.negativePlayersConcern.join(' ')}
 
 混合：${report.sentimentAnalysis.mixedSentimentContradictions.join(' ')}
+
+## 5.1 评论舆情
+评论样本量：${report.commentOpinion.commentCount}
+
+评论情绪：${Object.entries(report.commentOpinion.sentimentSummary).map(([k, v]) => `${k} ${v}`).join('；')}
+
+评论热点：${report.commentOpinion.topCommentTopics.map(t => `${t.topic} ${t.count}`).join('；')}
+
+代表评论：
+${report.commentOpinion.representativeComments.map((v) => `- ${v.originalText}（${v.sentiment} / ${v.topic}）`).join('\n')}
 
 ## 6. 未来越南发行参考信号
 ${Object.entries(report.futureVietnamLaunchSignals).map(([k, v]) => `- ${k}：${Array.isArray(v) ? v.join('；') : v}`).join('\n')}

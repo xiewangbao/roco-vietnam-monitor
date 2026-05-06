@@ -73,7 +73,7 @@ set collectorJs to "
       const postUrl = canonical((links.find(h => isPostUrl(h) && !isCommentUrl(h)) || links.find(h => isPostUrl(h)) || ''));
       const commentUrl = canonical((links.find(h => isCommentUrl(h)) || ''));
       const rawLines = text.split('\\n').map(x => x.trim()).filter(Boolean);
-      const looksLikePost = !!postUrl && (text.includes('发表公开评论') || text.includes('输入回答') || text.includes('查看更多评论') || rawLines.includes('·') || rawLines.includes('  ·'));
+      const looksLikePost = text.includes('发表公开评论') || text.includes('输入回答') || text.includes('查看更多评论') || rawLines.includes('·') || rawLines.includes('  ·');
       const contentLines = [];
       for (const line of rawLines.slice(1)) {
         if (looksLikePost && /^(查看更多评论|发表公开评论|输入回答|查看.*回复|赞|回复|分享)$/.test(line)) break;
@@ -149,6 +149,10 @@ tell application "Safari"
 	repeat with u in groupUrls
 		set URL of front document to (u as text)
 		delay 8
+		try
+			do JavaScript "window.scrollTo(0, 0); 'top';" in front document
+			delay 1
+		end try
 		try
 			do JavaScript sortJs in front document
 			delay 1

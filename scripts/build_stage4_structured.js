@@ -6,6 +6,11 @@ const outputPath = process.argv[3] || 'data/structured/structured_weekly_2026-W1
 
 const raw = JSON.parse(fs.readFileSync(inputPath, 'utf8'));
 const generatedAt = new Date().toISOString();
+const maxRelativeDays = Number(process.env.MAX_RELATIVE_DAYS || 5);
+const rangeStart = process.env.RANGE_START || raw.timeRange?.start || '2026-04-24T00:00:00+08:00';
+const startDateMatch = rangeStart.match(/2026-(\d{2})-(\d{2})/);
+const startMonth = startDateMatch ? Number(startDateMatch[1]) : 4;
+const startDay = startDateMatch ? Number(startDateMatch[2]) : 24;
 
 const identityPatterns = [
   /^Yuexuan Peng$/i,
@@ -41,9 +46,15 @@ function inRange(rawTimeLabel, text) {
   if (/^\d+\s*分钟$/.test(rawTimeLabel)) return 'in_range';
   if (/^\d+\s*小时$/.test(rawTimeLabel)) return 'in_range';
   const day = rawTimeLabel.match(/^(\d+)\s*天$/);
-  if (day) return Number(day[1]) <= 5 ? 'in_range' : 'out_of_range';
-  const md = rawTimeLabel.match(/^4月(\d{1,2})日/);
-  if (md) return Number(md[1]) >= 24 ? 'in_range' : 'out_of_range';
+  if (day) return Number(day[1]) <= maxRelativeDays ? 'in_range' : 'out_of_range';
+  const md = rawTimeLabel.match(/^(\d{1,2})月(\d{1,2})日/);
+  if (md) {
+    const month = Number(md[1]);
+    const date = Number(md[2]);
+    if (month > startMonth) return 'in_range';
+    if (month === startMonth && date >= startDay) return 'in_range';
+    return 'out_of_range';
+  }
   if (/3月|2022年|3年|4月1日|4月15日|4月21日/.test(rawTimeLabel)) return 'out_of_range';
   return 'unknown_keep_low_confidence';
 }
@@ -250,7 +261,7 @@ const structured = {
     activeGroups: raw.sourceGroups.filter((g) => g.capturedRecordCount > 0).length,
     dataCompleteness: 'partial_in_progress_week_visible_feed_crawl',
     limitations: [
-      '本次抓取在 2026-04-29 执行，4/30 不补跑，后续正式周跑覆盖完整周期。',
+      `本次抓取从 ${rangeStart} 起算，结束于 ${raw.timeRange?.end || generatedAt}；如为周中执行，仍属于进行中周。`,
       '评论为可见评论和部分展开结果，完整评论线程仍有缺口。',
       '部分时间为 Facebook 相对时间标签，尚未全部转成绝对时间。',
       '部分内容为媒体或跨发帖，结构化时已列入低置信度或去重/剔除清单。',

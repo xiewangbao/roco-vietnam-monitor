@@ -21,6 +21,10 @@ const groups = [
 
 const startedAt = new Date().toISOString();
 const salt = process.env.ROCO_MONITOR_SALT || 'local-stage3b-salt-not-for-production';
+const reportWeek = process.env.REPORT_WEEK || '2026-W18';
+const rangeStart = process.env.RANGE_START || '2026-04-24T00:00:00+08:00';
+const completenessNote = process.env.COMPLETENESS_NOTE || 'Current week is still in progress; this is not the final full Friday-to-Thursday weekly run.';
+const runId = `${reportWeek}-stage3b`;
 
 function sha(value) {
   return crypto.createHash('sha256').update(`${salt}:${value}`).digest('hex');
@@ -80,8 +84,8 @@ for (const page of browserGroups) {
 
   if (!page.records || page.records.length === 0) {
     failures.push({
-      runId: '2026-W18-stage3b',
-      reportWeek: '2026-W18',
+      runId,
+      reportWeek,
       groupName,
       groupUrl,
       targetType: 'group',
@@ -150,8 +154,8 @@ for (const page of browserGroups) {
 
     if (item.hasMoreComments) {
       failures.push({
-        runId: '2026-W18-stage3b',
-        reportWeek: '2026-W18',
+        runId,
+        reportWeek,
         groupName,
         groupUrl,
         targetType: 'comment_section',
@@ -173,13 +177,13 @@ for (const page of browserGroups) {
 const weeklyRaw = {
   schemaVersion: 'stage3.weekly_raw.v1',
   exampleOnly: false,
-  reportWeek: '2026-W18',
+  reportWeek,
   runType: 'stage3b_real_crawl_in_progress_week',
   timeRange: {
-    start: '2026-04-24T00:00:00+08:00',
+    start: rangeStart,
     end: startedAt,
     timezone: 'Asia/Shanghai',
-    completenessNote: 'Current week is still in progress on 2026-04-29; this is not the final full Friday-to-Thursday weekly run.',
+    completenessNote,
   },
   generatedAt: startedAt,
   dataSource: 'browser_automation',
