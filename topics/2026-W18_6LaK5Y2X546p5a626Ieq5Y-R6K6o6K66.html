@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>越南玩家自发讨论 - Topic 分析</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --ink: #17202c;
+      --muted: #667085;
+      --line: #d9dee8;
+      --panel: #ffffff;
+      --blue: #1f6feb;
+      --green: #18864b;
+      --amber: #b7791f;
+      --red: #c2413b;
+      --cyan: #087990;
+      --violet: #7254b6;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      letter-spacing: 0;
+    }
+    header {
+      background: #111827;
+      color: white;
+      padding: 20px 28px 18px;
+      border-bottom: 4px solid var(--blue);
+    }
+    header h1 { margin: 0 0 8px; font-size: 24px; line-height: 1.25; }
+    header .meta { display: flex; flex-wrap: wrap; gap: 10px 18px; color: #d1d5db; font-size: 13px; }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      padding: 10px 28px;
+      background: rgba(247,248,251,.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(8px);
+    }
+    nav a {
+      color: var(--ink);
+      text-decoration: none;
+      padding: 7px 10px;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    nav a:hover { background: #e8edf7; }
+    main { padding: 22px 28px 40px; max-width: 1440px; margin: 0 auto; }
+    section { margin-bottom: 26px; }
+    h2 { font-size: 18px; margin: 0 0 12px; }
+    h3 { font-size: 15px; margin: 0 0 8px; }
+    .notice {
+      border-left: 4px solid var(--amber);
+      background: #fff8e6;
+      padding: 10px 12px;
+      color: #5f430b;
+      margin-bottom: 18px;
+      line-height: 1.55;
+    }
+    .grid { display: grid; gap: 12px; }
+    .metrics { grid-template-columns: repeat(6, minmax(130px, 1fr)); }
+    .metric, .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .metric .label { color: var(--muted); font-size: 12px; }
+    .metric .value { font-size: 24px; font-weight: 700; margin-top: 6px; }
+    .metric .sub { color: var(--muted); font-size: 12px; margin-top: 4px; }
+    .two { grid-template-columns: 1.3fr .7fr; }
+    table { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+    th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 13px; }
+    th { background: #eef2f7; color: #344054; font-weight: 700; }
+    tr:last-child td { border-bottom: 0; }
+    .tag { display: inline-flex; align-items: center; min-height: 22px; padding: 2px 7px; border-radius: 999px; border: 1px solid var(--line); background: #f9fafb; font-size: 12px; margin: 2px 4px 2px 0; }
+    .tag.green { color: var(--green); border-color: #a8d5bd; background: #eefaf3; }
+    .tag.red { color: var(--red); border-color: #f0b6b2; background: #fff1f1; }
+    .tag.blue { color: var(--blue); border-color: #bdd3ff; background: #f0f5ff; }
+    .tag.amber { color: var(--amber); border-color: #ead19b; background: #fff8e6; }
+    .bar { height: 9px; background: #edf0f5; border-radius: 999px; overflow: hidden; }
+    .bar span { display: block; height: 100%; background: var(--blue); }
+    .bar.green span { background: var(--green); }
+    .bar.red span { background: var(--red); }
+    .bar.amber span { background: var(--amber); }
+    .voice { border-top: 1px solid var(--line); padding: 12px 0; }
+    .voice:first-child { border-top: 0; padding-top: 0; }
+    .voice blockquote { margin: 8px 0; padding-left: 10px; border-left: 3px solid var(--cyan); color: #344054; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 9px;
+      border-radius: 6px;
+      background: #eef4ff;
+      color: var(--blue);
+      text-decoration: none;
+      font-size: 12px;
+      border: 1px solid #bdd3ff;
+    }
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+    select, input {
+      min-height: 34px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 6px 8px;
+      background: white;
+      color: var(--ink);
+    }
+    .muted { color: var(--muted); }
+    .small { font-size: 12px; }
+    @media (max-width: 980px) {
+      .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .two { grid-template-columns: 1fr; }
+      main, header, nav { padding-left: 16px; padding-right: 16px; }
+      table { display: block; overflow-x: auto; }
+    }
+</style>
+</head>
+<body>
+  <header>
+    <h1>越南玩家自发讨论 - Topic 分析</h1>
+    <div class="meta"><span>报告周：2026-W18</span><span>内容量：19</span><span>阈值：内容量超过 10 自动生成</span></div>
+  </header>
+  <main>
+    <p><a class="btn" href="../index.html#topics">返回 Dashboard</a></p>
+    <section><h2>概览</h2><div class="grid metrics">
+      <div class="metric"><div class="label">内容量</div><div class="value">19</div><div class="sub">7 帖 / 12 评论</div></div>
+      <div class="metric"><div class="label">主要情绪</div><div class="value">中性</div><div class="sub">该 topic 内</div></div>
+      <div class="metric"><div class="label">活跃 Group</div><div class="value">5</div><div class="sub">涉及来源数</div></div>
+      <div class="metric"><div class="label">代表 case</div><div class="value">有</div><div class="sub">原帖需权限</div></div>
+    </div></section>
+    <section><h2>二级 Topic / 共现标签</h2><div class="panel"><span class="muted">暂无明显共现标签</span></div></section>
+    <section><h2>情绪与来源</h2><div class="grid two"><div class="panel"><p><strong>中性</strong> 11</p><div class="bar"><span style="width:57.89473684210527%"></span></div><p><strong>正面</strong> 5</p><div class="bar"><span style="width:26.31578947368421%"></span></div><p><strong>高风险负面</strong> 1</p><div class="bar"><span style="width:5.263157894736842%"></span></div><p><strong>负面</strong> 2</p><div class="bar"><span style="width:10.526315789473683%"></span></div></div><div class="panel"><p>Cong Hoi Roco Kingdom Viet Nam：9</p><p>Roco Kingdom Viet Nam：6</p><p>ROCO KINGDOM VN：2</p><p>Roco Kingdom: World Viet Nam Official：1</p><p>ROCO KINGDOM VIET NAM：1</p></div></div></section>
+    <section><h2>内容明细</h2><table><thead><tr><th>#</th><th>类型</th><th>来源</th><th>情绪</th><th>原文</th><th>中文摘要</th><th>原帖</th></tr></thead><tbody><tr><td>1</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag">中性</span></td><td>Làm đc 1sao r còn 2sao còn lại làm s v mn</td><td>机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2123045795155159/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>2</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag">正面</span></td><td>Đag chs và thấy cx ổn</td><td>机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122892555170483/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>3</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag">中性</span></td><td>最新一期星光对决也是用咔咔鸟上分，有人加好友玩吗，id[已脱敏]，我有战令</td><td>机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122614075198331/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>4</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag">正面</span></td><td>Má ơi 5p đc 2con .. thank god</td><td>机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122611005198638/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>5</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag">中性</span></td><td>nhập đại vào đấy vài lần=)) htrc tui vừa ms bj xong</td><td>机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122352235224515/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>6</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag">高风险负面</span></td><td>Nhiu b</td><td>机器初译摘要：该内容主要涉及「越南玩家自发讨论」，并触发风险标签「账号买卖」。原文需在重点引用前人工复核。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122264441899961/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>7</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag">正面</span></td><td>Cuối cùng thì cũng đã đủ</td><td>机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1761077491524507/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>8</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag">负面</span></td><td>Huhu tui cũm kẹt nó bảo cần jjj đó thì phải</td><td>机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1761051448193778/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>9</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag">中性</span></td><td>À đâu, giờ là chơi trò chơi của 3 ng</td><td>机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1760728621559394/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>10</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag">中性</span></td><td>[数字ID已脱敏] kB tui</td><td>机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1760720814893508/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>11</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag">中性</span></td><td>Tui có con bướm nè</td><td>机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1760720814893508/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>12</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag">中性</span></td><td>Hóng ké</td><td>机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1760703504895239/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>13</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag">中性</span></td><td>lại gần người muốn vào bấm vào tên họ sẽ hiện lên icon có mủi tên bấm vào xin họ</td><td>机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1760703504895239/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>14</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag">负面</span></td><td>Lúc đầu cứ tưởng con này bị xổ mũi, sau mới nhận ra đấy là lưỡi của nó</td><td>机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1760633431568913/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>15</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag">中性</span></td><td>thu thap 120 tinh linh se mo khoa</td><td>机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1760581981574058/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>16</td><td>评论</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag">中性</span></td><td>我抖音那个帖子来的嘛</td><td>机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2345357909206619/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>17</td><td>评论</td><td>ROCO KINGDOM VN</td><td><span class="tag">中性</span></td><td>Cứ theo thứ tự 12341 là đc nói chung bạn cứ làm đại theo chiều kim đồng hồ chừng2 vòng là đc
+已编辑</td><td>机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4022362944732001/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>18</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag">正面</span></td><td>Anh chị xem cho vui, mới kiếm thấy.
++5</td><td>机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4021959944772301/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>19</td><td>帖子</td><td>ROCO KINGDOM VIET NAM</td><td><span class="tag">正面</span></td><td>Anh chị xem cho vui, mới kiếm thấy.
++5</td><td>机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。</td><td><a class="btn" href="https://www.facebook.com/groups/947481474801675/posts/957443363805486/" target="_blank" rel="noreferrer">查看原帖</a></td></tr></tbody></table></section>
+  </main>
+</body>
+</html>
