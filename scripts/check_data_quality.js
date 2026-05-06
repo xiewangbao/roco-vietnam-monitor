@@ -165,3 +165,7 @@ console.log(JSON.stringify({
   status: quality.status,
   issues: quality.issues.map((issue) => issue.code),
 }, null, 2));
+
+if (quality.status !== 'pass') {
+  process.exitCode = 1;
+}

@@ -5,11 +5,11 @@
   "reportWeek": "2026-W19",
   "timeRange": {
     "start": "2026-04-30T00:00:00+08:00",
-    "end": "2026-05-06T03:39:09.643Z",
+    "end": "2026-05-06T04:21:50.275Z",
     "timezone": "Asia/Shanghai",
     "completenessNote": "Second in-progress run from 2026-04-30 00:00 +08:00 to crawl time on 2026-05-06; final Friday-to-Thursday run will be covered later."
   },
-  "generatedAt": "2026-05-06T03:39:37.823Z",
+  "generatedAt": "2026-05-06T04:26:06.816Z",
   "dataSource": "browser_automation",
   "processingStatus": "real_structured_in_progress_week",
   "sourceStatus": {
@@ -17,7 +17,7 @@
     "activeGroups": 6,
     "dataCompleteness": "partial_in_progress_week_visible_feed_crawl",
     "limitations": [
-      "本次抓取从 2026-04-30T00:00:00+08:00 起算，结束于 2026-05-06T03:39:09.643Z；如为周中执行，仍属于进行中周。",
+      "本次抓取从 2026-04-30T00:00:00+08:00 起算，结束于 2026-05-06T04:21:50.275Z；如为周中执行，仍属于进行中周。",
       "评论为可见评论和部分展开结果，完整评论线程仍有缺口。",
       "部分时间为 Facebook 相对时间标签，尚未全部转成绝对时间。",
       "部分内容为媒体或跨发帖，结构化时已列入低置信度或去重/剔除清单。"
@@ -65,14 +65,14 @@
     },
     {
       "recordType": "post",
-      "anonymousContentId": "f8cc93d57a1cbbfec9783cdeab9776261ebf1702a43b0edf7f4b332b7acc45b3",
+      "anonymousContentId": "d0d191904968add90cfc712d4ded9292bd8d17e6f7d593c7efc5aebd45a1e14f",
       "anonymousAuthorId": "b7a1fb45df8e705d5dd54eab71e6626a4e04f3fcc8a346ad60f17f87985f9c88",
       "sourceGroup": "Roco Kingdom Viet Nam",
       "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
       "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128445911281814/",
       "postAccessNote": "requires_facebook_or_group_permission",
       "publishedAt": null,
-      "rawTimeLabel": "11小时",
+      "rawTimeLabel": "12小时",
       "originalText": "Mn cho hỏi nếu bắt shiny mà dùng cầu mùa thì có ra màu đen bạc k hay phải ấp r dùng cầu mùa nó mới ra màu đó",
       "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
       "language": "vi",
@@ -98,14 +98,14 @@
     },
     {
       "recordType": "post",
-      "anonymousContentId": "03005a5f73f2e80421700c4e14975f0730607e62aab9629b33033a5490c6c15e",
+      "anonymousContentId": "949c6ad369cecc0bc40917b5c74ab58d7ebca45cda0cdb9c69db961b13ae07c7",
       "anonymousAuthorId": "01abf808c27183c18e5b6bb8d1ea2662b468743e83c3a837b6efea7d2bb075df",
       "sourceGroup": "Roco Kingdom Viet Nam",
       "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
       "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128443277948744/",
       "postAccessNote": "requires_facebook_or_group_permission",
       "publishedAt": null,
-      "rawTimeLabel": "11小时",
+      "rawTimeLabel": "12小时",
       "originalText": "Chia sẽ cho mn về 1 ngày trộm vía của tui~~~\n+2",
       "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
       "language": "vi",
@@ -131,47 +131,14 @@
     },
     {
       "recordType": "comment",
-      "anonymousContentId": "b1b4ca41d8b98cf8f91f258edf8bb1dc7fb8132b5201cf292838f2a9f81bb650",
+      "anonymousContentId": "7824c5ce9b30935f43bccc0aa508fe9e76aed6a14498a50f49c2a333d681dd86",
       "anonymousAuthorId": "70c0787845c8a47b231e4af51ca4a6a36b11d6c1353dcd47e6ec6bc4e7add417",
       "sourceGroup": "Roco Kingdom Viet Nam",
       "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
       "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128443277948744/",
       "postAccessNote": "requires_facebook_or_group_permission",
       "publishedAt": null,
-      "rawTimeLabel": "10小时",
-      "originalText": "Làm sao ra được con có màu đen đó vậy",
-      "translationZh": "机器初译摘要：该内容主要涉及「玩法机制」。原文需在重点引用前人工复核。",
-      "language": "vi",
-      "cleaningDecision": "valid_relevant",
-      "primaryTopic": "玩法机制",
-      "topics": [
-        "玩法机制"
-      ],
-      "sentiment": "混合",
-      "riskLabels": [],
-      "riskEvidenceSummary": null,
-      "confidence": 0.73,
-      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
-      "marketObservationValue": "medium",
-      "futureLaunchSignal": false,
-      "dataCompleteness": {
-        "postUrl": "complete",
-        "publishedAt": "relative_time_only",
-        "text": "visible_text_captured",
-        "comments": "visible_comments_only",
-        "newestFirstSortObserved": "observed_or_selected"
-      }
-    },
-    {
-      "recordType": "comment",
-      "anonymousContentId": "c02edaaa3b4b7fe2a7bc23255d07226d3871593c40e1d4d6b7bc0af872e46445",
-      "anonymousAuthorId": "a7117d292b92dcbbb61fe56a87be67233354fea3c41339973721ee0b1961e58a",
-      "sourceGroup": "Roco Kingdom Viet Nam",
-      "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
-      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128443277948744/",
-      "postAccessNote": "requires_facebook_or_group_permission",
-      "publishedAt": null,
-      "rawTimeLabel": "11小时",
+      "rawTimeLabel": "12小时",
       "originalText": "Tiến hoá đii, hóng màu con đen trắng",
       "translationZh": "玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。",
       "language": "vi",
@@ -185,6 +152,39 @@
       "riskEvidenceSummary": null,
       "confidence": 0.85,
       "lowConfidenceReason": null,
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "5a1b646ab532ee7ded5ed8e8d0a5e4eb61be0548265117b9e1929ef2a44fec48",
+      "anonymousAuthorId": "a7117d292b92dcbbb61fe56a87be67233354fea3c41339973721ee0b1961e58a",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128443277948744/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "11小时",
+      "originalText": "Làm sao ra được con có màu đen đó vậy",
+      "translationZh": "机器初译摘要：该内容主要涉及「玩法机制」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "玩法机制",
+      "topics": [
+        "玩法机制"
+      ],
+      "sentiment": "混合",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
       "marketObservationValue": "medium",
       "futureLaunchSignal": false,
       "dataCompleteness": {
@@ -230,14 +230,14 @@
     },
     {
       "recordType": "comment",
-      "anonymousContentId": "93f4bffbbbc2931301ff472eec92e31c49c368c597bd8988ec2d47d7425635cc",
+      "anonymousContentId": "2c745eaa71db31cf62fe888953ccb9b3b03e4578a49333d05b91960f935bea81",
       "anonymousAuthorId": "1ff417d70d18255a2d5ce07b3deb8f2295cec7850cb602cfa02328d4d2ae257b",
       "sourceGroup": "Roco Kingdom Viet Nam",
       "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
       "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128273591299046/",
       "postAccessNote": "requires_facebook_or_group_permission",
       "publishedAt": null,
-      "rawTimeLabel": "2小时",
+      "rawTimeLabel": "3小时",
       "originalText": "Nghiện lắm",
       "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
       "language": "vi",
@@ -263,14 +263,14 @@
     },
     {
       "recordType": "post",
-      "anonymousContentId": "8dbbdd846143e3d45b6d31374a044558490a9b0579ffb372f6422b4316f345d3",
+      "anonymousContentId": "5f9bae49b23211c224e12b7df689faca875fa447e463e7820f07782cb7fc99d7",
       "anonymousAuthorId": "3222537222a6c673dd09ba190b51597a31729b3756bb4820ded2f7158687612f",
       "sourceGroup": "Roco Kingdom Viet Nam",
       "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
       "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128160144643724/",
       "postAccessNote": "requires_facebook_or_group_permission",
       "publishedAt": null,
-      "rawTimeLabel": "19小时",
+      "rawTimeLabel": "20小时",
       "originalText": "Tui mới chơi, cho tui hỏi là trong đám này có con nào mạnh mà khó kiếm shiny hơn mấy con còn lại không mọi người. Hay ngang nhau hết ạ",
       "translationZh": "机器初译摘要：该内容主要涉及「攻略分享」。原文需在重点引用前人工复核。",
       "language": "vi",
@@ -296,14 +296,14 @@
     },
     {
       "recordType": "comment",
-      "anonymousContentId": "03dfb325266c774c746493b458cbb24f631f93c8d9b4ff258824d027ac1cebd1",
+      "anonymousContentId": "9830acf68f6388c012772e5e78e61e05ab1e25cb1ed5727695ac767104d96fb1",
       "anonymousAuthorId": "e04576d89f200b192b83ab5e7fda2b6dffd88082b011edefabca820d20c346b0",
       "sourceGroup": "Roco Kingdom Viet Nam",
       "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
       "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128160144643724/",
       "postAccessNote": "requires_facebook_or_group_permission",
       "publishedAt": null,
-      "rawTimeLabel": "18小时",
+      "rawTimeLabel": "19小时",
       "originalText": "Như nhau, team 6 pet thì mỗi con có khắc chế, này là các con đổi màu, sau dùng bóng 7 màu thì con nào cũng như thế này.",
       "translationZh": "机器初译摘要：该内容主要涉及「宠物、角色、养成」。原文需在重点引用前人工复核。",
       "language": "vi",
@@ -329,14 +329,14 @@
     },
     {
       "recordType": "post",
-      "anonymousContentId": "3b5a04434cae52217c8a64fad24793467cf05c77f3c60d7d286f8b3f1ecb1f20",
+      "anonymousContentId": "c48891fdc7b1f8f07b23ea4f1aa45289e2c75210998693ba19cd12cdd7d3b6e2",
       "anonymousAuthorId": "1afc280e8035265bdf706a2e3962d24ee209fdecd10189c6d019d93955d3a6ca",
       "sourceGroup": "Roco Kingdom Viet Nam",
       "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
       "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128089357984136/",
       "postAccessNote": "requires_facebook_or_group_permission",
       "publishedAt": null,
-      "rawTimeLabel": "21小时",
+      "rawTimeLabel": "22小时",
       "originalText": "Ai cho mình xin full skill em này với",
       "translationZh": "机器初译摘要：该内容主要涉及「宠物、角色、养成」。原文需在重点引用前人工复核。",
       "language": "vi",
@@ -362,14 +362,14 @@
     },
     {
       "recordType": "comment",
-      "anonymousContentId": "d5b2214f5c2c418729716b44eb0099f4b3ae3e837c55b0402516d1a05b27f7da",
+      "anonymousContentId": "7fb271f7ad7af38bce7c81a7c357c14b170490a339f990eb0540c65c8a6982b5",
       "anonymousAuthorId": "e94b84a3ac97fdd268c4a5c74ccf93ada364af8f96c228fad6cbd95bd3344090",
       "sourceGroup": "Roco Kingdom Viet Nam",
       "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
       "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128089357984136/",
       "postAccessNote": "requires_facebook_or_group_permission",
       "publishedAt": null,
-      "rawTimeLabel": "19小时",
+      "rawTimeLabel": "20小时",
       "originalText": "Hmm mấy con shiny toàn để xó ít khi dùng chỉ số toàn như cut",
       "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
       "language": "vi",
@@ -626,14 +626,14 @@
     },
     {
       "recordType": "post",
-      "anonymousContentId": "9b0825836837b821a1cfa8fd390c615e5b06afbf6587b92052a6f8400b7b4d70",
+      "anonymousContentId": "1895ed244c06d86b84d70706d94db6ff225aaec6bf8604012581e955711d49e4",
       "anonymousAuthorId": "172cef70fcf75813d656a74fc5196b9cca29235c2d0d2eeb33b110e8860d4964",
       "sourceGroup": "Roco Kingdom Viet Nam",
       "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
       "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2127211811405224/",
       "postAccessNote": "requires_facebook_or_group_permission",
       "publishedAt": null,
-      "rawTimeLabel": "1天",
+      "rawTimeLabel": "2天",
       "originalText": "Cách lấy cái đồng hồ cát ở đâu vậy mọi người",
       "translationZh": "机器初译摘要：该内容主要涉及「玩法机制」。原文需在重点引用前人工复核。",
       "language": "vi",
@@ -692,14 +692,1679 @@
     },
     {
       "recordType": "post",
-      "anonymousContentId": "343d23cd8a11d02fdba1ccc7cfad6d878a4a4b6c4e62416cfdaa2dc097b69987",
+      "anonymousContentId": "9d744d5df72dfc91a23ffc61a22d3c74c1584995376c9a658c9ffd6ad97e0330",
+      "anonymousAuthorId": "725e458f2dc0fc8d071f7e21c3f35f31625166115bbcfd2bb259d23bebf616fd",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2126758241450581/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "2天",
+      "originalText": "Mng chỉ tui 3 cái nhiệm vụ này làm sao với",
+      "translationZh": "玩家询问任务如何完成，包含要投放/使用哪类精灵或如何解锁机关。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "玩法机制",
+      "topics": [
+        "玩法机制"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.85,
+      "lowConfidenceReason": null,
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "528d16123333cf6e7d42e5ba1fcdffb131825337a11e3fcc63d9c24cb2537c79",
+      "anonymousAuthorId": "02ca491baf091494eb2148dcbc4278d4e775cf71845911356c8901f8c43e1a0a",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2126731584786580/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "2天",
+      "originalText": "Mn ơi làm cái nv đầu tiên kiểu j thế ạ",
+      "translationZh": "玩家询问任务如何完成，包含要投放/使用哪类精灵或如何解锁机关。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "玩法机制",
+      "topics": [
+        "玩法机制"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "评论线程未完全展开",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "partial_visible_feed_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "6e4cec932172a4a592389958984f14c8e33e01548b58d56fe071c6edd962b9d7",
+      "anonymousAuthorId": "de3ace61b4e158ce6f53322b822b5d5e235679fff90786faf305d1e1b5ab455d",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2126731584786580/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "2天",
+      "originalText": "Tưởng viusss nhưng ko đó là Ngọc Kem :)))",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "混合",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "8ce9e4c8aba8fe969275e212ce8a982578e942f3e9e82a915614ad41591811fe",
+      "anonymousAuthorId": "0d507e25244deaf3a8110787356ca7f572f292b2a753ab2edce58da1835c9675",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2126669668126105/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "2天",
+      "originalText": "Ai có 2 nhỏ này ko cho ké với",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "32e3b15377a6bf7d0a8dc797e877b1044b6fb8f7bd5ad0f166e623623c8cf83f",
+      "anonymousAuthorId": "6f99b428be45f4f548d9772d8964c478fcb6226745d397d2253354f75613b50b",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2126669668126105/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "2天",
+      "originalText": "Tui ké nữa",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "low",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "9c73956ccaf38d565ebe3785523f45769727bc0278ab268e1afc027adb6da779",
+      "anonymousAuthorId": "d23b4225b304e720cf41212fac8a0c9949f9471a8918dfde53940f672fd33129",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2126669668126105/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "2天",
+      "originalText": "Tôi có mỗi hạt dê",
+      "translationZh": "机器初译摘要：该内容主要涉及「社群互动、组队、公会」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "社群互动、组队、公会",
+      "topics": [
+        "社群互动、组队、公会"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "low",
+      "futureLaunchSignal": true,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "c53cd79bd7ea92c98690cd8f7cc8f903d503a10c526f2643bcc5da269e69dce7",
+      "anonymousAuthorId": "90bbfeb908db47b2b613ce413d45c76383658a469b87d445557aa8d8dfbf8de2",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2126551348137937/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "2天",
+      "originalText": "越南 · 岘港市\nThấy cũng ok nhé ae",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "mixed",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "28d18fdaacbeb5b6da63504a25dd7b573abf2d42e0a6e84257310fb5895df8cd",
+      "anonymousAuthorId": "bc57a755275780191af15c467ddfbb7f10067671d2860c35d47f2fbeb60be2c0",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2126524451473960/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "2天",
+      "originalText": "nv đánh boss là con nào v mn",
+      "translationZh": "玩家询问任务如何完成，包含要投放/使用哪类精灵或如何解锁机关。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "宠物、角色、养成",
+      "topics": [
+        "宠物、角色、养成",
+        "玩法机制"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.85,
+      "lowConfidenceReason": null,
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "c9c9c496508f4911ace34647675f07813082167b904f88988fb27721142a12ac",
+      "anonymousAuthorId": "2c4a5fbd8242efecd1dbdef810a3b40d5aca6c5f5d32c69bb177ec1f10c95de6",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2126478841478521/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "2天",
+      "originalText": "Đi săn mà vô tình chụp đc nó tấm này nhìn đẹp qá",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "混合",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "a030df8d6a3d5c62ec4e966b3782dbf972b2bc1cab9ea538454454b82e3ad946",
+      "anonymousAuthorId": "3ca159f6df47379addbe577b4f60fb5f9d5ee8febe0fabd19d43d84174917a0c",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2126426881483717/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "2天",
+      "originalText": "Mn cho mik hỏi là\nGame này xắp xếp pet có ghép theo đội hình kiểu\nDps-sup dps-sp như ghenshin hay wuwa ko",
+      "translationZh": "机器初译摘要：该内容主要涉及「宠物、角色、养成」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "宠物、角色、养成",
+      "topics": [
+        "宠物、角色、养成"
+      ],
+      "sentiment": "正面",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "eb35cb83f40055f91bbfd11d42ae5a0811d54d466b3c8111d5ace867dd718f61",
+      "anonymousAuthorId": "00a244de50ebd98bd0351a6a2b44e2c9b8ed4d63df6eb7116b2bbe7fc3d831ab",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2126426881483717/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "2天",
+      "originalText": "Game như thể loại pokemon, khác với genshin",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "0f3d9d68c30c1e3c4add83007ad86c6ee63f062291b82f8dd000c38cdbb1781f",
+      "anonymousAuthorId": "e26e83843c8409d22c755aa444e8521e32a5c43fd3dee56186e9fcc3c91d64b5",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2126426881483717/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "2天",
+      "originalText": "Có á\nThấy 1 số thuần buff",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "bf2ea8a2902c1559990b562ad497fe5754ae82a5634ccda244eb7943a0a89a22",
+      "anonymousAuthorId": "1dbc056f37d639799aded02b3473ff789eccbd7cb5aaf51168a9d5713ff81a18",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766690074296582/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "33分钟",
+      "originalText": "Ai có mấy pet này cho e ké với ạ",
+      "translationZh": "机器初译摘要：该内容主要涉及「宠物、角色、养成」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "宠物、角色、养成",
+      "topics": [
+        "宠物、角色、养成"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "60c9377cd9794e4cb8371e465be199e9999bb76db7eee2fc244a77fa0e7e9a6a",
+      "anonymousAuthorId": "aecd5c38f848a8186d99f7f9df080bb58d655d32c4f9e1f00e111f1e6b78e296",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766600474305542/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "3小时",
+      "originalText": "Mọi người chỉ tôi cách đăng nhập game với. Ib riêng đi để chỉ newbie như tôi :)) Cảm ơn ạ",
+      "translationZh": "机器初译摘要：该内容主要涉及「玩法机制」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "玩法机制",
+      "topics": [
+        "玩法机制",
+        "Bug、闪退、卡顿、登录问题",
+        "诈骗、外挂、私服、黑产风险",
+        "攻略分享"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "high",
+      "futureLaunchSignal": true,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "c1238e8421eaee93ffafcdc735e5b0981a0b205eec2c9bd94dcfce291a3cf78e",
+      "anonymousAuthorId": "39d270d87fbf1211775c4700a01958f39c71b88132cb36ae6a9120889dd16b0f",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766600474305542/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "3小时",
+      "originalText": "VPN用中国节点",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "zh",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "low",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "56e6d6d23310639243d6af31f36a72e1e24a653cf1bc35967b549ef26a375b28",
+      "anonymousAuthorId": "57f2753d86dac29e71808d3491f9b935c632cfa2bc0f4182f35961f096738030",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766600474305542/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "2小时",
+      "originalText": "bạn có bật vpn không",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "low",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "7d4627477f8913931eff16bc24e34d481f633279907e5399bc7c1286fe89348a",
+      "anonymousAuthorId": "65fc706ecb39f7d6236b077fc1df06be274b0586e3743200f8ab8849775e68e9",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766554444310145/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "5小时",
+      "originalText": "Phải lmj tiếp v toi nghĩ mãi ko bt nói ch vs nó xong lmj",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "698cf19021b76f4eab9587d42b548da04fe3da405f97380b3150b4dc19624d59",
+      "anonymousAuthorId": "e70e60b439a787c67e02758d3550fa5c99a5afd6b8d2ccc09ef2fc64752dc0d6",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766492244316365/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "7小时",
+      "originalText": "Mn ơi chỉ tôi sao qua được này với ạ mãi vẫn chưa lên được cấp 31",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "混合",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "8cf5ff7b78b1a4a492a3a5281c0aac67bd6f1a541bc662e17c05b972a8268592",
+      "anonymousAuthorId": "c3ecea018cb623879a7a8c3f3708f3459fe24381345f2da4a72c132adda85747",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766492244316365/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "7小时",
+      "originalText": "làm nhiệm vụ tím chưa",
+      "translationZh": "玩家询问任务如何完成，包含要投放/使用哪类精灵或如何解锁机关。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "玩法机制",
+      "topics": [
+        "玩法机制"
+      ],
+      "sentiment": "混合",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.85,
+      "lowConfidenceReason": null,
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "862dba388026c2c4b63df880b1bfd6c8a966cf334d1479bfb6c62c76aede546f",
+      "anonymousAuthorId": "979ec534e23fc0f3f81b6265e1da4923fe216fb05be9c1b93fada01ccebdb5b7",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766484944317095/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "7小时",
+      "originalText": "Sao mik k chọn pet đánh dc v ạ?",
+      "translationZh": "机器初译摘要：该内容主要涉及「宠物、角色、养成」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "宠物、角色、养成",
+      "topics": [
+        "宠物、角色、养成",
+        "玩法机制"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "7eff7edb9e057260c86a809c75080cd0b6e0a08179d0dfc17ce2a926c6bd76c9",
+      "anonymousAuthorId": "b3c13a918e3241f268e85dd320c645b29414cddb778d3c4ce6f60ce4c792543c",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766408790991377/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "10小时",
+      "originalText": "mn ơi làm sao để vào thế giới của ng khác v ạ, em có add mn để bắt ké pass nhm e ko bt vào thế giới của mn kiểu j ;-;",
+      "translationZh": "玩家询问如何进入好友地图或借好友宠物进行捕捉/完成任务。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "社群互动、组队、公会",
+      "topics": [
+        "社群互动、组队、公会",
+        "玩法机制",
+        "充值、付费、礼包"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.85,
+      "lowConfidenceReason": null,
+      "marketObservationValue": "high",
+      "futureLaunchSignal": true,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "11cb5cfe8b37591177ccdcce519bf443c75a73453034ae616d7c642762f4247a",
+      "anonymousAuthorId": "862377d03b7f773df82f39f2cc4dd83b2cbd12ae257959ca473bd2ee2dfa80e0",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766408790991377/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "9小时",
+      "originalText": "Nhấn vào nói chuyện với họ rồi chọn nắm tay là được",
+      "translationZh": "玩家询问如何进入好友地图或借好友宠物进行捕捉/完成任务。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "社群互动、组队、公会",
+      "topics": [
+        "社群互动、组队、公会"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.85,
+      "lowConfidenceReason": null,
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": true,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "3014b83de6b6b97b479fd133ef53ff6a3dc2dc6c377f8935ca850be3ffae6b2d",
+      "anonymousAuthorId": "a854a42e36f6427a3883b384f637409af7dbcaaf7f01b6ce466249a633a68e1e",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766349364330653/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "12小时",
+      "originalText": "Ai chỉ mình làm cái này với",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "740938b4dd9122e2b1fabd4ad9936290df26da6244330b79bbb7076e980bd179",
+      "anonymousAuthorId": "dd640d507dfa36f1a2e690925295a75e7d02fdbfa9806f0efe45a23b554da777",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766284007670522/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "13小时",
+      "originalText": "Mấy cái này tăng gì v mn",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "6ae965b1ebd6c4c2a2e531285e61b0b024aabc45f3dadb306de804e462f020d1",
+      "anonymousAuthorId": "1bf59c89d6ff98e47d0578c2c45931423c6d5c484769b1d08ac1ec38e8584835",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766283007670622/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "13小时",
+      "originalText": "2 con trong 1 tiếng, đã dùng hết vận may trong tuần",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "6647afd6e05074389e368316c6816edfeeb38d1beaa2fe29f04342f9d3e1d37e",
+      "anonymousAuthorId": "c63928d84b0523bff5dd00f4907cfdfcebef5f56985bbce80827936f0c050915",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766258871006369/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "14小时",
+      "originalText": "Nhận nv tiếp theo làm sao vậy mn",
+      "translationZh": "玩家询问任务如何完成，包含要投放/使用哪类精灵或如何解锁机关。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "玩法机制",
+      "topics": [
+        "玩法机制"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.85,
+      "lowConfidenceReason": null,
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "b903aa0dfc83e400c32690574d9e0c8c0486de2885fb00ecfb51f79e1f436fb0",
+      "anonymousAuthorId": "379a400784debff39d52a42d3ac45018e271d4eb123c414c23a847803229233f",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766209361011320/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "15小时",
+      "originalText": "Cái đầu tiên sau chừng ấy ngày chờ đợi",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "f92c5517801765cf49d978d05163bc1b5207836ae052456c3ccff8728e0b9978",
+      "anonymousAuthorId": "e3ded7d52e7da4fa32123bbd1072591ec9b9012d252ba9c08c363df956a317d1",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766209361011320/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "15小时",
+      "originalText": "Ấp từ nhà lv1 lên lv22 vẫn k ra nổi 1 quả shiny=))",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "2b33c444e640e0e72e8be614ba6cdb2e25170783fbb0f5b4669e0f91e9cd6c7a",
+      "anonymousAuthorId": "e60ca77c626d5180da988c86e189c5ef6201e87b20aebe049484f08957179bcd",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766209361011320/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "14小时",
+      "originalText": "Bắt map tự ra 3 con thỏ luôn",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "111db0c98c196de60ded59742c568efbccb87008ddf64aff64e24e832de605bf",
+      "anonymousAuthorId": "27a3f11e574c6145cd89d37e0277a21adcdb2db184ceeed4312df928557c6398",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766143331017923/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "17小时",
+      "originalText": "Group mình có ai có sồi roco này cho mình xin bắt ké với ạ",
+      "translationZh": "玩家询问如何进入好友地图或借好友宠物进行捕捉/完成任务。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "社群互动、组队、公会",
+      "topics": [
+        "社群互动、组队、公会",
+        "宠物、角色、养成"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.85,
+      "lowConfidenceReason": null,
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": true,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "d997531a61e9e21a59ef7073cf4097491866a8fef1f795be1997cc4ca277628d",
+      "anonymousAuthorId": "85698274afa1232898ec86ff139fe408974bd2bbb4bc3b18762e38b499728e16",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766114121020844/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "18小时",
+      "originalText": "Muốn biến thành hình dạng người khác thì phải là sao",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "56db67f00b8da9934e48b66a252b2c61488ab43f1d6d1ababf420b14def78686",
+      "anonymousAuthorId": "480c151cf1de6830b379b7bd547a1a8ff9ded300ef0beb937bdd01851179ad44",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766114121020844/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "12小时",
+      "originalText": "Hiện tại k chọn dc nhân vật khác dc thì phải",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "884482f1202091bdc6ab0638c1d823b5f9a3f40247834de2e9a07974b49ffc8c",
+      "anonymousAuthorId": "d55c35f0d657ba91c231ebe190f51bf51b859fb40b67848e4e7864a8bdc7d296",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766114121020844/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "17小时",
+      "originalText": "Thuốc chuyển đổi sang vương, đánh bại boss vương 1 lần, lấy bổ trợ vương miện, trong trận sài nó là lên được.",
+      "translationZh": "玩家询问这些王冠道具如何获得。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "宠物、角色、养成",
+      "topics": [
+        "宠物、角色、养成",
+        "玩法机制"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.85,
+      "lowConfidenceReason": null,
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "490af9afef8ad539e28398ae9580acb764198e89147a4db3d3a9980f5c2ef30b",
+      "anonymousAuthorId": "ce743078e4e288d846c30608d339933d7bbe352539f0c139b91fcbb99704803a",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766103854355204/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "18小时",
+      "originalText": "giúp mik với ạ",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.61,
+      "lowConfidenceReason": "评论线程未完全展开；自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "low",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "partial_visible_feed_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "c7f370db3cdc7e60941b074ce6d60f6c2f841e42659abb1bf2211e0bf80a0a12",
+      "anonymousAuthorId": "1db8597fc690028d209294a97cfaf50e701d8188b583550ad16e7178c82099c7",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766067207692202/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "19小时",
+      "originalText": "Các bác cho e hỏi lọ nào xài để kích hoạt huyết thống thủ lĩnh để tiến hoá mega vậy ạ ?",
+      "translationZh": "玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "宠物、角色、养成",
+      "topics": [
+        "宠物、角色、养成"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.85,
+      "lowConfidenceReason": null,
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "d6141fa98c5bd59ae0be7fe919986a0de049d926aaa4e5b142dcb302ec8b62d6",
+      "anonymousAuthorId": "0a8cd381664d0c9262528c6c17401449272b4528375bf1fe88476531b3ec1bd0",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766067207692202/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "19小时",
+      "originalText": "Lọ màu đỏ có hình vương miện á",
+      "translationZh": "玩家询问这些王冠道具如何获得。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "宠物、角色、养成",
+      "topics": [
+        "宠物、角色、养成"
+      ],
+      "sentiment": "混合",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.85,
+      "lowConfidenceReason": null,
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "a17fd5f09554dd52adf529f9f14808a7cbd833c4a3e8dbaa87bea603c1227247",
+      "anonymousAuthorId": "1285df29391af0f91199abdd59e60c4b5260245384709232e00c7f0d9cbb7884",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766054104360179/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "20小时",
+      "originalText": "Tui mới chơi, cho tui hỏi là trong đám này có con nào mạnh mà khó kiếm shiny hơn mấy con còn lại không mọi người. Hay ngang nhau hết ạ",
+      "translationZh": "机器初译摘要：该内容主要涉及「攻略分享」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "攻略分享",
+      "topics": [
+        "攻略分享"
+      ],
+      "sentiment": "正面",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "6e79813c981a9cd7519a6e894d88baaf2d73998f91e6e7fe9ace9f5015a2c357",
+      "anonymousAuthorId": "717dd6f1281d03c4fbc9fda525a5f6ec65885c87e5a3e7dc9db2b5561220f89a",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766054104360179/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "20小时",
+      "originalText": "nma cái này là huyền thải ( lấp lánh ) chứ kh gọi là shiny đâu",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "6f5758ef71133efdc2df1cdc5381feef817ffe5bceec09e0686bfbc5115e598d",
+      "anonymousAuthorId": "39a6390351a7285109368514827cafe4f47edda2ed4da3aaf0bd0df6e9e2fc9a",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766054104360179/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "20小时",
+      "originalText": "Con nào cũng mạnh hết nha bạn , quan trọng bạn chơi team gì nè",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "7d3b0c05425ec93df9d6769f3eb48acc3097ea9a86544bab63d824fb498e1ed7",
+      "anonymousAuthorId": "abef7a67e7d44f632af1934a9caea774647801e1df9a8fbf260d8de9e3f045c1",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1765930851039171/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "1天",
+      "originalText": "Mỗi lần thả roco ra ngoài là nó được tăng gì vậy mn, với chỉ mình cách thả một lúc 6 con khi mỗi lần đăng nhập với",
+      "translationZh": "机器初译摘要：该内容主要涉及「宠物、角色、养成」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "宠物、角色、养成",
+      "topics": [
+        "宠物、角色、养成",
+        "玩法机制",
+        "Bug、闪退、卡顿、登录问题"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "high",
+      "futureLaunchSignal": true,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "79c4e631272dbd05511885174d1557712f7ea97563cfb69b4ca9dffb0fc11702",
+      "anonymousAuthorId": "fb00e3fbdc66226f83ca5361b990c5c7aab89b5a69d0f21acd56cc0966df54c6",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1765930851039171/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "1天",
+      "originalText": "có tăng gì đâu cái mũi tên này là những con đang ném ra ngoài thoi",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "862dc117b4e85580c7fc78e3dca781539ff45b046e6319e715b55616759bd52b",
+      "anonymousAuthorId": "7f264cef8dc37781d6fdf1484bf2c2e8bb12ea7cc0477165139b10e9696ca793",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1765906567708266/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "1天",
+      "originalText": "Cái này ném con j v mng",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "13d2daee1e42346a742aa69dc03ec1416dc313c39e265f30415c44a9a233d942",
+      "anonymousAuthorId": "a95f68af902620892db551425a32875f41cbca66b151718c5cff1223b5424dac",
+      "sourceGroup": "Roco Kingdom: World Viet Nam Official",
+      "groupUrl": "https://www.facebook.com/groups/1729046980837718/",
+      "postUrl": "https://www.facebook.com/groups/1729046980837718/posts/2350685322007211/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "1天",
+      "originalText": "Mn ủng kênh m với ạ\nTriệu Trung Đức\nMn ủng hộ kênh m với ạ\nCode: 洛神杯冠军之夜\nhttps://vt.tiktok.com/ZS9CRk5vw/",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "mixed",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "892511fe39a224b132780f460075a7da7d4fd02f0cc66de06d275fcbb0e69f22",
+      "anonymousAuthorId": "1a661899ce2e7ef6de51ab953a0b35fa79d754e6e78694a28db059a537d57200",
+      "sourceGroup": "Roco Kingdom: World Viet Nam Official",
+      "groupUrl": "https://www.facebook.com/groups/1729046980837718/",
+      "postUrl": "https://www.facebook.com/groups/1729046980837718/posts/2349026465506430/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "3天",
+      "originalText": "Vui lòng ra cửa hàng ngẫu nhiên mua trứng sặc sỡ.",
+      "translationZh": "内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "宠物、角色、养成",
+      "topics": [
+        "宠物、角色、养成",
+        "充值、付费、礼包"
+      ],
+      "sentiment": "正面",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.85,
+      "lowConfidenceReason": null,
+      "marketObservationValue": "high",
+      "futureLaunchSignal": true,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "7c03c00334d1b8834d60fff91c0d66ebf41c53f5fab965d7ebdfee6f536b857f",
+      "anonymousAuthorId": "9b4daa8fd5f54926001e8c8eafd3172f0b4b8531f0f39344f43fb5f67569979e",
+      "sourceGroup": "Roco Kingdom: World Viet Nam Official",
+      "groupUrl": "https://www.facebook.com/groups/1729046980837718/",
+      "postUrl": "https://www.facebook.com/groups/1729046980837718/posts/2348145558927854/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "4天",
+      "originalText": "nên chọn em nào trong dàn pet này mn ơi",
+      "translationZh": "机器初译摘要：该内容主要涉及「宠物、角色、养成」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "宠物、角色、养成",
+      "topics": [
+        "宠物、角色、养成"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "0b69ff9494777537b297bdfd5f9981527cc4fd0e3bed6119a733b155d808d901",
+      "anonymousAuthorId": "f4dfd0bea901ef5d1da31193ef4c7da890e59a1e7d0cd9d7ac2792c4269b0226",
+      "sourceGroup": "Roco Kingdom: World Viet Nam Official",
+      "groupUrl": "https://www.facebook.com/groups/1729046980837718/",
+      "postUrl": "https://www.facebook.com/groups/1729046980837718/posts/2347206752355068/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "5天",
+      "originalText": "0:03 / 1:19\nLàm thế nào để tiêu diệt NPC?\nMọi người hãy biết suy luận từ một trường hợp sang nhiều trường hợp khác. Những NPC khác sau này cũng có thể áp dụng cách này.",
+      "translationZh": "机器初译摘要：该内容主要涉及「玩法机制」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "玩法机制",
+      "topics": [
+        "玩法机制",
+        "Bug、闪退、卡顿、登录问题"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "high",
+      "futureLaunchSignal": true,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "8591beadaf8d98c705dbff0fffb08a22c34c4cf79e3024816e607c14f835e13b",
+      "anonymousAuthorId": "1b9df245c0e50c1523be18a1ec8e77259e77ab8368d9e5d06283611815952bda",
+      "sourceGroup": "Roco Kingdom: World Viet Nam Official",
+      "groupUrl": "https://www.facebook.com/groups/1729046980837718/",
+      "postUrl": "https://www.facebook.com/groups/1729046980837718/posts/2347156119026798/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "5天",
+      "originalText": "+10\nThông tin của các thú cưng và cách phối kỹ năng.",
+      "translationZh": "机器初译摘要：该内容主要涉及「宠物、角色、养成」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "宠物、角色、养成",
+      "topics": [
+        "宠物、角色、养成",
+        "玩法机制"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "dfd34f32e0bc0dc080bb2ca6e2c15dc744a9fc9a14f68ac5b9e37a0b40077fd8",
+      "anonymousAuthorId": "1f3e468dfdb78bbcada1081a78b9ac9755525f0ba45d095f53449fa83bfe7b72",
+      "sourceGroup": "Roco Kingdom: World Viet Nam Official",
+      "groupUrl": "https://www.facebook.com/groups/1729046980837718/",
+      "postUrl": "https://www.facebook.com/groups/1729046980837718/posts/2345754755833601/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": null,
+      "originalText": "Có ai còn cái file k ạ\n1周",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "mixed",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.61,
+      "lowConfidenceReason": "时间标签缺失或无法确认是否在统计周期内；自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "missing",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "f8d3a2a758f9148b8b7b4f8cd6550988984686800b69c147340e152ce9a06383",
+      "anonymousAuthorId": "7118026b27cba5a55f98213bb1cf18decd0f63bda3031057a90164a49eb3b13e",
+      "sourceGroup": "Roco Kingdom: World Viet Nam Official",
+      "groupUrl": "https://www.facebook.com/groups/1729046980837718/",
+      "postUrl": "https://www.facebook.com/groups/1729046980837718/posts/2345357909206619/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": null,
+      "originalText": "我抖音那个帖子来的嘛\n1周",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "zh",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.61,
+      "lowConfidenceReason": "时间标签缺失或无法确认是否在统计周期内；自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "low",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "missing",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "95dd129f7209870224f4de8865bf3c9222191452fffb55129b9e2b96a8d337da",
+      "anonymousAuthorId": "be85164e9d43f112f38aa59d30f5bab12b77c1a1771ce3a394f038fc439a22ee",
+      "sourceGroup": "Roco Kingdom: World Viet Nam Official",
+      "groupUrl": "https://www.facebook.com/groups/1729046980837718/",
+      "postUrl": "https://www.facebook.com/groups/1729046980837718/posts/2345357909206619/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": null,
+      "originalText": "不过孵蛋的我今天已经发过了。现在他们更缺那种比如打龙息帕尔之类的，但是这个和翼王我今天发了，我打算明天发刷金币的。你可以发刷异色的。刷异色的我只给他们分享了最简单的一种。那种高效率的我不知道怎么翻译，太复杂了\n1周",
+      "translationZh": "机器初译摘要：该内容主要涉及「宠物、角色、养成」。原文需在重点引用前人工复核。",
+      "language": "zh",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "宠物、角色、养成",
+      "topics": [
+        "宠物、角色、养成",
+        "越南本地化期待"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.61,
+      "lowConfidenceReason": "时间标签缺失或无法确认是否在统计周期内；自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "high",
+      "futureLaunchSignal": true,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "missing",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "577db599c6e84d190ed61225497499511422f57ae0bb3cdb774f669f07fb2502",
       "anonymousAuthorId": "1b45e98e1ef717357566bdd2c84e3ccdc680e72f39e8853d208e407b55302d9a",
       "sourceGroup": "ROCO KINGDOM VN",
       "groupUrl": "https://www.facebook.com/groups/3072730653028573/",
       "postUrl": "https://www.facebook.com/groups/3072730653028573/posts/4031132630521699/",
       "postAccessNote": "requires_facebook_or_group_permission",
       "publishedAt": null,
-      "rawTimeLabel": "23小时",
+      "rawTimeLabel": "1天",
       "originalText": "Cho mình hỏi con nấm trong đội hình tích điểm sao rơi có skill nào để rời sân và đưa con khác vào không",
       "translationZh": "机器初译摘要：该内容主要涉及「宠物、角色、养成」。原文需在重点引用前人工复核。",
       "language": "vi",
@@ -715,6 +2380,406 @@
       "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
       "marketObservationValue": "medium",
       "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "9df6aeaa0333dcd93d4da6bb37860aaaf15dcdae8d75f473023c57557aca1834",
+      "anonymousAuthorId": "4a97105685b4e719468776b98f1615a8726029ab7d55afdbbecf2c94dff45e78",
+      "sourceGroup": "ROCO KINGDOM VN",
+      "groupUrl": "https://www.facebook.com/groups/3072730653028573/",
+      "postUrl": "https://www.facebook.com/groups/3072730653028573/posts/4030626407238988/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "1天",
+      "originalText": "Mã đổi thưởng nhập “洛神杯冠军之夜” có thể nhận trứng cưỡi chung.！！！！",
+      "translationZh": "内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。",
+      "language": "mixed",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "宠物、角色、养成",
+      "topics": [
+        "宠物、角色、养成"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.85,
+      "lowConfidenceReason": null,
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "2ef678ba9cbf5321fcd8d734036396d957dfd8f491935d791a64d2c295c184fb",
+      "anonymousAuthorId": "8b59ee9e3a9331b90b5f2b83a1f07fa5f6a49152e234d954f42da43afc9cc57c",
+      "sourceGroup": "ROCO KINGDOM VN",
+      "groupUrl": "https://www.facebook.com/groups/3072730653028573/",
+      "postUrl": "https://www.facebook.com/groups/3072730653028573/posts/4030195067282122/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "2天",
+      "originalText": "Ai chỉ mình hoàn thành nv này với mình mò quài kh ra",
+      "translationZh": "玩家询问任务如何完成，包含要投放/使用哪类精灵或如何解锁机关。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "玩法机制",
+      "topics": [
+        "玩法机制",
+        "活动与福利"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.85,
+      "lowConfidenceReason": null,
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "2de2b1466e8a1de570632c98c10e7863003dc0f60e9ada045dd3efe364e1c430",
+      "anonymousAuthorId": "6017b1d403492805eb8efc991b1ffc82df88e4c357adeea258ec8f1848e8554e",
+      "sourceGroup": "ROCO KINGDOM VN",
+      "groupUrl": "https://www.facebook.com/groups/3072730653028573/",
+      "postUrl": "https://www.facebook.com/groups/3072730653028573/posts/4028706274097668/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "3天",
+      "originalText": "BÀI VIẾT NÀY HỖ TRỢ MỌI NGƯỜI\n——————-\nAi đang gặp khó khăn gì khi chơi game thì bình luận ở dưới nhé.\nVề tất cả mọi thứ trong game như tiến hoá pet -\nkiên thức - nhiệm vụ - cách chơi - thu phục",
+      "translationZh": "玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "宠物、角色、养成",
+      "topics": [
+        "宠物、角色、养成",
+        "玩法机制"
+      ],
+      "sentiment": "正面",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.85,
+      "lowConfidenceReason": null,
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "30bfccd84ec664a3c35f12429f05019ff7be811197acf47becfb7012605a6dab",
+      "anonymousAuthorId": "d782cad28ac3796558aa98e70152512881c7e0a29ddc90f7f78108c4116ddd2b",
+      "sourceGroup": "ROCO KINGDOM VN",
+      "groupUrl": "https://www.facebook.com/groups/3072730653028573/",
+      "postUrl": "https://www.facebook.com/groups/3072730653028573/posts/4028574024110893/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "3天",
+      "originalText": "Vui lòng ra cửa hàng ngẫu nhiên mua trứng sặc sỡ.",
+      "translationZh": "内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "宠物、角色、养成",
+      "topics": [
+        "宠物、角色、养成",
+        "充值、付费、礼包"
+      ],
+      "sentiment": "正面",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.85,
+      "lowConfidenceReason": null,
+      "marketObservationValue": "high",
+      "futureLaunchSignal": true,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "3636119c1c1236cbf2e9be59ac6a311a5acd0116c22d89f588ebafb21c97fc14",
+      "anonymousAuthorId": "9667af965a16d7b832e61e2999267e6d5fb6d78b4d62afe7b22c0c9c9a920d32",
+      "sourceGroup": "ROCO KINGDOM VN",
+      "groupUrl": "https://www.facebook.com/groups/3072730653028573/",
+      "postUrl": "https://www.facebook.com/groups/3072730653028573/posts/4027209477580681/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "4天",
+      "originalText": "作者\nlấy bắt 10 con đc sòi chưa tiến hoá vẫn tính luôn",
+      "translationZh": "玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。",
+      "language": "mixed",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "宠物、角色、养成",
+      "topics": [
+        "宠物、角色、养成"
+      ],
+      "sentiment": "混合",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.85,
+      "lowConfidenceReason": null,
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "5b0698f3fc5f512402b0592723a87d7e8f00cb550d60bd9cad47ef9ef7b0e560",
+      "anonymousAuthorId": "fd71283549c2bf2747c0d435167352772837d5b7241359d18d825de8516ee727",
+      "sourceGroup": "ROCO KINGDOM VN",
+      "groupUrl": "https://www.facebook.com/groups/3072730653028573/",
+      "postUrl": "https://www.facebook.com/groups/3072730653028573/posts/4026710947630534/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "5天",
+      "originalText": "Để phòng khi bạn không biết. #rocokingdom",
+      "translationZh": "机器初译摘要：该内容主要涉及「宠物、角色、养成」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "宠物、角色、养成",
+      "topics": [
+        "宠物、角色、养成"
+      ],
+      "sentiment": "负面",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "72225c4d165389f9680bb8f14285bd4c4be61f5dc3041251e753f3ae17023dc9",
+      "anonymousAuthorId": "7cf0fa1c46a14cde48dc2d3eef31ca8da25c9c38d542b5cec11e4487d55ad96a",
+      "sourceGroup": "ROCO KINGDOM VN",
+      "groupUrl": "https://www.facebook.com/groups/3072730653028573/",
+      "postUrl": "https://www.facebook.com/groups/3072730653028573/posts/4026589927642636/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "5天",
+      "originalText": "Mn cho mình hỏi khi nào có bản global v",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "9646dbe0a3c62a275db0a163e51bc329cfd1fd3d5baed521dff950cbfdb50a96",
+      "anonymousAuthorId": "454626c025e83f4385283db6b41e9780c27e6307261366844f5a12e95c0df18e",
+      "sourceGroup": "ROCO KINGDOM VN",
+      "groupUrl": "https://www.facebook.com/groups/3072730653028573/",
+      "postUrl": "https://www.facebook.com/groups/3072730653028573/posts/4026589927642636/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "5天",
+      "originalText": "game mới ra mà cũng không có khả năng sẽ global",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "混合",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "941b44ff21dda33ca28fee0fd808395e281638773657ebec5c74f6f442022dc2",
+      "anonymousAuthorId": "80218716e1c1fef2a50b503c52b0466101d4730854ff7d23efdcdb724080ac70",
+      "sourceGroup": "ROCO KINGDOM VN",
+      "groupUrl": "https://www.facebook.com/groups/3072730653028573/",
+      "postUrl": "https://www.facebook.com/groups/3072730653028573/posts/4026589927642636/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "5天",
+      "originalText": "Hên xui ko có thông tin khả năng sẽ ko có vì này xưa h là game phục vụ nội địa",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "d16e60405b937d2799d8700e5d63a6de1a1b3f47930d88db8acd89a88a84e24d",
+      "anonymousAuthorId": "d665986f6a38f3b581402d6992e427d6701bd12cc703c6aba76e67eac9bc5653",
+      "sourceGroup": "ROCO KINGDOM VN",
+      "groupUrl": "https://www.facebook.com/groups/3072730653028573/",
+      "postUrl": "https://www.facebook.com/groups/3072730653028573/posts/4026551114313184/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "5天",
+      "originalText": "Ai cho mình xin bé nè với, có trả phí ạ",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "f5dcc583499c06a32c0e6e0ee1f338e6c8007571fe41eec8e6b322f10d29a8f2",
+      "anonymousAuthorId": "3949d39a9faf4ce012ce10ac138bee247baf22b3dd82dd87deddfdf8607ec2d6",
+      "sourceGroup": "ROCO KINGDOM VN",
+      "groupUrl": "https://www.facebook.com/groups/3072730653028573/",
+      "postUrl": "https://www.facebook.com/groups/3072730653028573/posts/4026551114313184/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "5天",
+      "originalText": "Add qua bắt thoải mái nè",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "02dc8bd8f6fbc139ec3085e5f0be339e15c861fc4e442c4ad79469228cd5cb2a",
+      "anonymousAuthorId": "f33c2de9d15eab16be486d48a8fd6444a500e24e1c2154bae593694a2bb12331",
+      "sourceGroup": "ROCO KINGDOM VN",
+      "groupUrl": "https://www.facebook.com/groups/3072730653028573/",
+      "postUrl": "https://www.facebook.com/groups/3072730653028573/posts/4026416454326650/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "5天",
+      "originalText": "0:00 / 1:19\nLàm thế nào để tiêu diệt NPC?\nMọi người hãy biết suy luận từ một trường hợp sang nhiều trường hợp khác. Những NPC khác sau này cũng có thể áp dụng cách này.",
+      "translationZh": "机器初译摘要：该内容主要涉及「玩法机制」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "玩法机制",
+      "topics": [
+        "玩法机制",
+        "Bug、闪退、卡顿、登录问题"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "high",
+      "futureLaunchSignal": true,
       "dataCompleteness": {
         "postUrl": "complete",
         "publishedAt": "relative_time_only",
@@ -758,6 +2823,175 @@
     },
     {
       "recordType": "post",
+      "anonymousContentId": "cabef51bc883b8c2da386c189cefe9fb9d893f8460c9f9c2e169b6f291db9162",
+      "anonymousAuthorId": "67cf1cdf263a1484184ef4ec83c44085ee1838c00e66c3786bbba29a95841482",
+      "sourceGroup": "ROCO KINGDOM VIET NAM",
+      "groupUrl": "https://www.facebook.com/groups/947481474801675/",
+      "postUrl": "https://www.facebook.com/groups/947481474801675/posts/962981359918353/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "3天",
+      "originalText": "Vui lòng ra cửa hàng ngẫu nhiên mua trứng sặc sỡ.",
+      "translationZh": "内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "宠物、角色、养成",
+      "topics": [
+        "宠物、角色、养成",
+        "充值、付费、礼包"
+      ],
+      "sentiment": "正面",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.85,
+      "lowConfidenceReason": null,
+      "marketObservationValue": "high",
+      "futureLaunchSignal": true,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "93ab3887626f7afa422a90149d2336f59baff4fae65ed702c206a67d155202a5",
+      "anonymousAuthorId": "86f84aa7f3abe6b759be29d67a4c8941d1a4226ce02a0a13ec7becf8f932ccd7",
+      "sourceGroup": "ROCO KINGDOM VIET NAM",
+      "groupUrl": "https://www.facebook.com/groups/947481474801675/",
+      "postUrl": "https://www.facebook.com/groups/947481474801675/posts/962239759992513/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "4天",
+      "originalText": "Thương nhân viễn du đang bán trứng màu. Mọi người mau đi đi.！！！",
+      "translationZh": "内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "宠物、角色、养成",
+      "topics": [
+        "宠物、角色、养成",
+        "充值、付费、礼包"
+      ],
+      "sentiment": "混合",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.85,
+      "lowConfidenceReason": null,
+      "marketObservationValue": "high",
+      "futureLaunchSignal": true,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "dc556cd8f459be9edd5631da63b667bf154bfb610da76affff488651262512ea",
+      "anonymousAuthorId": "dad82701e964c5bf590599410db992059795c561d72605dabf626e6b8a86599c",
+      "sourceGroup": "ROCO KINGDOM VIET NAM",
+      "groupUrl": "https://www.facebook.com/groups/947481474801675/",
+      "postUrl": "https://www.facebook.com/groups/947481474801675/posts/961187683431054/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "5天",
+      "originalText": "0:03 / 1:19\nLàm thế nào để tiêu diệt NPC?\nMọi người hãy biết suy luận từ một trường hợp sang nhiều trường hợp khác. Những NPC khác sau này cũng có thể áp dụng cách này.",
+      "translationZh": "机器初译摘要：该内容主要涉及「玩法机制」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "玩法机制",
+      "topics": [
+        "玩法机制",
+        "Bug、闪退、卡顿、登录问题"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "high",
+      "futureLaunchSignal": true,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "086a2747aac0d0cca7184fb2c85c3985a7e5bcdd8040b0e088379f048cd0e7c5",
+      "anonymousAuthorId": "43599172967909cf832225756290cc4ad18435022662d7a2be848f5330be3eac",
+      "sourceGroup": "ROCO KINGDOM VIET NAM",
+      "groupUrl": "https://www.facebook.com/groups/947481474801675/",
+      "postUrl": "https://www.facebook.com/groups/947481474801675/posts/961178343431988/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "5天",
+      "originalText": "(Giải thích chỉ số PvP)",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "88b1359a3c882c8912ce967df9273c6086e93b1df66f7a082a6429a6ae3e2a0d",
+      "anonymousAuthorId": "df1de39c9efb6adbe92e153150afaca413651ab8f015b38142411e332d5069f1",
+      "sourceGroup": "ROCO KINGDOM VIET NAM",
+      "groupUrl": "https://www.facebook.com/groups/947481474801675/",
+      "postUrl": "https://www.facebook.com/groups/947481474801675/posts/961138896769266/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "5天",
+      "originalText": "+10\nThông tin của các thú cưng và cách phối kỹ năng.",
+      "translationZh": "机器初译摘要：该内容主要涉及「宠物、角色、养成」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "宠物、角色、养成",
+      "topics": [
+        "宠物、角色、养成",
+        "玩法机制"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
       "anonymousContentId": "43c941b9e2d9185f379da76c4bb1b452e7738c180cad90f44f85df75e592d9bd",
       "anonymousAuthorId": "02df0359fff48f1ad9b7dee35502a22386b36f6381ab4a1ff3f52c2a1bf405fc",
       "sourceGroup": "Roco Kingdom Mobile Viet Nam",
@@ -788,6 +3022,706 @@
         "comments": "visible_comments_only",
         "newestFirstSortObserved": "observed_or_selected"
       }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "f60443b2dfda4e39e5ce5a47ef897bc236a03e1dcda7bc512b10a6d54028905f",
+      "anonymousAuthorId": "ccb5fe0d1696740cce9e8e37adbc490345bd6dfba3ba098b5c4a25bfd47eb994",
+      "sourceGroup": "Roco Kingdom Mobile Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/3223551104630521/",
+      "postUrl": "https://www.facebook.com/groups/3223551104630521/posts/4375562822762671/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "3天",
+      "originalText": "Vui lòng ra cửa hàng ngẫu nhiên mua trứng sặc sỡ.",
+      "translationZh": "内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "宠物、角色、养成",
+      "topics": [
+        "宠物、角色、养成",
+        "充值、付费、礼包"
+      ],
+      "sentiment": "正面",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.85,
+      "lowConfidenceReason": null,
+      "marketObservationValue": "high",
+      "futureLaunchSignal": true,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "5b79167cbf785df445797d9c963e8a1f44dbe3cdfaf5a8d71c7036ccd8f7fdc3",
+      "anonymousAuthorId": "8daec640b550400d066f263b79e4584c62fa6affdd2d25ebc8147c30698e927e",
+      "sourceGroup": "Roco Kingdom Mobile Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/3223551104630521/",
+      "postUrl": "https://www.facebook.com/groups/3223551104630521/posts/4374652889520331/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "4天",
+      "originalText": "Thương nhân viễn du đang bán trứng màu. Mọi người mau đi đi.！！！",
+      "translationZh": "内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "宠物、角色、养成",
+      "topics": [
+        "宠物、角色、养成",
+        "充值、付费、礼包"
+      ],
+      "sentiment": "混合",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.85,
+      "lowConfidenceReason": null,
+      "marketObservationValue": "high",
+      "futureLaunchSignal": true,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "afd74781fad0c0fd6f5708e5c05d85ec4b69725d4ac0504c63fd6cb4556ed30c",
+      "anonymousAuthorId": "d400e069992737012fb9e6bcb84654c2126467018a9e9a905fb97ecf848b1ca3",
+      "sourceGroup": "Roco Kingdom Mobile Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/3223551104630521/",
+      "postUrl": "https://www.facebook.com/groups/3223551104630521/posts/4373373189648301/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "5天",
+      "originalText": "0:03 / 1:19\nLàm thế nào để tiêu diệt NPC?\nMọi người hãy biết suy luận từ một trường hợp sang nhiều trường hợp khác. Những NPC khác sau này cũng có thể áp dụng cách này.",
+      "translationZh": "机器初译摘要：该内容主要涉及「玩法机制」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "玩法机制",
+      "topics": [
+        "玩法机制",
+        "Bug、闪退、卡顿、登录问题"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "high",
+      "futureLaunchSignal": true,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "post",
+      "anonymousContentId": "2a421a9e014df50aad2b9677fc1a7b30c31bd10be50fc2dd85a32753b60aa777",
+      "anonymousAuthorId": "ec3c42c18d5be11428910397babcab24e3656e5bf55a19b0fcc6aa8983794cab",
+      "sourceGroup": "Roco Kingdom Mobile Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/3223551104630521/",
+      "postUrl": "https://www.facebook.com/groups/3223551104630521/posts/4373309949654625/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "5天",
+      "originalText": "+10\nThông tin của các thú cưng và cách phối kỹ năng.",
+      "translationZh": "机器初译摘要：该内容主要涉及「宠物、角色、养成」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "宠物、角色、养成",
+      "topics": [
+        "宠物、角色、养成",
+        "玩法机制"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "bfd4701ac7626f43dea070adab202c28c13389f3a544a672922dde917dbe557f",
+      "anonymousAuthorId": "fde583c0b0932de9c12eacff958694019ade6a36b7c89168631e1503aacaeb07",
+      "sourceGroup": "Roco Kingdom Mobile Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/3223551104630521/",
+      "postUrl": "https://www.facebook.com/groups/3223551104630521/posts/3223551564630475/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": null,
+      "originalText": "What day coming out\n2年",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "zh",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.61,
+      "lowConfidenceReason": "时间标签缺失或无法确认是否在统计周期内；自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "missing",
+        "text": "visible_text_captured",
+        "comments": "visible_comments_only",
+        "newestFirstSortObserved": "observed_or_selected"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "d3c91f55e903cdcbb962db92ed145d5f281714e87ba1ec1bb7826ac5c900fe69",
+      "anonymousAuthorId": "70c0787845c8a47b231e4af51ca4a6a36b11d6c1353dcd47e6ec6bc4e7add417",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128443277948744/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "12小时",
+      "originalText": "阮氏玲儿\nChia sẽ cho mn về 1 ngày trộm vía của tui~~~\n+2\n最相关\nDelightfulLlama3086\nTiến hoá đii, hóng màu con đen trắng\n阮氏玲儿回复了\n4条回复\nPhạm Đức Nhân\nLàm sao ra được con có màu đen đó vậy\nPositiveElk1106回复了\n2条回复\nPositiveElk1106\nBao nhiêu bóng con này Ct nay đi ké hơn 1k bóng rồi chưa ra\n阮氏玲儿回复了\n2条回复\nThi Nguyễn\nRa shiny dùng cầu mùa thay = cầu lăng kính vẫn đc đk bạn .. và ra màu đen bạc 100% đk\n阮氏玲儿回复了\n5条回复",
+      "translationZh": "玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。",
+      "language": "mixed",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "宠物、角色、养成",
+      "topics": [
+        "宠物、角色、养成",
+        "玩法机制"
+      ],
+      "sentiment": "正面",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.85,
+      "lowConfidenceReason": null,
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "post_detail_comment_captured",
+        "comments": "post_detail_expanded_visible_comments",
+        "newestFirstSortObserved": "not_applicable_post_detail"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "dd1a62d37ae4bfbccaaf2bbfef19416dfd9022e679cee35e1327a4c69f774840",
+      "anonymousAuthorId": "ff56b718a03a8e9414fb1110a2596fe8adc2b4d45408aaf4134cc151c3f152a2",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128443277948744/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "11小时",
+      "originalText": "Bao nhiêu bóng con này Ct nay đi ké hơn 1k bóng rồi chưa ra",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "混合",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "post_detail_comment_captured",
+        "comments": "post_detail_expanded_visible_comments",
+        "newestFirstSortObserved": "not_applicable_post_detail"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "32a2ff104620a8e1331c7dabee1f94f6dd9618111685d853073b3f292785df47",
+      "anonymousAuthorId": "dbda65fa01502bd321b43be73e1d93abbe6a2bf37d7bcc108b826c73ca4712ce",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128443277948744/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "12小时",
+      "originalText": "Ra shiny dùng cầu mùa thay = cầu lăng kính vẫn đc đk bạn .. và ra màu đen bạc 100% đk",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "正面",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "post_detail_comment_captured",
+        "comments": "post_detail_expanded_visible_comments",
+        "newestFirstSortObserved": "not_applicable_post_detail"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "bd4b75c49760ab32ba810c2574926ab92091658e958836e95f89d78afb759179",
+      "anonymousAuthorId": "c9208b61fbc454714da22d4aa2510f5cd5bfcc5dd1b1fdd3f1e45f683064a104",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128089357984136/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "22小时",
+      "originalText": "Tran Subaru\nAi cho mình xin full skill em này với\n最相关\n匿名互动者 891\nHmm mấy con shiny toàn để xó ít khi dùng chỉ số toàn như cut\n匿名互动者 891回复了\n1条回复\nVõ Thành Tú\nCon này đi với team sao băng được ko nhỉ\nHà Phong\nVõ Thành Tú được bác trên bili có mấy đội hình\nVõ Thành Tú\nHà Phong mình không dùng bili bạn ạ\nThi Nguyễn\nBé này thấy đồ đen lấp lánh vẫn là đẹp nhất\nMinh Khôi\nThi Nguyễn )\nThi Nguyễn\nMinh Khôi đẹp thật\nNg Ân\nTui build kiểu này thấy cũng ok phết",
+      "translationZh": "机器初译摘要：该内容主要涉及「宠物、角色、养成」。原文需在重点引用前人工复核。",
+      "language": "mixed",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "宠物、角色、养成",
+      "topics": [
+        "宠物、角色、养成"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "post_detail_comment_captured",
+        "comments": "post_detail_expanded_visible_comments",
+        "newestFirstSortObserved": "not_applicable_post_detail"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "865662b31a2d9d0f695450293722c715dbcc64da8cd17ebdf9244c299e850df2",
+      "anonymousAuthorId": "e31fba01011b8a857c5076d28c2e0617940a645e798d4070596b05733c0b7650",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128089357984136/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "19小时",
+      "originalText": "Võ Thành Tú được bác trên bili có mấy đội hình",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "post_detail_comment_captured",
+        "comments": "post_detail_expanded_visible_comments",
+        "newestFirstSortObserved": "not_applicable_post_detail"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "7137ef382647f60f986c6c46bd13e2551fc6f8183120b9d05bb64374211658a5",
+      "anonymousAuthorId": "646bcab893f53f7dad61a42d15725f12647219cfd537187260db57852da9b1e1",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128089357984136/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "17小时",
+      "originalText": "Hà Phong mình không dùng bili bạn ạ",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "post_detail_comment_captured",
+        "comments": "post_detail_expanded_visible_comments",
+        "newestFirstSortObserved": "not_applicable_post_detail"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "ffe111609349e58906290ebecb6459ea08f965dd4116ac184eb2fa32b8ec6e77",
+      "anonymousAuthorId": "7ac6554c8a9ec8b30cb509327b7a63ea9fd91dbc37743e45ae678cc32b2aad17",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128089357984136/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "20小时",
+      "originalText": "Bé này thấy đồ đen lấp lánh vẫn là đẹp nhất",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "post_detail_comment_captured",
+        "comments": "post_detail_expanded_visible_comments",
+        "newestFirstSortObserved": "not_applicable_post_detail"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "78396a2e8fbb89885e48468218b45501049b2f508ff15cb178f88730a633cf6d",
+      "anonymousAuthorId": "1afc280e8035265bdf706a2e3962d24ee209fdecd10189c6d019d93955d3a6ca",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128089357984136/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "20小时",
+      "originalText": "Thi Nguyễn )",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "low",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "post_detail_comment_captured",
+        "comments": "post_detail_expanded_visible_comments",
+        "newestFirstSortObserved": "not_applicable_post_detail"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "52e08bb0f667cd3736e5950bc4151a55378d3fc970eb970d6b485b058f969c23",
+      "anonymousAuthorId": "e94b84a3ac97fdd268c4a5c74ccf93ada364af8f96c228fad6cbd95bd3344090",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128089357984136/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "19小时",
+      "originalText": "Minh Khôi đẹp thật",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "low",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "post_detail_comment_captured",
+        "comments": "post_detail_expanded_visible_comments",
+        "newestFirstSortObserved": "not_applicable_post_detail"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "542087154a8911daa905be29e88b75ec9f23e23d3b650cafcb4f328d375b638e",
+      "anonymousAuthorId": "854042e79871deea774beb29af1bf534166761be5eb7e34372695fa0f4a3ec31",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128089357984136/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "20小时",
+      "originalText": "Tui build kiểu này thấy cũng ok phết",
+      "translationZh": "机器初译摘要：该内容主要涉及「宠物、角色、养成」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "宠物、角色、养成",
+      "topics": [
+        "宠物、角色、养成"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "post_detail_comment_captured",
+        "comments": "post_detail_expanded_visible_comments",
+        "newestFirstSortObserved": "not_applicable_post_detail"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "700515c32e049812385e2d81ff591c4459540379181bd978ab9e2c87935d68aa",
+      "anonymousAuthorId": "2b3fb2aed1c431e4d3f38e227e10868bda4baf7b49a1c04c6a40ccf4e7ff4742",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2127309468062125/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "1天",
+      "originalText": "Nam Hoàng\nMn cho t hỏi skill này là sao v\n最相关\nNguyễn Trần Quang Sang\nHình như nó lặp lại mấy chiêu vừa dùng\nFascinatingRabbit5928\n.",
+      "translationZh": "机器初译摘要：该内容主要涉及「宠物、角色、养成」。原文需在重点引用前人工复核。",
+      "language": "mixed",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "宠物、角色、养成",
+      "topics": [
+        "宠物、角色、养成"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "post_detail_comment_captured",
+        "comments": "post_detail_expanded_visible_comments",
+        "newestFirstSortObserved": "not_applicable_post_detail"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "7325a3ea4397466412125f120f24f6ee8ad79dee701fce288d73c7a846cd565f",
+      "anonymousAuthorId": "3a7df8b7eef6e9e164672264565b2535ea0356d68c574b403f559f55e42fc76d",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2126731584786580/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "2天",
+      "originalText": "Nguyễn Hoàng\nMn ơi làm cái nv đầu tiên kiểu j thế ạ\n最相关\nVũ Thái\nđánh con boss này nha\nHenry Trần\nTưởng viusss nhưng ko đó là Ngọc Kem :)))",
+      "translationZh": "玩家询问任务如何完成，包含要投放/使用哪类精灵或如何解锁机关。",
+      "language": "mixed",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "宠物、角色、养成",
+      "topics": [
+        "宠物、角色、养成",
+        "玩法机制"
+      ],
+      "sentiment": "混合",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.85,
+      "lowConfidenceReason": null,
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "post_detail_comment_captured",
+        "comments": "post_detail_expanded_visible_comments",
+        "newestFirstSortObserved": "not_applicable_post_detail"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "205c98fd3b863c2cfdb7b18a48ad04dcae94d82cef5490b617a4225c81fc62ea",
+      "anonymousAuthorId": "d1d04fa738b4ac3d544dd973400e7f3debebe60400ac038a1b0eafa507f95bb3",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2126731584786580/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "2天",
+      "originalText": "đánh con boss này nha",
+      "translationZh": "机器初译摘要：该内容主要涉及「宠物、角色、养成」。原文需在重点引用前人工复核。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "宠物、角色、养成",
+      "topics": [
+        "宠物、角色、养成",
+        "玩法机制"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "post_detail_comment_captured",
+        "comments": "post_detail_expanded_visible_comments",
+        "newestFirstSortObserved": "not_applicable_post_detail"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "76010397eef6faf185d86fa0790f129d8d8e88f3d1db4fc271275eb2fc273ef2",
+      "anonymousAuthorId": "0d7a3bb8cdf37e5ed8cc4a0b8848bfe4da0b693f4885a7816462ee0d54e9f672",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766103854355204/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "18小时",
+      "originalText": "MeiiZhuangg_1280\ngiúp mik với ạ\n最相关\nHoàng Quyền",
+      "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+      "language": "mixed",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "越南玩家自发讨论",
+      "topics": [
+        "越南玩家自发讨论"
+      ],
+      "sentiment": "中性",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.73,
+      "lowConfidenceReason": "自动翻译置信度较低，重点引用前需人工复核",
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "post_detail_comment_captured",
+        "comments": "post_detail_expanded_visible_comments",
+        "newestFirstSortObserved": "not_applicable_post_detail"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "99a1e9ba03401e1744d3b55b5324b9ff46cf1d5305cc12510651d047badeafc8",
+      "anonymousAuthorId": "8c20ac21348921be69be5f6a1d7fb7f8f842a0e55973737f0f77b74f04a865c7",
+      "sourceGroup": "ROCO KINGDOM VN",
+      "groupUrl": "https://www.facebook.com/groups/3072730653028573/",
+      "postUrl": "https://www.facebook.com/groups/3072730653028573/posts/4027209477580681/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "5天",
+      "originalText": "Zl Kifle\n最相关\nZl Kifle\nlấy bắt 10 con đc sòi chưa tiến hoá vẫn tính luôn",
+      "translationZh": "玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。",
+      "language": "mixed",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "宠物、角色、养成",
+      "topics": [
+        "宠物、角色、养成"
+      ],
+      "sentiment": "混合",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.85,
+      "lowConfidenceReason": null,
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "post_detail_comment_captured",
+        "comments": "post_detail_expanded_visible_comments",
+        "newestFirstSortObserved": "not_applicable_post_detail"
+      }
+    },
+    {
+      "recordType": "comment",
+      "anonymousContentId": "28d64762d960eb7b286a6d1ef193dae8c7ba46ed91832c2aa27554d805fd13fe",
+      "anonymousAuthorId": "7051f2e94aa95f4495d0418ac1a3a90cd86fdc5f0a984cbcaf62bbf572228e5c",
+      "sourceGroup": "ROCO KINGDOM VN",
+      "groupUrl": "https://www.facebook.com/groups/3072730653028573/",
+      "postUrl": "https://www.facebook.com/groups/3072730653028573/posts/4027209477580681/",
+      "postAccessNote": "requires_facebook_or_group_permission",
+      "publishedAt": null,
+      "rawTimeLabel": "5天",
+      "originalText": "lấy bắt 10 con đc sòi chưa tiến hoá vẫn tính luôn",
+      "translationZh": "玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。",
+      "language": "vi",
+      "cleaningDecision": "valid_relevant",
+      "primaryTopic": "宠物、角色、养成",
+      "topics": [
+        "宠物、角色、养成"
+      ],
+      "sentiment": "混合",
+      "riskLabels": [],
+      "riskEvidenceSummary": null,
+      "confidence": 0.85,
+      "lowConfidenceReason": null,
+      "marketObservationValue": "medium",
+      "futureLaunchSignal": false,
+      "dataCompleteness": {
+        "postUrl": "complete",
+        "publishedAt": "relative_time_only",
+        "text": "post_detail_comment_captured",
+        "comments": "post_detail_expanded_visible_comments",
+        "newestFirstSortObserved": "not_applicable_post_detail"
+      }
     }
   ],
   "invalidItems": [
@@ -806,11 +3740,102 @@
       "reason": "空文本、纯媒体或重复内容"
     },
     {
+      "anonymousContentId": "9d5287d0112069fa6e4a55b743caae9bbdcbb5c5f7485676d85cf3c0582c5400",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766103854355204/",
+      "cleaningDecision": "invalid_empty",
+      "reason": "空文本、纯媒体或重复内容"
+    },
+    {
+      "anonymousContentId": "b7a3f1d35592eab12fa57ec650e4e299706f33e5127fc1c68724f2102bae22b7",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1765930851039171/",
+      "cleaningDecision": "invalid_empty",
+      "reason": "空文本、纯媒体或重复内容"
+    },
+    {
       "anonymousContentId": "f3758e95a07ced8567f6c893522b748975534c34b253c63e11ef53b653763f4c",
       "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
       "postUrl": "https://www.facebook.com/groups/roco.legend/",
       "cleaningDecision": "invalid_empty",
       "reason": "空文本、纯媒体或重复内容"
+    },
+    {
+      "anonymousContentId": "1ca1a5690067594e13f1c619405c10ca379d61860f2fd186b59894745efe726a",
+      "sourceGroup": "Roco Kingdom: World Viet Nam Official",
+      "postUrl": "https://www.facebook.com/groups/1729046980837718/posts/2345819185827158/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "3be4a349e9ce95d85d635a2eabd71cbaed0f653dafef24d5bd5cb555d1a4db46",
+      "sourceGroup": "Roco Kingdom: World Viet Nam Official",
+      "postUrl": "https://www.facebook.com/groups/1729046980837718/posts/2345762702499473/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "41f6b0a06015abc36e3e211e9ea8d19222737e7513e8ed254eb9d717ca8aecc4",
+      "sourceGroup": "Roco Kingdom: World Viet Nam Official",
+      "postUrl": "https://www.facebook.com/groups/1729046980837718/posts/2345754755833601/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "9e2d753981ed89e0c1d67d308192e60f8bc965edfd2b17edf85cec5e5cb1bd09",
+      "sourceGroup": "Roco Kingdom: World Viet Nam Official",
+      "postUrl": "https://www.facebook.com/groups/1729046980837718/posts/2345409335868143/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "5552e27cc14bef7e2970384ab19fa0d5498f1612d07f4002af03b85e1e5e10c5",
+      "sourceGroup": "Roco Kingdom: World Viet Nam Official",
+      "postUrl": "https://www.facebook.com/groups/1729046980837718/posts/2345357909206619/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "887b7f48d8e80f66c16312e62a44dcf62b212c9b1e9bb0a6ba4dfafcb4bdb322",
+      "sourceGroup": "Roco Kingdom: World Viet Nam Official",
+      "postUrl": "https://www.facebook.com/groups/1729046980837718/posts/2345238035885273/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "471be9febc6350835ea90b734735c73439c6d3ad905020de3667bee4b730a428",
+      "sourceGroup": "Roco Kingdom: World Viet Nam Official",
+      "postUrl": "https://www.facebook.com/groups/1729046980837718/posts/2344927619249648/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "344e60834545ecbdea7067ec55bf88a8cd0d77b1b0e6715cf4cdab3d3c91d826",
+      "sourceGroup": "Roco Kingdom: World Viet Nam Official",
+      "postUrl": "https://www.facebook.com/groups/1729046980837718/posts/2344687295940347/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "ce7f4645d415b3174858038e8c06e32265530ffaec5e953ca5b467478af8e6fd",
+      "sourceGroup": "Roco Kingdom: World Viet Nam Official",
+      "postUrl": "https://www.facebook.com/groups/1729046980837718/posts/2344635172612226/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "40d94ba8a74d53aacfc34f6578105be2b7262bda65a905f966623bade4a15d9f",
+      "sourceGroup": "Roco Kingdom: World Viet Nam Official",
+      "postUrl": "https://www.facebook.com/groups/1729046980837718/posts/2344548049287605/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "a7384d4ed62b846c1fc46f6fa205f5c051f44e33597b345c6a1f36b3c950d097",
+      "sourceGroup": "Roco Kingdom: World Viet Nam Official",
+      "postUrl": "https://www.facebook.com/groups/1729046980837718/posts/2344444175964659/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
     },
     {
       "anonymousContentId": "af55e1778ed48b127dcb2c9b7f6e01e58e2356ea039492ea7d5826de8bfa6653",
@@ -820,11 +3845,158 @@
       "reason": "空文本、纯媒体或重复内容"
     },
     {
+      "anonymousContentId": "25ce8472250dfb468380f398251b15548a7c6690061fb766883ae838dc563c23",
+      "sourceGroup": "ROCO KINGDOM VN",
+      "postUrl": "https://www.facebook.com/groups/3072730653028573/posts/4027209477580681/",
+      "cleaningDecision": "invalid_empty",
+      "reason": "空文本、纯媒体或重复内容"
+    },
+    {
+      "anonymousContentId": "98a3d51019f4c199ed06e21a62ec29d93157b2628a15d222297e4e597883ea59",
+      "sourceGroup": "ROCO KINGDOM VN",
+      "postUrl": "https://www.facebook.com/groups/3072730653028573/posts/4024821661152796/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "ed662816581ddb9a0a1ad4aadc27844e50e7e16d070a678288d0aedd8c0af8bd",
+      "sourceGroup": "ROCO KINGDOM VN",
+      "postUrl": "https://www.facebook.com/groups/3072730653028573/posts/4024774517824177/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "92b61765d56c85c9a933e7abbc701d7062a386f20c333663815ddeacc84dfc2a",
+      "sourceGroup": "ROCO KINGDOM VN",
+      "postUrl": "https://www.facebook.com/groups/3072730653028573/posts/4024766547824974/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "eb0d890f14b58b45d07f6f55e93f97db4b2ac626582195b8b390e0390effce0d",
+      "sourceGroup": "ROCO KINGDOM VN",
+      "postUrl": "https://www.facebook.com/groups/3072730653028573/posts/4024405807861048/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "db72cc2a7e25466b25ed563866f01b25910c5147d501adb9c37f4d5f19a5492a",
+      "sourceGroup": "ROCO KINGDOM VN",
+      "postUrl": "https://www.facebook.com/groups/3072730653028573/posts/4024371101197852/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "4f6d997c2d269e4b5bd56bc56f828ac2c5dd696f9e4d61d682ea7554ff25b70f",
+      "sourceGroup": "ROCO KINGDOM VN",
+      "postUrl": "https://www.facebook.com/groups/3072730653028573/posts/4023851027916526/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "6160321a848d8e7fe439131985535865f55eee56701d6676db83473a6f13ed79",
+      "sourceGroup": "ROCO KINGDOM VN",
+      "postUrl": "https://www.facebook.com/groups/3072730653028573/posts/4023596211275341/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "adf196155faa0421cfb2da697b3c6ffc4e34f3e2117023c47e5acbae9b32c8da",
+      "sourceGroup": "ROCO KINGDOM VN",
+      "postUrl": "https://www.facebook.com/groups/3072730653028573/posts/4023542854614010/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "497169e077b5a23956b97a1450f910e636da76febd6fa22a4a2f96507e87a0ad",
+      "sourceGroup": "ROCO KINGDOM VN",
+      "postUrl": "https://www.facebook.com/groups/3072730653028573/posts/4023444381290524/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
       "anonymousContentId": "309455c756cdaa659151122881bad267ce7ca709cf5c8ee51f05db2d6e8d9d90",
       "sourceGroup": "ROCO KINGDOM VN",
       "postUrl": "https://www.facebook.com/groups/3072730653028573/",
       "cleaningDecision": "invalid_empty",
       "reason": "空文本、纯媒体或重复内容"
+    },
+    {
+      "anonymousContentId": "c2d3a1866a1214d052292412ed10859c60fccbd95a57fbf9bb318a0db8db576c",
+      "sourceGroup": "ROCO KINGDOM VIET NAM",
+      "postUrl": "https://www.facebook.com/groups/947481474801675/posts/959891840227305/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "d1ce1d56429055107f17c95005881c81d53fec607f94dba5c876c767a1ae8a4a",
+      "sourceGroup": "ROCO KINGDOM VIET NAM",
+      "postUrl": "https://www.facebook.com/groups/947481474801675/posts/959836003566222/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "8129322c93322e841724979f5e2755c119eee37065c30ae92c3aad29429ae09f",
+      "sourceGroup": "ROCO KINGDOM VIET NAM",
+      "postUrl": "https://www.facebook.com/groups/947481474801675/posts/959828350233654/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "d33d43bd6afaf2a72520c029d3c8522bf232defeefda9aabc58af8c9faefacdc",
+      "sourceGroup": "ROCO KINGDOM VIET NAM",
+      "postUrl": "https://www.facebook.com/groups/947481474801675/posts/959512700265219/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "a7761f741b238730c35b20718eaecabd46f14bc5c5b6f8bfc74852aa5619feb1",
+      "sourceGroup": "ROCO KINGDOM VIET NAM",
+      "postUrl": "https://www.facebook.com/groups/947481474801675/posts/959055680310921/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "2dcdc7f0c88224dfdfb085fd35ea3a2ff9212eb0b963b7d526005145715d1159",
+      "sourceGroup": "ROCO KINGDOM VIET NAM",
+      "postUrl": "https://www.facebook.com/groups/947481474801675/posts/958819877001168/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "e2ece926a369bd6b0f106046bc4971e5a6d711521257ddbdc48e3a19d97348d1",
+      "sourceGroup": "ROCO KINGDOM VIET NAM",
+      "postUrl": "https://www.facebook.com/groups/947481474801675/posts/958770087006147/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "3cd27fae83a9ae7d26b2923c1d6b4a4a7ce2ac648cd38ad99b4969137a65c563",
+      "sourceGroup": "ROCO KINGDOM VIET NAM",
+      "postUrl": "https://www.facebook.com/groups/947481474801675/posts/958768927006263/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "bd070b5b0d5c9040f628080d6d1e819b7edc9dbe100c92b1805b638ce213af7d",
+      "sourceGroup": "ROCO KINGDOM VIET NAM",
+      "postUrl": "https://www.facebook.com/groups/947481474801675/posts/958688283680994/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "137cbf12b8363dc2198c42391958049b64c7b693197b31712bbec73a09840b3e",
+      "sourceGroup": "ROCO KINGDOM VIET NAM",
+      "postUrl": "https://www.facebook.com/groups/947481474801675/posts/958684553681367/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "678d01b927b8eca460609f8b1676dfce364a0843d7c67cd03318b74001f1b141",
+      "sourceGroup": "ROCO KINGDOM VIET NAM",
+      "postUrl": "https://www.facebook.com/groups/947481474801675/posts/958585520357937/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
     },
     {
       "anonymousContentId": "40f5d0cc578bcb1df3ad47f58de70349ae6ec82ccb2e6ca65607c73aace0d3a7",
@@ -834,9 +4006,100 @@
       "reason": "空文本、纯媒体或重复内容"
     },
     {
-      "anonymousContentId": "c67d31ce8203e1d7405a08b9d7808ed7dbc668de039a4d36995314ae26033115",
+      "anonymousContentId": "db841471bf3ce2beb187d06d579b34345c5b944f047c18fc1e8a69e95871ca27",
       "sourceGroup": "Roco Kingdom Mobile Viet Nam",
-      "postUrl": "https://www.facebook.com/groups/3223551104630521/",
+      "postUrl": "https://www.facebook.com/groups/3223551104630521/posts/4371715079814112/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "59a92c019830530e5a17ce5492928bf5f3cddb8dccc06adb5d43bff572ecab83",
+      "sourceGroup": "Roco Kingdom Mobile Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/3223551104630521/posts/4371638023155151/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "8ae0d55bf40229de0cf23851ca72b42f634bd0c15ad50629f9cb7785dc7de590",
+      "sourceGroup": "Roco Kingdom Mobile Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/3223551104630521/posts/4371629059822714/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "c1aa2b289cfc4cda6df5d99164973392e15724c3792f05d010e4009612fc8433",
+      "sourceGroup": "Roco Kingdom Mobile Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/3223551104630521/posts/4371195756532711/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "5f14ec56f89f727c4d097ec15b1e0d4f39622668aacaf5ff0ac67b53cafcbb55",
+      "sourceGroup": "Roco Kingdom Mobile Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/3223551104630521/posts/4370598423259111/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "629851d40398173ddddd8329ec1448cafbb5f037b9e49b62de6183efca3268f6",
+      "sourceGroup": "Roco Kingdom Mobile Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/3223551104630521/posts/4370312646621022/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "270157221f756e8d223355b1b96d2f9a2e55c4f9c1516857024a1328ed4b8b58",
+      "sourceGroup": "Roco Kingdom Mobile Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/3223551104630521/posts/4370250719960548/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "9f27a35a603d7d16bd4fac039f4d4d7545546c41a4e1e8a82fe74c5804646938",
+      "sourceGroup": "Roco Kingdom Mobile Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/3223551104630521/posts/4370248863294067/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "f5c60c6113691d7a29957a4a903583feef7925ac6861474ed7632bdb3efa2b3d",
+      "sourceGroup": "Roco Kingdom Mobile Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/3223551104630521/posts/3223551564630475/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "9b9521899e569252ff08c0f9dd0d1c61209ffa2d15b087a20cbaebf861db0237",
+      "sourceGroup": "Roco Kingdom Mobile Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/3223551104630521/posts/3223551564630475/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "8761e0d5290bee900011b10bd19655b7ef1d4972471bcbc49d6898ee9acbfa29",
+      "sourceGroup": "Roco Kingdom Mobile Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/3223551104630521/posts/3223551564630475/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "30ddfe0ddd6b0d5ff01cf796987089472b4a9a9edb52c8d54ec7be92e695847c",
+      "sourceGroup": "Roco Kingdom Mobile Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/3223551104630521/posts/3223551564630475/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "61ad19397ec4295d7268d46591e0390376b0a09ce7d4daa66483eaf9daa0458f",
+      "sourceGroup": "Roco Kingdom Mobile Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/3223551104630521/posts/3223551564630475/",
+      "cleaningDecision": "invalid_out_of_range",
+      "reason": "内容时间不在 2026-04-24 起的本次统计窗口内"
+    },
+    {
+      "anonymousContentId": "c34d1525b97cd232bfebdab98a6d499889d3e9ccbf3d78da0dbb89848139c5e0",
+      "sourceGroup": "Roco Kingdom Mobile Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/3223551104630521/posts/3223551564630475/",
       "cleaningDecision": "invalid_empty",
       "reason": "空文本、纯媒体或重复内容"
     }
@@ -844,96 +4107,145 @@
   "topicSummary": [
     {
       "topic": "越南玩家自发讨论",
-      "itemCount": 8,
+      "itemCount": 50,
       "sentimentMix": {
-        "正面": 1,
-        "中性": 7
+        "正面": 2,
+        "中性": 43,
+        "混合": 5
       }
     },
     {
       "topic": "宠物、角色、养成",
-      "itemCount": 8,
+      "itemCount": 40,
       "sentimentMix": {
-        "混合": 2,
-        "中性": 6
-      }
-    },
-    {
-      "topic": "玩法机制",
-      "itemCount": 6,
-      "sentimentMix": {
-        "中性": 4,
-        "混合": 1,
+        "混合": 9,
+        "中性": 23,
+        "正面": 7,
         "负面": 1
       }
     },
     {
+      "topic": "玩法机制",
+      "itemCount": 28,
+      "sentimentMix": {
+        "中性": 22,
+        "混合": 3,
+        "负面": 1,
+        "正面": 2
+      }
+    },
+    {
+      "topic": "充值、付费、礼包",
+      "itemCount": 7,
+      "sentimentMix": {
+        "中性": 1,
+        "正面": 4,
+        "混合": 2
+      }
+    },
+    {
+      "topic": "Bug、闪退、卡顿、登录问题",
+      "itemCount": 6,
+      "sentimentMix": {
+        "中性": 6
+      }
+    },
+    {
+      "topic": "社群互动、组队、公会",
+      "itemCount": 4,
+      "sentimentMix": {
+        "中性": 4
+      }
+    },
+    {
       "topic": "攻略分享",
+      "itemCount": 3,
+      "sentimentMix": {
+        "正面": 2,
+        "中性": 1
+      }
+    },
+    {
+      "topic": "诈骗、外挂、私服、黑产风险",
       "itemCount": 1,
       "sentimentMix": {
-        "正面": 1
+        "中性": 1
+      }
+    },
+    {
+      "topic": "越南本地化期待",
+      "itemCount": 1,
+      "sentimentMix": {
+        "中性": 1
+      }
+    },
+    {
+      "topic": "活动与福利",
+      "itemCount": 1,
+      "sentimentMix": {
+        "中性": 1
       }
     }
   ],
   "sentimentSummary": {
-    "中性": 17,
-    "正面": 2,
-    "混合": 3,
-    "负面": 1
+    "中性": 82,
+    "正面": 11,
+    "混合": 16,
+    "负面": 2
   },
   "riskSummary": [],
   "lowConfidenceItems": [
     {
-      "anonymousContentId": "f8cc93d57a1cbbfec9783cdeab9776261ebf1702a43b0edf7f4b332b7acc45b3",
+      "anonymousContentId": "d0d191904968add90cfc712d4ded9292bd8d17e6f7d593c7efc5aebd45a1e14f",
       "sourceGroup": "Roco Kingdom Viet Nam",
       "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128445911281814/",
       "reason": "自动翻译置信度较低，重点引用前需人工复核",
       "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
     },
     {
-      "anonymousContentId": "03005a5f73f2e80421700c4e14975f0730607e62aab9629b33033a5490c6c15e",
+      "anonymousContentId": "949c6ad369cecc0bc40917b5c74ab58d7ebca45cda0cdb9c69db961b13ae07c7",
       "sourceGroup": "Roco Kingdom Viet Nam",
       "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128443277948744/",
       "reason": "评论线程未完全展开；自动翻译置信度较低，重点引用前需人工复核",
       "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
     },
     {
-      "anonymousContentId": "b1b4ca41d8b98cf8f91f258edf8bb1dc7fb8132b5201cf292838f2a9f81bb650",
+      "anonymousContentId": "5a1b646ab532ee7ded5ed8e8d0a5e4eb61be0548265117b9e1929ef2a44fec48",
       "sourceGroup": "Roco Kingdom Viet Nam",
       "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128443277948744/",
       "reason": "自动翻译置信度较低，重点引用前需人工复核",
       "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
     },
     {
-      "anonymousContentId": "93f4bffbbbc2931301ff472eec92e31c49c368c597bd8988ec2d47d7425635cc",
+      "anonymousContentId": "2c745eaa71db31cf62fe888953ccb9b3b03e4578a49333d05b91960f935bea81",
       "sourceGroup": "Roco Kingdom Viet Nam",
       "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128273591299046/",
       "reason": "自动翻译置信度较低，重点引用前需人工复核",
       "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
     },
     {
-      "anonymousContentId": "8dbbdd846143e3d45b6d31374a044558490a9b0579ffb372f6422b4316f345d3",
+      "anonymousContentId": "5f9bae49b23211c224e12b7df689faca875fa447e463e7820f07782cb7fc99d7",
       "sourceGroup": "Roco Kingdom Viet Nam",
       "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128160144643724/",
       "reason": "自动翻译置信度较低，重点引用前需人工复核",
       "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
     },
     {
-      "anonymousContentId": "03dfb325266c774c746493b458cbb24f631f93c8d9b4ff258824d027ac1cebd1",
+      "anonymousContentId": "9830acf68f6388c012772e5e78e61e05ab1e25cb1ed5727695ac767104d96fb1",
       "sourceGroup": "Roco Kingdom Viet Nam",
       "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128160144643724/",
       "reason": "自动翻译置信度较低，重点引用前需人工复核",
       "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
     },
     {
-      "anonymousContentId": "3b5a04434cae52217c8a64fad24793467cf05c77f3c60d7d286f8b3f1ecb1f20",
+      "anonymousContentId": "c48891fdc7b1f8f07b23ea4f1aa45289e2c75210998693ba19cd12cdd7d3b6e2",
       "sourceGroup": "Roco Kingdom Viet Nam",
       "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128089357984136/",
       "reason": "评论线程未完全展开；自动翻译置信度较低，重点引用前需人工复核",
       "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
     },
     {
-      "anonymousContentId": "d5b2214f5c2c418729716b44eb0099f4b3ae3e837c55b0402516d1a05b27f7da",
+      "anonymousContentId": "7fb271f7ad7af38bce7c81a7c357c14b170490a339f990eb0540c65c8a6982b5",
       "sourceGroup": "Roco Kingdom Viet Nam",
       "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128089357984136/",
       "reason": "自动翻译置信度较低，重点引用前需人工复核",
@@ -975,20 +4287,522 @@
       "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
     },
     {
-      "anonymousContentId": "9b0825836837b821a1cfa8fd390c615e5b06afbf6587b92052a6f8400b7b4d70",
+      "anonymousContentId": "1895ed244c06d86b84d70706d94db6ff225aaec6bf8604012581e955711d49e4",
       "sourceGroup": "Roco Kingdom Viet Nam",
       "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2127211811405224/",
       "reason": "自动翻译置信度较低，重点引用前需人工复核",
       "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
     },
     {
-      "anonymousContentId": "343d23cd8a11d02fdba1ccc7cfad6d878a4a4b6c4e62416cfdaa2dc097b69987",
+      "anonymousContentId": "528d16123333cf6e7d42e5ba1fcdffb131825337a11e3fcc63d9c24cb2537c79",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2126731584786580/",
+      "reason": "评论线程未完全展开",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "6e4cec932172a4a592389958984f14c8e33e01548b58d56fe071c6edd962b9d7",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2126731584786580/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "8ce9e4c8aba8fe969275e212ce8a982578e942f3e9e82a915614ad41591811fe",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2126669668126105/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "32e3b15377a6bf7d0a8dc797e877b1044b6fb8f7bd5ad0f166e623623c8cf83f",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2126669668126105/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "9c73956ccaf38d565ebe3785523f45769727bc0278ab268e1afc027adb6da779",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2126669668126105/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "c53cd79bd7ea92c98690cd8f7cc8f903d503a10c526f2643bcc5da269e69dce7",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2126551348137937/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "c9c9c496508f4911ace34647675f07813082167b904f88988fb27721142a12ac",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2126478841478521/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "a030df8d6a3d5c62ec4e966b3782dbf972b2bc1cab9ea538454454b82e3ad946",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2126426881483717/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "eb35cb83f40055f91bbfd11d42ae5a0811d54d466b3c8111d5ace867dd718f61",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2126426881483717/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "0f3d9d68c30c1e3c4add83007ad86c6ee63f062291b82f8dd000c38cdbb1781f",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2126426881483717/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "bf2ea8a2902c1559990b562ad497fe5754ae82a5634ccda244eb7943a0a89a22",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766690074296582/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "60c9377cd9794e4cb8371e465be199e9999bb76db7eee2fc244a77fa0e7e9a6a",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766600474305542/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "c1238e8421eaee93ffafcdc735e5b0981a0b205eec2c9bd94dcfce291a3cf78e",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766600474305542/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "56e6d6d23310639243d6af31f36a72e1e24a653cf1bc35967b549ef26a375b28",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766600474305542/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "7d4627477f8913931eff16bc24e34d481f633279907e5399bc7c1286fe89348a",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766554444310145/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "698cf19021b76f4eab9587d42b548da04fe3da405f97380b3150b4dc19624d59",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766492244316365/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "862dba388026c2c4b63df880b1bfd6c8a966cf334d1479bfb6c62c76aede546f",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766484944317095/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "3014b83de6b6b97b479fd133ef53ff6a3dc2dc6c377f8935ca850be3ffae6b2d",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766349364330653/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "740938b4dd9122e2b1fabd4ad9936290df26da6244330b79bbb7076e980bd179",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766284007670522/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "6ae965b1ebd6c4c2a2e531285e61b0b024aabc45f3dadb306de804e462f020d1",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766283007670622/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "b903aa0dfc83e400c32690574d9e0c8c0486de2885fb00ecfb51f79e1f436fb0",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766209361011320/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "f92c5517801765cf49d978d05163bc1b5207836ae052456c3ccff8728e0b9978",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766209361011320/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "2b33c444e640e0e72e8be614ba6cdb2e25170783fbb0f5b4669e0f91e9cd6c7a",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766209361011320/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "d997531a61e9e21a59ef7073cf4097491866a8fef1f795be1997cc4ca277628d",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766114121020844/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "56db67f00b8da9934e48b66a252b2c61488ab43f1d6d1ababf420b14def78686",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766114121020844/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "490af9afef8ad539e28398ae9580acb764198e89147a4db3d3a9980f5c2ef30b",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766103854355204/",
+      "reason": "评论线程未完全展开；自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "a17fd5f09554dd52adf529f9f14808a7cbd833c4a3e8dbaa87bea603c1227247",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766054104360179/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "6e79813c981a9cd7519a6e894d88baaf2d73998f91e6e7fe9ace9f5015a2c357",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766054104360179/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "6f5758ef71133efdc2df1cdc5381feef817ffe5bceec09e0686bfbc5115e598d",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766054104360179/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "7d3b0c05425ec93df9d6769f3eb48acc3097ea9a86544bab63d824fb498e1ed7",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1765930851039171/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "79c4e631272dbd05511885174d1557712f7ea97563cfb69b4ca9dffb0fc11702",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1765930851039171/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "862dc117b4e85580c7fc78e3dca781539ff45b046e6319e715b55616759bd52b",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1765906567708266/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "13d2daee1e42346a742aa69dc03ec1416dc313c39e265f30415c44a9a233d942",
+      "sourceGroup": "Roco Kingdom: World Viet Nam Official",
+      "postUrl": "https://www.facebook.com/groups/1729046980837718/posts/2350685322007211/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "7c03c00334d1b8834d60fff91c0d66ebf41c53f5fab965d7ebdfee6f536b857f",
+      "sourceGroup": "Roco Kingdom: World Viet Nam Official",
+      "postUrl": "https://www.facebook.com/groups/1729046980837718/posts/2348145558927854/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "0b69ff9494777537b297bdfd5f9981527cc4fd0e3bed6119a733b155d808d901",
+      "sourceGroup": "Roco Kingdom: World Viet Nam Official",
+      "postUrl": "https://www.facebook.com/groups/1729046980837718/posts/2347206752355068/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "8591beadaf8d98c705dbff0fffb08a22c34c4cf79e3024816e607c14f835e13b",
+      "sourceGroup": "Roco Kingdom: World Viet Nam Official",
+      "postUrl": "https://www.facebook.com/groups/1729046980837718/posts/2347156119026798/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "dfd34f32e0bc0dc080bb2ca6e2c15dc744a9fc9a14f68ac5b9e37a0b40077fd8",
+      "sourceGroup": "Roco Kingdom: World Viet Nam Official",
+      "postUrl": "https://www.facebook.com/groups/1729046980837718/posts/2345754755833601/",
+      "reason": "时间标签缺失或无法确认是否在统计周期内；自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "f8d3a2a758f9148b8b7b4f8cd6550988984686800b69c147340e152ce9a06383",
+      "sourceGroup": "Roco Kingdom: World Viet Nam Official",
+      "postUrl": "https://www.facebook.com/groups/1729046980837718/posts/2345357909206619/",
+      "reason": "时间标签缺失或无法确认是否在统计周期内；自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "95dd129f7209870224f4de8865bf3c9222191452fffb55129b9e2b96a8d337da",
+      "sourceGroup": "Roco Kingdom: World Viet Nam Official",
+      "postUrl": "https://www.facebook.com/groups/1729046980837718/posts/2345357909206619/",
+      "reason": "时间标签缺失或无法确认是否在统计周期内；自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "577db599c6e84d190ed61225497499511422f57ae0bb3cdb774f669f07fb2502",
       "sourceGroup": "ROCO KINGDOM VN",
       "postUrl": "https://www.facebook.com/groups/3072730653028573/posts/4031132630521699/",
       "reason": "自动翻译置信度较低，重点引用前需人工复核",
       "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "5b0698f3fc5f512402b0592723a87d7e8f00cb550d60bd9cad47ef9ef7b0e560",
+      "sourceGroup": "ROCO KINGDOM VN",
+      "postUrl": "https://www.facebook.com/groups/3072730653028573/posts/4026710947630534/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "72225c4d165389f9680bb8f14285bd4c4be61f5dc3041251e753f3ae17023dc9",
+      "sourceGroup": "ROCO KINGDOM VN",
+      "postUrl": "https://www.facebook.com/groups/3072730653028573/posts/4026589927642636/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "9646dbe0a3c62a275db0a163e51bc329cfd1fd3d5baed521dff950cbfdb50a96",
+      "sourceGroup": "ROCO KINGDOM VN",
+      "postUrl": "https://www.facebook.com/groups/3072730653028573/posts/4026589927642636/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "941b44ff21dda33ca28fee0fd808395e281638773657ebec5c74f6f442022dc2",
+      "sourceGroup": "ROCO KINGDOM VN",
+      "postUrl": "https://www.facebook.com/groups/3072730653028573/posts/4026589927642636/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "d16e60405b937d2799d8700e5d63a6de1a1b3f47930d88db8acd89a88a84e24d",
+      "sourceGroup": "ROCO KINGDOM VN",
+      "postUrl": "https://www.facebook.com/groups/3072730653028573/posts/4026551114313184/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "f5dcc583499c06a32c0e6e0ee1f338e6c8007571fe41eec8e6b322f10d29a8f2",
+      "sourceGroup": "ROCO KINGDOM VN",
+      "postUrl": "https://www.facebook.com/groups/3072730653028573/posts/4026551114313184/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "02dc8bd8f6fbc139ec3085e5f0be339e15c861fc4e442c4ad79469228cd5cb2a",
+      "sourceGroup": "ROCO KINGDOM VN",
+      "postUrl": "https://www.facebook.com/groups/3072730653028573/posts/4026416454326650/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "dc556cd8f459be9edd5631da63b667bf154bfb610da76affff488651262512ea",
+      "sourceGroup": "ROCO KINGDOM VIET NAM",
+      "postUrl": "https://www.facebook.com/groups/947481474801675/posts/961187683431054/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "086a2747aac0d0cca7184fb2c85c3985a7e5bcdd8040b0e088379f048cd0e7c5",
+      "sourceGroup": "ROCO KINGDOM VIET NAM",
+      "postUrl": "https://www.facebook.com/groups/947481474801675/posts/961178343431988/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "88b1359a3c882c8912ce967df9273c6086e93b1df66f7a082a6429a6ae3e2a0d",
+      "sourceGroup": "ROCO KINGDOM VIET NAM",
+      "postUrl": "https://www.facebook.com/groups/947481474801675/posts/961138896769266/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "afd74781fad0c0fd6f5708e5c05d85ec4b69725d4ac0504c63fd6cb4556ed30c",
+      "sourceGroup": "Roco Kingdom Mobile Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/3223551104630521/posts/4373373189648301/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "2a421a9e014df50aad2b9677fc1a7b30c31bd10be50fc2dd85a32753b60aa777",
+      "sourceGroup": "Roco Kingdom Mobile Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/3223551104630521/posts/4373309949654625/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "bfd4701ac7626f43dea070adab202c28c13389f3a544a672922dde917dbe557f",
+      "sourceGroup": "Roco Kingdom Mobile Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/3223551104630521/posts/3223551564630475/",
+      "reason": "时间标签缺失或无法确认是否在统计周期内；自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "dd1a62d37ae4bfbccaaf2bbfef19416dfd9022e679cee35e1327a4c69f774840",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128443277948744/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "32a2ff104620a8e1331c7dabee1f94f6dd9618111685d853073b3f292785df47",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128443277948744/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "bd4b75c49760ab32ba810c2574926ab92091658e958836e95f89d78afb759179",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128089357984136/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "865662b31a2d9d0f695450293722c715dbcc64da8cd17ebdf9244c299e850df2",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128089357984136/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "7137ef382647f60f986c6c46bd13e2551fc6f8183120b9d05bb64374211658a5",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128089357984136/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "ffe111609349e58906290ebecb6459ea08f965dd4116ac184eb2fa32b8ec6e77",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128089357984136/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "78396a2e8fbb89885e48468218b45501049b2f508ff15cb178f88730a633cf6d",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128089357984136/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "52e08bb0f667cd3736e5950bc4151a55378d3fc970eb970d6b485b058f969c23",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128089357984136/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "542087154a8911daa905be29e88b75ec9f23e23d3b650cafcb4f328d375b638e",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128089357984136/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "700515c32e049812385e2d81ff591c4459540379181bd978ab9e2c87935d68aa",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2127309468062125/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "205c98fd3b863c2cfdb7b18a48ad04dcae94d82cef5490b617a4225c81fc62ea",
+      "sourceGroup": "Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2126731584786580/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
+    },
+    {
+      "anonymousContentId": "76010397eef6faf185d86fa0790f129d8d8e88f3d1db4fc271275eb2fc273ef2",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766103854355204/",
+      "reason": "自动翻译置信度较低，重点引用前需人工复核",
+      "suggestedHandling": "进入报告引用前建议打开原帖人工复核。"
     }
   ],
+  "qualityGate": {
+    "status": "pass",
+    "thresholds": {
+      "minValidItems": 50,
+      "minCommentItems": 20,
+      "minRecordsPerActiveGroup": 5,
+      "expectedGroups": 6,
+      "maxLowConfidenceRate": 0.4
+    },
+    "summary": {
+      "validItems": 111,
+      "commentItems": 43,
+      "lowConfidenceItems": 79,
+      "lowConfidenceRate": 0.712,
+      "structuredActiveGroups": 6,
+      "expectedGroups": 6,
+      "groupCounts": [
+        {
+          "groupName": "Roco Kingdom Viet Nam",
+          "rawRecordCount": 47,
+          "structuredItemCount": 45
+        },
+        {
+          "groupName": "Cong Hoi Roco Kingdom Viet Nam",
+          "rawRecordCount": 34,
+          "structuredItemCount": 31
+        },
+        {
+          "groupName": "Roco Kingdom: World Viet Nam Official",
+          "rawRecordCount": 20,
+          "structuredItemCount": 8
+        },
+        {
+          "groupName": "ROCO KINGDOM VN",
+          "rawRecordCount": 26,
+          "structuredItemCount": 15
+        },
+        {
+          "groupName": "ROCO KINGDOM VIET NAM",
+          "rawRecordCount": 18,
+          "structuredItemCount": 6
+        },
+        {
+          "groupName": "Roco Kingdom Mobile Viet Nam",
+          "rawRecordCount": 20,
+          "structuredItemCount": 6
+        }
+      ]
+    },
+    "blockingReasons": [],
+    "warnings": [
+      "低置信内容占比 71.2%，高于观察阈值 40.0%，重点引用前需人工复核。"
+    ]
+  },
   "readyForWeeklyReport": true,
-  "readyForWeeklyReportReason": "真实 raw 数据已完成清洗、主题、情绪和风险结构化；报告需注明进行中周和评论缺口。"
+  "readyForWeeklyReportReason": "真实 raw 数据已完成清洗、主题、情绪和风险结构化，且达到正式周报最低质量阈值。"
 }

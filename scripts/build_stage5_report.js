@@ -5,6 +5,32 @@ const jsonOut = process.argv[3] || 'data/reports/weekly_report_2026-W18_real.jso
 const mdOut = process.argv[4] || 'data/reports/weekly_report_2026-W18_real.md';
 
 const structured = JSON.parse(fs.readFileSync(inputPath, 'utf8'));
+const qualityPath = process.env.QUALITY_PATH || `data/quality/data_quality_${structured.reportWeek}.json`;
+const quality = fs.existsSync(qualityPath) ? JSON.parse(fs.readFileSync(qualityPath, 'utf8')) : null;
+
+function blockReport(reason, details = []) {
+  console.error(JSON.stringify({
+    status: 'blocked',
+    stage: 'stage5',
+    reportWeek: structured.reportWeek,
+    reason,
+    details,
+  }, null, 2));
+  process.exit(1);
+}
+
+if (structured.exampleOnly) {
+  blockReport('Input is marked exampleOnly; refusing to generate a real weekly report.');
+}
+
+if (structured.readyForWeeklyReport === false) {
+  blockReport('Stage4 quality gate blocked weekly report generation.', structured.qualityGate?.blockingReasons || [structured.readyForWeeklyReportReason].filter(Boolean));
+}
+
+if (quality && quality.status !== 'pass') {
+  blockReport('Data quality status is not pass; refusing to generate a real weekly report.', (quality.issues || []).map((issue) => `${issue.code}: ${issue.detail}`));
+}
+
 const items = structured.items;
 const posts = items.filter((item) => item.recordType === 'post');
 const comments = items.filter((item) => item.recordType === 'comment');
@@ -53,6 +79,7 @@ const highRisk = sentiment['高风险负面'] || 0;
 const highRelevance = items.filter((item) => item.marketObservationValue === 'high' || item.futureLaunchSignal).length;
 const healthScore = Math.round(clamp(60 + pct(positive) * 0.25 - pct(negative) * 0.25 - highRisk * 4, 0, 100));
 const launchSignalScore = Math.round(clamp(45 + Math.min(valid, 120) * 0.18 + pct(highRelevance) * 0.25 + Math.min((topics[0]?.itemCount || 0), 50) * 0.2, 0, 100));
+const completenessNote = `本报告基于 ${structured.timeRange?.start || '未知开始时间'} 至 ${structured.timeRange?.end || '未知结束时间'} 的可见内容。评论覆盖 feed 可见评论和 post-detail 补抓到的可见评论，未展开或不可见线程不纳入结论。`;
 
 const topTopics = topics.slice(0, 8).map((topic, index) => {
   const representative = items.find((item) => item.topics.includes(topic.topic));
@@ -122,7 +149,7 @@ const report = {
     dataAccessMethod: 'browser_automation',
     feedSortPreference: 'newest_first',
     feedSortUiLabelZh: '新帖子',
-    dataCompleteness: '进行中周数据；评论线程不完整；4/30 不补跑，后续周跑覆盖。',
+    dataCompleteness: structured.sourceStatus.dataCompleteness || '可见内容抓取，评论覆盖存在平台可见性限制。',
     limitations: structured.sourceStatus.limitations,
   },
   header: {
@@ -134,7 +161,7 @@ const report = {
       acc[item.language] = (acc[item.language] || 0) + 1;
       return acc;
     }, {})).map(([language, count]) => ({ language, count })),
-    dataCompletenessNote: '本报告基于 2026-04-24 至 2026-04-29 的进行中周可见内容。评论仅覆盖可见/部分展开内容。',
+    dataCompletenessNote: completenessNote,
   },
   summary: '本次进行中周抓取显示，越南玩家社区已经出现持续的自然讨论，核心集中在宠物养成、任务攻略、好友地图/借宠完成任务、Battle Pass 相关宠物和设备/权限问题。讨论多为玩家互助和攻略询问，说明当前社区有自发学习和传播动力。负面内容主要不是大规模口碑崩坏，而是任务理解、账号/名称找回、设备权限和本地化理解上的摩擦。风险侧出现少量账号/道具交易、充值渠道询问，以及“是否正式版/已经正式”的认知混淆。由于 Roco Kingdom 尚未在越南正式发行，这些讨论更适合作为未来发行前的兴趣、认知和风险观察信号，而不是即时运营响应对象。',
   metrics: {

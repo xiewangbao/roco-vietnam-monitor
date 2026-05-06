@@ -8,6 +8,30 @@ fs.mkdirSync('site/topics', { recursive: true });
 fs.mkdirSync('site/reports', { recursive: true });
 const qualityPath = `data/quality/data_quality_${report.reportWeek}.json`;
 const quality = fs.existsSync(qualityPath) ? JSON.parse(fs.readFileSync(qualityPath, 'utf8')) : null;
+
+function blockPublish(reason, details = []) {
+  console.error(JSON.stringify({
+    status: 'blocked',
+    stage: 'stage6',
+    reportWeek: report.reportWeek,
+    reason,
+    details,
+  }, null, 2));
+  process.exit(1);
+}
+
+if (report.readyForDashboard === false) {
+  blockPublish('Report is not marked ready for dashboard publishing.');
+}
+
+if (structured.readyForWeeklyReport === false) {
+  blockPublish('Structured data is not eligible for formal weekly report publishing.', structured.qualityGate?.blockingReasons || [structured.readyForWeeklyReportReason].filter(Boolean));
+}
+
+if (quality && quality.status !== 'pass') {
+  blockPublish('Data quality status is not pass; refusing to publish dashboard/latest artifacts.', (quality.issues || []).map((issue) => `${issue.code}: ${issue.detail}`));
+}
+
 const availableReports = fs.readdirSync('data/reports')
   .filter((file) => /^weekly_report_.*_real\.json$/.test(file))
   .map((file) => {

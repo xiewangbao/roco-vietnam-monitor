@@ -247,6 +247,38 @@ const riskSummary = Object.entries(riskCounts)
     };
   });
 
+const thresholds = {
+  minValidItems: Number(process.env.MIN_VALID_ITEMS || 50),
+  minCommentItems: Number(process.env.MIN_COMMENT_ITEMS || 20),
+  minRecordsPerActiveGroup: Number(process.env.MIN_RECORDS_PER_GROUP || 5),
+  expectedGroups: Number(process.env.EXPECTED_GROUPS || raw.sourceGroups.length),
+  maxLowConfidenceRate: Number(process.env.MAX_LOW_CONFIDENCE_RATE || 0.4),
+};
+const commentItems = items.filter((item) => item.recordType === 'comment');
+const structuredGroupCounts = (raw.sourceGroups || []).map((group) => ({
+  groupName: group.groupName,
+  rawRecordCount: group.capturedRecordCount,
+  structuredItemCount: items.filter((item) => item.sourceGroup === group.groupName).length,
+}));
+const lowConfidenceRate = items.length ? lowConfidenceItems.length / items.length : 1;
+const blockingReasons = [];
+
+if (items.length < thresholds.minValidItems) {
+  blockingReasons.push(`有效内容 ${items.length} 条，低于阈值 ${thresholds.minValidItems} 条`);
+}
+if (commentItems.length < thresholds.minCommentItems) {
+  blockingReasons.push(`评论样本 ${commentItems.length} 条，低于阈值 ${thresholds.minCommentItems} 条`);
+}
+if (structuredGroupCounts.filter((group) => group.structuredItemCount > 0).length < thresholds.expectedGroups) {
+  blockingReasons.push(`结构化后活跃 Group 不足 ${thresholds.expectedGroups} 个`);
+}
+const lowVolumeGroups = structuredGroupCounts.filter((group) => group.structuredItemCount < thresholds.minRecordsPerActiveGroup);
+if (lowVolumeGroups.length) {
+  blockingReasons.push(`部分 Group 结构化内容低于阈值：${lowVolumeGroups.map((group) => `${group.groupName} ${group.structuredItemCount}`).join('；')}`);
+}
+
+const readyForWeeklyReport = blockingReasons.length === 0;
+
 const structured = {
   schemaVersion: 'stage4.structured_weekly.v1',
   exampleOnly: false,
@@ -279,8 +311,27 @@ const structured = {
   sentimentSummary: countBy(items, (item) => item.sentiment),
   riskSummary,
   lowConfidenceItems,
-  readyForWeeklyReport: true,
-  readyForWeeklyReportReason: '真实 raw 数据已完成清洗、主题、情绪和风险结构化；报告需注明进行中周和评论缺口。',
+  qualityGate: {
+    status: readyForWeeklyReport ? 'pass' : 'blocked',
+    thresholds,
+    summary: {
+      validItems: items.length,
+      commentItems: commentItems.length,
+      lowConfidenceItems: lowConfidenceItems.length,
+      lowConfidenceRate: Number(lowConfidenceRate.toFixed(3)),
+      structuredActiveGroups: structuredGroupCounts.filter((group) => group.structuredItemCount > 0).length,
+      expectedGroups: thresholds.expectedGroups,
+      groupCounts: structuredGroupCounts,
+    },
+    blockingReasons,
+    warnings: lowConfidenceRate > thresholds.maxLowConfidenceRate
+      ? [`低置信内容占比 ${(lowConfidenceRate * 100).toFixed(1)}%，高于观察阈值 ${(thresholds.maxLowConfidenceRate * 100).toFixed(1)}%，重点引用前需人工复核。`]
+      : [],
+  },
+  readyForWeeklyReport,
+  readyForWeeklyReportReason: readyForWeeklyReport
+    ? '真实 raw 数据已完成清洗、主题、情绪和风险结构化，且达到正式周报最低质量阈值。'
+    : `未达到正式周报最低质量阈值：${blockingReasons.join('；')}`,
 };
 
 fs.writeFileSync(outputPath, `${JSON.stringify(structured, null, 2)}\n`);
