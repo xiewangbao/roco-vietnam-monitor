@@ -7,19 +7,19 @@
   "dateGenerated": "2026-05-06",
   "timeRange": {
     "start": "2026-04-30T00:00:00+08:00",
-    "end": "2026-05-06T03:39:09.643Z",
+    "end": "2026-05-06T04:21:50.275Z",
     "timezone": "Asia/Shanghai",
     "completenessNote": "Second in-progress run from 2026-04-30 00:00 +08:00 to crawl time on 2026-05-06; final Friday-to-Thursday run will be covered later."
   },
   "sourceStatus": {
     "confirmedGroups": 6,
-    "activeGroups": 4,
+    "activeGroups": 6,
     "dataAccessMethod": "browser_automation",
     "feedSortPreference": "newest_first",
     "feedSortUiLabelZh": "新帖子",
-    "dataCompleteness": "进行中周数据；评论线程不完整；4/30 不补跑，后续周跑覆盖。",
+    "dataCompleteness": "partial_in_progress_week_visible_feed_crawl",
     "limitations": [
-      "本次抓取从 2026-04-30T00:00:00+08:00 起算，结束于 2026-05-06T03:39:09.643Z；如为周中执行，仍属于进行中周。",
+      "本次抓取从 2026-04-30T00:00:00+08:00 起算，结束于 2026-05-06T04:21:50.275Z；如为周中执行，仍属于进行中周。",
       "评论为可见评论和部分展开结果，完整评论线程仍有缺口。",
       "部分时间为 Facebook 相对时间标签，尚未全部转成绝对时间。",
       "部分内容为媒体或跨发帖，结构化时已列入低置信度或去重/剔除清单。"
@@ -27,75 +27,89 @@
   },
   "header": {
     "confirmedGroupCount": 6,
-    "validContentCount": 23,
-    "postCount": 16,
-    "commentCount": 7,
+    "validContentCount": 111,
+    "postCount": 68,
+    "commentCount": 43,
     "mainLanguageDistribution": [
       {
         "language": "vi",
-        "count": 19
+        "count": 92
       },
       {
         "language": "mixed",
+        "count": 15
+      },
+      {
+        "language": "zh",
         "count": 4
       }
     ],
-    "dataCompletenessNote": "本报告基于 2026-04-24 至 2026-04-29 的进行中周可见内容。评论仅覆盖可见/部分展开内容。"
+    "dataCompletenessNote": "本报告基于 2026-04-30T00:00:00+08:00 至 2026-05-06T04:21:50.275Z 的可见内容。评论覆盖 feed 可见评论和 post-detail 补抓到的可见评论，未展开或不可见线程不纳入结论。"
   },
   "summary": "本次进行中周抓取显示，越南玩家社区已经出现持续的自然讨论，核心集中在宠物养成、任务攻略、好友地图/借宠完成任务、Battle Pass 相关宠物和设备/权限问题。讨论多为玩家互助和攻略询问，说明当前社区有自发学习和传播动力。负面内容主要不是大规模口碑崩坏，而是任务理解、账号/名称找回、设备权限和本地化理解上的摩擦。风险侧出现少量账号/道具交易、充值渠道询问，以及“是否正式版/已经正式”的认知混淆。由于 Roco Kingdom 尚未在越南正式发行，这些讨论更适合作为未来发行前的兴趣、认知和风险观察信号，而不是即时运营响应对象。",
   "metrics": {
-    "totalDiscussionVolume": 23,
-    "validRocoRelatedContent": 23,
-    "highRelevanceRate": 0,
-    "positiveRate": 8.7,
+    "totalDiscussionVolume": 111,
+    "validRocoRelatedContent": 111,
+    "highRelevanceRate": 15.3,
+    "positiveRate": 9.9,
     "neutralRate": 73.9,
-    "negativeRate": 4.3,
+    "negativeRate": 1.8,
     "highRiskCount": 0,
-    "activeGroupCount": 4,
+    "activeGroupCount": 6,
     "top5HotTopics": [
       "越南玩家自发讨论",
       "宠物、角色、养成",
       "玩法机制",
-      "攻略分享"
+      "充值、付费、礼包",
+      "Bug、闪退、卡顿、登录问题"
     ],
-    "sentimentHealthScore": 61,
-    "futureLaunchSignalScore": 51
+    "sentimentHealthScore": 62,
+    "futureLaunchSignalScore": 79
   },
   "commentOpinion": {
-    "commentCount": 7,
+    "commentCount": 43,
     "sentimentSummary": {
-      "混合": 3,
-      "中性": 4
+      "混合": 11,
+      "中性": 30,
+      "正面": 2
     },
     "topCommentTopics": [
       {
         "topic": "越南玩家自发讨论",
-        "count": 4
+        "count": 26
       },
       {
         "topic": "宠物、角色、养成",
-        "count": 2
+        "count": 13
       },
       {
         "topic": "玩法机制",
+        "count": 6
+      },
+      {
+        "topic": "社群互动、组队、公会",
+        "count": 2
+      },
+      {
+        "topic": "越南本地化期待",
         "count": 1
       }
     ],
     "representativeComments": [
       {
-        "originalText": "Làm sao ra được con có màu đen đó vậy",
-        "translationZh": "机器初译摘要：该内容主要涉及「玩法机制」。原文需在重点引用前人工复核。",
+        "originalText": "Tiến hoá đii, hóng màu con đen trắng",
+        "translationZh": "玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。",
         "sentiment": "混合",
-        "topic": "玩法机制",
+        "topic": "宠物、角色、养成",
         "sourceGroup": "Roco Kingdom Viet Nam",
         "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128443277948744/",
         "riskLabels": []
       },
       {
-        "originalText": "Tiến hoá đii, hóng màu con đen trắng",
-        "translationZh": "玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。",
+        "originalText": "Làm sao ra được con có màu đen đó vậy",
+        "translationZh": "机器初译摘要：该内容主要涉及「玩法机制」。原文需在重点引用前人工复核。",
         "sentiment": "混合",
-        "topic": "宠物、角色、养成",
+        "topic": "玩法机制",
         "sourceGroup": "Roco Kingdom Viet Nam",
         "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128443277948744/",
         "riskLabels": []
@@ -144,6 +158,15 @@
         "sourceGroup": "Roco Kingdom Viet Nam",
         "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2127309468062125/",
         "riskLabels": []
+      },
+      {
+        "originalText": "Tưởng viusss nhưng ko đó là Ngọc Kem :)))",
+        "translationZh": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。",
+        "sentiment": "混合",
+        "topic": "越南玩家自发讨论",
+        "sourceGroup": "Roco Kingdom Viet Nam",
+        "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2126731584786580/",
+        "riskLabels": []
       }
     ],
     "limitations": [
@@ -156,26 +179,26 @@
       "groupName": "Roco Kingdom Viet Nam",
       "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
       "accessStatus": "已加入 / 公开小组",
-      "weeklyContentVolume": 20,
+      "weeklyContentVolume": 45,
       "dataCompleteness": "进行中周可见内容已抓取，评论不完整",
       "includedInFormalMonitoring": true,
       "notes": "正式监测源。"
     },
     {
       "groupName": "Cong Hoi Roco Kingdom Viet Nam",
-      "groupUrl": "",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
       "accessStatus": "已加入 / 公开小组",
-      "weeklyContentVolume": 0,
-      "dataCompleteness": "本轮未抓到有效内容",
+      "weeklyContentVolume": 31,
+      "dataCompleteness": "进行中周可见内容已抓取，评论不完整",
       "includedInFormalMonitoring": true,
       "notes": "正式监测源。"
     },
     {
       "groupName": "Roco Kingdom: World Viet Nam Official",
-      "groupUrl": "",
+      "groupUrl": "https://www.facebook.com/groups/1729046980837718/",
       "accessStatus": "已加入 / 公开小组",
-      "weeklyContentVolume": 0,
-      "dataCompleteness": "本轮未抓到有效内容",
+      "weeklyContentVolume": 8,
+      "dataCompleteness": "进行中周可见内容已抓取，评论不完整",
       "includedInFormalMonitoring": true,
       "notes": "名称含 Official，但不默认认定为官方渠道。"
     },
@@ -183,7 +206,7 @@
       "groupName": "ROCO KINGDOM VN",
       "groupUrl": "https://www.facebook.com/groups/3072730653028573/",
       "accessStatus": "已加入 / 公开小组",
-      "weeklyContentVolume": 1,
+      "weeklyContentVolume": 15,
       "dataCompleteness": "进行中周可见内容已抓取，评论不完整",
       "includedInFormalMonitoring": true,
       "notes": "正式监测源。"
@@ -192,7 +215,7 @@
       "groupName": "ROCO KINGDOM VIET NAM",
       "groupUrl": "https://www.facebook.com/groups/947481474801675/",
       "accessStatus": "已加入 / 公开小组",
-      "weeklyContentVolume": 1,
+      "weeklyContentVolume": 6,
       "dataCompleteness": "进行中周可见内容已抓取，评论不完整",
       "includedInFormalMonitoring": true,
       "notes": "正式监测源。"
@@ -201,7 +224,7 @@
       "groupName": "Roco Kingdom Mobile Viet Nam",
       "groupUrl": "https://www.facebook.com/groups/3223551104630521/",
       "accessStatus": "已加入 / 公开小组",
-      "weeklyContentVolume": 1,
+      "weeklyContentVolume": 6,
       "dataCompleteness": "进行中周可见内容已抓取，评论不完整",
       "includedInFormalMonitoring": true,
       "notes": "正式监测源。"
@@ -211,46 +234,90 @@
     {
       "rank": 1,
       "title": "越南玩家自发讨论",
-      "volume": 8,
+      "volume": 50,
       "sentiment": "中性",
-      "heatScore": 40,
+      "heatScore": 100,
       "weekOverWeekChange": "首个真实抓取周，暂无环比",
-      "marketSignalValue": "中",
+      "marketSignalValue": "高",
       "representativePostUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128445911281814/",
       "notes": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。"
     },
     {
       "rank": 2,
       "title": "宠物、角色、养成",
-      "volume": 8,
+      "volume": 40,
       "sentiment": "中性",
-      "heatScore": 40,
+      "heatScore": 100,
       "weekOverWeekChange": "首个真实抓取周，暂无环比",
-      "marketSignalValue": "中",
+      "marketSignalValue": "高",
       "representativePostUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128443277948744/",
       "notes": "玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。"
     },
     {
       "rank": 3,
       "title": "玩法机制",
-      "volume": 6,
+      "volume": 28,
       "sentiment": "中性",
-      "heatScore": 30,
+      "heatScore": 100,
       "weekOverWeekChange": "首个真实抓取周，暂无环比",
-      "marketSignalValue": "中",
+      "marketSignalValue": "高",
       "representativePostUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128744104585328/",
       "notes": "玩家询问任务如何完成，包含要投放/使用哪类精灵或如何解锁机关。"
     },
     {
       "rank": 4,
-      "title": "攻略分享",
-      "volume": 1,
+      "title": "充值、付费、礼包",
+      "volume": 7,
       "sentiment": "正面",
-      "heatScore": 5,
+      "heatScore": 35,
+      "weekOverWeekChange": "首个真实抓取周，暂无环比",
+      "marketSignalValue": "中",
+      "representativePostUrl": "https://www.facebook.com/groups/roco.legend/posts/1766408790991377/",
+      "notes": "玩家询问如何进入好友地图或借好友宠物进行捕捉/完成任务。"
+    },
+    {
+      "rank": 5,
+      "title": "Bug、闪退、卡顿、登录问题",
+      "volume": 6,
+      "sentiment": "中性",
+      "heatScore": 30,
+      "weekOverWeekChange": "首个真实抓取周，暂无环比",
+      "marketSignalValue": "中",
+      "representativePostUrl": "https://www.facebook.com/groups/roco.legend/posts/1766600474305542/",
+      "notes": "机器初译摘要：该内容主要涉及「玩法机制」。原文需在重点引用前人工复核。"
+    },
+    {
+      "rank": 6,
+      "title": "社群互动、组队、公会",
+      "volume": 4,
+      "sentiment": "中性",
+      "heatScore": 20,
+      "weekOverWeekChange": "首个真实抓取周，暂无环比",
+      "marketSignalValue": "中",
+      "representativePostUrl": "https://www.facebook.com/groups/1410112269781852/posts/2126669668126105/",
+      "notes": "机器初译摘要：该内容主要涉及「社群互动、组队、公会」。原文需在重点引用前人工复核。"
+    },
+    {
+      "rank": 7,
+      "title": "攻略分享",
+      "volume": 3,
+      "sentiment": "正面",
+      "heatScore": 15,
       "weekOverWeekChange": "首个真实抓取周，暂无环比",
       "marketSignalValue": "中",
       "representativePostUrl": "https://www.facebook.com/groups/1410112269781852/posts/2128160144643724/",
       "notes": "机器初译摘要：该内容主要涉及「攻略分享」。原文需在重点引用前人工复核。"
+    },
+    {
+      "rank": 8,
+      "title": "诈骗、外挂、私服、黑产风险",
+      "volume": 1,
+      "sentiment": "中性",
+      "heatScore": 5,
+      "weekOverWeekChange": "首个真实抓取周，暂无环比",
+      "marketSignalValue": "中",
+      "representativePostUrl": "https://www.facebook.com/groups/roco.legend/posts/1766600474305542/",
+      "notes": "机器初译摘要：该内容主要涉及「玩法机制」。原文需在重点引用前人工复核。"
     }
   ],
   "sentimentAnalysis": {
@@ -300,7 +367,17 @@
     ]
   },
   "riskObservations": [],
-  "representativeVoices": [],
+  "representativeVoices": [
+    {
+      "originalText": "mn ơi làm sao để vào thế giới của ng khác v ạ, em có add mn để bắt ké pass nhm e ko bt vào thế giới của mn kiểu j ;-;",
+      "translationZh": "玩家询问如何进入好友地图或借好友宠物进行捕捉/完成任务。",
+      "sentiment": "中性",
+      "topic": "社群互动、组队、公会",
+      "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
+      "postUrl": "https://www.facebook.com/groups/roco.legend/posts/1766408790991377/",
+      "notes": "匿名化摘录，需 Facebook / Group 权限查看原帖。"
+    }
+  ],
   "trendObservation": {
     "discussionVolumeTrend": "首个真实抓取周，暂无环比。",
     "activeGroupTrend": "6 个 Group 均有可见内容，后续需按周比较活跃度。",
