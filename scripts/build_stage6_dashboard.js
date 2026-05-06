@@ -36,9 +36,22 @@ const availableReports = fs.readdirSync('data/reports')
   .filter((file) => /^weekly_report_.*_real\.json$/.test(file))
   .map((file) => {
     const data = JSON.parse(fs.readFileSync(`data/reports/${file}`, 'utf8'));
-    return { week: data.reportWeek, file: `reports/${data.reportWeek}.html`, valid: data.header?.validContentCount || 0 };
+    return {
+      week: data.reportWeek,
+      file: `reports/${data.reportWeek}.html`,
+      valid: data.header?.validContentCount || 0,
+      posts: data.header?.postCount || 0,
+      comments: data.header?.commentCount || 0,
+      health: data.metrics?.sentimentHealthScore || 0,
+      launch: data.metrics?.futureLaunchSignalScore || 0,
+      risk: data.metrics?.highRiskCount || 0,
+    };
   })
   .sort((a, b) => a.week.localeCompare(b.week));
+
+const latestMaxTopicVolume = Math.max(...(report.hotTopics || []).map((topic) => topic.volume), 1);
+const latestMaxGroupVolume = Math.max(...(report.groupSourceStatus || []).map((group) => group.weeklyContentVolume), 1);
+const maxReportValid = Math.max(...availableReports.map((item) => item.valid), 1);
 
 function topicSlug(topic) {
   return Buffer.from(topic).toString('base64url');
@@ -67,7 +80,7 @@ function buildTopicDetail(topicRow) {
       if (t !== topic) coTopics[t] = (coTopics[t] || 0) + 1;
     }
   }
-  const rows = topicItems.slice(0, 80).map((item, index) => `<tr><td>${index + 1}</td><td>${item.recordType === 'comment' ? '评论' : '帖子'}</td><td>${escapeHtml(item.sourceGroup)}</td><td><span class="tag">${escapeHtml(item.sentiment)}</span></td><td>${escapeHtml(item.originalText)}</td><td>${escapeHtml(item.translationZh)}</td><td><a class="btn" href="${item.postUrl}" target="_blank" rel="noreferrer">查看原帖</a></td></tr>`).join('');
+  const rows = topicItems.slice(0, 80).map((item, index) => `<tr><td>${index + 1}</td><td>${item.recordType === 'comment' ? '评论' : '帖子'}</td><td>${escapeHtml(item.sourceGroup)}</td><td><span class="tag ${sentimentClass(item.sentiment)}">${escapeHtml(item.sentiment)}</span></td><td>${escapeHtml(item.originalText)}</td><td>${escapeHtml(item.translationZh)}</td><td><a class="btn" href="${item.postUrl}" target="_blank" rel="noreferrer">查看原帖</a></td></tr>`).join('');
   return `<!doctype html>
 <html lang="zh-CN">
 <head>
@@ -89,8 +102,8 @@ function buildTopicDetail(topicRow) {
       ${metric('活跃 Group', Object.keys(groups).length, '涉及来源数')}
       ${metric('代表 case', topicRow.representativePostUrl ? '有' : '无', '原帖需权限')}
     </div></section>
-    <section><h2>二级 Topic / 共现标签</h2><div class="panel">${Object.entries(coTopics).sort((a,b)=>b[1]-a[1]).map(([k,v]) => `<span class="tag blue">${escapeHtml(k)} ${v}</span>`).join('') || '<span class="muted">暂无明显共现标签</span>'}</div></section>
-    <section><h2>情绪与来源</h2><div class="grid two"><div class="panel">${Object.entries(sentiment).map(([k,v]) => `<p><strong>${escapeHtml(k)}</strong> ${v}</p><div class="bar"><span style="width:${Math.min(100, v / topicItems.length * 100)}%"></span></div>`).join('')}</div><div class="panel">${Object.entries(groups).sort((a,b)=>b[1]-a[1]).map(([k,v]) => `<p>${escapeHtml(k)}：${v}</p>`).join('')}</div></div></section>
+    <section><h2>二级 Topic / 共现标签</h2><div class="panel tag-cloud">${Object.entries(coTopics).sort((a,b)=>b[1]-a[1]).map(([k,v]) => `<span class="tag blue">${escapeHtml(k)} ${v}</span>`).join('') || '<span class="muted">暂无明显共现标签</span>'}</div></section>
+    <section><h2>情绪与来源</h2><div class="grid two"><div class="panel">${Object.entries(sentiment).map(([k,v]) => `<p><strong>${escapeHtml(k)}</strong> ${v}</p><div class="bar ${sentimentClass(k)}"><span style="width:${Math.min(100, v / topicItems.length * 100)}%"></span></div>`).join('')}</div><div class="panel">${Object.entries(groups).sort((a,b)=>b[1]-a[1]).map(([k,v]) => `<div class="mini-row"><span>${escapeHtml(k)}</span><strong>${v}</strong></div><div class="bar"><span style="width:${Math.min(100, v / topicItems.length * 100)}%"></span></div>`).join('')}</div></div></section>
     <section><h2>内容明细</h2><table><thead><tr><th>#</th><th>类型</th><th>来源</th><th>情绪</th><th>原文</th><th>中文摘要</th><th>原帖</th></tr></thead><tbody>${rows}</tbody></table></section>
   </main>
 </body>
@@ -133,16 +146,33 @@ const html = `<!doctype html>
     <a href="#trends">趋势</a>
   </nav>
   <main>
-    <div class="notice">${report.sourceStatus.dataCompleteness}</div>
+    <section class="status-strip">
+      <div>
+        <span class="eyebrow">监测状态</span>
+        <strong>${qualityStatusText()}</strong>
+        <p>${escapeHtml(report.sourceStatus.dataCompleteness)}</p>
+      </div>
+      <div>
+        <span class="eyebrow">统计窗口</span>
+        <strong>${escapeHtml(report.reportWeek)}</strong>
+        <p>${escapeHtml(report.timeRange.start)} 至 ${escapeHtml(report.timeRange.end)}</p>
+      </div>
+      <div>
+        <span class="eyebrow">采集方式</span>
+        <strong>browser_automation</strong>
+        <p>新帖子排序，按周增量抓取，原帖链接保留用于复核。</p>
+      </div>
+    </section>
     ${quality && quality.status !== 'pass' ? `<div class="notice"><strong>数据质量需要复核：</strong>${quality.issues.map((issue) => issue.title).join('；')}。本轮不应直接视为完整成品，请先确认是否重跑、加深评论或接受可见样本。</div>` : ''}
 
     <section id="latest">
       <h2>本周总览</h2>
-      <div class="grid two">
-        <div class="panel">${report.summary}</div>
+      <div class="grid cockpit">
+        <div class="panel summary-panel">${paragraphs(report.summary)}</div>
         <div class="panel">
           <h3>周选择</h3>
           <div class="filters">${availableReports.map((r) => `<a class="btn" href="${r.file}">${r.week}</a>`).join('')}</div>
+          <div class="trend-list">${availableReports.map((r) => `<div class="trend-row"><span>${r.week}</span><div class="bar"><span style="width:${pct(r.valid, maxReportValid)}%"></span></div><strong>${r.valid}</strong></div>`).join('')}</div>
           <p class="small muted">当前展示 ${report.reportWeek}。历史周页面已生成，可按周查看。</p>
         </div>
       </div>
@@ -158,6 +188,19 @@ const html = `<!doctype html>
         ${metric('负面占比', `${report.metrics.negativeRate}%`, '含高风险负面')}
         ${metric('发行参考分', report.metrics.futureLaunchSignalScore, `健康度 ${report.metrics.sentimentHealthScore}`)}
       </div>
+      <div class="panel composition">
+        <div><strong>内容构成</strong><span>${report.header.postCount} 帖 / ${report.header.commentCount} 评论</span></div>
+        ${stackedBar([
+          ['帖子', report.header.postCount, 'blue'],
+          ['评论', report.header.commentCount, 'teal'],
+        ])}
+        <div><strong>情绪结构</strong><span>正面 ${report.metrics.positiveRate}% / 中性 ${report.metrics.neutralRate}% / 负面 ${report.metrics.negativeRate}%</span></div>
+        ${stackedBar([
+          ['正面', report.metrics.positiveRate, 'green'],
+          ['中性', report.metrics.neutralRate, 'blue'],
+          ['负面', report.metrics.negativeRate, 'red'],
+        ], 100)}
+      </div>
     </section>
 
     <section id="groups">
@@ -165,7 +208,7 @@ const html = `<!doctype html>
       <table>
         <thead><tr><th>Group</th><th>本周内容量</th><th>访问状态</th><th>数据完整性</th><th>备注</th></tr></thead>
         <tbody>
-          ${report.groupSourceStatus.map(g => `<tr><td><a class="btn" href="${g.groupUrl}" target="_blank" rel="noreferrer">查看 Group</a><br>${g.groupName}</td><td>${g.weeklyContentVolume}</td><td>${g.accessStatus}</td><td>${g.dataCompleteness}</td><td>${g.notes}</td></tr>`).join('')}
+          ${report.groupSourceStatus.map(g => `<tr><td><a class="btn" href="${g.groupUrl}" target="_blank" rel="noreferrer">查看 Group</a><br>${escapeHtml(g.groupName)}</td><td><div class="volume-cell"><strong>${g.weeklyContentVolume}</strong><div class="bar"><span style="width:${pct(g.weeklyContentVolume, latestMaxGroupVolume)}%"></span></div></div></td><td>${escapeHtml(g.accessStatus)}</td><td>${escapeHtml(g.dataCompleteness)}</td><td>${escapeHtml(g.notes)}</td></tr>`).join('')}
         </tbody>
       </table>
     </section>
@@ -175,7 +218,7 @@ const html = `<!doctype html>
       <table>
         <thead><tr><th>排名</th><th>热点</th><th>内容量</th><th>情绪</th><th>热度</th><th>市场观察价值</th><th>分析 / case</th></tr></thead>
         <tbody>
-          ${report.hotTopics.map(t => `<tr><td>${t.rank}</td><td>${t.title}</td><td>${t.volume}</td><td><span class="tag blue">${t.sentiment}</span></td><td><div class="bar"><span style="width:${t.heatScore}%"></span></div></td><td>${t.marketSignalValue}</td><td>${t.volume >= 10 ? `<a class="btn" href="${topicDetailHref(t.title)}">查看分析</a>` : (t.representativePostUrl ? `<a class="btn" href="${t.representativePostUrl}" target="_blank" rel="noreferrer">查看原帖</a>` : '无')}</td></tr>`).join('')}
+          ${report.hotTopics.map(t => `<tr><td>${t.rank}</td><td><strong>${escapeHtml(t.title)}</strong><p class="small muted">${escapeHtml(t.notes || '')}</p></td><td><div class="volume-cell"><strong>${t.volume}</strong><div class="bar"><span style="width:${pct(t.volume, latestMaxTopicVolume)}%"></span></div></div></td><td><span class="tag ${sentimentClass(t.sentiment)}">${escapeHtml(t.sentiment)}</span></td><td><div class="bar"><span style="width:${t.heatScore}%"></span></div></td><td>${escapeHtml(t.marketSignalValue)}</td><td>${t.volume >= 10 ? `<a class="btn strong" href="${topicDetailHref(t.title)}">查看二级分析</a>` : (t.representativePostUrl ? `<a class="btn" href="${t.representativePostUrl}" target="_blank" rel="noreferrer">查看原帖</a>` : '无')}</td></tr>`).join('')}
         </tbody>
       </table>
     </section>
@@ -190,7 +233,7 @@ const html = `<!doctype html>
         </div>
         <div class="panel">
           <h3>未来越南发行参考信号</h3>
-          ${Object.entries(report.futureVietnamLaunchSignals).map(([k, v]) => `<p><strong>${label(k)}：</strong>${Array.isArray(v) ? v.join('；') : v}</p>`).join('')}
+          ${Object.entries(report.futureVietnamLaunchSignals).map(([k, v]) => `<div class="signal-row"><strong>${label(k)}</strong><p>${escapeHtml(Array.isArray(v) ? v.join('；') : v)}</p></div>`).join('')}
         </div>
       </div>
     </section>
@@ -231,8 +274,13 @@ const html = `<!doctype html>
 
     <section id="trends">
       <h2>趋势观察</h2>
-      <div class="panel">
-        ${Object.values(report.trendObservation).map(x => `<p>${x}</p>`).join('')}
+      <div class="grid two">
+        <div class="panel trend-list">
+          ${availableReports.map((r) => `<div class="trend-row"><span>${r.week}</span><div class="bar"><span style="width:${pct(r.valid, maxReportValid)}%"></span></div><strong>${r.valid}</strong><em>健康 ${r.health} / 发行 ${r.launch}</em></div>`).join('')}
+        </div>
+        <div class="panel">
+          ${Object.values(report.trendObservation).map(x => `<p>${escapeHtml(x)}</p>`).join('')}
+        </div>
       </div>
     </section>
 
@@ -252,17 +300,17 @@ const html = `<!doctype html>
 function baseCss() {
   return `
     :root {
-      --bg: #f7f8fb;
-      --ink: #17202c;
+      --bg: #f4f6f8;
+      --ink: #182230;
       --muted: #667085;
-      --line: #d9dee8;
+      --line: #d6dde8;
       --panel: #ffffff;
-      --blue: #1f6feb;
+      --blue: #2563eb;
       --green: #18864b;
-      --amber: #b7791f;
-      --red: #c2413b;
-      --cyan: #087990;
-      --violet: #7254b6;
+      --amber: #b45309;
+      --red: #b42318;
+      --teal: #0f766e;
+      --slate: #344054;
     }
     * { box-sizing: border-box; }
     body {
@@ -273,10 +321,10 @@ function baseCss() {
       letter-spacing: 0;
     }
     header {
-      background: #111827;
+      background: #182230;
       color: white;
-      padding: 20px 28px 18px;
-      border-bottom: 4px solid var(--blue);
+      padding: 18px 28px 16px;
+      border-bottom: 4px solid var(--teal);
     }
     header h1 { margin: 0 0 8px; font-size: 24px; line-height: 1.25; }
     header .meta { display: flex; flex-wrap: wrap; gap: 10px 18px; color: #d1d5db; font-size: 13px; }
@@ -288,7 +336,7 @@ function baseCss() {
       gap: 4px;
       align-items: center;
       padding: 10px 28px;
-      background: rgba(247,248,251,.96);
+      background: rgba(244,246,248,.96);
       border-bottom: 1px solid var(--line);
       backdrop-filter: blur(8px);
     }
@@ -300,7 +348,7 @@ function baseCss() {
       font-size: 14px;
     }
     nav a:hover { background: #e8edf7; }
-    main { padding: 22px 28px 40px; max-width: 1440px; margin: 0 auto; }
+    main { padding: 22px 28px 40px; max-width: 1480px; margin: 0 auto; }
     section { margin-bottom: 26px; }
     h2 { font-size: 18px; margin: 0 0 12px; }
     h3 { font-size: 15px; margin: 0 0 8px; }
@@ -314,16 +362,52 @@ function baseCss() {
     }
     .grid { display: grid; gap: 12px; }
     .metrics { grid-template-columns: repeat(6, minmax(130px, 1fr)); }
+    .cockpit { grid-template-columns: minmax(0, 1.45fr) minmax(320px, .55fr); }
     .metric, .panel {
       background: var(--panel);
       border: 1px solid var(--line);
       border-radius: 8px;
       padding: 14px;
     }
+    .status-strip {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr 1fr;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+    .status-strip > div {
+      background: #fff;
+      padding: 13px 14px;
+      min-width: 0;
+    }
+    .status-strip strong { display: block; margin: 3px 0; font-size: 15px; }
+    .status-strip p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
+    .eyebrow {
+      display: block;
+      color: var(--teal);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .summary-panel p { margin: 0 0 10px; line-height: 1.7; }
+    .summary-panel p:last-child { margin-bottom: 0; }
     .metric .label { color: var(--muted); font-size: 12px; }
     .metric .value { font-size: 24px; font-weight: 700; margin-top: 6px; }
     .metric .sub { color: var(--muted); font-size: 12px; margin-top: 4px; }
     .two { grid-template-columns: 1.3fr .7fr; }
+    .composition {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 1fr);
+      gap: 10px 16px;
+      align-items: center;
+      margin-top: 12px;
+    }
+    .composition strong, .composition span { display: block; }
+    .composition span { color: var(--muted); font-size: 12px; margin-top: 3px; }
     table { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
     th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 13px; }
     th { background: #eef2f7; color: #344054; font-weight: 700; }
@@ -333,11 +417,49 @@ function baseCss() {
     .tag.red { color: var(--red); border-color: #f0b6b2; background: #fff1f1; }
     .tag.blue { color: var(--blue); border-color: #bdd3ff; background: #f0f5ff; }
     .tag.amber { color: var(--amber); border-color: #ead19b; background: #fff8e6; }
+    .tag.teal { color: var(--teal); border-color: #99d5cd; background: #eefaf8; }
     .bar { height: 9px; background: #edf0f5; border-radius: 999px; overflow: hidden; }
     .bar span { display: block; height: 100%; background: var(--blue); }
     .bar.green span { background: var(--green); }
     .bar.red span { background: var(--red); }
     .bar.amber span { background: var(--amber); }
+    .bar.teal span { background: var(--teal); }
+    .stacked {
+      display: flex;
+      height: 14px;
+      background: #edf0f5;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .stacked span { min-width: 2px; }
+    .stacked .green { background: var(--green); }
+    .stacked .blue { background: var(--blue); }
+    .stacked .red { background: var(--red); }
+    .stacked .teal { background: var(--teal); }
+    .legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; color: var(--muted); font-size: 12px; }
+    .legend i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 4px; }
+    .legend .green i { background: var(--green); }
+    .legend .blue i { background: var(--blue); }
+    .legend .red i { background: var(--red); }
+    .legend .teal i { background: var(--teal); }
+    .volume-cell { min-width: 110px; }
+    .volume-cell strong { display: inline-block; margin-bottom: 5px; }
+    .mini-row, .trend-row {
+      display: grid;
+      grid-template-columns: minmax(120px, 1fr) minmax(90px, 2fr) 42px;
+      gap: 8px;
+      align-items: center;
+      margin: 8px 0;
+      font-size: 13px;
+    }
+    .trend-row em { color: var(--muted); font-style: normal; font-size: 12px; grid-column: 2 / 4; }
+    .signal-row {
+      border-top: 1px solid var(--line);
+      padding: 10px 0;
+    }
+    .signal-row:first-of-type { border-top: 0; padding-top: 0; }
+    .signal-row p { margin: 4px 0 0; color: var(--slate); line-height: 1.55; }
+    .tag-cloud { line-height: 2; }
     .voice { border-top: 1px solid var(--line); padding: 12px 0; }
     .voice:first-child { border-top: 0; padding-top: 0; }
     .voice blockquote { margin: 8px 0; padding-left: 10px; border-left: 3px solid var(--cyan); color: #344054; }
@@ -353,6 +475,11 @@ function baseCss() {
       font-size: 12px;
       border: 1px solid #bdd3ff;
     }
+    .btn.strong {
+      color: white;
+      background: var(--blue);
+      border-color: var(--blue);
+    }
     .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
     select, input {
       min-height: 34px;
@@ -366,7 +493,8 @@ function baseCss() {
     .small { font-size: 12px; }
     @media (max-width: 980px) {
       .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .two { grid-template-columns: 1fr; }
+      .two, .cockpit, .status-strip { grid-template-columns: 1fr; }
+      .composition { grid-template-columns: 1fr; }
       main, header, nav { padding-left: 16px; padding-right: 16px; }
       table { display: block; overflow-x: auto; }
     }
@@ -379,6 +507,36 @@ function metric(label, value, sub) {
 
 function sentimentBar(name, value, tone) {
   return `<p><strong>${name}</strong> ${value}%</p><div class="bar ${tone}"><span style="width:${value}%"></span></div>`;
+}
+
+function stackedBar(rows, forcedTotal) {
+  const total = forcedTotal || rows.reduce((sum, row) => sum + Number(row[1] || 0), 0) || 1;
+  return `<div><div class="stacked">${rows.map(([name, value, tone]) => `<span class="${tone}" style="width:${Math.max(0, Number(value || 0) / total * 100)}%" title="${escapeHtml(name)} ${value}"></span>`).join('')}</div><div class="legend">${rows.map(([name, value, tone]) => `<span class="${tone}"><i></i>${escapeHtml(name)} ${value}</span>`).join('')}</div></div>`;
+}
+
+function sentimentClass(value) {
+  if (String(value).includes('正面')) return 'green';
+  if (String(value).includes('高风险') || String(value).includes('负面')) return 'red';
+  if (String(value).includes('混合')) return 'amber';
+  return 'blue';
+}
+
+function qualityStatusText() {
+  if (!quality) return '未生成质量门禁';
+  return quality.status === 'pass' ? '质量门禁通过' : '需要人工复核';
+}
+
+function pct(value, total) {
+  if (!total) return 4;
+  return Math.max(4, Math.round(Number(value || 0) / Number(total) * 100));
+}
+
+function paragraphs(text) {
+  const sentences = String(text || '').split(/(?<=。)/).filter(Boolean);
+  if (sentences.length <= 3) return `<p>${escapeHtml(text)}</p>`;
+  const first = sentences.slice(0, 3).join('');
+  const rest = sentences.slice(3).join('');
+  return `<p>${escapeHtml(first)}</p><p>${escapeHtml(rest)}</p>`;
 }
 
 function label(key) {
