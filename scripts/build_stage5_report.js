@@ -64,7 +64,7 @@ function groupStats() {
           groupUrl: first?.groupUrl || '',
           accessStatus: '已加入 / 公开小组',
           weeklyContentVolume: groupItems.length,
-          dataCompleteness: groupItems.length ? '进行中周可见内容已抓取，评论不完整' : '本轮未抓到有效内容',
+          dataCompleteness: groupItems.length ? '可见帖子与可展开评论已抓取；受 Facebook 可见性限制，非保证全量评论' : '本轮未抓到有效内容',
           includedInFormalMonitoring: true,
           notes: name.includes('Official') ? '名称含 Official，但不默认认定为官方渠道。' : '正式监测源。',
         };

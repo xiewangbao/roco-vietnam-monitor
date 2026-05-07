@@ -4,10 +4,10 @@ Status: pass
 
 ## Summary
 
-- Valid items: 111
+- Valid items: 109
 - Posts: 68
-- Comments: 43
-- Comment rate: 38.7%
+- Comments: 41
+- Comment rate: 37.6%
 - Active Groups: 6/6
 - Failure/gap records: 0
 

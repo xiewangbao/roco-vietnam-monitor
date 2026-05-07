@@ -21,6 +21,7 @@ const identityPatterns = [
   /^·\s*关注$/,
   /^关注$/,
   /^Yuexuan Peng · 原声$/,
+  /^[A-ZÀ-Ỹ][a-zà-ỹ]+(?:\s+[A-ZÀ-Ỹ][a-zà-ỹ]+){1,3}\s*\)?$/,
 ];
 
 function hash(value) {
@@ -33,15 +34,17 @@ function normalizeText(text) {
     .map((line) => line.trim())
     .filter(Boolean)
     .filter((line) => !identityPatterns.some((re) => re.test(line)))
+    .filter((line) => !/^越南\s*·/.test(line))
     .map((line) => line.replace(/\bid\s*\d+\b/gi, 'id[已脱敏]'))
     .map((line) => line.replace(/\b\d{6,}\b/g, '[数字ID已脱敏]'))
     .map((line) => line.replace(/…\s*展开/g, ''))
+    .map((line) => line.replace(/\b[A-ZÀ-Ỹ][a-zà-ỹ]+(?:\s+[A-ZÀ-Ỹ][a-zà-ỹ]+){1,3}\b(?=\s+(được|mình|bạn|có|không|ko|k\b|đẹp|thấy))/g, '[用户名已脱敏]'))
     .join('\n')
     .trim();
 }
 
 function inRange(rawTimeLabel, text) {
-  if (/3年|2022年|2023年|2024年|2025年/.test(text)) return 'out_of_range';
+  if (/[234]\s*年|2022年|2023年|2024年|2025年/.test(text)) return 'out_of_range';
   if (!rawTimeLabel) return text.trim().length > 15 ? 'unknown_keep_low_confidence' : 'unknown_drop';
   if (/^\d+\s*分钟$/.test(rawTimeLabel)) return 'in_range';
   if (/^\d+\s*小时$/.test(rawTimeLabel)) return 'in_range';
@@ -107,12 +110,45 @@ function sentiment(text, risks) {
 
 function translate(text, topicList, risks) {
   const t = text.toLowerCase();
+  if (/[\u4e00-\u9fff]/.test(text) && !/[ăâđêôơưáàảãạấầẩẫậắằẳẵặéèẻẽẹếềểễệíìỉĩịóòỏõọốồổỗộớờởỡợúùủũụứừửữựýỳỷỹỵ]/i.test(text)) return text.replace(/\n?\d+\s*周$/, '');
+  if (/内容暂时无法显示/.test(text)) return '原帖部分内容已不可见，可能是作者调整分享范围、删除内容或平台限制导致；可见部分显示作者计划持续发布宠物知识、通关方法或科普视频。';
+  if (/làm đc 1sao|còn 2sao/.test(t)) return '已经完成 1 星了，剩下 2 星要怎么做？';
+  if (/solo.*boss|kéo boss/.test(t)) return '你是自己单挑 Boss，还是有人进来帮你带 Boss？';
+  if (/cày.*acc.*pass|cho acc/.test(t)) return '你要不要帮忙代练/刷？我这里有带通行证的账号。';
+  if (/đag chs|đang chơi|thấy.*ổn/.test(t)) return '正在玩，感觉整体还可以。';
+  if (/để đôi khi câu trả lời có hiệu quả|cầu vua|cầu màu/.test(t)) return '作者表示自己做了一个工具/角色，用来让回答偶尔更有效；如果商人刷新出稀有道具，比如王球、彩球等，也可以用来辅助判断。';
+  if (/má ơi.*5p.*2con/.test(t)) return '天啊，5 分钟出了 2 只，太幸运了。';
+  if (/ngăn.*bạn.*biết|có thể bạn chưa biết/.test(t)) return '科普/提醒向内容：介绍一些玩家可能还不知道的宠物故事、行为或机制。';
+  if (/nhập đại.*vài lần/.test(t)) return '随便输入/尝试几次就行，我前阵子也刚遇到过。';
+  if (/bán kiểu gì/.test(t)) return '这个要怎么卖/怎么交易？';
+  if (/nhiu b|bao nhiêu b/.test(t)) return '多少钱？';
+  if (/nhấp vào nút.*hướng dẫn/.test(t)) return '点击按钮后会出现指引。';
+  if (/^ib nè$/.test(t)) return '来私信吧。';
+  if (/cuối cùng.*đủ/.test(t)) return '终于凑够了。';
+  if (/nhi[ệe]m vụ.*làm sao|nhiện vụ.*làm sao/.test(t)) return '这个任务要怎么做？';
+  if (/ném.*tinh linh.*ánh sáng.*bay.*trái tim/.test(t)) return '把光系、飞行系和爱心/心形相关精灵投放到 3 个星星位置。';
+  if (/mở cổng/.test(t)) return '有人知道这里的门要怎么打开吗？';
+  if (/huhu.*kẹt/.test(t)) return '我也卡住了，它好像提示需要某个东西。';
+  if (/b[ée]m.*trái tim.*ngôi sao đỏ/.test(t)) return '把爱心系/心形相关的宠物投到红色星星那里。';
+  if (/trò chơi của 3 ng/.test(t)) return '哦不是，现在是 3 人小游戏/三人玩法。';
+  if (/kB tui|\[数字ID已脱敏\].*tui/.test(t)) return '加我好友。';
+  if (/tui có con bướm/.test(t)) return '我有这只蝴蝶宠物。';
+  if (/hóng ké/.test(t)) return '我也蹲一下/想顺便跟着看看。';
+  if (/lại gần người muốn vào.*icon.*m[ũủ]i tên/.test(t)) return '靠近想进入的玩家，点对方名字，会出现一个带箭头的图标，再点它向对方申请。';
+  if (/xổ mũi.*lưỡi/.test(t)) return '一开始以为这只宠物流鼻涕，后来才发现那其实是它的舌头。';
+  if (/cái này làm sao/.test(t)) return '这个要怎么做？';
+  if (/thu thap 120|thu thập 120/.test(t)) return '收集 120 只精灵后会解锁。';
+  if (/tên anh ấy là.*dimo|hướng dẫn.*thú cưng/.test(t)) return '这只宠物叫 Dimo；作者在讲如何正确使用这只宠物，并附了更多说明图片。';
+  if (/vua cánh thánh|cách sử dụngla ẩn|la ẩn/.test(t)) return '攻略内容：关于如何击败圣翼王，以及如何使用 La Ẩn。';
+  if (/mấy tấm gương.*giải sao|thử hoài/.test(t)) return '这些镜子机关要怎么解？试了很多次还是解不开。';
+  if (/thứ tự 12341|chiều kim đồng hồ/.test(t)) return '按 1-2-3-4-1 的顺序来，大致顺着顺时针绕两圈就可以。';
+  if (/xem cho vui|mới kiếm thấy/.test(t)) return '大家随便看看，刚找到的有趣内容。';
   if (/shiny.*cầu mùa|cầu mùa.*shiny|màu đen bạc/.test(t)) return '大家问一下：如果抓到 shiny，再使用季节球，会不会变成黑银配色？还是必须先孵蛋，再使用季节球才会出那个颜色？';
   if (/chia s[eẽ] cho mn|trộm vía/.test(t)) return '分享给大家：今天运气不错，有一些值得晒的收获。';
   if (/làm sao ra được.*màu đen|màu đen đó/.test(t)) return '这个黑色/深色配色要怎么弄出来？';
   if (/nghiện lắm/.test(t)) return '太上头了，很容易沉迷。';
   if (/mới chơi.*shiny|khó kiếm shiny|ngang nhau/.test(t)) return '我是新手，想问这些宠物里有没有哪只更强、而且 shiny 更难刷？还是它们强度和稀有度都差不多？';
-  if (/team.*sao băng/.test(t)) return '这只宠物能不能放进“流星/陨星”体系队伍里？';
+  if (/team.*sao b/.test(t)) return '这只宠物能不能放进“流星/陨星”体系队伍里？';
   if (/như nhau.*team 6 pet|bóng 7 màu|đổi màu/.test(t)) return '大体差不多。6 宠队伍里每只都有克制关系；这些主要是换色形态，后面用了七彩球之类的道具后，很多宠物都会变成这种外观。';
   if (/shiny.*xó|chỉ số/.test(t)) return '感觉 shiny 宠物很多都只是放着收藏，很少真拿来用，数值表现不太理想。';
   if (/lặp lại.*chiêu/.test(t)) return '它好像会重复刚才用过的几个技能。';
@@ -122,10 +158,25 @@ function translate(text, topicList, risks) {
   if (/thiệt ko|thiệt không|thật không/.test(t)) return '真的假的？';
   if (/vpn.*trung|中国节点/.test(t)) return '需要把 VPN 切到中国节点。';
   if (/bật vpn/.test(t)) return '你有开 VPN 吗？';
+  if (/full skill/.test(t)) return '有人可以给我这只宠物的完整技能信息吗？';
+  if (/ủng h[ộo].*kênh|vt.tiktok|tiktok/.test(t)) return '玩家在请求大家支持/关注自己的频道，并附带 TikTok 链接或兑换码信息。';
+  if (/skill này là sao/.test(t)) return '想问这个技能是什么意思、具体怎么触发或使用？';
+  if (/đồng hồ cát/.test(t)) return '想问这个沙漏道具在哪里获取？';
+  if (/2 nhỏ này.*cho ké|mấy pet này.*cho.*ké|cho e ké|cho ké/.test(t)) return '有人有这几只宠物吗？想借用/蹭一下完成捕捉或任务。';
+  if (/tui ké nữa/.test(t)) return '我也想一起蹭/借用。';
+  if (/hạt dê/.test(t)) return '我这里目前只有“羊/山羊”相关的种子或道具。';
+  if (/ok nhé ae/.test(t)) return '看起来还不错，给大家参考。';
+  if (/đi săn.*chụp.*đẹp/.test(t)) return '去刷/狩猎的时候无意中截到这张图，感觉很好看。';
+  if (/xắp xếp pet|sắp xếp pet|dps|sup|genshin|wuwa/.test(t)) return '想问这款游戏的宠物队伍是否像 Genshin/WuWa 那样分 DPS、辅助等定位来搭配。';
+  if (/pokemon.*genshin/.test(t)) return '这款游戏更像宝可梦类型，和 Genshin 的玩法不一样。';
+  if (/thuần buff/.test(t)) return '有的，看到一些队伍是偏纯增益/辅助路线的。';
   if (/phải lmj|phải làm gì|tiếp.*ko bt|tiếp.*không biết/.test(t)) return '接下来要做什么？我想了很久，和它对话之后还是不知道下一步。';
   if (/chỉ tôi.*cấp 31|chỉ.*qua được/.test(t)) return '请教一下这个怎么过，我卡了很久，还是升不到 31 级。';
   if (/ai chỉ mình|giúp.*với/.test(t)) return '有人可以教我/帮我看一下这个怎么做吗？';
+  if (/đăng nhập game|chỉ newbie/.test(t)) return '请教一下怎么登录游戏；希望有人私信教一下我这种新手。';
+  if (/k chọn pet đánh|không chọn pet đánh/.test(t)) return '为什么我不能选择宠物出战？';
   if (/mấy cái này tăng gì/.test(t)) return '这些东西分别提升什么属性？';
+  if (/thả roco ra ngoài|thả một lúc 6 con/.test(t)) return '每次把 Roco 放出去会提升什么？另外想知道怎样在每次登录时一次放出 6 只。';
   if (/2 con trong 1 tiếng|hết vận may/.test(t)) return '一小时出了两只，感觉这周的运气都用完了。';
   if (/cái đầu tiên.*chờ đợi/.test(t)) return '等了这么多天，终于出了第一个。';
   if (/ấp.*lv1.*lv22.*shiny/.test(t)) return '从家园 1 级孵到 22 级，还是一个 shiny 都没出。';
@@ -136,6 +187,14 @@ function translate(text, topicList, risks) {
   if (/con nào cũng mạnh|quan trọng.*team/.test(t)) return '每只都可以很强，关键看你玩什么队伍体系。';
   if (/mũi tên.*ném ra ngoài/.test(t)) return '这个箭头不是属性提升，而是表示当前被派出去/丢出去的宠物。';
   if (/cái này ném con/.test(t)) return '这个地方应该派哪只宠物出去？';
+  if (/nên chọn.*dàn pet/.test(t)) return '大家觉得这组宠物里应该选哪一只？';
+  if (/tiêu diệt npc|suy luận.*trường hợp/.test(t)) return '攻略内容：如何击败 NPC。作者提示大家要学会从一个案例推导到其他类似 NPC，后续也可以套用这个方法。';
+  if (/thông tin.*thú cưng|phối kỹ năng/.test(t)) return '内容整理了宠物信息和技能搭配方式。';
+  if (/còn cái file/.test(t)) return '还有人保留这个文件吗？';
+  if (/抖音那个帖子/.test(text)) return text.replace(/\n?\d+\s*周$/, '');
+  if (/不过孵蛋/.test(text)) return text.replace(/\n?\d+\s*周$/, '');
+  if (/con nấm.*tích điểm sao rơi|rời sân/.test(t)) return '想问队伍里用于“星落积分/陨星”体系的蘑菇宠物，有没有可以离场并换其他宠物上场的技能？';
+  if (/để phòng khi bạn không biết/.test(t)) return '给还不知道的玩家做一个提醒/科普。';
   if (/bản global|khi nào.*global/.test(t)) return '想问什么时候会有全球版。';
   if (/khả năng.*global|phục vụ nội địa/.test(t)) return '不确定会不会有全球版；目前没有消息，可能因为它一直更偏中国本土游戏。';
   if (/xin bé.*trả phí/.test(t)) return '有人能借/给我这只宠物吗？可以付费。';
@@ -144,7 +203,11 @@ function translate(text, topicList, risks) {
   if (/what day coming out/.test(t)) return '什么时候上线？';
   if (/bao nhiêu bóng.*1k bóng/.test(t)) return '这只大概要多少球才能出？我跟着蹭抓已经用了 1000 多个球还没出。';
   if (/ra shiny.*cầu mùa.*đen bạc/.test(t)) return '出 shiny 后再用季节球/棱镜球，是否能 100% 变成黑银配色？';
+  if (/trên bili.*đội hình/.test(t)) return '有人提到 Bilibili 上有几套可参考的队伍配置。';
+  if (/không dùng bili/.test(t)) return '对方表示自己不用 Bilibili。';
   if (/đẹp thật|đẹp nhất/.test(t)) return '确实好看/这个黑色闪光外观最好看。';
+  if (/build.*ok/.test(t)) return '我这样配队/培养下来感觉还挺可以。';
+  if (/đánh con boss/.test(t)) return '这是用来打这个 Boss 的。';
   if (/đổi lại tính cách/.test(t)) return '玩家询问宠物性格是否可以重置、如何重置，以及重置后是随机还是可选择。';
   if (/vương miện/.test(t)) return '玩家询问这些王冠道具如何获得。';
   if (/tiến hoá|tiến hóa/.test(t)) return '玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。';

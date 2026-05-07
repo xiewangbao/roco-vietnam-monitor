@@ -1,7 +1,7 @@
 {
   "schemaVersion": "data_quality.v1",
   "reportWeek": "2026-W19",
-  "generatedAt": "2026-05-07T04:01:01.435Z",
+  "generatedAt": "2026-05-07T04:06:06.067Z",
   "status": "pass",
   "thresholds": {
     "minValidItems": 50,
@@ -11,10 +11,10 @@
     "expectedGroups": 6
   },
   "summary": {
-    "validItems": 111,
+    "validItems": 109,
     "postItems": 68,
-    "commentItems": 43,
-    "commentRate": 0.387,
+    "commentItems": 41,
+    "commentRate": 0.376,
     "activeGroups": 6,
     "expectedGroups": 6,
     "failureCount": 0

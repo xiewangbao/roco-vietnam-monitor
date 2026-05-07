@@ -27,12 +27,12 @@
 - 未来发行参考价值评分：82
 
 ## 3. Group 监测源状态
-| Roco Kingdom Viet Nam | 25 | 进行中周可见内容已抓取，评论不完整 | 正式监测源。 |
-| Cong Hoi Roco Kingdom Viet Nam | 33 | 进行中周可见内容已抓取，评论不完整 | 正式监测源。 |
-| Roco Kingdom: World Viet Nam Official | 13 | 进行中周可见内容已抓取，评论不完整 | 名称含 Official，但不默认认定为官方渠道。 |
-| ROCO KINGDOM VN | 17 | 进行中周可见内容已抓取，评论不完整 | 正式监测源。 |
-| ROCO KINGDOM VIET NAM | 12 | 进行中周可见内容已抓取，评论不完整 | 正式监测源。 |
-| Roco Kingdom Mobile Viet Nam | 8 | 进行中周可见内容已抓取，评论不完整 | 正式监测源。 |
+| Roco Kingdom Viet Nam | 25 | 可见帖子与可展开评论已抓取；受 Facebook 可见性限制，非保证全量评论 | 正式监测源。 |
+| Cong Hoi Roco Kingdom Viet Nam | 33 | 可见帖子与可展开评论已抓取；受 Facebook 可见性限制，非保证全量评论 | 正式监测源。 |
+| Roco Kingdom: World Viet Nam Official | 13 | 可见帖子与可展开评论已抓取；受 Facebook 可见性限制，非保证全量评论 | 名称含 Official，但不默认认定为官方渠道。 |
+| ROCO KINGDOM VN | 17 | 可见帖子与可展开评论已抓取；受 Facebook 可见性限制，非保证全量评论 | 正式监测源。 |
+| ROCO KINGDOM VIET NAM | 12 | 可见帖子与可展开评论已抓取；受 Facebook 可见性限制，非保证全量评论 | 正式监测源。 |
+| Roco Kingdom Mobile Viet Nam | 8 | 可见帖子与可展开评论已抓取；受 Facebook 可见性限制，非保证全量评论 | 正式监测源。 |
 
 ## 4. 本周热点话题排行
 1. 宠物、角色、养成：64 条，情绪倾向 中性，市场观察价值 高
@@ -104,7 +104,7 @@ Với lại đổi ntn và tính cách sau khi đổi là ngẫu nhiên hay mìn
 Một đực một cái:
 Đây là điều kiện cơ bản nhất. Nếu là cùng giới tính hoặc không có giới tính (ví dụ như hệ cơ khí, thần thú) thì sẽ không thể sinh trứng.
 Cùng một “nhóm trứng”:（ ảnh thứ 2 ）
-Đây là yếu tố quan trọng nhất để quyết định có thể sinh trứng hay không! Không phải dựa vào hệ (thuộc tính), mà là dựa vào “nhóm trứng” ẩn. Chỉ cần hai con thuộc cùng một nhóm trứng, hoặc mỗi con thuộc hai nhóm nhưng có điểm chung (ví dụ: A thuộc “nhóm độ
+Đây là yếu tố quan trọng nhất để quy[用户名已脱敏] có thể sinh trứng hay không! Không phải dựa vào hệ (thuộc tính), mà là dựa vào “nhóm trứng” ẩn. Chỉ cần hai con thuộc cùng một nhóm trứng, hoặc mỗi con thuộc hai nhóm nhưng có điểm chung (ví dụ: A thuộc “nhóm độ
   翻译：内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。
   来源：Roco Kingdom: World Viet Nam Official；主题：宠物、角色、养成；情绪：负面；原帖：https://www.facebook.com/groups/1729046980837718/posts/2345357909206619/
 

@@ -33,7 +33,7 @@
     "mainLanguageDistribution": [
       {
         "language": "vi",
-        "count": 91
+        "count": 90
       },
       {
         "language": "zh",
@@ -45,7 +45,7 @@
       },
       {
         "language": "mixed",
-        "count": 4
+        "count": 5
       }
     ],
     "dataCompletenessNote": "本报告基于 2026-04-24T00:00:00+08:00 至 2026-04-29T08:24:46.014Z 的可见内容。评论覆盖 feed 可见评论和 post-detail 补抓到的可见评论，未展开或不可见线程不纳入结论。"
@@ -107,7 +107,7 @@
     "representativeComments": [
       {
         "originalText": "Ông solo à hay có người vô kéo boss thế ông",
-        "translationZh": "该内容在讨论宠物养成细节，直译需结合图片或上下文复核；核心关注点是宠物获取、异色/配色、强度或养成路径。",
+        "translationZh": "你是自己单挑 Boss，还是有人进来帮你带 Boss？",
         "analysisZh": "情绪为「正面」，说明这条内容更偏兴趣表达或经验分享。 这类内容说明越南玩家对宠物外观、稀有度、进化、强度和队伍搭配已经有较深讨论，未来发行前可作为核心兴趣点和内容教育重点。暂未触发高风险标签，主要作为自然兴趣和需求观察。",
         "sentiment": "正面",
         "topic": "宠物、角色、养成",
@@ -127,7 +127,7 @@
       },
       {
         "originalText": "B cày k .mình cho acc có pass nè",
-        "translationZh": "该内容在寻求社区互助，直译需结合图片或上下文复核；主要需求是借宠、进好友地图、组队或通过社群降低任务门槛；同时触发「账号买卖」风险标签。",
+        "translationZh": "你要不要帮忙代练/刷？我这里有带通行证的账号。",
         "analysisZh": "情绪为「高风险负面」，说明这条内容更偏信息询问和中性交流。 这类内容体现玩家愿意通过 Group 借宠、组队或互助完成目标，说明社区自传播和互助结构已经自然出现。风险上需关注「账号买卖」，避免其在发行前形成错误渠道或非官方认知。",
         "sentiment": "高风险负面",
         "topic": "社群互动、组队、公会",
@@ -139,7 +139,7 @@
       },
       {
         "originalText": "Đag chs và thấy cx ổn",
-        "translationZh": "该内容为玩家自发讨论，直译需结合图片或上下文复核；可用于判断社区活跃度、兴趣扩散和潜在发行前认知。",
+        "translationZh": "正在玩，感觉整体还可以。",
         "analysisZh": "情绪为「正面」，说明这条内容更偏兴趣表达或经验分享。 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。暂未触发高风险标签，主要作为自然兴趣和需求观察。",
         "sentiment": "正面",
         "topic": "越南玩家自发讨论",
@@ -149,7 +149,7 @@
       },
       {
         "originalText": "nhập đại vào đấy vài lần=)) htrc tui vừa ms bj xong",
-        "translationZh": "该内容为玩家自发讨论，直译需结合图片或上下文复核；可用于判断社区活跃度、兴趣扩散和潜在发行前认知。",
+        "translationZh": "随便输入/尝试几次就行，我前阵子也刚遇到过。",
         "analysisZh": "情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。暂未触发高风险标签，主要作为自然兴趣和需求观察。",
         "sentiment": "中性",
         "topic": "越南玩家自发讨论",
@@ -159,7 +159,7 @@
       },
       {
         "originalText": "Bán kiểu gì v bạn",
-        "translationZh": "该内容涉及付费或礼包相关问题，直译需结合图片或上下文复核；需要观察其对充值入口、Battle Pass、月卡或第三方渠道的认知；同时触发「账号买卖」风险标签。",
+        "translationZh": "这个要怎么卖/怎么交易？",
         "analysisZh": "情绪为「高风险负面」，说明这条内容更偏信息询问和中性交流。 这类内容代表潜在付费兴趣，但也容易连接到第三方充值、账号交易或礼包误导，需要在未来发行前持续观察。风险上需关注「账号买卖」，避免其在发行前形成错误渠道或非官方认知。",
         "sentiment": "高风险负面",
         "topic": "充值、付费、礼包",
@@ -171,7 +171,7 @@
       },
       {
         "originalText": "Nhiu b",
-        "translationZh": "短句/昵称式内容，直译需要结合图片或评论上下文复核；可判断为「越南玩家自发讨论」相关互动；同时触发「账号买卖」风险标签。",
+        "translationZh": "多少钱？",
         "analysisZh": "情绪为「高风险负面」，说明这条内容更偏信息询问和中性交流。 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。风险上需关注「账号买卖」，避免其在发行前形成错误渠道或非官方认知。",
         "sentiment": "高风险负面",
         "topic": "越南玩家自发讨论",
@@ -183,7 +183,7 @@
       },
       {
         "originalText": "Nhấp vào nút sẽ có hướng dẫn.",
-        "translationZh": "该内容在询问玩法或任务机制，直译需结合图片或上下文复核；核心诉求是看懂任务条件、找到完成方法或确认机制规则。",
+        "translationZh": "点击按钮后会出现指引。",
         "analysisZh": "情绪为「正面」，说明这条内容更偏兴趣表达或经验分享。 这类内容反映任务说明、机制理解或活动目标存在学习成本，适合作为未来越南本地化说明、FAQ 和新手引导的观察信号。暂未触发高风险标签，主要作为自然兴趣和需求观察。",
         "sentiment": "正面",
         "topic": "玩法机制",
@@ -203,7 +203,7 @@
       "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
       "accessStatus": "已加入 / 公开小组",
       "weeklyContentVolume": 25,
-      "dataCompleteness": "进行中周可见内容已抓取，评论不完整",
+      "dataCompleteness": "可见帖子与可展开评论已抓取；受 Facebook 可见性限制，非保证全量评论",
       "includedInFormalMonitoring": true,
       "notes": "正式监测源。"
     },
@@ -212,7 +212,7 @@
       "groupUrl": "https://www.facebook.com/groups/roco.legend/",
       "accessStatus": "已加入 / 公开小组",
       "weeklyContentVolume": 33,
-      "dataCompleteness": "进行中周可见内容已抓取，评论不完整",
+      "dataCompleteness": "可见帖子与可展开评论已抓取；受 Facebook 可见性限制，非保证全量评论",
       "includedInFormalMonitoring": true,
       "notes": "正式监测源。"
     },
@@ -221,7 +221,7 @@
       "groupUrl": "https://www.facebook.com/groups/1729046980837718/",
       "accessStatus": "已加入 / 公开小组",
       "weeklyContentVolume": 13,
-      "dataCompleteness": "进行中周可见内容已抓取，评论不完整",
+      "dataCompleteness": "可见帖子与可展开评论已抓取；受 Facebook 可见性限制，非保证全量评论",
       "includedInFormalMonitoring": true,
       "notes": "名称含 Official，但不默认认定为官方渠道。"
     },
@@ -230,7 +230,7 @@
       "groupUrl": "https://www.facebook.com/groups/3072730653028573/",
       "accessStatus": "已加入 / 公开小组",
       "weeklyContentVolume": 17,
-      "dataCompleteness": "进行中周可见内容已抓取，评论不完整",
+      "dataCompleteness": "可见帖子与可展开评论已抓取；受 Facebook 可见性限制，非保证全量评论",
       "includedInFormalMonitoring": true,
       "notes": "正式监测源。"
     },
@@ -239,7 +239,7 @@
       "groupUrl": "https://www.facebook.com/groups/947481474801675/",
       "accessStatus": "已加入 / 公开小组",
       "weeklyContentVolume": 12,
-      "dataCompleteness": "进行中周可见内容已抓取，评论不完整",
+      "dataCompleteness": "可见帖子与可展开评论已抓取；受 Facebook 可见性限制，非保证全量评论",
       "includedInFormalMonitoring": true,
       "notes": "正式监测源。"
     },
@@ -248,7 +248,7 @@
       "groupUrl": "https://www.facebook.com/groups/3223551104630521/",
       "accessStatus": "已加入 / 公开小组",
       "weeklyContentVolume": 8,
-      "dataCompleteness": "进行中周可见内容已抓取，评论不完整",
+      "dataCompleteness": "可见帖子与可展开评论已抓取；受 Facebook 可见性限制，非保证全量评论",
       "includedInFormalMonitoring": true,
       "notes": "正式监测源。"
     }
@@ -285,7 +285,7 @@
       "weekOverWeekChange": "首个真实抓取周，暂无环比",
       "marketSignalValue": "高",
       "representativePostUrl": "https://www.facebook.com/groups/1410112269781852/posts/2123045795155159/",
-      "notes": "该内容为玩家自发讨论，直译需结合图片或上下文复核；可用于判断社区活跃度、兴趣扩散和潜在发行前认知。 情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。暂未触发高风险标签，主要作为自然兴趣和需求观察。"
+      "notes": "已经完成 1 星了，剩下 2 星要怎么做？ 情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。暂未触发高风险标签，主要作为自然兴趣和需求观察。"
     },
     {
       "rank": 4,
@@ -329,7 +329,7 @@
       "weekOverWeekChange": "首个真实抓取周，暂无环比",
       "marketSignalValue": "中",
       "representativePostUrl": "https://www.facebook.com/groups/1410112269781852/posts/2122985531827852/",
-      "notes": "该内容在寻求社区互助，直译需结合图片或上下文复核；主要需求是借宠、进好友地图、组队或通过社群降低任务门槛；同时触发「账号买卖」风险标签。 情绪为「高风险负面」，说明这条内容更偏信息询问和中性交流。 这类内容体现玩家愿意通过 Group 借宠、组队或互助完成目标，说明社区自传播和互助结构已经自然出现。风险上需关注「账号买卖」，避免其在发行前形成错误渠道或非官方认知。"
+      "notes": "你要不要帮忙代练/刷？我这里有带通行证的账号。 情绪为「高风险负面」，说明这条内容更偏信息询问和中性交流。 这类内容体现玩家愿意通过 Group 借宠、组队或互助完成目标，说明社区自传播和互助结构已经自然出现。风险上需关注「账号买卖」，避免其在发行前形成错误渠道或非官方认知。"
     },
     {
       "rank": 8,
@@ -477,7 +477,7 @@
       "notes": "匿名化摘录，需 Facebook / Group 权限查看原帖。"
     },
     {
-      "originalText": "Điều kiện bắt buộc để ấp trứng dị màu\nMột đực một cái:\nĐây là điều kiện cơ bản nhất. Nếu là cùng giới tính hoặc không có giới tính (ví dụ như hệ cơ khí, thần thú) thì sẽ không thể sinh trứng.\nCùng một “nhóm trứng”:（ ảnh thứ 2 ）\nĐây là yếu tố quan trọng nhất để quyết định có thể sinh trứng hay không! Không phải dựa vào hệ (thuộc tính), mà là dựa vào “nhóm trứng” ẩn. Chỉ cần hai con thuộc cùng một nhóm trứng, hoặc mỗi con thuộc hai nhóm nhưng có điểm chung (ví dụ: A thuộc “nhóm độ",
+      "originalText": "Điều kiện bắt buộc để ấp trứng dị màu\nMột đực một cái:\nĐây là điều kiện cơ bản nhất. Nếu là cùng giới tính hoặc không có giới tính (ví dụ như hệ cơ khí, thần thú) thì sẽ không thể sinh trứng.\nCùng một “nhóm trứng”:（ ảnh thứ 2 ）\nĐây là yếu tố quan trọng nhất để quy[用户名已脱敏] có thể sinh trứng hay không! Không phải dựa vào hệ (thuộc tính), mà là dựa vào “nhóm trứng” ẩn. Chỉ cần hai con thuộc cùng một nhóm trứng, hoặc mỗi con thuộc hai nhóm nhưng có điểm chung (ví dụ: A thuộc “nhóm độ",
       "translationZh": "内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。",
       "analysisZh": "情绪为「负面」，说明这条内容更偏挫败、求助或使用障碍。 这类内容说明越南玩家对宠物外观、稀有度、进化、强度和队伍搭配已经有较深讨论，未来发行前可作为核心兴趣点和内容教育重点。暂未触发高风险标签，主要作为自然兴趣和需求观察。",
       "sentiment": "负面",
