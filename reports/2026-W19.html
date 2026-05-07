@@ -7,135 +7,327 @@
   <style>
     
     :root {
-      --bg: #f4f6f8;
-      --ink: #182230;
-      --muted: #667085;
-      --line: #d6dde8;
-      --panel: #ffffff;
-      --blue: #2563eb;
-      --green: #18864b;
-      --amber: #b45309;
-      --red: #b42318;
-      --teal: #0f766e;
-      --slate: #344054;
+      --bg: #f5f5f7;
+      --ink: #1d1d1f;
+      --muted: rgba(0, 0, 0, 0.56);
+      --soft: rgba(0, 0, 0, 0.34);
+      --line: rgba(0, 0, 0, 0.08);
+      --panel: rgba(255, 255, 255, 0.86);
+      --panel-solid: #ffffff;
+      --blue: #0071e3;
+      --blue-text: #0066cc;
+      --green: #128a43;
+      --amber: #b25f00;
+      --red: #c9271f;
+      --teal: #007d75;
     }
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
       background: var(--bg);
       color: var(--ink);
       letter-spacing: 0;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
     header {
-      background: #182230;
-      color: white;
-      padding: 18px 28px 16px;
-      border-bottom: 4px solid var(--teal);
+      min-height: 164px;
+      padding: 52px 32px 28px;
+      background: #000;
+      color: #fff;
     }
-    header h1 { margin: 0 0 8px; font-size: 24px; line-height: 1.25; }
-    header .meta { display: flex; flex-wrap: wrap; gap: 10px 18px; color: #d1d5db; font-size: 13px; }
+    header h1 {
+      margin: 0 auto 12px;
+      max-width: 1180px;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", "PingFang SC", sans-serif;
+      font-size: clamp(30px, 4vw, 54px);
+      line-height: 1.08;
+      font-weight: 650;
+      text-align: center;
+    }
+    header .meta {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      max-width: 1180px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 12px;
+      line-height: 1.33;
+    }
     nav {
       position: sticky;
       top: 0;
-      z-index: 5;
+      z-index: 20;
+      height: 48px;
       display: flex;
-      gap: 4px;
+      justify-content: center;
+      gap: 2px;
       align-items: center;
-      padding: 10px 28px;
-      background: rgba(244,246,248,.96);
-      border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(8px);
+      padding: 0 20px;
+      background: rgba(0, 0, 0, 0.78);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: saturate(180%) blur(20px);
+      overflow-x: auto;
     }
     nav a {
-      color: var(--ink);
+      color: rgba(255, 255, 255, 0.82);
       text-decoration: none;
-      padding: 7px 10px;
-      border-radius: 6px;
+      padding: 8px 10px;
+      border-radius: 980px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    nav a:hover { color: #fff; background: rgba(255, 255, 255, 0.12); }
+    main {
+      width: min(100%, 1440px);
+      margin: 0 auto;
+      padding: 18px 24px 56px;
+    }
+    section { margin-bottom: 16px; scroll-margin-top: 150px; }
+    h2 {
+      margin: 0 0 8px;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", "PingFang SC", sans-serif;
+      font-size: 20px;
+      line-height: 1.14;
+      font-weight: 650;
+    }
+    h3 {
+      margin: 0 0 8px;
       font-size: 14px;
+      line-height: 1.25;
+      font-weight: 650;
     }
-    nav a:hover { background: #e8edf7; }
-    main { padding: 22px 28px 40px; max-width: 1480px; margin: 0 auto; }
-    section { margin-bottom: 26px; }
-    h2 { font-size: 18px; margin: 0 0 12px; }
-    h3 { font-size: 15px; margin: 0 0 8px; }
-    .notice {
-      border-left: 4px solid var(--amber);
-      background: #fff8e6;
-      padding: 10px 12px;
-      color: #5f430b;
-      margin-bottom: 18px;
-      line-height: 1.55;
-    }
-    .grid { display: grid; gap: 12px; }
-    .metrics { grid-template-columns: repeat(6, minmax(130px, 1fr)); }
-    .cockpit { grid-template-columns: minmax(0, 1.45fr) minmax(320px, .55fr); }
-    .metric, .panel {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 14px;
-    }
-    .status-strip {
+    .command-dock {
+      position: sticky;
+      top: 48px;
+      z-index: 18;
       display: grid;
-      grid-template-columns: 1fr 1.2fr 1fr;
-      gap: 1px;
-      background: var(--line);
+      grid-template-columns: minmax(210px, .72fr) minmax(260px, 1fr) auto auto;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 24px;
+      background: rgba(245, 245, 247, 0.78);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: saturate(180%) blur(20px);
+    }
+    .dock-section strong {
+      display: block;
+      font-size: 15px;
+      line-height: 1.2;
+      font-weight: 650;
+    }
+    .dock-section p {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .dock-search {
+      display: grid;
+      grid-template-columns: auto minmax(160px, 1fr);
+      gap: 8px;
+      align-items: center;
+      height: 36px;
+      padding: 0 12px;
+      border-radius: 980px;
+      background: rgba(255, 255, 255, 0.72);
       border: 1px solid var(--line);
-      border-radius: 8px;
-      overflow: hidden;
-      margin-bottom: 18px;
     }
-    .status-strip > div {
+    .dock-search span {
+      color: var(--soft);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .dock-search input {
+      min-height: 0;
+      width: 100%;
+      border: 0;
+      background: transparent;
+      color: var(--ink);
+      outline: 0;
+      font-size: 13px;
+    }
+    .segmented {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px;
+      border-radius: 980px;
+      background: rgba(0, 0, 0, 0.06);
+      white-space: nowrap;
+    }
+    .segmented button,
+    .density-toggle {
+      min-height: 32px;
+      border: 0;
+      border-radius: 980px;
+      padding: 0 12px;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .segmented button.active,
+    .density-toggle {
       background: #fff;
-      padding: 13px 14px;
-      min-width: 0;
+      color: var(--ink);
+      box-shadow: 0 1px 10px rgba(0, 0, 0, 0.08);
     }
-    .status-strip strong { display: block; margin: 3px 0; font-size: 15px; }
-    .status-strip p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
     .eyebrow {
       display: block;
-      color: var(--teal);
+      color: var(--soft);
       font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
+      line-height: 1.2;
+      font-weight: 600;
     }
-    .summary-panel p { margin: 0 0 10px; line-height: 1.7; }
+    .notice {
+      border-radius: 12px;
+      background: #fff4dc;
+      color: #5d3500;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .grid { display: grid; gap: 10px; }
+    .status-strip,
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .status-strip { grid-template-columns: 1fr 1fr 1fr; margin-bottom: 14px; }
+    .status-strip > div,
+    .metric,
+    .panel {
+      background: var(--panel);
+      border: 0;
+      border-radius: 12px;
+      padding: 12px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 10px 30px rgba(0, 0, 0, 0.035);
+    }
+    .status-strip strong {
+      display: block;
+      margin: 3px 0;
+      font-size: 15px;
+      line-height: 1.2;
+      font-weight: 650;
+    }
+    .status-strip p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+    .cockpit { grid-template-columns: minmax(0, 1.25fr) minmax(300px, .75fr); }
+    .two { grid-template-columns: minmax(0, 1fr) minmax(320px, .72fr); }
+    .summary-panel p {
+      margin: 0 0 8px;
+      color: rgba(0, 0, 0, 0.76);
+      font-size: 14px;
+      line-height: 1.55;
+    }
     .summary-panel p:last-child { margin-bottom: 0; }
-    .metric .label { color: var(--muted); font-size: 12px; }
-    .metric .value { font-size: 24px; font-weight: 700; margin-top: 6px; }
-    .metric .sub { color: var(--muted); font-size: 12px; margin-top: 4px; }
-    .two { grid-template-columns: 1.3fr .7fr; }
+    .metric .label {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.2;
+    }
+    .metric .value {
+      margin-top: 4px;
+      font-size: 28px;
+      line-height: 1.05;
+      font-weight: 650;
+      letter-spacing: 0;
+    }
+    .metric .sub {
+      margin-top: 4px;
+      color: var(--soft);
+      font-size: 12px;
+      line-height: 1.25;
+    }
     .composition {
       display: grid;
-      grid-template-columns: 180px minmax(0, 1fr);
-      gap: 10px 16px;
+      grid-template-columns: 170px minmax(0, 1fr);
+      gap: 8px 12px;
       align-items: center;
-      margin-top: 12px;
+      margin-top: 10px;
     }
-    .composition strong, .composition span { display: block; }
-    .composition span { color: var(--muted); font-size: 12px; margin-top: 3px; }
-    table { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
-    th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 13px; }
-    th { background: #eef2f7; color: #344054; font-weight: 700; }
+    .composition strong,
+    .composition span { display: block; }
+    .composition span {
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: var(--panel-solid);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 10px 30px rgba(0, 0, 0, 0.03);
+    }
+    th, td {
+      text-align: left;
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      font-size: 12px;
+      line-height: 1.38;
+    }
+    th {
+      background: rgba(250, 250, 252, 0.94);
+      color: rgba(0, 0, 0, 0.54);
+      font-weight: 600;
+    }
     tr:last-child td { border-bottom: 0; }
-    .tag { display: inline-flex; align-items: center; min-height: 22px; padding: 2px 7px; border-radius: 999px; border: 1px solid var(--line); background: #f9fafb; font-size: 12px; margin: 2px 4px 2px 0; }
-    .tag.green { color: var(--green); border-color: #a8d5bd; background: #eefaf3; }
-    .tag.red { color: var(--red); border-color: #f0b6b2; background: #fff1f1; }
-    .tag.blue { color: var(--blue); border-color: #bdd3ff; background: #f0f5ff; }
-    .tag.amber { color: var(--amber); border-color: #ead19b; background: #fff8e6; }
-    .tag.teal { color: var(--teal); border-color: #99d5cd; background: #eefaf8; }
-    .bar { height: 9px; background: #edf0f5; border-radius: 999px; overflow: hidden; }
-    .bar span { display: block; height: 100%; background: var(--blue); }
+    tr:hover td { background: rgba(0, 113, 227, 0.035); }
+    td strong { font-weight: 650; }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 22px;
+      padding: 2px 8px;
+      border-radius: 980px;
+      border: 0;
+      background: rgba(0, 0, 0, 0.055);
+      color: var(--ink);
+      font-size: 12px;
+      line-height: 1.1;
+      margin: 1px 4px 1px 0;
+      white-space: nowrap;
+    }
+    .tag.green { color: var(--green); background: rgba(18, 138, 67, 0.1); }
+    .tag.red { color: var(--red); background: rgba(201, 39, 31, 0.1); }
+    .tag.blue { color: var(--blue-text); background: rgba(0, 113, 227, 0.1); }
+    .tag.amber { color: var(--amber); background: rgba(178, 95, 0, 0.1); }
+    .tag.teal { color: var(--teal); background: rgba(0, 125, 117, 0.1); }
+    .bar {
+      height: 6px;
+      background: rgba(0, 0, 0, 0.07);
+      border-radius: 980px;
+      overflow: hidden;
+    }
+    .bar span {
+      display: block;
+      height: 100%;
+      background: var(--blue);
+      border-radius: inherit;
+    }
     .bar.green span { background: var(--green); }
     .bar.red span { background: var(--red); }
     .bar.amber span { background: var(--amber); }
     .bar.teal span { background: var(--teal); }
     .stacked {
       display: flex;
-      height: 14px;
-      background: #edf0f5;
-      border-radius: 999px;
+      height: 10px;
+      background: rgba(0, 0, 0, 0.07);
+      border-radius: 980px;
       overflow: hidden;
     }
     .stacked span { min-width: 2px; }
@@ -143,69 +335,133 @@
     .stacked .blue { background: var(--blue); }
     .stacked .red { background: var(--red); }
     .stacked .teal { background: var(--teal); }
-    .legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; color: var(--muted); font-size: 12px; }
-    .legend i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 4px; }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+    .legend i {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      margin-right: 4px;
+    }
     .legend .green i { background: var(--green); }
     .legend .blue i { background: var(--blue); }
     .legend .red i { background: var(--red); }
     .legend .teal i { background: var(--teal); }
-    .volume-cell { min-width: 110px; }
-    .volume-cell strong { display: inline-block; margin-bottom: 5px; }
+    .volume-cell { min-width: 92px; }
+    .volume-cell strong { display: inline-block; margin-bottom: 4px; }
     .mini-row, .trend-row {
       display: grid;
-      grid-template-columns: minmax(120px, 1fr) minmax(90px, 2fr) 42px;
-      gap: 8px;
+      grid-template-columns: minmax(92px, 1fr) minmax(88px, 1.5fr) 38px;
+      gap: 7px;
       align-items: center;
-      margin: 8px 0;
-      font-size: 13px;
+      margin: 6px 0;
+      font-size: 12px;
     }
-    .trend-row em { color: var(--muted); font-style: normal; font-size: 12px; grid-column: 2 / 4; }
+    .trend-row em {
+      color: var(--muted);
+      font-style: normal;
+      font-size: 11px;
+      grid-column: 2 / 4;
+    }
     .signal-row {
+      border-top: 1px solid var(--line);
+      padding: 8px 0;
+    }
+    .signal-row:first-of-type { border-top: 0; padding-top: 0; }
+    .signal-row p {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+    .tag-cloud { line-height: 1.9; }
+    .voice {
       border-top: 1px solid var(--line);
       padding: 10px 0;
     }
-    .signal-row:first-of-type { border-top: 0; padding-top: 0; }
-    .signal-row p { margin: 4px 0 0; color: var(--slate); line-height: 1.55; }
-    .tag-cloud { line-height: 2; }
-    .voice { border-top: 1px solid var(--line); padding: 12px 0; }
     .voice:first-child { border-top: 0; padding-top: 0; }
-    .voice blockquote { margin: 8px 0; padding-left: 10px; border-left: 3px solid var(--cyan); color: #344054; }
+    .voice blockquote {
+      margin: 7px 0;
+      padding-left: 10px;
+      border-left: 2px solid var(--blue);
+      color: rgba(0, 0, 0, 0.82);
+      font-size: 13px;
+      line-height: 1.48;
+    }
+    .voice p {
+      margin: 5px 0;
+      color: rgba(0, 0, 0, 0.72);
+      font-size: 13px;
+      line-height: 1.45;
+    }
     .btn {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
+      min-height: 28px;
       gap: 6px;
-      padding: 6px 9px;
-      border-radius: 6px;
-      background: #eef4ff;
-      color: var(--blue);
+      padding: 5px 11px;
+      border-radius: 980px;
+      background: transparent;
+      color: var(--blue-text);
       text-decoration: none;
       font-size: 12px;
-      border: 1px solid #bdd3ff;
+      border: 1px solid rgba(0, 102, 204, 0.26);
+      white-space: nowrap;
     }
+    .btn:hover { text-decoration: underline; }
     .btn.strong {
-      color: white;
+      color: #fff;
       background: var(--blue);
       border-color: var(--blue);
+      text-decoration: none;
     }
-    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 8px; }
     select, input {
-      min-height: 34px;
+      min-height: 32px;
       border: 1px solid var(--line);
-      border-radius: 6px;
-      padding: 6px 8px;
-      background: white;
+      border-radius: 11px;
+      padding: 6px 9px;
+      background: rgba(255, 255, 255, 0.78);
       color: var(--ink);
     }
     .muted { color: var(--muted); }
-    .small { font-size: 12px; }
-    @media (max-width: 980px) {
-      .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .two, .cockpit, .status-strip { grid-template-columns: 1fr; }
+    .small { font-size: 11px; line-height: 1.35; }
+    [hidden] { display: none !important; }
+    body.comfortable main { padding-top: 28px; }
+    body.comfortable section { margin-bottom: 28px; }
+    body.comfortable th,
+    body.comfortable td { padding: 13px 14px; font-size: 13px; }
+    body.comfortable .panel,
+    body.comfortable .metric,
+    body.comfortable .status-strip > div { padding: 16px; }
+    body.comfortable .summary-panel p,
+    body.comfortable .voice p,
+    body.comfortable .voice blockquote { font-size: 14px; line-height: 1.6; }
+    @media (max-width: 1120px) {
+      .command-dock { grid-template-columns: 1fr; }
+      .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .cockpit, .two, .status-strip { grid-template-columns: 1fr; }
       .composition { grid-template-columns: 1fr; }
-      main, header, nav { padding-left: 16px; padding-right: 16px; }
+    }
+    @media (max-width: 760px) {
+      header { padding: 38px 16px 22px; }
+      header h1 { text-align: left; }
+      header .meta { justify-content: flex-start; }
+      nav { justify-content: flex-start; padding: 0 12px; }
+      main { padding: 14px 12px 40px; }
+      .command-dock { padding: 10px 12px; }
+      .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       table { display: block; overflow-x: auto; }
     }
-
+  
   </style>
 </head>
 <body>
@@ -227,6 +483,24 @@
     <a href="#voices">玩家声音</a>
     <a href="#trends">趋势</a>
   </nav>
+  <aside class="command-dock" aria-label="Dashboard controls">
+    <div class="dock-section">
+      <span class="eyebrow">Report</span>
+      <strong>2026-W19</strong>
+      <p>2026-04-30T00:00:00+08:00 - 2026-05-06T04:21:50.275Z</p>
+    </div>
+    <label class="dock-search">
+      <span>全局搜索</span>
+      <input id="globalSearch" type="search" placeholder="搜索 topic / group / 风险 / 玩家声音" autocomplete="off" />
+    </label>
+    <div class="segmented" role="group" aria-label="Content filter">
+      <button type="button" data-filter="all" class="active">全部</button>
+      <button type="button" data-filter="comment">评论</button>
+      <button type="button" data-filter="risk">风险</button>
+      <button type="button" data-filter="topic">Topic</button>
+    </div>
+    <button class="density-toggle" type="button" id="densityToggle">紧凑视图</button>
+  </aside>
   <main>
     <section class="status-strip">
       <div>
@@ -293,7 +567,7 @@
       <table>
         <thead><tr><th>排名</th><th>热点</th><th>内容量</th><th>情绪</th><th>热度</th><th>市场观察价值</th><th>分析 / case</th></tr></thead>
         <tbody>
-          <tr><td>1</td><td><strong>越南玩家自发讨论</strong><p class="small muted">该话题主要是玩家的非单一机制讨论，集中在：shiny / 异色外观与黑银配色、抓宠、出货、晒收获和运气分享、全球版/上线时间猜测、VPN、Bilibili、抖音等跨平台获取信息。共 48 条，包含 24 帖 / 24 评论，情绪以「中性」为主；它更适合用于观察自然社区热度、玩家自传播内容和发行前认知扩散，而不是作为单个问题处理。</p></td><td><div class="volume-cell"><strong>48</strong><div class="bar"><span style="width:100%"></span></div></div></td><td><span class="tag blue">中性</span></td><td><div class="bar"><span style="width:100%"></span></div></td><td>高</td><td><a class="btn strong" href="../topics/2026-W19_6LaK5Y2X546p5a626Ieq5Y-R6K6o6K66.html">查看二级分析</a></td></tr><tr><td>2</td><td><strong>宠物、角色、养成</strong><p class="small muted">玩家主要讨论：宠物进化与阶段成长、shiny / 异色与外观配色、技能、队伍、PVP 与强度搭配、宠物获取、借宠和图鉴补齐。共 40 条，包含 27 帖 / 13 评论，说明越南玩家已经开始围绕宠物收藏、外观、强度和队伍搭配形成较细的经验交流。</p></td><td><div class="volume-cell"><strong>40</strong><div class="bar"><span style="width:83%"></span></div></div></td><td><span class="tag blue">中性</span></td><td><div class="bar"><span style="width:100%"></span></div></td><td>高</td><td><a class="btn strong" href="../topics/2026-W19_5a6g54mp44CB6KeS6Imy44CB5YW75oiQ.html">查看二级分析</a></td></tr><tr><td>3</td><td><strong>玩法机制</strong><p class="small muted">玩家主要在问：任务如何完成、NPC / Boss 打法攻略。共 28 条，包含 22 帖 / 6 评论，反映任务说明和机制学习成本较高，可作为未来越南本地化说明、FAQ 和新手引导的观察素材。</p></td><td><div class="volume-cell"><strong>28</strong><div class="bar"><span style="width:58%"></span></div></div></td><td><span class="tag blue">中性</span></td><td><div class="bar"><span style="width:100%"></span></div></td><td>高</td><td><a class="btn strong" href="../topics/2026-W19_546p5rOV5py65Yi2.html">查看二级分析</a></td></tr><tr><td>4</td><td><strong>充值、付费、礼包</strong><p class="small muted">玩家主要讨论：Battle Pass / 战令相关宠物或权益、私下交易或付费借取。共 7 条，包含 7 帖 / 0 评论；它既代表潜在付费兴趣，也需要继续观察第三方充值、私下交易和误导渠道风险。</p></td><td><div class="volume-cell"><strong>7</strong><div class="bar"><span style="width:15%"></span></div></div></td><td><span class="tag green">正面</span></td><td><div class="bar"><span style="width:35%"></span></div></td><td>中</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1766408790991377/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>5</td><td><strong>Bug、闪退、卡顿、登录问题</strong><p class="small muted">玩家主要讨论：登录和权限设置、设备、PC 或手机兼容。共 6 条，包含 6 帖 / 0 评论；这些内容更像早期使用门槛和技术预期信号，不等同于正式越南区线上问题。</p></td><td><div class="volume-cell"><strong>6</strong><div class="bar"><span style="width:13%"></span></div></div></td><td><span class="tag blue">中性</span></td><td><div class="bar"><span style="width:30%"></span></div></td><td>中</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1766600474305542/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>6</td><td><strong>社群互动、组队、公会</strong><p class="small muted">玩家主要围绕：借宠和蹭图鉴/任务、加好友、进地图和申请进入展开。共 4 条，包含 2 帖 / 2 评论，说明 Group 已经承担互助入口作用，社区自传播和玩家协作正在自然形成。</p></td><td><div class="volume-cell"><strong>4</strong><div class="bar"><span style="width:8%"></span></div></div></td><td><span class="tag blue">中性</span></td><td><div class="bar"><span style="width:20%"></span></div></td><td>中</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2126669668126105/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>7</td><td><strong>攻略分享</strong><p class="small muted">玩家主要在分享或索取：新手强度与培养优先级、宠物获取和 shiny 难度、通关、Boss 和机制攻略。共 3 条，包含 3 帖 / 0 评论，适合用于判断越南玩家内容学习曲线和发行前内容教育重点。</p></td><td><div class="volume-cell"><strong>3</strong><div class="bar"><span style="width:6%"></span></div></div></td><td><span class="tag green">正面</span></td><td><div class="bar"><span style="width:15%"></span></div></td><td>中</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2128160144643724/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>8</td><td><strong>诈骗、外挂、私服、黑产风险</strong><p class="small muted">该话题主要包含不可见/异常外链内容。共 1 条，包含 1 帖 / 0 评论，应作为社区风险样本持续观察，不宜与正常玩家需求混在一起解读。</p></td><td><div class="volume-cell"><strong>1</strong><div class="bar"><span style="width:4%"></span></div></div></td><td><span class="tag blue">中性</span></td><td><div class="bar"><span style="width:5%"></span></div></td><td>中</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1766600474305542/" target="_blank" rel="noreferrer">查看原帖</a></td></tr>
+          <tr data-bucket="topic"><td>1</td><td><strong>越南玩家自发讨论</strong><p class="small muted">该话题主要是玩家的非单一机制讨论，集中在：shiny / 异色外观与黑银配色、抓宠、出货、晒收获和运气分享、全球版/上线时间猜测、VPN、Bilibili、抖音等跨平台获取信息。共 48 条，包含 24 帖 / 24 评论，情绪以「中性」为主；它更适合用于观察自然社区热度、玩家自传播内容和发行前认知扩散，而不是作为单个问题处理。</p></td><td><div class="volume-cell"><strong>48</strong><div class="bar"><span style="width:100%"></span></div></div></td><td><span class="tag blue">中性</span></td><td><div class="bar"><span style="width:100%"></span></div></td><td>高</td><td><a class="btn strong" href="../topics/2026-W19_6LaK5Y2X546p5a626Ieq5Y-R6K6o6K66.html">查看二级分析</a></td></tr><tr data-bucket="topic"><td>2</td><td><strong>宠物、角色、养成</strong><p class="small muted">玩家主要讨论：宠物进化与阶段成长、shiny / 异色与外观配色、技能、队伍、PVP 与强度搭配、宠物获取、借宠和图鉴补齐。共 40 条，包含 27 帖 / 13 评论，说明越南玩家已经开始围绕宠物收藏、外观、强度和队伍搭配形成较细的经验交流。</p></td><td><div class="volume-cell"><strong>40</strong><div class="bar"><span style="width:83%"></span></div></div></td><td><span class="tag blue">中性</span></td><td><div class="bar"><span style="width:100%"></span></div></td><td>高</td><td><a class="btn strong" href="../topics/2026-W19_5a6g54mp44CB6KeS6Imy44CB5YW75oiQ.html">查看二级分析</a></td></tr><tr data-bucket="topic"><td>3</td><td><strong>玩法机制</strong><p class="small muted">玩家主要在问：任务如何完成、NPC / Boss 打法攻略。共 28 条，包含 22 帖 / 6 评论，反映任务说明和机制学习成本较高，可作为未来越南本地化说明、FAQ 和新手引导的观察素材。</p></td><td><div class="volume-cell"><strong>28</strong><div class="bar"><span style="width:58%"></span></div></div></td><td><span class="tag blue">中性</span></td><td><div class="bar"><span style="width:100%"></span></div></td><td>高</td><td><a class="btn strong" href="../topics/2026-W19_546p5rOV5py65Yi2.html">查看二级分析</a></td></tr><tr data-bucket="topic"><td>4</td><td><strong>充值、付费、礼包</strong><p class="small muted">玩家主要讨论：Battle Pass / 战令相关宠物或权益、私下交易或付费借取。共 7 条，包含 7 帖 / 0 评论；它既代表潜在付费兴趣，也需要继续观察第三方充值、私下交易和误导渠道风险。</p></td><td><div class="volume-cell"><strong>7</strong><div class="bar"><span style="width:15%"></span></div></div></td><td><span class="tag green">正面</span></td><td><div class="bar"><span style="width:35%"></span></div></td><td>中</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1766408790991377/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr data-bucket="topic"><td>5</td><td><strong>Bug、闪退、卡顿、登录问题</strong><p class="small muted">玩家主要讨论：登录和权限设置、设备、PC 或手机兼容。共 6 条，包含 6 帖 / 0 评论；这些内容更像早期使用门槛和技术预期信号，不等同于正式越南区线上问题。</p></td><td><div class="volume-cell"><strong>6</strong><div class="bar"><span style="width:13%"></span></div></div></td><td><span class="tag blue">中性</span></td><td><div class="bar"><span style="width:30%"></span></div></td><td>中</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1766600474305542/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr data-bucket="topic"><td>6</td><td><strong>社群互动、组队、公会</strong><p class="small muted">玩家主要围绕：借宠和蹭图鉴/任务、加好友、进地图和申请进入展开。共 4 条，包含 2 帖 / 2 评论，说明 Group 已经承担互助入口作用，社区自传播和玩家协作正在自然形成。</p></td><td><div class="volume-cell"><strong>4</strong><div class="bar"><span style="width:8%"></span></div></div></td><td><span class="tag blue">中性</span></td><td><div class="bar"><span style="width:20%"></span></div></td><td>中</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2126669668126105/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr data-bucket="topic"><td>7</td><td><strong>攻略分享</strong><p class="small muted">玩家主要在分享或索取：新手强度与培养优先级、宠物获取和 shiny 难度、通关、Boss 和机制攻略。共 3 条，包含 3 帖 / 0 评论，适合用于判断越南玩家内容学习曲线和发行前内容教育重点。</p></td><td><div class="volume-cell"><strong>3</strong><div class="bar"><span style="width:6%"></span></div></div></td><td><span class="tag green">正面</span></td><td><div class="bar"><span style="width:15%"></span></div></td><td>中</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2128160144643724/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr data-bucket="topic"><td>8</td><td><strong>诈骗、外挂、私服、黑产风险</strong><p class="small muted">该话题主要包含不可见/异常外链内容。共 1 条，包含 1 帖 / 0 评论，应作为社区风险样本持续观察，不宜与正常玩家需求混在一起解读。</p></td><td><div class="volume-cell"><strong>1</strong><div class="bar"><span style="width:4%"></span></div></div></td><td><span class="tag blue">中性</span></td><td><div class="bar"><span style="width:5%"></span></div></td><td>中</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1766600474305542/" target="_blank" rel="noreferrer">查看原帖</a></td></tr>
         </tbody>
       </table>
     </section>
@@ -325,7 +599,7 @@
         </div>
         <div class="panel">
           <h3>代表评论</h3>
-          <div class="voice"><span class="tag">混合</span><span class="tag blue">宠物、角色、养成</span><blockquote>Tiến hoá đii, hóng màu con đen trắng</blockquote><p><strong>翻译：</strong>玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。</p><p><strong>分析：</strong>情绪为「混合」，说明这条内容更偏一边有兴趣一边存在困惑。 这类内容说明越南玩家对宠物外观、稀有度、进化、强度和队伍搭配已经有较深讨论，未来发行前可作为核心兴趣点和内容教育重点。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2128443277948744/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice"><span class="tag">混合</span><span class="tag blue">玩法机制</span><blockquote>Làm sao ra được con có màu đen đó vậy</blockquote><p><strong>翻译：</strong>这个黑色/深色配色要怎么弄出来？</p><p><strong>分析：</strong>情绪为「混合」，说明这条内容更偏一边有兴趣一边存在困惑。 这类内容反映任务说明、机制理解或活动目标存在学习成本，适合作为未来越南本地化说明、FAQ 和新手引导的观察信号。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2128443277948744/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice"><span class="tag">中性</span><span class="tag blue">越南玩家自发讨论</span><blockquote>Nghiện lắm</blockquote><p><strong>翻译：</strong>太上头了，很容易沉迷。</p><p><strong>分析：</strong>情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2128273591299046/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice"><span class="tag">混合</span><span class="tag blue">宠物、角色、养成</span><blockquote>Như nhau, team 6 pet thì mỗi con có khắc chế, này là các con đổi màu, sau dùng bóng 7 màu thì con nào cũng như thế này.</blockquote><p><strong>翻译：</strong>大体差不多。6 宠队伍里每只都有克制关系；这些主要是换色形态，后面用了七彩球之类的道具后，很多宠物都会变成这种外观。</p><p><strong>分析：</strong>情绪为「混合」，说明这条内容更偏一边有兴趣一边存在困惑。 这类内容说明越南玩家对宠物外观、稀有度、进化、强度和队伍搭配已经有较深讨论，未来发行前可作为核心兴趣点和内容教育重点。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2128160144643724/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice"><span class="tag">中性</span><span class="tag blue">越南玩家自发讨论</span><blockquote>Hmm mấy con shiny toàn để xó ít khi dùng chỉ số toàn như cut</blockquote><p><strong>翻译：</strong>感觉 shiny 宠物很多都只是放着收藏，很少真拿来用，数值表现不太理想。</p><p><strong>分析：</strong>情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2128089357984136/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice"><span class="tag">中性</span><span class="tag blue">越南玩家自发讨论</span><blockquote>Con này đi với team sao b[用户名已脱敏] ko nhỉ</blockquote><p><strong>翻译：</strong>这只宠物能不能放进“流星/陨星”体系队伍里？</p><p><strong>分析：</strong>情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2128089357984136/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice"><span class="tag">中性</span><span class="tag blue">越南玩家自发讨论</span><blockquote>Hình như nó lặp lại mấy chiêu vừa dùng</blockquote><p><strong>翻译：</strong>它好像会重复刚才用过的几个技能。</p><p><strong>分析：</strong>情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2127309468062125/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice"><span class="tag">混合</span><span class="tag blue">越南玩家自发讨论</span><blockquote>Tưởng viusss nhưng ko đó là Ngọc Kem :)))</blockquote><p><strong>翻译：</strong>一开始还以为是病毒/异常，结果其实是 Ngọc Kem 相关内容。</p><p><strong>分析：</strong>情绪为「混合」，说明这条内容更偏一边有兴趣一边存在困惑。 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2126731584786580/" target="_blank" rel="noreferrer">查看原帖</a></div>
+          <div class="voice" data-bucket="comment"><span class="tag">混合</span><span class="tag blue">宠物、角色、养成</span><blockquote>Tiến hoá đii, hóng màu con đen trắng</blockquote><p><strong>翻译：</strong>玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。</p><p><strong>分析：</strong>情绪为「混合」，说明这条内容更偏一边有兴趣一边存在困惑。 这类内容说明越南玩家对宠物外观、稀有度、进化、强度和队伍搭配已经有较深讨论，未来发行前可作为核心兴趣点和内容教育重点。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2128443277948744/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice" data-bucket="comment"><span class="tag">混合</span><span class="tag blue">玩法机制</span><blockquote>Làm sao ra được con có màu đen đó vậy</blockquote><p><strong>翻译：</strong>这个黑色/深色配色要怎么弄出来？</p><p><strong>分析：</strong>情绪为「混合」，说明这条内容更偏一边有兴趣一边存在困惑。 这类内容反映任务说明、机制理解或活动目标存在学习成本，适合作为未来越南本地化说明、FAQ 和新手引导的观察信号。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2128443277948744/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice" data-bucket="comment"><span class="tag">中性</span><span class="tag blue">越南玩家自发讨论</span><blockquote>Nghiện lắm</blockquote><p><strong>翻译：</strong>太上头了，很容易沉迷。</p><p><strong>分析：</strong>情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2128273591299046/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice" data-bucket="comment"><span class="tag">混合</span><span class="tag blue">宠物、角色、养成</span><blockquote>Như nhau, team 6 pet thì mỗi con có khắc chế, này là các con đổi màu, sau dùng bóng 7 màu thì con nào cũng như thế này.</blockquote><p><strong>翻译：</strong>大体差不多。6 宠队伍里每只都有克制关系；这些主要是换色形态，后面用了七彩球之类的道具后，很多宠物都会变成这种外观。</p><p><strong>分析：</strong>情绪为「混合」，说明这条内容更偏一边有兴趣一边存在困惑。 这类内容说明越南玩家对宠物外观、稀有度、进化、强度和队伍搭配已经有较深讨论，未来发行前可作为核心兴趣点和内容教育重点。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2128160144643724/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice" data-bucket="comment"><span class="tag">中性</span><span class="tag blue">越南玩家自发讨论</span><blockquote>Hmm mấy con shiny toàn để xó ít khi dùng chỉ số toàn như cut</blockquote><p><strong>翻译：</strong>感觉 shiny 宠物很多都只是放着收藏，很少真拿来用，数值表现不太理想。</p><p><strong>分析：</strong>情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2128089357984136/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice" data-bucket="comment"><span class="tag">中性</span><span class="tag blue">越南玩家自发讨论</span><blockquote>Con này đi với team sao b[用户名已脱敏] ko nhỉ</blockquote><p><strong>翻译：</strong>这只宠物能不能放进“流星/陨星”体系队伍里？</p><p><strong>分析：</strong>情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2128089357984136/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice" data-bucket="comment"><span class="tag">中性</span><span class="tag blue">越南玩家自发讨论</span><blockquote>Hình như nó lặp lại mấy chiêu vừa dùng</blockquote><p><strong>翻译：</strong>它好像会重复刚才用过的几个技能。</p><p><strong>分析：</strong>情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2127309468062125/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice" data-bucket="comment"><span class="tag">混合</span><span class="tag blue">越南玩家自发讨论</span><blockquote>Tưởng viusss nhưng ko đó là Ngọc Kem :)))</blockquote><p><strong>翻译：</strong>一开始还以为是病毒/异常，结果其实是 Ngọc Kem 相关内容。</p><p><strong>分析：</strong>情绪为「混合」，说明这条内容更偏一边有兴趣一边存在困惑。 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2126731584786580/" target="_blank" rel="noreferrer">查看原帖</a></div>
         </div>
       </div>
     </section>
@@ -343,7 +617,7 @@
     <section id="voices">
       <h2>代表性玩家声音</h2>
       <div class="panel">
-        <div class="voice"><span class="tag blue">社群互动、组队、公会</span><span class="tag">中性</span><span class="tag">Cong Hoi Roco Kingdom Viet Nam</span><blockquote>mn ơi làm sao để vào thế giới của ng khác v ạ, em có add mn để bắt ké pass nhm e ko bt vào thế giới của mn kiểu j ;-;</blockquote><p><strong>翻译：</strong>玩家询问如何进入好友地图或借好友宠物进行捕捉/完成任务。</p><p><strong>分析：</strong>情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容体现玩家愿意通过 Group 借宠、组队或互助完成目标，说明社区自传播和互助结构已经自然出现。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1766408790991377/" target="_blank" rel="noreferrer">查看原帖</a> <span class="small muted">需 Facebook / Group 权限</span></div>
+        <div class="voice" data-bucket="topic"><span class="tag blue">社群互动、组队、公会</span><span class="tag">中性</span><span class="tag">Cong Hoi Roco Kingdom Viet Nam</span><blockquote>mn ơi làm sao để vào thế giới của ng khác v ạ, em có add mn để bắt ké pass nhm e ko bt vào thế giới của mn kiểu j ;-;</blockquote><p><strong>翻译：</strong>玩家询问如何进入好友地图或借好友宠物进行捕捉/完成任务。</p><p><strong>分析：</strong>情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容体现玩家愿意通过 Group 借宠、组队或互助完成目标，说明社区自传播和互助结构已经自然出现。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1766408790991377/" target="_blank" rel="noreferrer">查看原帖</a> <span class="small muted">需 Facebook / Group 权限</span></div>
       </div>
     </section>
 
@@ -369,5 +643,37 @@
       </div>
     </section>
   </main>
+  <script>
+    const search = document.getElementById('globalSearch');
+    const densityToggle = document.getElementById('densityToggle');
+    const filterButtons = Array.from(document.querySelectorAll('[data-filter]'));
+    let activeFilter = 'all';
+
+    function searchableRows() {
+      return Array.from(document.querySelectorAll('tbody tr, .voice, .signal-row, .topic-brief'));
+    }
+
+    function applyFilters() {
+      const q = (search?.value || '').trim().toLowerCase();
+      searchableRows().forEach((el) => {
+        const text = el.textContent.toLowerCase();
+        const bucket = el.dataset.bucket || '';
+        const filterOk = activeFilter === 'all' || bucket === activeFilter || el.closest('#' + activeFilter + 's') || el.closest('#comments') && activeFilter === 'comment';
+        const searchOk = !q || text.includes(q);
+        el.hidden = !(filterOk && searchOk);
+      });
+    }
+
+    search?.addEventListener('input', applyFilters);
+    filterButtons.forEach((btn) => btn.addEventListener('click', () => {
+      activeFilter = btn.dataset.filter;
+      filterButtons.forEach((b) => b.classList.toggle('active', b === btn));
+      applyFilters();
+    }));
+    densityToggle?.addEventListener('click', () => {
+      document.body.classList.toggle('comfortable');
+      densityToggle.textContent = document.body.classList.contains('comfortable') ? '舒展视图' : '紧凑视图';
+    });
+  </script>
 </body>
 </html>
