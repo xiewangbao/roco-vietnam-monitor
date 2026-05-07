@@ -81,8 +81,87 @@ const healthScore = Math.round(clamp(60 + pct(positive) * 0.25 - pct(negative) *
 const launchSignalScore = Math.round(clamp(45 + Math.min(valid, 120) * 0.18 + pct(highRelevance) * 0.25 + Math.min((topics[0]?.itemCount || 0), 50) * 0.2, 0, 100));
 const completenessNote = `本报告基于 ${structured.timeRange?.start || '未知开始时间'} 至 ${structured.timeRange?.end || '未知结束时间'} 的可见内容。评论覆盖 feed 可见评论和 post-detail 补抓到的可见评论，未展开或不可见线程不纳入结论。`;
 
+function includesAny(text, patterns) {
+  return patterns.some((pattern) => pattern.test(text));
+}
+
+function topicDiscussionSummary(topicName, topicItems, topicMeta) {
+  const text = topicItems.map((item) => `${item.originalText}\n${item.translationZh}`).join('\n').toLowerCase();
+  const postCount = topicItems.filter((item) => item.recordType === 'post').length;
+  const commentCount = topicItems.filter((item) => item.recordType === 'comment').length;
+  const dominantSentiment = Object.entries(topicMeta.sentimentMix || {}).sort((a, b) => b[1] - a[1])[0]?.[0] || '中性';
+  const subthemes = [];
+
+  const add = (label, patterns) => {
+    if (includesAny(text, patterns)) subthemes.push(label);
+  };
+
+  if (topicName === '越南玩家自发讨论') {
+    add('shiny / 异色外观与黑银配色', [/shiny|异色|đen bạc|黑银|lấp lánh|闪光/]);
+    add('抓宠、出货、晒收获和运气分享', [/抓|捕捉|出货|运气|trộm vía|thank god|vận may|đẹp|好看|đc 2con/]);
+    add('全球版/上线时间猜测', [/global|上线|coming out|什么时候|bản global/]);
+    add('VPN、Bilibili、抖音等跨平台获取信息', [/vpn|bili|bilibili|抖音|tiktok/]);
+    add('普通闲聊、短评论和跟帖互动', [/真的假的|太上头|hóng|ké|ok|ổn/]);
+    return `该话题主要是玩家的非单一机制讨论，集中在：${subthemes.slice(0, 4).join('、') || '晒图、跟帖、求证和日常交流'}。共 ${topicItems.length} 条，包含 ${postCount} 帖 / ${commentCount} 评论，情绪以「${dominantSentiment}」为主；它更适合用于观察自然社区热度、玩家自传播内容和发行前认知扩散，而不是作为单个问题处理。`;
+  }
+
+  if (topicName === '宠物、角色、养成') {
+    add('宠物进化与阶段成长', [/进化|tiến hoá|tiến hóa|lv40|2 阶|最终形态/]);
+    add('shiny / 异色与外观配色', [/shiny|异色|dị màu|màu|đen bạc|闪光|lấp lánh/]);
+    add('技能、队伍、PVP 与强度搭配', [/skill|技能|team|队伍|pvp|build|boss|dps|sup|buff/]);
+    add('宠物获取、借宠和图鉴补齐', [/xin|cho ké|借|抓|捕捉|地图|pet|thú cưng/]);
+    return `玩家主要讨论：${subthemes.slice(0, 4).join('、') || '宠物获取、强度和养成路径'}。共 ${topicItems.length} 条，包含 ${postCount} 帖 / ${commentCount} 评论，说明越南玩家已经开始围绕宠物收藏、外观、强度和队伍搭配形成较细的经验交流。`;
+  }
+
+  if (topicName === '玩法机制') {
+    add('任务如何完成', [/任务|nhiệm vụ|nhiện vụ|nv |làm sao|怎么做/]);
+    add('机关、镜子、星星和地图解谜', [/gương|镜子|ngôi sao|星星|mở cổng|开门|cổng/]);
+    add('NPC / Boss 打法攻略', [/npc|boss|đánh|tiêu diệt|击败/]);
+    add('按钮、顺序和操作路径说明', [/button|nút|12341|顺序|hướng dẫn|指引/]);
+    return `玩家主要在问：${subthemes.slice(0, 4).join('、') || '任务、机关和战斗机制怎么理解'}。共 ${topicItems.length} 条，包含 ${postCount} 帖 / ${commentCount} 评论，反映任务说明和机制学习成本较高，可作为未来越南本地化说明、FAQ 和新手引导的观察素材。`;
+  }
+
+  if (topicName === '社群互动、组队、公会') {
+    add('借宠和蹭图鉴/任务', [/cho ké|ké|借|xin|pet|bắt ké/]);
+    add('加好友、进地图和申请进入', [/好友|add|kb|map|地图|xin họ|icon/]);
+    add('组队互助和带 Boss', [/boss|kéo|team|组队|solo/]);
+    return `玩家主要围绕：${subthemes.slice(0, 3).join('、') || '借宠、好友地图和组队互助'}展开。共 ${topicItems.length} 条，包含 ${postCount} 帖 / ${commentCount} 评论，说明 Group 已经承担互助入口作用，社区自传播和玩家协作正在自然形成。`;
+  }
+
+  if (topicName === '充值、付费、礼包') {
+    add('Battle Pass / 战令相关宠物或权益', [/battle pass|pass|战令/]);
+    add('充值、月卡和 gem pass', [/nạp|top up|monthly|gem|充值|月卡/]);
+    add('私下交易或付费借取', [/trả phí|bán|mua|多少钱|账号|acc/]);
+    return `玩家主要讨论：${subthemes.slice(0, 3).join('、') || '付费入口、礼包和付费互助'}。共 ${topicItems.length} 条，包含 ${postCount} 帖 / ${commentCount} 评论；它既代表潜在付费兴趣，也需要继续观察第三方充值、私下交易和误导渠道风险。`;
+  }
+
+  if (topicName === 'Bug、闪退、卡顿、登录问题') {
+    add('登录和权限设置', [/登录|đăng nhập|vpn|权限|cấp quyền/]);
+    add('设备、PC 或手机兼容', [/pc|máy|redmi|电脑|手机/]);
+    add('任务/玩法被误归因为异常', [/không chọn|不能选择|卡|kẹt/]);
+    return `玩家主要讨论：${subthemes.slice(0, 3).join('、') || '登录、设备和操作异常'}。共 ${topicItems.length} 条，包含 ${postCount} 帖 / ${commentCount} 评论；这些内容更像早期使用门槛和技术预期信号，不等同于正式越南区线上问题。`;
+  }
+
+  if (topicName === '攻略分享') {
+    add('新手强度与培养优先级', [/新手|mới chơi|mạnh|强|ưu tiên/]);
+    add('宠物获取和 shiny 难度', [/shiny|khó kiếm|难刷|获取/]);
+    add('通关、Boss 和机制攻略', [/攻略|boss|npc|hướng dẫn|cách/]);
+    return `玩家主要在分享或索取：${subthemes.slice(0, 3).join('、') || '新手攻略、宠物强度和通关方法'}。共 ${topicItems.length} 条，包含 ${postCount} 帖 / ${commentCount} 评论，适合用于判断越南玩家内容学习曲线和发行前内容教育重点。`;
+  }
+
+  if (topicName === '诈骗、外挂、私服、黑产风险') {
+    add('账号买卖或代练交易', [/acc|账号|bán|mua|cày|pass/]);
+    add('充值或付费引流', [/top up|nạp|gem|充值|月卡/]);
+    add('不可见/异常外链内容', [/内容暂时无法显示|tiktok|link|ib/]);
+    return `该话题主要包含${subthemes.slice(0, 3).join('、') || '交易、引流或异常内容'}。共 ${topicItems.length} 条，包含 ${postCount} 帖 / ${commentCount} 评论，应作为社区风险样本持续观察，不宜与正常玩家需求混在一起解读。`;
+  }
+
+  return `该话题共 ${topicItems.length} 条，包含 ${postCount} 帖 / ${commentCount} 评论，情绪以「${dominantSentiment}」为主；主要用于观察越南玩家在该主题下的讨论密度、需求类型和潜在发行前信号。`;
+}
+
 const topTopics = topics.slice(0, 8).map((topic, index) => {
   const representative = items.find((item) => item.topics.includes(topic.topic));
+  const topicItems = items.filter((item) => item.topics.includes(topic.topic));
   return {
     rank: index + 1,
     title: topic.topic,
@@ -92,7 +171,7 @@ const topTopics = topics.slice(0, 8).map((topic, index) => {
     weekOverWeekChange: '首个真实抓取周，暂无环比',
     marketSignalValue: topic.itemCount >= 10 ? '高' : '中',
     representativePostUrl: representative?.postUrl || '',
-    notes: representative ? `${representative.translationZh}${representative.analysisZh ? ` ${representative.analysisZh}` : ''}` : '',
+    notes: topicDiscussionSummary(topic.topic, topicItems, topic),
   };
 });
 

@@ -23,6 +23,7 @@ This file records the standing product/content rules for future weekly dashboard
 - First screen must answer: data usable or not, this week's signal strength, risk level, and main discussion clusters.
 - Keep high information density. Use status strips, KPI bands, tables, bars, trend rows, and topic drilldowns instead of marketing sections.
 - Any topic with volume >= 10 should have a secondary detail page with co-occurring topics, sentiment split, source Group split, post/comment composition, and representative content.
+- The hot topic table must show an aggregate, objective topic summary: what players are discussing within that topic, key subthemes, post/comment mix, and market observation meaning. Do not use a single representative post translation as the topic summary.
 - Group tables should visualize volume with bars, not only raw counts.
 - Sentiment and post/comment mix should be shown with stacked bars.
 - Data completeness notes must remain visible on the dashboard.
