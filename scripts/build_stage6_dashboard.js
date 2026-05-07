@@ -80,7 +80,7 @@ function buildTopicDetail(topicRow) {
       if (t !== topic) coTopics[t] = (coTopics[t] || 0) + 1;
     }
   }
-  const rows = topicItems.slice(0, 80).map((item, index) => `<tr><td>${index + 1}</td><td>${item.recordType === 'comment' ? '评论' : '帖子'}</td><td>${escapeHtml(item.sourceGroup)}</td><td><span class="tag ${sentimentClass(item.sentiment)}">${escapeHtml(item.sentiment)}</span></td><td>${escapeHtml(item.originalText)}</td><td>${escapeHtml(item.translationZh)}</td><td><a class="btn" href="${item.postUrl}" target="_blank" rel="noreferrer">查看原帖</a></td></tr>`).join('');
+  const rows = topicItems.slice(0, 80).map((item, index) => `<tr><td>${index + 1}</td><td>${item.recordType === 'comment' ? '评论' : '帖子'}</td><td>${escapeHtml(item.sourceGroup)}</td><td><span class="tag ${sentimentClass(item.sentiment)}">${escapeHtml(item.sentiment)}</span></td><td>${escapeHtml(item.originalText)}</td><td>${escapeHtml(item.translationZh)}</td><td>${escapeHtml(item.analysisZh || analysisFallback(item))}</td><td><a class="btn" href="${item.postUrl}" target="_blank" rel="noreferrer">查看原帖</a></td></tr>`).join('');
   return `<!doctype html>
 <html lang="zh-CN">
 <head>
@@ -104,7 +104,7 @@ function buildTopicDetail(topicRow) {
     </div></section>
     <section><h2>二级 Topic / 共现标签</h2><div class="panel tag-cloud">${Object.entries(coTopics).sort((a,b)=>b[1]-a[1]).map(([k,v]) => `<span class="tag blue">${escapeHtml(k)} ${v}</span>`).join('') || '<span class="muted">暂无明显共现标签</span>'}</div></section>
     <section><h2>情绪与来源</h2><div class="grid two"><div class="panel">${Object.entries(sentiment).map(([k,v]) => `<p><strong>${escapeHtml(k)}</strong> ${v}</p><div class="bar ${sentimentClass(k)}"><span style="width:${Math.min(100, v / topicItems.length * 100)}%"></span></div>`).join('')}</div><div class="panel">${Object.entries(groups).sort((a,b)=>b[1]-a[1]).map(([k,v]) => `<div class="mini-row"><span>${escapeHtml(k)}</span><strong>${v}</strong></div><div class="bar"><span style="width:${Math.min(100, v / topicItems.length * 100)}%"></span></div>`).join('')}</div></div></section>
-    <section><h2>内容明细</h2><table><thead><tr><th>#</th><th>类型</th><th>来源</th><th>情绪</th><th>原文</th><th>中文摘要</th><th>原帖</th></tr></thead><tbody>${rows}</tbody></table></section>
+    <section><h2>内容明细</h2><table><thead><tr><th>#</th><th>类型</th><th>来源</th><th>情绪</th><th>越南语原文</th><th>中文翻译</th><th>舆情分析</th><th>原帖</th></tr></thead><tbody>${rows}</tbody></table></section>
   </main>
 </body>
 </html>`;
@@ -250,7 +250,7 @@ const html = `<!doctype html>
         </div>
         <div class="panel">
           <h3>代表评论</h3>
-          ${(report.commentOpinion?.representativeComments || []).map(v => `<div class="voice"><span class="tag">${v.sentiment}</span><span class="tag blue">${v.topic}</span><blockquote>${escapeHtml(v.originalText)}</blockquote><p>${escapeHtml(v.translationZh)}</p><a class="btn" href="${v.postUrl}" target="_blank" rel="noreferrer">查看原帖</a></div>`).join('')}
+          ${(report.commentOpinion?.representativeComments || []).map(v => `<div class="voice"><span class="tag">${v.sentiment}</span><span class="tag blue">${v.topic}</span><blockquote>${escapeHtml(v.originalText)}</blockquote><p><strong>翻译：</strong>${escapeHtml(v.translationZh)}</p>${v.analysisZh ? `<p><strong>分析：</strong>${escapeHtml(v.analysisZh)}</p>` : ''}<a class="btn" href="${v.postUrl}" target="_blank" rel="noreferrer">查看原帖</a></div>`).join('')}
         </div>
       </div>
     </section>
@@ -268,7 +268,7 @@ const html = `<!doctype html>
     <section id="voices">
       <h2>代表性玩家声音</h2>
       <div class="panel">
-        ${report.representativeVoices.map(v => `<div class="voice"><span class="tag blue">${v.topic}</span><span class="tag">${v.sentiment}</span><span class="tag">${v.sourceGroup}</span><blockquote>${escapeHtml(v.originalText)}</blockquote><p>${escapeHtml(v.translationZh)}</p><a class="btn" href="${v.postUrl}" target="_blank" rel="noreferrer">查看原帖</a> <span class="small muted">需 Facebook / Group 权限</span></div>`).join('')}
+        ${report.representativeVoices.map(v => `<div class="voice"><span class="tag blue">${v.topic}</span><span class="tag">${v.sentiment}</span><span class="tag">${v.sourceGroup}</span><blockquote>${escapeHtml(v.originalText)}</blockquote><p><strong>翻译：</strong>${escapeHtml(v.translationZh)}</p>${v.analysisZh ? `<p><strong>分析：</strong>${escapeHtml(v.analysisZh)}</p>` : ''}<a class="btn" href="${v.postUrl}" target="_blank" rel="noreferrer">查看原帖</a> <span class="small muted">需 Facebook / Group 权限</span></div>`).join('')}
       </div>
     </section>
 
@@ -524,6 +524,11 @@ function sentimentClass(value) {
 function qualityStatusText() {
   if (!quality) return '未生成质量门禁';
   return quality.status === 'pass' ? '质量门禁通过' : '需要人工复核';
+}
+
+function analysisFallback(item) {
+  const topic = item.primaryTopic || item.topics?.[0] || '越南玩家自发讨论';
+  return `该内容归入「${topic}」，情绪为「${item.sentiment || '中性'}」。它主要用于判断越南玩家在该主题下的自然兴趣、疑问密度和未来发行前需要持续观察的认知点。`;
 }
 
 function pct(value, total) {

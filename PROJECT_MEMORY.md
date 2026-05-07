@@ -15,6 +15,8 @@ This file records the standing product/content rules for future weekly dashboard
 - Do not frame output as customer service response or live Vietnam operations.
 - Emphasize future Vietnam launch signals: natural interest, high-frequency questions, payment curiosity, localization friction, self-spread behavior, and pre-launch risk.
 - Preserve post-level Facebook URLs only for case review. Do not expose user profile URLs, avatars, Facebook IDs, or real names in final display.
+- Topic detail pages must show direct Chinese translation plus a separate opinion/market analysis. Do not show repetitive placeholder text such as "机器初译摘要".
+- If a short post/comment cannot be translated confidently without image or thread context, say that it requires context review and still provide the market-research interpretation separately.
 
 ## Dashboard Information Design
 

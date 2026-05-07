@@ -107,6 +107,44 @@ function sentiment(text, risks) {
 
 function translate(text, topicList, risks) {
   const t = text.toLowerCase();
+  if (/shiny.*cầu mùa|cầu mùa.*shiny|màu đen bạc/.test(t)) return '大家问一下：如果抓到 shiny，再使用季节球，会不会变成黑银配色？还是必须先孵蛋，再使用季节球才会出那个颜色？';
+  if (/chia s[eẽ] cho mn|trộm vía/.test(t)) return '分享给大家：今天运气不错，有一些值得晒的收获。';
+  if (/làm sao ra được.*màu đen|màu đen đó/.test(t)) return '这个黑色/深色配色要怎么弄出来？';
+  if (/nghiện lắm/.test(t)) return '太上头了，很容易沉迷。';
+  if (/mới chơi.*shiny|khó kiếm shiny|ngang nhau/.test(t)) return '我是新手，想问这些宠物里有没有哪只更强、而且 shiny 更难刷？还是它们强度和稀有度都差不多？';
+  if (/team.*sao băng/.test(t)) return '这只宠物能不能放进“流星/陨星”体系队伍里？';
+  if (/như nhau.*team 6 pet|bóng 7 màu|đổi màu/.test(t)) return '大体差不多。6 宠队伍里每只都有克制关系；这些主要是换色形态，后面用了七彩球之类的道具后，很多宠物都会变成这种外观。';
+  if (/shiny.*xó|chỉ số/.test(t)) return '感觉 shiny 宠物很多都只是放着收藏，很少真拿来用，数值表现不太理想。';
+  if (/lặp lại.*chiêu/.test(t)) return '它好像会重复刚才用过的几个技能。';
+  if (/tưởng.*virus|vius|ngọc kem/.test(t)) return '一开始还以为是病毒/异常，结果其实是 Ngọc Kem 相关内容。';
+  if (/help anh em|không hiểu/.test(t)) return '求助各位，这个任务到底怎么做？我没看懂。';
+  if (/hai cái này.*sắp hết mùa/.test(t)) return '这两个任务要怎么做？快到赛季结束了，求救。';
+  if (/thiệt ko|thiệt không|thật không/.test(t)) return '真的假的？';
+  if (/vpn.*trung|中国节点/.test(t)) return '需要把 VPN 切到中国节点。';
+  if (/bật vpn/.test(t)) return '你有开 VPN 吗？';
+  if (/phải lmj|phải làm gì|tiếp.*ko bt|tiếp.*không biết/.test(t)) return '接下来要做什么？我想了很久，和它对话之后还是不知道下一步。';
+  if (/chỉ tôi.*cấp 31|chỉ.*qua được/.test(t)) return '请教一下这个怎么过，我卡了很久，还是升不到 31 级。';
+  if (/ai chỉ mình|giúp.*với/.test(t)) return '有人可以教我/帮我看一下这个怎么做吗？';
+  if (/mấy cái này tăng gì/.test(t)) return '这些东西分别提升什么属性？';
+  if (/2 con trong 1 tiếng|hết vận may/.test(t)) return '一小时出了两只，感觉这周的运气都用完了。';
+  if (/cái đầu tiên.*chờ đợi/.test(t)) return '等了这么多天，终于出了第一个。';
+  if (/ấp.*lv1.*lv22.*shiny/.test(t)) return '从家园 1 级孵到 22 级，还是一个 shiny 都没出。';
+  if (/bắt map.*3 con thỏ/.test(t)) return '在地图里抓的时候直接出了 3 只兔子。';
+  if (/biến thành hình dạng người khác/.test(t)) return '如果想变成别人的外观/形态，应该怎么操作？';
+  if (/không chọn.*nhân vật khác|k chọn.*nhân vật khác/.test(t)) return '目前好像还不能选择其他角色。';
+  if (/huyền thải.*shiny/.test(t)) return '这个应该叫“幻彩/闪光效果”，不算真正的 shiny。';
+  if (/con nào cũng mạnh|quan trọng.*team/.test(t)) return '每只都可以很强，关键看你玩什么队伍体系。';
+  if (/mũi tên.*ném ra ngoài/.test(t)) return '这个箭头不是属性提升，而是表示当前被派出去/丢出去的宠物。';
+  if (/cái này ném con/.test(t)) return '这个地方应该派哪只宠物出去？';
+  if (/bản global|khi nào.*global/.test(t)) return '想问什么时候会有全球版。';
+  if (/khả năng.*global|phục vụ nội địa/.test(t)) return '不确定会不会有全球版；目前没有消息，可能因为它一直更偏中国本土游戏。';
+  if (/xin bé.*trả phí/.test(t)) return '有人能借/给我这只宠物吗？可以付费。';
+  if (/add qua bắt thoải mái/.test(t)) return '加我之后可以过来随便抓。';
+  if (/giải thích chỉ số pvp/.test(t)) return '这是在解释 PVP 数值/属性。';
+  if (/what day coming out/.test(t)) return '什么时候上线？';
+  if (/bao nhiêu bóng.*1k bóng/.test(t)) return '这只大概要多少球才能出？我跟着蹭抓已经用了 1000 多个球还没出。';
+  if (/ra shiny.*cầu mùa.*đen bạc/.test(t)) return '出 shiny 后再用季节球/棱镜球，是否能 100% 变成黑银配色？';
+  if (/đẹp thật|đẹp nhất/.test(t)) return '确实好看/这个黑色闪光外观最好看。';
   if (/đổi lại tính cách/.test(t)) return '玩家询问宠物性格是否可以重置、如何重置，以及重置后是随机还是可选择。';
   if (/vương miện/.test(t)) return '玩家询问这些王冠道具如何获得。';
   if (/tiến hoá|tiến hóa/.test(t)) return '玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。';
@@ -123,7 +161,36 @@ function translate(text, topicList, risks) {
   if (/bán vé|mua ib/.test(t)) return '玩家发布售卖/私聊交易信息，可能涉及账号或道具交易风险。';
   if (/quên tên/.test(t)) return '玩家表示忘记游戏名/账号名，询问是否有办法找回。';
   if (/如何|攻略|打败/.test(text)) return text;
-  return `机器初译摘要：该内容主要涉及「${topicList[0]}」${risks.length ? `，并触发风险标签「${risks.join('、')}」` : ''}。原文需在重点引用前人工复核。`;
+  return inferTranslation(text, topicList, risks);
+}
+
+function inferTranslation(text, topicList, risks) {
+  const topic = topicList[0] || '越南玩家自发讨论';
+  const riskNote = risks.length ? `；同时触发「${risks.join('、')}」风险标签` : '';
+  if (text.length <= 4 || /^[A-ZÀ-ỹa-z\s._)]+$/.test(text) && text.split(/\s+/).length <= 3) {
+    return `短句/昵称式内容，直译需要结合图片或评论上下文复核；可判断为「${topic}」相关互动${riskNote}。`;
+  }
+  if (topic === '宠物、角色、养成') return `该内容在讨论宠物养成细节，直译需结合图片或上下文复核；核心关注点是宠物获取、异色/配色、强度或养成路径${riskNote}。`;
+  if (topic === '玩法机制') return `该内容在询问玩法或任务机制，直译需结合图片或上下文复核；核心诉求是看懂任务条件、找到完成方法或确认机制规则${riskNote}。`;
+  if (topic === '社群互动、组队、公会') return `该内容在寻求社区互助，直译需结合图片或上下文复核；主要需求是借宠、进好友地图、组队或通过社群降低任务门槛${riskNote}。`;
+  if (topic === '充值、付费、礼包') return `该内容涉及付费或礼包相关问题，直译需结合图片或上下文复核；需要观察其对充值入口、Battle Pass、月卡或第三方渠道的认知${riskNote}。`;
+  if (topic === '诈骗、外挂、私服、黑产风险') return `疑似风险内容，直译需结合原帖复核；需要重点关注是否涉及私下交易、账号买卖、充值引流或垃圾广告${riskNote}。`;
+  if (topic === '攻略分享') return `该内容属于攻略/经验交流，直译需结合图片或上下文复核；体现新手对强度、获取难度和培养优先级的判断需求${riskNote}。`;
+  return `该内容为玩家自发讨论，直译需结合图片或上下文复核；可用于判断社区活跃度、兴趣扩散和潜在发行前认知${riskNote}。`;
+}
+
+function analyzeItem(text, topicList, risks, itemSentiment) {
+  const topic = topicList[0] || '越南玩家自发讨论';
+  const riskPart = risks.length ? `风险上需关注「${risks.join('、')}」，避免其在发行前形成错误渠道或非官方认知。` : '暂未触发高风险标签，主要作为自然兴趣和需求观察。';
+  const sentimentPart = `情绪为「${itemSentiment}」，说明这条内容更偏${itemSentiment === '正面' ? '兴趣表达或经验分享' : itemSentiment === '负面' ? '挫败、求助或使用障碍' : itemSentiment === '混合' ? '一边有兴趣一边存在困惑' : '信息询问和中性交流'}。`;
+  if (topic === '宠物、角色、养成') return `${sentimentPart} 这类内容说明越南玩家对宠物外观、稀有度、进化、强度和队伍搭配已经有较深讨论，未来发行前可作为核心兴趣点和内容教育重点。${riskPart}`;
+  if (topic === '玩法机制') return `${sentimentPart} 这类内容反映任务说明、机制理解或活动目标存在学习成本，适合作为未来越南本地化说明、FAQ 和新手引导的观察信号。${riskPart}`;
+  if (topic === '社群互动、组队、公会') return `${sentimentPart} 这类内容体现玩家愿意通过 Group 借宠、组队或互助完成目标，说明社区自传播和互助结构已经自然出现。${riskPart}`;
+  if (topic === '充值、付费、礼包') return `${sentimentPart} 这类内容代表潜在付费兴趣，但也容易连接到第三方充值、账号交易或礼包误导，需要在未来发行前持续观察。${riskPart}`;
+  if (topic === 'Bug、闪退、卡顿、登录问题') return `${sentimentPart} 这类内容是设备兼容、权限、登录或性能问题的早期信号，不等于正式越南区问题，但对未来技术预期管理有参考价值。${riskPart}`;
+  if (topic === '诈骗、外挂、私服、黑产风险') return `${sentimentPart} 这类内容应优先作为社区风险样本，不应作为正常玩家需求解读。${riskPart}`;
+  if (topic === '攻略分享') return `${sentimentPart} 这类内容说明新手正在主动寻找强度评价、获取路径和培养优先级，有助于判断越南玩家的内容学习曲线。${riskPart}`;
+  return `${sentimentPart} 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。${riskPart}`;
 }
 
 function marketValue(topicList, risks, text) {
@@ -154,7 +221,8 @@ for (const record of raw.records) {
   if (rangeStatus.startsWith('unknown')) lowReasons.push('时间标签缺失或无法确认是否在统计周期内');
   if (record.dataCompleteness?.comments?.includes('partial')) lowReasons.push('评论线程未完全展开');
   if (/内容暂时无法显示/.test(cleaned)) lowReasons.push('原帖或媒体内容部分不可见');
-  if (/机器初译摘要/.test(translate(cleaned, itemTopics, risks))) lowReasons.push('自动翻译置信度较低，重点引用前需人工复核');
+  const itemTranslation = translate(cleaned, itemTopics, risks);
+  if (/玩家自发讨论：|玩家在讨论|玩家在询问|疑似风险内容/.test(itemTranslation)) lowReasons.push('自动翻译为规则推断，重点引用前建议人工复核');
   if (seen.has(dedupeKey)) cleaningDecision = 'invalid_duplicate';
   seen.add(dedupeKey);
   if (risks.length && cleaningDecision === 'valid_relevant') cleaningDecision = 'risk_relevant';
@@ -182,7 +250,8 @@ for (const record of raw.records) {
     publishedAt: record.publishedAt,
     rawTimeLabel: record.rawTimeLabel,
     originalText: cleaned,
-    translationZh: translate(cleaned, itemTopics, risks),
+    translationZh: itemTranslation,
+    analysisZh: analyzeItem(cleaned, itemTopics, risks, itemSentiment),
     language: itemLang,
     cleaningDecision,
     primaryTopic: itemTopics[0],

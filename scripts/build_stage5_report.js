@@ -92,7 +92,7 @@ const topTopics = topics.slice(0, 8).map((topic, index) => {
     weekOverWeekChange: '首个真实抓取周，暂无环比',
     marketSignalValue: topic.itemCount >= 10 ? '高' : '中',
     representativePostUrl: representative?.postUrl || '',
-    notes: representative?.translationZh || '',
+    notes: representative ? `${representative.translationZh}${representative.analysisZh ? ` ${representative.analysisZh}` : ''}` : '',
   };
 });
 
@@ -128,6 +128,7 @@ const representativeVoices = [
 ].filter(Boolean).map((item) => ({
   originalText: item.originalText,
   translationZh: item.translationZh,
+  analysisZh: item.analysisZh,
   sentiment: item.sentiment,
   topic: item.primaryTopic,
   sourceGroup: item.sourceGroup,
@@ -193,6 +194,7 @@ const report = {
       .map((item) => ({
         originalText: item.originalText,
         translationZh: item.translationZh,
+        analysisZh: item.analysisZh,
         sentiment: item.sentiment,
         topic: item.primaryTopic,
         sourceGroup: item.sourceGroup,
