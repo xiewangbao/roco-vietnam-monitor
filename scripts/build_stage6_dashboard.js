@@ -302,17 +302,21 @@ const html = `<!doctype html>
 
     <section id="comments">
       <h2>评论舆情</h2>
-      <div class="grid two">
-        <div class="panel">
-          <h3>评论情绪</h3>
-          ${Object.entries(report.commentOpinion?.sentimentSummary || {}).map(([k, v]) => `<p><strong>${k}</strong> ${v}</p>`).join('')}
-          <h3>评论热点</h3>
-          ${(report.commentOpinion?.topCommentTopics || []).map(t => `<span class="tag blue">${t.topic} ${t.count}</span>`).join('')}
-          <p class="small muted">${(report.commentOpinion?.limitations || []).join(' ')}</p>
+      <div class="panel comments-panel">
+        <div class="comment-head">
+          <div>
+            <h3>评论情绪</h3>
+            <div class="comment-stats">${Object.entries(report.commentOpinion?.sentimentSummary || {}).map(([k, v]) => `<span><strong>${escapeHtml(k)}</strong>${v}</span>`).join('')}</div>
+          </div>
+          <div>
+            <h3>评论热点</h3>
+            <div class="tag-cloud compact-tags">${(report.commentOpinion?.topCommentTopics || []).map(t => `<span class="tag blue">${escapeHtml(t.topic)} ${t.count}</span>`).join('')}</div>
+          </div>
         </div>
-        <div class="panel">
-          <h3>代表评论</h3>
-          ${(report.commentOpinion?.representativeComments || []).map(v => `<div class="voice" data-bucket="comment"><span class="tag">${v.sentiment}</span><span class="tag blue">${v.topic}</span><blockquote>${escapeHtml(v.originalText)}</blockquote><p><strong>翻译：</strong>${escapeHtml(v.translationZh)}</p>${v.analysisZh ? `<p><strong>分析：</strong>${escapeHtml(v.analysisZh)}</p>` : ''}<a class="btn" href="${v.postUrl}" target="_blank" rel="noreferrer">查看原帖</a></div>`).join('')}
+        <p class="small muted comment-limit">${(report.commentOpinion?.limitations || []).join(' ')}</p>
+        <h3>代表评论</h3>
+        <div class="comment-list">
+          ${(report.commentOpinion?.representativeComments || []).map(v => `<div class="voice compact-voice" data-bucket="comment"><div><span class="tag">${escapeHtml(v.sentiment)}</span><span class="tag blue">${escapeHtml(v.topic)}</span></div><blockquote>${escapeHtml(v.originalText)}</blockquote><p><strong>翻译：</strong>${escapeHtml(v.translationZh)}</p>${v.analysisZh ? `<p><strong>分析：</strong>${escapeHtml(v.analysisZh)}</p>` : ''}<a class="btn" href="${v.postUrl}" target="_blank" rel="noreferrer">查看原帖</a></div>`).join('')}
         </div>
       </div>
     </section>
@@ -944,6 +948,72 @@ function appleCss() {
       line-height: 1.45;
     }
     .tag-cloud { line-height: 1.9; }
+    .comments-panel {
+      overflow: hidden;
+    }
+    .comment-head {
+      display: grid;
+      grid-template-columns: minmax(220px, .45fr) minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 8px;
+    }
+    .comment-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .comment-stats span {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 5px;
+      min-height: 28px;
+      padding: 4px 10px;
+      border-radius: 980px;
+      background: rgba(0, 0, 0, 0.055);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .comment-stats strong {
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 650;
+    }
+    .compact-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      line-height: 1.2;
+    }
+    .compact-tags .tag {
+      margin: 0;
+      max-width: 100%;
+    }
+    .comment-limit {
+      margin: 4px 0 10px;
+    }
+    .comment-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .compact-voice {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 9px;
+      background: rgba(245, 245, 247, 0.62);
+      min-width: 0;
+    }
+    .compact-voice:first-child {
+      border-top: 1px solid var(--line);
+      padding-top: 9px;
+    }
+    .compact-voice blockquote,
+    .compact-voice p {
+      overflow-wrap: anywhere;
+    }
     .voice {
       border-top: 1px solid var(--line);
       padding: 10px 0;
@@ -1011,6 +1081,7 @@ function appleCss() {
       .command-dock { grid-template-columns: 1fr; }
       .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .cockpit, .two, .status-strip { grid-template-columns: 1fr; }
+      .comment-head, .comment-list { grid-template-columns: 1fr; }
       .composition { grid-template-columns: 1fr; }
     }
     @media (max-width: 760px) {

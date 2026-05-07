@@ -381,6 +381,72 @@
       line-height: 1.45;
     }
     .tag-cloud { line-height: 1.9; }
+    .comments-panel {
+      overflow: hidden;
+    }
+    .comment-head {
+      display: grid;
+      grid-template-columns: minmax(220px, .45fr) minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 8px;
+    }
+    .comment-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .comment-stats span {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 5px;
+      min-height: 28px;
+      padding: 4px 10px;
+      border-radius: 980px;
+      background: rgba(0, 0, 0, 0.055);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .comment-stats strong {
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 650;
+    }
+    .compact-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      line-height: 1.2;
+    }
+    .compact-tags .tag {
+      margin: 0;
+      max-width: 100%;
+    }
+    .comment-limit {
+      margin: 4px 0 10px;
+    }
+    .comment-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .compact-voice {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 9px;
+      background: rgba(245, 245, 247, 0.62);
+      min-width: 0;
+    }
+    .compact-voice:first-child {
+      border-top: 1px solid var(--line);
+      padding-top: 9px;
+    }
+    .compact-voice blockquote,
+    .compact-voice p {
+      overflow-wrap: anywhere;
+    }
     .voice {
       border-top: 1px solid var(--line);
       padding: 10px 0;
@@ -448,6 +514,7 @@
       .command-dock { grid-template-columns: 1fr; }
       .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .cockpit, .two, .status-strip { grid-template-columns: 1fr; }
+      .comment-head, .comment-list { grid-template-columns: 1fr; }
       .composition { grid-template-columns: 1fr; }
     }
     @media (max-width: 760px) {

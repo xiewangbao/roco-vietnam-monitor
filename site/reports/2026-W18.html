@@ -382,6 +382,72 @@
       line-height: 1.45;
     }
     .tag-cloud { line-height: 1.9; }
+    .comments-panel {
+      overflow: hidden;
+    }
+    .comment-head {
+      display: grid;
+      grid-template-columns: minmax(220px, .45fr) minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 8px;
+    }
+    .comment-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .comment-stats span {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 5px;
+      min-height: 28px;
+      padding: 4px 10px;
+      border-radius: 980px;
+      background: rgba(0, 0, 0, 0.055);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .comment-stats strong {
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 650;
+    }
+    .compact-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      line-height: 1.2;
+    }
+    .compact-tags .tag {
+      margin: 0;
+      max-width: 100%;
+    }
+    .comment-limit {
+      margin: 4px 0 10px;
+    }
+    .comment-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .compact-voice {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 9px;
+      background: rgba(245, 245, 247, 0.62);
+      min-width: 0;
+    }
+    .compact-voice:first-child {
+      border-top: 1px solid var(--line);
+      padding-top: 9px;
+    }
+    .compact-voice blockquote,
+    .compact-voice p {
+      overflow-wrap: anywhere;
+    }
     .voice {
       border-top: 1px solid var(--line);
       padding: 10px 0;
@@ -449,6 +515,7 @@
       .command-dock { grid-template-columns: 1fr; }
       .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .cockpit, .two, .status-strip { grid-template-columns: 1fr; }
+      .comment-head, .comment-list { grid-template-columns: 1fr; }
       .composition { grid-template-columns: 1fr; }
     }
     @media (max-width: 760px) {
@@ -589,17 +656,21 @@
 
     <section id="comments">
       <h2>评论舆情</h2>
-      <div class="grid two">
-        <div class="panel">
-          <h3>评论情绪</h3>
-          <p><strong>正面</strong> 4</p><p><strong>中性</strong> 16</p><p><strong>高风险负面</strong> 3</p><p><strong>负面</strong> 2</p>
-          <h3>评论热点</h3>
-          <span class="tag blue">越南玩家自发讨论 12</span><span class="tag blue">宠物、角色、养成 7</span><span class="tag blue">社群互动、组队、公会 2</span><span class="tag blue">充值、付费、礼包 2</span><span class="tag blue">发行时间猜测 2</span><span class="tag blue">诈骗、外挂、私服、黑产风险 1</span>
-          <p class="small muted">评论舆情基于 Facebook feed 中可见和已展开的评论。 未完全展开的完整评论线程已进入缺口日志，因此评论舆情代表可见样本，不代表全量评论。</p>
+      <div class="panel comments-panel">
+        <div class="comment-head">
+          <div>
+            <h3>评论情绪</h3>
+            <div class="comment-stats"><span><strong>正面</strong>4</span><span><strong>中性</strong>16</span><span><strong>高风险负面</strong>3</span><span><strong>负面</strong>2</span></div>
+          </div>
+          <div>
+            <h3>评论热点</h3>
+            <div class="tag-cloud compact-tags"><span class="tag blue">越南玩家自发讨论 12</span><span class="tag blue">宠物、角色、养成 7</span><span class="tag blue">社群互动、组队、公会 2</span><span class="tag blue">充值、付费、礼包 2</span><span class="tag blue">发行时间猜测 2</span><span class="tag blue">诈骗、外挂、私服、黑产风险 1</span></div>
+          </div>
         </div>
-        <div class="panel">
-          <h3>代表评论</h3>
-          <div class="voice" data-bucket="comment"><span class="tag">正面</span><span class="tag blue">宠物、角色、养成</span><blockquote>Ông solo à hay có người vô kéo boss thế ông</blockquote><p><strong>翻译：</strong>你是自己单挑 Boss，还是有人进来帮你带 Boss？</p><p><strong>分析：</strong>情绪为「正面」，说明这条内容更偏兴趣表达或经验分享。 这类内容说明越南玩家对宠物外观、稀有度、进化、强度和队伍搭配已经有较深讨论，未来发行前可作为核心兴趣点和内容教育重点。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2123031268489945/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice" data-bucket="comment"><span class="tag">中性</span><span class="tag blue">宠物、角色、养成</span><blockquote>Lv40 nâng nó lên 2 là tiến hoá được tới dạng cuối luôn</blockquote><p><strong>翻译：</strong>玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。</p><p><strong>分析：</strong>情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容说明越南玩家对宠物外观、稀有度、进化、强度和队伍搭配已经有较深讨论，未来发行前可作为核心兴趣点和内容教育重点。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2123031268489945/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice" data-bucket="comment"><span class="tag">高风险负面</span><span class="tag blue">社群互动、组队、公会</span><blockquote>B cày k .mình cho acc có pass nè</blockquote><p><strong>翻译：</strong>你要不要帮忙代练/刷？我这里有带通行证的账号。</p><p><strong>分析：</strong>情绪为「高风险负面」，说明这条内容更偏信息询问和中性交流。 这类内容体现玩家愿意通过 Group 借宠、组队或互助完成目标，说明社区自传播和互助结构已经自然出现。风险上需关注「账号买卖」，避免其在发行前形成错误渠道或非官方认知。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122985531827852/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice" data-bucket="comment"><span class="tag">正面</span><span class="tag blue">越南玩家自发讨论</span><blockquote>Đag chs và thấy cx ổn</blockquote><p><strong>翻译：</strong>正在玩，感觉整体还可以。</p><p><strong>分析：</strong>情绪为「正面」，说明这条内容更偏兴趣表达或经验分享。 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122892555170483/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice" data-bucket="comment"><span class="tag">中性</span><span class="tag blue">越南玩家自发讨论</span><blockquote>nhập đại vào đấy vài lần=)) htrc tui vừa ms bj xong</blockquote><p><strong>翻译：</strong>随便输入/尝试几次就行，我前阵子也刚遇到过。</p><p><strong>分析：</strong>情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122352235224515/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice" data-bucket="comment"><span class="tag">高风险负面</span><span class="tag blue">充值、付费、礼包</span><blockquote>Bán kiểu gì v bạn</blockquote><p><strong>翻译：</strong>这个要怎么卖/怎么交易？</p><p><strong>分析：</strong>情绪为「高风险负面」，说明这条内容更偏信息询问和中性交流。 这类内容代表潜在付费兴趣，但也容易连接到第三方充值、账号交易或礼包误导，需要在未来发行前持续观察。风险上需关注「账号买卖」，避免其在发行前形成错误渠道或非官方认知。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122264441899961/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice" data-bucket="comment"><span class="tag">高风险负面</span><span class="tag blue">越南玩家自发讨论</span><blockquote>Nhiu b</blockquote><p><strong>翻译：</strong>多少钱？</p><p><strong>分析：</strong>情绪为「高风险负面」，说明这条内容更偏信息询问和中性交流。 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。风险上需关注「账号买卖」，避免其在发行前形成错误渠道或非官方认知。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122264441899961/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice" data-bucket="comment"><span class="tag">正面</span><span class="tag blue">玩法机制</span><blockquote>Nhấp vào nút sẽ có hướng dẫn.</blockquote><p><strong>翻译：</strong>点击按钮后会出现指引。</p><p><strong>分析：</strong>情绪为「正面」，说明这条内容更偏兴趣表达或经验分享。 这类内容反映任务说明、机制理解或活动目标存在学习成本，适合作为未来越南本地化说明、FAQ 和新手引导的观察信号。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122225968570475/" target="_blank" rel="noreferrer">查看原帖</a></div>
+        <p class="small muted comment-limit">评论舆情基于 Facebook feed 中可见和已展开的评论。 未完全展开的完整评论线程已进入缺口日志，因此评论舆情代表可见样本，不代表全量评论。</p>
+        <h3>代表评论</h3>
+        <div class="comment-list">
+          <div class="voice compact-voice" data-bucket="comment"><div><span class="tag">正面</span><span class="tag blue">宠物、角色、养成</span></div><blockquote>Ông solo à hay có người vô kéo boss thế ông</blockquote><p><strong>翻译：</strong>你是自己单挑 Boss，还是有人进来帮你带 Boss？</p><p><strong>分析：</strong>情绪为「正面」，说明这条内容更偏兴趣表达或经验分享。 这类内容说明越南玩家对宠物外观、稀有度、进化、强度和队伍搭配已经有较深讨论，未来发行前可作为核心兴趣点和内容教育重点。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2123031268489945/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice compact-voice" data-bucket="comment"><div><span class="tag">中性</span><span class="tag blue">宠物、角色、养成</span></div><blockquote>Lv40 nâng nó lên 2 là tiến hoá được tới dạng cuối luôn</blockquote><p><strong>翻译：</strong>玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。</p><p><strong>分析：</strong>情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容说明越南玩家对宠物外观、稀有度、进化、强度和队伍搭配已经有较深讨论，未来发行前可作为核心兴趣点和内容教育重点。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2123031268489945/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice compact-voice" data-bucket="comment"><div><span class="tag">高风险负面</span><span class="tag blue">社群互动、组队、公会</span></div><blockquote>B cày k .mình cho acc có pass nè</blockquote><p><strong>翻译：</strong>你要不要帮忙代练/刷？我这里有带通行证的账号。</p><p><strong>分析：</strong>情绪为「高风险负面」，说明这条内容更偏信息询问和中性交流。 这类内容体现玩家愿意通过 Group 借宠、组队或互助完成目标，说明社区自传播和互助结构已经自然出现。风险上需关注「账号买卖」，避免其在发行前形成错误渠道或非官方认知。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122985531827852/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice compact-voice" data-bucket="comment"><div><span class="tag">正面</span><span class="tag blue">越南玩家自发讨论</span></div><blockquote>Đag chs và thấy cx ổn</blockquote><p><strong>翻译：</strong>正在玩，感觉整体还可以。</p><p><strong>分析：</strong>情绪为「正面」，说明这条内容更偏兴趣表达或经验分享。 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122892555170483/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice compact-voice" data-bucket="comment"><div><span class="tag">中性</span><span class="tag blue">越南玩家自发讨论</span></div><blockquote>nhập đại vào đấy vài lần=)) htrc tui vừa ms bj xong</blockquote><p><strong>翻译：</strong>随便输入/尝试几次就行，我前阵子也刚遇到过。</p><p><strong>分析：</strong>情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122352235224515/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice compact-voice" data-bucket="comment"><div><span class="tag">高风险负面</span><span class="tag blue">充值、付费、礼包</span></div><blockquote>Bán kiểu gì v bạn</blockquote><p><strong>翻译：</strong>这个要怎么卖/怎么交易？</p><p><strong>分析：</strong>情绪为「高风险负面」，说明这条内容更偏信息询问和中性交流。 这类内容代表潜在付费兴趣，但也容易连接到第三方充值、账号交易或礼包误导，需要在未来发行前持续观察。风险上需关注「账号买卖」，避免其在发行前形成错误渠道或非官方认知。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122264441899961/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice compact-voice" data-bucket="comment"><div><span class="tag">高风险负面</span><span class="tag blue">越南玩家自发讨论</span></div><blockquote>Nhiu b</blockquote><p><strong>翻译：</strong>多少钱？</p><p><strong>分析：</strong>情绪为「高风险负面」，说明这条内容更偏信息询问和中性交流。 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。风险上需关注「账号买卖」，避免其在发行前形成错误渠道或非官方认知。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122264441899961/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice compact-voice" data-bucket="comment"><div><span class="tag">正面</span><span class="tag blue">玩法机制</span></div><blockquote>Nhấp vào nút sẽ có hướng dẫn.</blockquote><p><strong>翻译：</strong>点击按钮后会出现指引。</p><p><strong>分析：</strong>情绪为「正面」，说明这条内容更偏兴趣表达或经验分享。 这类内容反映任务说明、机制理解或活动目标存在学习成本，适合作为未来越南本地化说明、FAQ 和新手引导的观察信号。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122225968570475/" target="_blank" rel="noreferrer">查看原帖</a></div>
         </div>
       </div>
     </section>
