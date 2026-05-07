@@ -4,7 +4,7 @@
   "sourceSchemaVersion": "stage4.structured_weekly.v1",
   "reportTitle": "Roco Kingdom 越南 Facebook Group 每周舆情监测报告",
   "reportWeek": "2026-W18",
-  "dateGenerated": "2026-04-29",
+  "dateGenerated": "2026-05-07",
   "timeRange": {
     "start": "2026-04-24T00:00:00+08:00",
     "end": "2026-04-29T08:24:46.014Z",
@@ -17,9 +17,9 @@
     "dataAccessMethod": "browser_automation",
     "feedSortPreference": "newest_first",
     "feedSortUiLabelZh": "新帖子",
-    "dataCompleteness": "进行中周数据；评论线程不完整；4/30 不补跑，后续周跑覆盖。",
+    "dataCompleteness": "partial_in_progress_week_visible_feed_crawl",
     "limitations": [
-      "本次抓取在 2026-04-29 执行，4/30 不补跑，后续正式周跑覆盖完整周期。",
+      "本次抓取从 2026-04-24T00:00:00+08:00 起算，结束于 2026-04-29T08:24:46.014Z；如为周中执行，仍属于进行中周。",
       "评论为可见评论和部分展开结果，完整评论线程仍有缺口。",
       "部分时间为 Facebook 相对时间标签，尚未全部转成绝对时间。",
       "部分内容为媒体或跨发帖，结构化时已列入低置信度或去重/剔除清单。"
@@ -48,7 +48,7 @@
         "count": 4
       }
     ],
-    "dataCompletenessNote": "本报告基于 2026-04-24 至 2026-04-29 的进行中周可见内容。评论仅覆盖可见/部分展开内容。"
+    "dataCompletenessNote": "本报告基于 2026-04-24T00:00:00+08:00 至 2026-04-29T08:24:46.014Z 的可见内容。评论覆盖 feed 可见评论和 post-detail 补抓到的可见评论，未展开或不可见线程不纳入结论。"
   },
   "summary": "本次进行中周抓取显示，越南玩家社区已经出现持续的自然讨论，核心集中在宠物养成、任务攻略、好友地图/借宠完成任务、Battle Pass 相关宠物和设备/权限问题。讨论多为玩家互助和攻略询问，说明当前社区有自发学习和传播动力。负面内容主要不是大规模口碑崩坏，而是任务理解、账号/名称找回、设备权限和本地化理解上的摩擦。风险侧出现少量账号/道具交易、充值渠道询问，以及“是否正式版/已经正式”的认知混淆。由于 Roco Kingdom 尚未在越南正式发行，这些讨论更适合作为未来发行前的兴趣、认知和风险观察信号，而不是即时运营响应对象。",
   "metrics": {
@@ -69,6 +69,133 @@
     ],
     "sentimentHealthScore": 38,
     "futureLaunchSignalScore": 82
+  },
+  "commentOpinion": {
+    "commentCount": 25,
+    "sentimentSummary": {
+      "正面": 4,
+      "中性": 16,
+      "高风险负面": 3,
+      "负面": 2
+    },
+    "topCommentTopics": [
+      {
+        "topic": "越南玩家自发讨论",
+        "count": 12
+      },
+      {
+        "topic": "宠物、角色、养成",
+        "count": 7
+      },
+      {
+        "topic": "社群互动、组队、公会",
+        "count": 2
+      },
+      {
+        "topic": "充值、付费、礼包",
+        "count": 2
+      },
+      {
+        "topic": "发行时间猜测",
+        "count": 2
+      },
+      {
+        "topic": "诈骗、外挂、私服、黑产风险",
+        "count": 1
+      }
+    ],
+    "representativeComments": [
+      {
+        "originalText": "Ông solo à hay có người vô kéo boss thế ông",
+        "translationZh": "该内容在讨论宠物养成细节，直译需结合图片或上下文复核；核心关注点是宠物获取、异色/配色、强度或养成路径。",
+        "analysisZh": "情绪为「正面」，说明这条内容更偏兴趣表达或经验分享。 这类内容说明越南玩家对宠物外观、稀有度、进化、强度和队伍搭配已经有较深讨论，未来发行前可作为核心兴趣点和内容教育重点。暂未触发高风险标签，主要作为自然兴趣和需求观察。",
+        "sentiment": "正面",
+        "topic": "宠物、角色、养成",
+        "sourceGroup": "Roco Kingdom Viet Nam",
+        "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2123031268489945/",
+        "riskLabels": []
+      },
+      {
+        "originalText": "Lv40 nâng nó lên 2 là tiến hoá được tới dạng cuối luôn",
+        "translationZh": "玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。",
+        "analysisZh": "情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容说明越南玩家对宠物外观、稀有度、进化、强度和队伍搭配已经有较深讨论，未来发行前可作为核心兴趣点和内容教育重点。暂未触发高风险标签，主要作为自然兴趣和需求观察。",
+        "sentiment": "中性",
+        "topic": "宠物、角色、养成",
+        "sourceGroup": "Roco Kingdom Viet Nam",
+        "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2123031268489945/",
+        "riskLabels": []
+      },
+      {
+        "originalText": "B cày k .mình cho acc có pass nè",
+        "translationZh": "该内容在寻求社区互助，直译需结合图片或上下文复核；主要需求是借宠、进好友地图、组队或通过社群降低任务门槛；同时触发「账号买卖」风险标签。",
+        "analysisZh": "情绪为「高风险负面」，说明这条内容更偏信息询问和中性交流。 这类内容体现玩家愿意通过 Group 借宠、组队或互助完成目标，说明社区自传播和互助结构已经自然出现。风险上需关注「账号买卖」，避免其在发行前形成错误渠道或非官方认知。",
+        "sentiment": "高风险负面",
+        "topic": "社群互动、组队、公会",
+        "sourceGroup": "Roco Kingdom Viet Nam",
+        "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2122985531827852/",
+        "riskLabels": [
+          "账号买卖"
+        ]
+      },
+      {
+        "originalText": "Đag chs và thấy cx ổn",
+        "translationZh": "该内容为玩家自发讨论，直译需结合图片或上下文复核；可用于判断社区活跃度、兴趣扩散和潜在发行前认知。",
+        "analysisZh": "情绪为「正面」，说明这条内容更偏兴趣表达或经验分享。 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。暂未触发高风险标签，主要作为自然兴趣和需求观察。",
+        "sentiment": "正面",
+        "topic": "越南玩家自发讨论",
+        "sourceGroup": "Roco Kingdom Viet Nam",
+        "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2122892555170483/",
+        "riskLabels": []
+      },
+      {
+        "originalText": "nhập đại vào đấy vài lần=)) htrc tui vừa ms bj xong",
+        "translationZh": "该内容为玩家自发讨论，直译需结合图片或上下文复核；可用于判断社区活跃度、兴趣扩散和潜在发行前认知。",
+        "analysisZh": "情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。暂未触发高风险标签，主要作为自然兴趣和需求观察。",
+        "sentiment": "中性",
+        "topic": "越南玩家自发讨论",
+        "sourceGroup": "Roco Kingdom Viet Nam",
+        "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2122352235224515/",
+        "riskLabels": []
+      },
+      {
+        "originalText": "Bán kiểu gì v bạn",
+        "translationZh": "该内容涉及付费或礼包相关问题，直译需结合图片或上下文复核；需要观察其对充值入口、Battle Pass、月卡或第三方渠道的认知；同时触发「账号买卖」风险标签。",
+        "analysisZh": "情绪为「高风险负面」，说明这条内容更偏信息询问和中性交流。 这类内容代表潜在付费兴趣，但也容易连接到第三方充值、账号交易或礼包误导，需要在未来发行前持续观察。风险上需关注「账号买卖」，避免其在发行前形成错误渠道或非官方认知。",
+        "sentiment": "高风险负面",
+        "topic": "充值、付费、礼包",
+        "sourceGroup": "Roco Kingdom Viet Nam",
+        "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2122264441899961/",
+        "riskLabels": [
+          "账号买卖"
+        ]
+      },
+      {
+        "originalText": "Nhiu b",
+        "translationZh": "短句/昵称式内容，直译需要结合图片或评论上下文复核；可判断为「越南玩家自发讨论」相关互动；同时触发「账号买卖」风险标签。",
+        "analysisZh": "情绪为「高风险负面」，说明这条内容更偏信息询问和中性交流。 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。风险上需关注「账号买卖」，避免其在发行前形成错误渠道或非官方认知。",
+        "sentiment": "高风险负面",
+        "topic": "越南玩家自发讨论",
+        "sourceGroup": "Roco Kingdom Viet Nam",
+        "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2122264441899961/",
+        "riskLabels": [
+          "账号买卖"
+        ]
+      },
+      {
+        "originalText": "Nhấp vào nút sẽ có hướng dẫn.",
+        "translationZh": "该内容在询问玩法或任务机制，直译需结合图片或上下文复核；核心诉求是看懂任务条件、找到完成方法或确认机制规则。",
+        "analysisZh": "情绪为「正面」，说明这条内容更偏兴趣表达或经验分享。 这类内容反映任务说明、机制理解或活动目标存在学习成本，适合作为未来越南本地化说明、FAQ 和新手引导的观察信号。暂未触发高风险标签，主要作为自然兴趣和需求观察。",
+        "sentiment": "正面",
+        "topic": "玩法机制",
+        "sourceGroup": "Roco Kingdom Viet Nam",
+        "postUrl": "https://www.facebook.com/groups/1410112269781852/posts/2122225968570475/",
+        "riskLabels": []
+      }
+    ],
+    "limitations": [
+      "评论舆情基于 Facebook feed 中可见和已展开的评论。",
+      "未完全展开的完整评论线程已进入缺口日志，因此评论舆情代表可见样本，不代表全量评论。"
+    ]
   },
   "groupSourceStatus": [
     {
@@ -136,7 +263,7 @@
       "weekOverWeekChange": "首个真实抓取周，暂无环比",
       "marketSignalValue": "高",
       "representativePostUrl": "https://www.facebook.com/groups/1410112269781852/posts/2123147308478341/",
-      "notes": "玩家询问宠物性格是否可以重置、如何重置，以及重置后是随机还是可选择。"
+      "notes": "玩家询问宠物性格是否可以重置、如何重置，以及重置后是随机还是可选择。 情绪为「正面」，说明这条内容更偏兴趣表达或经验分享。 这类内容说明越南玩家对宠物外观、稀有度、进化、强度和队伍搭配已经有较深讨论，未来发行前可作为核心兴趣点和内容教育重点。暂未触发高风险标签，主要作为自然兴趣和需求观察。"
     },
     {
       "rank": 2,
@@ -147,7 +274,7 @@
       "weekOverWeekChange": "首个真实抓取周，暂无环比",
       "marketSignalValue": "高",
       "representativePostUrl": "https://www.facebook.com/groups/1410112269781852/posts/2123147308478341/",
-      "notes": "玩家询问宠物性格是否可以重置、如何重置，以及重置后是随机还是可选择。"
+      "notes": "玩家询问宠物性格是否可以重置、如何重置，以及重置后是随机还是可选择。 情绪为「正面」，说明这条内容更偏兴趣表达或经验分享。 这类内容说明越南玩家对宠物外观、稀有度、进化、强度和队伍搭配已经有较深讨论，未来发行前可作为核心兴趣点和内容教育重点。暂未触发高风险标签，主要作为自然兴趣和需求观察。"
     },
     {
       "rank": 3,
@@ -158,7 +285,7 @@
       "weekOverWeekChange": "首个真实抓取周，暂无环比",
       "marketSignalValue": "高",
       "representativePostUrl": "https://www.facebook.com/groups/1410112269781852/posts/2123045795155159/",
-      "notes": "机器初译摘要：该内容主要涉及「越南玩家自发讨论」。原文需在重点引用前人工复核。"
+      "notes": "该内容为玩家自发讨论，直译需结合图片或上下文复核；可用于判断社区活跃度、兴趣扩散和潜在发行前认知。 情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。暂未触发高风险标签，主要作为自然兴趣和需求观察。"
     },
     {
       "rank": 4,
@@ -169,7 +296,7 @@
       "weekOverWeekChange": "首个真实抓取周，暂无环比",
       "marketSignalValue": "高",
       "representativePostUrl": "https://www.facebook.com/groups/1410112269781852/posts/2122985531827852/",
-      "notes": "玩家想借他人的 Battle Pass 相关宠物/道具来完成任务或图鉴。"
+      "notes": "玩家想借他人的 Battle Pass 相关宠物/道具来完成任务或图鉴。 情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容体现玩家愿意通过 Group 借宠、组队或互助完成目标，说明社区自传播和互助结构已经自然出现。暂未触发高风险标签，主要作为自然兴趣和需求观察。"
     },
     {
       "rank": 5,
@@ -180,7 +307,7 @@
       "weekOverWeekChange": "首个真实抓取周，暂无环比",
       "marketSignalValue": "高",
       "representativePostUrl": "https://www.facebook.com/groups/1410112269781852/posts/2122985531827852/",
-      "notes": "玩家想借他人的 Battle Pass 相关宠物/道具来完成任务或图鉴。"
+      "notes": "玩家想借他人的 Battle Pass 相关宠物/道具来完成任务或图鉴。 情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容体现玩家愿意通过 Group 借宠、组队或互助完成目标，说明社区自传播和互助结构已经自然出现。暂未触发高风险标签，主要作为自然兴趣和需求观察。"
     },
     {
       "rank": 6,
@@ -191,7 +318,7 @@
       "weekOverWeekChange": "首个真实抓取周，暂无环比",
       "marketSignalValue": "中",
       "representativePostUrl": "https://www.facebook.com/groups/1410112269781852/posts/2122447108548361/",
-      "notes": "玩家询问任务如何完成，包含要投放/使用哪类精灵或如何解锁机关。"
+      "notes": "玩家询问任务如何完成，包含要投放/使用哪类精灵或如何解锁机关。 情绪为「混合」，说明这条内容更偏一边有兴趣一边存在困惑。 这类内容反映任务说明、机制理解或活动目标存在学习成本，适合作为未来越南本地化说明、FAQ 和新手引导的观察信号。暂未触发高风险标签，主要作为自然兴趣和需求观察。"
     },
     {
       "rank": 7,
@@ -202,7 +329,7 @@
       "weekOverWeekChange": "首个真实抓取周，暂无环比",
       "marketSignalValue": "中",
       "representativePostUrl": "https://www.facebook.com/groups/1410112269781852/posts/2122985531827852/",
-      "notes": "机器初译摘要：该内容主要涉及「社群互动、组队、公会」，并触发风险标签「账号买卖」。原文需在重点引用前人工复核。"
+      "notes": "该内容在寻求社区互助，直译需结合图片或上下文复核；主要需求是借宠、进好友地图、组队或通过社群降低任务门槛；同时触发「账号买卖」风险标签。 情绪为「高风险负面」，说明这条内容更偏信息询问和中性交流。 这类内容体现玩家愿意通过 Group 借宠、组队或互助完成目标，说明社区自传播和互助结构已经自然出现。风险上需关注「账号买卖」，避免其在发行前形成错误渠道或非官方认知。"
     },
     {
       "rank": 8,
@@ -213,7 +340,7 @@
       "weekOverWeekChange": "首个真实抓取周，暂无环比",
       "marketSignalValue": "中",
       "representativePostUrl": "https://www.facebook.com/groups/roco.legend/posts/1760611484904441/",
-      "notes": "玩家想借他人的 Battle Pass 相关宠物/道具来完成任务或图鉴。"
+      "notes": "玩家想借他人的 Battle Pass 相关宠物/道具来完成任务或图鉴。 情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容体现玩家愿意通过 Group 借宠、组队或互助完成目标，说明社区自传播和互助结构已经自然出现。暂未触发高风险标签，主要作为自然兴趣和需求观察。"
     }
   ],
   "sentimentAnalysis": {
@@ -312,6 +439,7 @@
     {
       "originalText": "Game này mình có thể đổi lại tính cách của pet ko mn ơi\nVới lại đổi ntn và tính cách sau khi đổi là ngẫu nhiên hay mình được chọn ạ",
       "translationZh": "玩家询问宠物性格是否可以重置、如何重置，以及重置后是随机还是可选择。",
+      "analysisZh": "情绪为「正面」，说明这条内容更偏兴趣表达或经验分享。 这类内容说明越南玩家对宠物外观、稀有度、进化、强度和队伍搭配已经有较深讨论，未来发行前可作为核心兴趣点和内容教育重点。暂未触发高风险标签，主要作为自然兴趣和需求观察。",
       "sentiment": "正面",
       "topic": "宠物、角色、养成",
       "sourceGroup": "Roco Kingdom Viet Nam",
@@ -321,6 +449,7 @@
     {
       "originalText": "Mn ai có hạt sồi pet battle pass cho em bắt ké làm nv với ạ con nào cũng được em cảm ơn.",
       "translationZh": "玩家想借他人的 Battle Pass 相关宠物/道具来完成任务或图鉴。",
+      "analysisZh": "情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容体现玩家愿意通过 Group 借宠、组队或互助完成目标，说明社区自传播和互助结构已经自然出现。暂未触发高风险标签，主要作为自然兴趣和需求观察。",
       "sentiment": "中性",
       "topic": "社群互动、组队、公会",
       "sourceGroup": "Roco Kingdom Viet Nam",
@@ -330,6 +459,7 @@
     {
       "originalText": "Game hiện tại là bản test hay đã là bản chính thức r vậy m.n",
       "translationZh": "玩家询问当前版本是测试版还是正式版；评论中有人误称已经正式。",
+      "analysisZh": "情绪为「正面」，说明这条内容更偏兴趣表达或经验分享。 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。风险上需关注「玩家误以为越南区已正式发行」，避免其在发行前形成错误渠道或非官方认知。",
       "sentiment": "正面",
       "topic": "发行时间猜测",
       "sourceGroup": "Cong Hoi Roco Kingdom Viet Nam",
@@ -339,6 +469,7 @@
     {
       "originalText": "Any game top up shop in here? I need to buy monthly gem pass",
       "translationZh": "玩家寻找充值或月卡购买渠道，存在支付/充值风险观察价值。",
+      "analysisZh": "情绪为「高风险负面」，说明这条内容更偏信息询问和中性交流。 这类内容体现玩家愿意通过 Group 借宠、组队或互助完成目标，说明社区自传播和互助结构已经自然出现。风险上需关注「充值骗局」，避免其在发行前形成错误渠道或非官方认知。",
       "sentiment": "高风险负面",
       "topic": "社群互动、组队、公会",
       "sourceGroup": "ROCO KINGDOM VN",
@@ -348,6 +479,7 @@
     {
       "originalText": "Điều kiện bắt buộc để ấp trứng dị màu\nMột đực một cái:\nĐây là điều kiện cơ bản nhất. Nếu là cùng giới tính hoặc không có giới tính (ví dụ như hệ cơ khí, thần thú) thì sẽ không thể sinh trứng.\nCùng một “nhóm trứng”:（ ảnh thứ 2 ）\nĐây là yếu tố quan trọng nhất để quyết định có thể sinh trứng hay không! Không phải dựa vào hệ (thuộc tính), mà là dựa vào “nhóm trứng” ẩn. Chỉ cần hai con thuộc cùng một nhóm trứng, hoặc mỗi con thuộc hai nhóm nhưng có điểm chung (ví dụ: A thuộc “nhóm độ",
       "translationZh": "内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。",
+      "analysisZh": "情绪为「负面」，说明这条内容更偏挫败、求助或使用障碍。 这类内容说明越南玩家对宠物外观、稀有度、进化、强度和队伍搭配已经有较深讨论，未来发行前可作为核心兴趣点和内容教育重点。暂未触发高风险标签，主要作为自然兴趣和需求观察。",
       "sentiment": "负面",
       "topic": "宠物、角色、养成",
       "sourceGroup": "Roco Kingdom: World Viet Nam Official",
