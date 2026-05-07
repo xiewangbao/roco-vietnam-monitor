@@ -27,32 +27,32 @@
   },
   "header": {
     "confirmedGroupCount": 6,
-    "validContentCount": 111,
+    "validContentCount": 109,
     "postCount": 68,
-    "commentCount": 43,
+    "commentCount": 41,
     "mainLanguageDistribution": [
       {
         "language": "vi",
-        "count": 92
+        "count": 88
       },
       {
         "language": "mixed",
-        "count": 15
+        "count": 18
       },
       {
         "language": "zh",
-        "count": 4
+        "count": 3
       }
     ],
     "dataCompletenessNote": "本报告基于 2026-04-30T00:00:00+08:00 至 2026-05-06T04:21:50.275Z 的可见内容。评论覆盖 feed 可见评论和 post-detail 补抓到的可见评论，未展开或不可见线程不纳入结论。"
   },
   "summary": "本次进行中周抓取显示，越南玩家社区已经出现持续的自然讨论，核心集中在宠物养成、任务攻略、好友地图/借宠完成任务、Battle Pass 相关宠物和设备/权限问题。讨论多为玩家互助和攻略询问，说明当前社区有自发学习和传播动力。负面内容主要不是大规模口碑崩坏，而是任务理解、账号/名称找回、设备权限和本地化理解上的摩擦。风险侧出现少量账号/道具交易、充值渠道询问，以及“是否正式版/已经正式”的认知混淆。由于 Roco Kingdom 尚未在越南正式发行，这些讨论更适合作为未来发行前的兴趣、认知和风险观察信号，而不是即时运营响应对象。",
   "metrics": {
-    "totalDiscussionVolume": 111,
-    "validRocoRelatedContent": 111,
-    "highRelevanceRate": 15.3,
-    "positiveRate": 9.9,
-    "neutralRate": 73.9,
+    "totalDiscussionVolume": 109,
+    "validRocoRelatedContent": 109,
+    "highRelevanceRate": 15.6,
+    "positiveRate": 10.1,
+    "neutralRate": 73.4,
     "negativeRate": 1.8,
     "highRiskCount": 0,
     "activeGroupCount": 6,
@@ -64,19 +64,19 @@
       "Bug、闪退、卡顿、登录问题"
     ],
     "sentimentHealthScore": 62,
-    "futureLaunchSignalScore": 79
+    "futureLaunchSignalScore": 78
   },
   "commentOpinion": {
-    "commentCount": 43,
+    "commentCount": 41,
     "sentimentSummary": {
       "混合": 11,
-      "中性": 30,
+      "中性": 28,
       "正面": 2
     },
     "topCommentTopics": [
       {
         "topic": "越南玩家自发讨论",
-        "count": 26
+        "count": 24
       },
       {
         "topic": "宠物、角色、养成",
@@ -147,7 +147,7 @@
         "riskLabels": []
       },
       {
-        "originalText": "Con này đi với team sao băng được ko nhỉ",
+        "originalText": "Con này đi với team sao b[用户名已脱敏] ko nhỉ",
         "translationZh": "这只宠物能不能放进“流星/陨星”体系队伍里？",
         "analysisZh": "情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。暂未触发高风险标签，主要作为自然兴趣和需求观察。",
         "sentiment": "中性",
@@ -187,8 +187,8 @@
       "groupName": "Roco Kingdom Viet Nam",
       "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
       "accessStatus": "已加入 / 公开小组",
-      "weeklyContentVolume": 45,
-      "dataCompleteness": "进行中周可见内容已抓取，评论不完整",
+      "weeklyContentVolume": 44,
+      "dataCompleteness": "可见帖子与可展开评论已抓取；受 Facebook 可见性限制，非保证全量评论",
       "includedInFormalMonitoring": true,
       "notes": "正式监测源。"
     },
@@ -197,7 +197,7 @@
       "groupUrl": "https://www.facebook.com/groups/roco.legend/",
       "accessStatus": "已加入 / 公开小组",
       "weeklyContentVolume": 31,
-      "dataCompleteness": "进行中周可见内容已抓取，评论不完整",
+      "dataCompleteness": "可见帖子与可展开评论已抓取；受 Facebook 可见性限制，非保证全量评论",
       "includedInFormalMonitoring": true,
       "notes": "正式监测源。"
     },
@@ -206,7 +206,7 @@
       "groupUrl": "https://www.facebook.com/groups/1729046980837718/",
       "accessStatus": "已加入 / 公开小组",
       "weeklyContentVolume": 8,
-      "dataCompleteness": "进行中周可见内容已抓取，评论不完整",
+      "dataCompleteness": "可见帖子与可展开评论已抓取；受 Facebook 可见性限制，非保证全量评论",
       "includedInFormalMonitoring": true,
       "notes": "名称含 Official，但不默认认定为官方渠道。"
     },
@@ -215,7 +215,7 @@
       "groupUrl": "https://www.facebook.com/groups/3072730653028573/",
       "accessStatus": "已加入 / 公开小组",
       "weeklyContentVolume": 15,
-      "dataCompleteness": "进行中周可见内容已抓取，评论不完整",
+      "dataCompleteness": "可见帖子与可展开评论已抓取；受 Facebook 可见性限制，非保证全量评论",
       "includedInFormalMonitoring": true,
       "notes": "正式监测源。"
     },
@@ -224,7 +224,7 @@
       "groupUrl": "https://www.facebook.com/groups/947481474801675/",
       "accessStatus": "已加入 / 公开小组",
       "weeklyContentVolume": 6,
-      "dataCompleteness": "进行中周可见内容已抓取，评论不完整",
+      "dataCompleteness": "可见帖子与可展开评论已抓取；受 Facebook 可见性限制，非保证全量评论",
       "includedInFormalMonitoring": true,
       "notes": "正式监测源。"
     },
@@ -232,8 +232,8 @@
       "groupName": "Roco Kingdom Mobile Viet Nam",
       "groupUrl": "https://www.facebook.com/groups/3223551104630521/",
       "accessStatus": "已加入 / 公开小组",
-      "weeklyContentVolume": 6,
-      "dataCompleteness": "进行中周可见内容已抓取，评论不完整",
+      "weeklyContentVolume": 5,
+      "dataCompleteness": "可见帖子与可展开评论已抓取；受 Facebook 可见性限制，非保证全量评论",
       "includedInFormalMonitoring": true,
       "notes": "正式监测源。"
     }
@@ -242,7 +242,7 @@
     {
       "rank": 1,
       "title": "越南玩家自发讨论",
-      "volume": 50,
+      "volume": 48,
       "sentiment": "中性",
       "heatScore": 100,
       "weekOverWeekChange": "首个真实抓取周，暂无环比",
@@ -292,7 +292,7 @@
       "weekOverWeekChange": "首个真实抓取周，暂无环比",
       "marketSignalValue": "中",
       "representativePostUrl": "https://www.facebook.com/groups/roco.legend/posts/1766600474305542/",
-      "notes": "该内容在询问玩法或任务机制，直译需结合图片或上下文复核；核心诉求是看懂任务条件、找到完成方法或确认机制规则。 情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容反映任务说明、机制理解或活动目标存在学习成本，适合作为未来越南本地化说明、FAQ 和新手引导的观察信号。暂未触发高风险标签，主要作为自然兴趣和需求观察。"
+      "notes": "请教一下怎么登录游戏；希望有人私信教一下我这种新手。 情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容反映任务说明、机制理解或活动目标存在学习成本，适合作为未来越南本地化说明、FAQ 和新手引导的观察信号。暂未触发高风险标签，主要作为自然兴趣和需求观察。"
     },
     {
       "rank": 6,
@@ -303,7 +303,7 @@
       "weekOverWeekChange": "首个真实抓取周，暂无环比",
       "marketSignalValue": "中",
       "representativePostUrl": "https://www.facebook.com/groups/1410112269781852/posts/2126669668126105/",
-      "notes": "该内容在寻求社区互助，直译需结合图片或上下文复核；主要需求是借宠、进好友地图、组队或通过社群降低任务门槛。 情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容体现玩家愿意通过 Group 借宠、组队或互助完成目标，说明社区自传播和互助结构已经自然出现。暂未触发高风险标签，主要作为自然兴趣和需求观察。"
+      "notes": "我这里目前只有“羊/山羊”相关的种子或道具。 情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容体现玩家愿意通过 Group 借宠、组队或互助完成目标，说明社区自传播和互助结构已经自然出现。暂未触发高风险标签，主要作为自然兴趣和需求观察。"
     },
     {
       "rank": 7,
@@ -325,7 +325,7 @@
       "weekOverWeekChange": "首个真实抓取周，暂无环比",
       "marketSignalValue": "中",
       "representativePostUrl": "https://www.facebook.com/groups/roco.legend/posts/1766600474305542/",
-      "notes": "该内容在询问玩法或任务机制，直译需结合图片或上下文复核；核心诉求是看懂任务条件、找到完成方法或确认机制规则。 情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容反映任务说明、机制理解或活动目标存在学习成本，适合作为未来越南本地化说明、FAQ 和新手引导的观察信号。暂未触发高风险标签，主要作为自然兴趣和需求观察。"
+      "notes": "请教一下怎么登录游戏；希望有人私信教一下我这种新手。 情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容反映任务说明、机制理解或活动目标存在学习成本，适合作为未来越南本地化说明、FAQ 和新手引导的观察信号。暂未触发高风险标签，主要作为自然兴趣和需求观察。"
     }
   ],
   "sentimentAnalysis": {
