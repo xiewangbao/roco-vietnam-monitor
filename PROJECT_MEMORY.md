@@ -28,6 +28,19 @@ This file records the standing product/content rules for future weekly dashboard
 - Group tables should visualize volume with bars, not only raw counts.
 - Sentiment and post/comment mix should be shown with stacked bars.
 - Data completeness notes must remain visible on the dashboard.
+- The "本周总览" section must not be a long paragraph. It should render as structured summary cards containing only: one-sentence conclusion, 3-5 key findings, and 3-5 main discussion clusters.
+- "本周总览" must let overseas publishing, market research, and community observation teams quickly understand: what Vietnamese players discussed this week, which discussions represent natural interest, which signals matter for future Vietnam launch, and what friction/risk/localization signals appeared.
+- Each key finding must follow "finding + evidence + market meaning": what players discussed, what data supports it, and why it matters for future Vietnam publishing observation.
+- Each discussion cluster must show: topic name, volume, post/comment split, sentiment, player question/focus, and market observation value.
+- Keep risk details and data completeness details in their dedicated modules, not inside the "本周总览" narrative.
+
+## Rerun And Data Review Rules
+
+- If effective content drops materially from the previous comparable run, review data sources before accepting the result. Check whether the period is partial-week, whether any major Group was crawled shallowly, whether post-detail comments were merged, whether structure cleaning removed valid records, and whether time-window rules excluded valid posts.
+- If a major Group drops sharply compared with the previous week, rerun that Group alone with newest-first sorting and compare raw record count, unique post URLs, comment gaps, and structured valid count.
+- If a feed crawl reports `hasMoreComments` or comment-section failures, extract post URLs and run post-detail comment deep crawl. Merge the added comments, then rerun Stage 4, Stage 5, quality check, and Dashboard preview.
+- If low-volume Groups remain low after targeted reruns and have no comment gaps, mark them as low-activity sources rather than silently treating them as complete.
+- For W20 on 2026-05-11, the initial 53 effective items were not accepted. Review found shallow crawling in `Cong Hoi Roco Kingdom Viet Nam`; targeted reruns and comment deep crawl raised the run to 76 effective items, 28 posts, and 48 comments. Use this as the precedent for future suspicious drops.
 
 ## Visual Style
 

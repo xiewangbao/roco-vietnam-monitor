@@ -15,12 +15,17 @@ const startDay = startDateMatch ? Number(startDateMatch[2]) : 24;
 const identityPatterns = [
   /^Yuexuan Peng$/i,
   /^管理员$/,
+  /^作者$/,
+  /^最相关$/,
   /^小组专家$/,
   /^新秀贡献者$/,
   /^杰出贡献者$/,
   /^·\s*关注$/,
   /^关注$/,
   /^Yuexuan Peng · 原声$/,
+  /^匿名互动者\s*\d+$/,
+  /^@?[A-Za-z][A-Za-z0-9_.-]{3,}$/,
+  /^[A-ZÀ-Ỹ][a-zà-ỹ]+(?:\s+[A-ZÀ-Ỹ][a-zà-ỹ]+){1,3}回复了$/,
   /^[A-ZÀ-Ỹ][a-zà-ỹ]+(?:\s+[A-ZÀ-Ỹ][a-zà-ỹ]+){1,3}\s*\)?$/,
 ];
 
@@ -34,11 +39,14 @@ function normalizeText(text) {
     .map((line) => line.trim())
     .filter(Boolean)
     .filter((line) => !identityPatterns.some((re) => re.test(line)))
+    .filter((line) => !/回复了$/.test(line))
+    .filter((line) => !/^Làm quen với đội ngũ quản trị viên/i.test(line))
     .filter((line) => !/^越南\s*·/.test(line))
+    .map((line) => line.replace(/^匿名互动者\s*\d+/, '[匿名互动者]'))
     .map((line) => line.replace(/\bid\s*\d+\b/gi, 'id[已脱敏]'))
     .map((line) => line.replace(/\b\d{6,}\b/g, '[数字ID已脱敏]'))
     .map((line) => line.replace(/…\s*展开/g, ''))
-    .map((line) => line.replace(/\b[A-ZÀ-Ỹ][a-zà-ỹ]+(?:\s+[A-ZÀ-Ỹ][a-zà-ỹ]+){1,3}\b(?=\s+(được|mình|bạn|có|không|ko|k\b|đẹp|thấy))/g, '[用户名已脱敏]'))
+    .map((line) => line.replace(/\b[A-ZÀ-Ỹ][a-zà-ỹ]+(?:\s+[A-ZÀ-Ỹ][a-zà-ỹ]+){1,3}\b(?=\s+(được|mình|bạn|có|không|ko|k\b|đẹp|thấy|trồng|làm|chỉ|lụm|này))/g, '[用户名已脱敏]'))
     .join('\n')
     .trim();
 }

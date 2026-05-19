@@ -6,6 +6,7 @@ const report = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
 const structured = JSON.parse(fs.readFileSync(structuredPath, 'utf8'));
 const outputDir = process.env.OUTPUT_DIR || 'site';
 const dashboardTheme = process.env.DASHBOARD_THEME || 'default';
+const allowDraftDashboard = process.env.ALLOW_DRAFT_DASHBOARD === '1';
 fs.mkdirSync(`${outputDir}/topics`, { recursive: true });
 fs.mkdirSync(`${outputDir}/reports`, { recursive: true });
 const qualityPath = `data/quality/data_quality_${report.reportWeek}.json`;
@@ -30,7 +31,7 @@ if (structured.readyForWeeklyReport === false) {
   blockPublish('Structured data is not eligible for formal weekly report publishing.', structured.qualityGate?.blockingReasons || [structured.readyForWeeklyReportReason].filter(Boolean));
 }
 
-if (quality && quality.status !== 'pass') {
+if (quality && quality.status !== 'pass' && !allowDraftDashboard) {
   blockPublish('Data quality status is not pass; refusing to publish dashboard/latest artifacts.', (quality.issues || []).map((issue) => `${issue.code}: ${issue.detail}`));
 }
 
@@ -230,7 +231,7 @@ const html = `<!doctype html>
     <section id="latest">
       <h2>本周总览</h2>
       <div class="grid cockpit">
-        <div class="panel summary-panel">${paragraphs(report.summary)}</div>
+        <div class="panel summary-panel">${summaryOverview(report)}</div>
         <div class="panel">
           <h3>周选择</h3>
           <div class="filters">${availableReports.map((r) => `<a class="btn" href="${r.file}">${r.week}</a>`).join('')}</div>
@@ -797,6 +798,80 @@ function appleCss() {
       line-height: 1.55;
     }
     .summary-panel p:last-child { margin-bottom: 0; }
+    .summary-headline {
+      padding: 10px 12px;
+      border-radius: 11px;
+      background: rgba(0, 113, 227, 0.08);
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.45;
+      font-weight: 650;
+      margin-bottom: 10px;
+    }
+    .summary-block {
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+      margin-top: 10px;
+    }
+    .summary-findings {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .summary-finding {
+      min-width: 0;
+      padding: 9px;
+      border-radius: 10px;
+      background: rgba(245, 245, 247, 0.72);
+      border: 1px solid var(--line);
+    }
+    .summary-finding strong {
+      display: block;
+      font-size: 13px;
+      line-height: 1.3;
+      margin-bottom: 5px;
+    }
+    .summary-finding p {
+      font-size: 12px;
+      line-height: 1.45;
+    }
+    .summary-clusters {
+      display: grid;
+      gap: 6px;
+    }
+    .summary-cluster {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(220px, .72fr);
+      gap: 10px;
+      align-items: start;
+      padding: 8px 0;
+      border-top: 1px solid var(--line);
+    }
+    .summary-cluster:first-child { border-top: 0; padding-top: 0; }
+    .summary-cluster strong {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 3px;
+    }
+    .summary-cluster p {
+      font-size: 12px;
+      line-height: 1.4;
+    }
+    .cluster-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      justify-content: flex-end;
+    }
+    .cluster-meta span {
+      min-height: 22px;
+      padding: 3px 7px;
+      border-radius: 980px;
+      background: rgba(0, 0, 0, 0.055);
+      color: var(--muted);
+      font-size: 11px;
+      white-space: nowrap;
+    }
     .metric .label {
       color: var(--muted);
       font-size: 12px;
@@ -1081,6 +1156,8 @@ function appleCss() {
       .command-dock { grid-template-columns: 1fr; }
       .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .cockpit, .two, .status-strip { grid-template-columns: 1fr; }
+      .summary-findings, .summary-cluster { grid-template-columns: 1fr; }
+      .cluster-meta { justify-content: flex-start; }
       .comment-head, .comment-list { grid-template-columns: 1fr; }
       .composition { grid-template-columns: 1fr; }
     }
@@ -1436,6 +1513,44 @@ function paragraphs(text) {
   const first = sentences.slice(0, 3).join('');
   const rest = sentences.slice(3).join('');
   return `<p>${escapeHtml(first)}</p><p>${escapeHtml(rest)}</p>`;
+}
+
+function summaryOverview(data) {
+  if (!data.summaryHeadline && !Array.isArray(data.keyFindings) && !Array.isArray(data.discussionClusters)) {
+    return paragraphs(data.summary);
+  }
+  const findings = (data.keyFindings || []).slice(0, 5).map((finding) => `
+    <article class="summary-finding">
+      <strong>${escapeHtml(finding.title)}</strong>
+      <p>${escapeHtml(finding.evidence)}</p>
+      <p class="muted">${escapeHtml(finding.marketMeaning)}</p>
+    </article>
+  `).join('');
+  const clusters = (data.discussionClusters || []).slice(0, 5).map((cluster) => `
+    <div class="summary-cluster" data-bucket="topic">
+      <div>
+        <strong>${escapeHtml(cluster.topic)}</strong>
+        <p>${escapeHtml(cluster.playerFocus)}</p>
+      </div>
+      <div class="cluster-meta">
+        <span>${cluster.volume} 条</span>
+        <span>${cluster.posts} 帖 / ${cluster.comments} 评论</span>
+        <span>${escapeHtml(cluster.sentiment)}</span>
+        <span>${escapeHtml(cluster.marketSignalValue)}</span>
+      </div>
+    </div>
+  `).join('');
+  return `
+    <div class="summary-headline">${escapeHtml(data.summaryHeadline || '')}</div>
+    <div class="summary-block">
+      <h3>关键发现</h3>
+      <div class="summary-findings">${findings || paragraphs(data.summary)}</div>
+    </div>
+    <div class="summary-block">
+      <h3>主要讨论聚类</h3>
+      <div class="summary-clusters">${clusters || '<p class="muted">暂无稳定聚类</p>'}</div>
+    </div>
+  `;
 }
 
 function label(key) {

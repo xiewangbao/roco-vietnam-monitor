@@ -47,6 +47,14 @@ function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
 }
 
+function countBy(arr, getKey) {
+  return arr.reduce((acc, item) => {
+    const key = getKey(item);
+    acc[key] = (acc[key] || 0) + 1;
+    return acc;
+  }, {});
+}
+
 function groupStats() {
   return structured.sourceStatus.confirmedGroups
     ? [
@@ -175,6 +183,96 @@ const topTopics = topics.slice(0, 8).map((topic, index) => {
   };
 });
 
+function postCommentSplit(topicItems) {
+  return {
+    posts: topicItems.filter((item) => item.recordType === 'post').length,
+    comments: topicItems.filter((item) => item.recordType === 'comment').length,
+  };
+}
+
+function dominantSentiment(topicMeta) {
+  return Object.entries(topicMeta.sentimentMix || {}).sort((a, b) => b[1] - a[1])[0]?.[0] || '中性';
+}
+
+function clusterFocus(topicName, topicItems) {
+  const summary = topicDiscussionSummary(topicName, topicItems, { sentimentMix: countBy(topicItems, (item) => item.sentiment) });
+  return summary
+    .replace(/^玩家主要(?:在问|讨论|围绕)：/, '')
+    .replace(/^该话题主要是玩家的非单一机制讨论，集中在：/, '')
+    .split('。')[0]
+    .slice(0, 120);
+}
+
+function buildSummaryHeadline() {
+  const top3 = topTopics.slice(0, 3).map((topic) => `「${topic.title}」`).join('、') || '核心话题';
+  const commentRate = valid ? Math.round((comments.length / valid) * 100) : 0;
+  const activeGroups = groupStats().filter((g) => g.weeklyContentVolume > 0).length;
+  return `本周期越南玩家讨论集中在${top3}，评论占比 ${commentRate}% 且覆盖 ${activeGroups}/6 个 Group，说明玩家互助和攻略追问仍有自然热度，具备未来越南发行前的市场观察价值。`;
+}
+
+function buildKeyFindings() {
+  const top3 = topTopics.slice(0, 3);
+  const findings = [];
+
+  for (const topic of top3) {
+    const topicItems = items.filter((item) => item.topics.includes(topic.title));
+    const split = postCommentSplit(topicItems);
+    findings.push({
+      title: `${topic.title}是本周期核心讨论之一`,
+      evidence: `${topic.title} ${topic.volume} 条，包含 ${split.posts} 帖 / ${split.comments} 评论，情绪以「${topic.sentiment}」为主。`,
+      marketMeaning: topic.notes,
+    });
+  }
+
+  if (comments.length) {
+    const commentRate = Number(((comments.length / valid) * 100).toFixed(1));
+    findings.push({
+      title: '评论区承担玩家互助和二次追问功能',
+      evidence: `本周期评论 ${comments.length} 条，占有效内容 ${commentRate}%；评论热点为 ${commentTopicSummary().slice(0, 3).map((topic) => `${topic.topic} ${topic.count}`).join('、')}。`,
+      marketMeaning: '玩家会在评论区继续补充步骤、解释机制、讨论宠物和互相帮助，说明自然社区不是单向转帖，而是已有互动型知识传播。',
+    });
+  }
+
+  return findings.slice(0, 5);
+}
+
+function buildDiscussionClusters() {
+  return topTopics.slice(0, 5).map((topic) => {
+    const topicItems = items.filter((item) => item.topics.includes(topic.title));
+    const split = postCommentSplit(topicItems);
+    return {
+      topic: topic.title,
+      volume: topic.volume,
+      posts: split.posts,
+      comments: split.comments,
+      sentiment: dominantSentiment(topics.find((item) => item.topic === topic.title) || {}),
+      playerFocus: clusterFocus(topic.title, topicItems),
+      marketSignalValue: topic.marketSignalValue,
+    };
+  });
+}
+
+function buildDetailedWeeklySummary() {
+  return [
+    buildSummaryHeadline(),
+    ...buildKeyFindings().map((finding) => `${finding.title}：${finding.evidence}${finding.marketMeaning}`),
+  ].join('\n\n');
+}
+
+function reportCommentSentiment() {
+  return comments.reduce((acc, item) => {
+    acc[item.sentiment] = (acc[item.sentiment] || 0) + 1;
+    return acc;
+  }, {});
+}
+
+function commentTopicSummary() {
+  return Object.entries(comments.reduce((acc, item) => {
+    for (const topic of item.topics) acc[topic] = (acc[topic] || 0) + 1;
+    return acc;
+  }, {})).sort((a, b) => b[1] - a[1]).slice(0, 6).map(([topic, count]) => ({ topic, count }));
+}
+
 const riskObservations = risks.map((risk) => {
   let level = 'P3';
   if (['充值骗局', '账号买卖', '诈骗链接'].includes(risk.riskLabel)) level = risk.itemCount >= 3 ? 'P1' : 'P2';
@@ -243,7 +341,10 @@ const report = {
     }, {})).map(([language, count]) => ({ language, count })),
     dataCompletenessNote: completenessNote,
   },
-  summary: '本次进行中周抓取显示，越南玩家社区已经出现持续的自然讨论，核心集中在宠物养成、任务攻略、好友地图/借宠完成任务、Battle Pass 相关宠物和设备/权限问题。讨论多为玩家互助和攻略询问，说明当前社区有自发学习和传播动力。负面内容主要不是大规模口碑崩坏，而是任务理解、账号/名称找回、设备权限和本地化理解上的摩擦。风险侧出现少量账号/道具交易、充值渠道询问，以及“是否正式版/已经正式”的认知混淆。由于 Roco Kingdom 尚未在越南正式发行，这些讨论更适合作为未来发行前的兴趣、认知和风险观察信号，而不是即时运营响应对象。',
+  summaryHeadline: buildSummaryHeadline(),
+  keyFindings: buildKeyFindings(),
+  discussionClusters: buildDiscussionClusters(),
+  summary: buildDetailedWeeklySummary(),
   metrics: {
     totalDiscussionVolume: items.length,
     validRocoRelatedContent: items.length,
@@ -259,14 +360,8 @@ const report = {
   },
   commentOpinion: {
     commentCount: comments.length,
-    sentimentSummary: comments.reduce((acc, item) => {
-      acc[item.sentiment] = (acc[item.sentiment] || 0) + 1;
-      return acc;
-    }, {}),
-    topCommentTopics: Object.entries(comments.reduce((acc, item) => {
-      for (const topic of item.topics) acc[topic] = (acc[topic] || 0) + 1;
-      return acc;
-    }, {})).sort((a, b) => b[1] - a[1]).slice(0, 6).map(([topic, count]) => ({ topic, count })),
+    sentimentSummary: reportCommentSentiment(),
+    topCommentTopics: commentTopicSummary(),
     representativeComments: comments
       .filter((item) => item.originalText && item.originalText.length >= 4)
       .slice(0, 8)

@@ -1,0 +1,759 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>宠物、角色、养成 - Topic 分析</title>
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --ink: #1d1d1f;
+      --muted: rgba(0, 0, 0, 0.56);
+      --soft: rgba(0, 0, 0, 0.34);
+      --line: rgba(0, 0, 0, 0.08);
+      --panel: rgba(255, 255, 255, 0.86);
+      --panel-solid: #ffffff;
+      --blue: #0071e3;
+      --blue-text: #0066cc;
+      --green: #128a43;
+      --amber: #b25f00;
+      --red: #c9271f;
+      --teal: #007d75;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      letter-spacing: 0;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    header {
+      min-height: 164px;
+      padding: 52px 32px 28px;
+      background: #000;
+      color: #fff;
+    }
+    header h1 {
+      margin: 0 auto 12px;
+      max-width: 1180px;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", "PingFang SC", sans-serif;
+      font-size: clamp(30px, 4vw, 54px);
+      line-height: 1.08;
+      font-weight: 650;
+      text-align: center;
+    }
+    header .meta {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      max-width: 1180px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 12px;
+      line-height: 1.33;
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      height: 48px;
+      display: flex;
+      justify-content: center;
+      gap: 2px;
+      align-items: center;
+      padding: 0 20px;
+      background: rgba(0, 0, 0, 0.78);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: saturate(180%) blur(20px);
+      overflow-x: auto;
+    }
+    nav a {
+      color: rgba(255, 255, 255, 0.82);
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 980px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    nav a:hover { color: #fff; background: rgba(255, 255, 255, 0.12); }
+    main {
+      width: min(100%, 1440px);
+      margin: 0 auto;
+      padding: 18px 24px 56px;
+    }
+    section { margin-bottom: 16px; scroll-margin-top: 150px; }
+    h2 {
+      margin: 0 0 8px;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", "PingFang SC", sans-serif;
+      font-size: 20px;
+      line-height: 1.14;
+      font-weight: 650;
+    }
+    h3 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      line-height: 1.25;
+      font-weight: 650;
+    }
+    .command-dock {
+      position: sticky;
+      top: 48px;
+      z-index: 18;
+      display: grid;
+      grid-template-columns: minmax(210px, .72fr) minmax(260px, 1fr) auto auto;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 24px;
+      background: rgba(245, 245, 247, 0.78);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: saturate(180%) blur(20px);
+    }
+    .dock-section strong {
+      display: block;
+      font-size: 15px;
+      line-height: 1.2;
+      font-weight: 650;
+    }
+    .dock-section p {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .dock-search {
+      display: grid;
+      grid-template-columns: auto minmax(160px, 1fr);
+      gap: 8px;
+      align-items: center;
+      height: 36px;
+      padding: 0 12px;
+      border-radius: 980px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid var(--line);
+    }
+    .dock-search span {
+      color: var(--soft);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .dock-search input {
+      min-height: 0;
+      width: 100%;
+      border: 0;
+      background: transparent;
+      color: var(--ink);
+      outline: 0;
+      font-size: 13px;
+    }
+    .segmented {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px;
+      border-radius: 980px;
+      background: rgba(0, 0, 0, 0.06);
+      white-space: nowrap;
+    }
+    .segmented button,
+    .density-toggle {
+      min-height: 32px;
+      border: 0;
+      border-radius: 980px;
+      padding: 0 12px;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .segmented button.active,
+    .density-toggle {
+      background: #fff;
+      color: var(--ink);
+      box-shadow: 0 1px 10px rgba(0, 0, 0, 0.08);
+    }
+    .eyebrow {
+      display: block;
+      color: var(--soft);
+      font-size: 11px;
+      line-height: 1.2;
+      font-weight: 600;
+    }
+    .notice {
+      border-radius: 12px;
+      background: #fff4dc;
+      color: #5d3500;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .grid { display: grid; gap: 10px; }
+    .status-strip,
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .status-strip { grid-template-columns: 1fr 1fr 1fr; margin-bottom: 14px; }
+    .status-strip > div,
+    .metric,
+    .panel {
+      background: var(--panel);
+      border: 0;
+      border-radius: 12px;
+      padding: 12px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 10px 30px rgba(0, 0, 0, 0.035);
+    }
+    .status-strip strong {
+      display: block;
+      margin: 3px 0;
+      font-size: 15px;
+      line-height: 1.2;
+      font-weight: 650;
+    }
+    .status-strip p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+    .cockpit { grid-template-columns: minmax(0, 1.25fr) minmax(300px, .75fr); }
+    .two { grid-template-columns: minmax(0, 1fr) minmax(320px, .72fr); }
+    .summary-panel p {
+      margin: 0 0 8px;
+      color: rgba(0, 0, 0, 0.76);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .summary-panel p:last-child { margin-bottom: 0; }
+    .summary-headline {
+      padding: 10px 12px;
+      border-radius: 11px;
+      background: rgba(0, 113, 227, 0.08);
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.45;
+      font-weight: 650;
+      margin-bottom: 10px;
+    }
+    .summary-block {
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+      margin-top: 10px;
+    }
+    .summary-findings {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .summary-finding {
+      min-width: 0;
+      padding: 9px;
+      border-radius: 10px;
+      background: rgba(245, 245, 247, 0.72);
+      border: 1px solid var(--line);
+    }
+    .summary-finding strong {
+      display: block;
+      font-size: 13px;
+      line-height: 1.3;
+      margin-bottom: 5px;
+    }
+    .summary-finding p {
+      font-size: 12px;
+      line-height: 1.45;
+    }
+    .summary-clusters {
+      display: grid;
+      gap: 6px;
+    }
+    .summary-cluster {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(220px, .72fr);
+      gap: 10px;
+      align-items: start;
+      padding: 8px 0;
+      border-top: 1px solid var(--line);
+    }
+    .summary-cluster:first-child { border-top: 0; padding-top: 0; }
+    .summary-cluster strong {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 3px;
+    }
+    .summary-cluster p {
+      font-size: 12px;
+      line-height: 1.4;
+    }
+    .cluster-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      justify-content: flex-end;
+    }
+    .cluster-meta span {
+      min-height: 22px;
+      padding: 3px 7px;
+      border-radius: 980px;
+      background: rgba(0, 0, 0, 0.055);
+      color: var(--muted);
+      font-size: 11px;
+      white-space: nowrap;
+    }
+    .metric .label {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.2;
+    }
+    .metric .value {
+      margin-top: 4px;
+      font-size: 28px;
+      line-height: 1.05;
+      font-weight: 650;
+      letter-spacing: 0;
+    }
+    .metric .sub {
+      margin-top: 4px;
+      color: var(--soft);
+      font-size: 12px;
+      line-height: 1.25;
+    }
+    .composition {
+      display: grid;
+      grid-template-columns: 170px minmax(0, 1fr);
+      gap: 8px 12px;
+      align-items: center;
+      margin-top: 10px;
+    }
+    .composition strong,
+    .composition span { display: block; }
+    .composition span {
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: var(--panel-solid);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 10px 30px rgba(0, 0, 0, 0.03);
+    }
+    th, td {
+      text-align: left;
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      font-size: 12px;
+      line-height: 1.38;
+    }
+    th {
+      background: rgba(250, 250, 252, 0.94);
+      color: rgba(0, 0, 0, 0.54);
+      font-weight: 600;
+    }
+    tr:last-child td { border-bottom: 0; }
+    tr:hover td { background: rgba(0, 113, 227, 0.035); }
+    td strong { font-weight: 650; }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 22px;
+      padding: 2px 8px;
+      border-radius: 980px;
+      border: 0;
+      background: rgba(0, 0, 0, 0.055);
+      color: var(--ink);
+      font-size: 12px;
+      line-height: 1.1;
+      margin: 1px 4px 1px 0;
+      white-space: nowrap;
+    }
+    .tag.green { color: var(--green); background: rgba(18, 138, 67, 0.1); }
+    .tag.red { color: var(--red); background: rgba(201, 39, 31, 0.1); }
+    .tag.blue { color: var(--blue-text); background: rgba(0, 113, 227, 0.1); }
+    .tag.amber { color: var(--amber); background: rgba(178, 95, 0, 0.1); }
+    .tag.teal { color: var(--teal); background: rgba(0, 125, 117, 0.1); }
+    .bar {
+      height: 6px;
+      background: rgba(0, 0, 0, 0.07);
+      border-radius: 980px;
+      overflow: hidden;
+    }
+    .bar span {
+      display: block;
+      height: 100%;
+      background: var(--blue);
+      border-radius: inherit;
+    }
+    .bar.green span { background: var(--green); }
+    .bar.red span { background: var(--red); }
+    .bar.amber span { background: var(--amber); }
+    .bar.teal span { background: var(--teal); }
+    .stacked {
+      display: flex;
+      height: 10px;
+      background: rgba(0, 0, 0, 0.07);
+      border-radius: 980px;
+      overflow: hidden;
+    }
+    .stacked span { min-width: 2px; }
+    .stacked .green { background: var(--green); }
+    .stacked .blue { background: var(--blue); }
+    .stacked .red { background: var(--red); }
+    .stacked .teal { background: var(--teal); }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+    .legend i {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      margin-right: 4px;
+    }
+    .legend .green i { background: var(--green); }
+    .legend .blue i { background: var(--blue); }
+    .legend .red i { background: var(--red); }
+    .legend .teal i { background: var(--teal); }
+    .volume-cell { min-width: 92px; }
+    .volume-cell strong { display: inline-block; margin-bottom: 4px; }
+    .mini-row, .trend-row {
+      display: grid;
+      grid-template-columns: minmax(92px, 1fr) minmax(88px, 1.5fr) 38px;
+      gap: 7px;
+      align-items: center;
+      margin: 6px 0;
+      font-size: 12px;
+    }
+    .trend-row em {
+      color: var(--muted);
+      font-style: normal;
+      font-size: 11px;
+      grid-column: 2 / 4;
+    }
+    .signal-row {
+      border-top: 1px solid var(--line);
+      padding: 8px 0;
+    }
+    .signal-row:first-of-type { border-top: 0; padding-top: 0; }
+    .signal-row p {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+    .tag-cloud { line-height: 1.9; }
+    .comments-panel {
+      overflow: hidden;
+    }
+    .comment-head {
+      display: grid;
+      grid-template-columns: minmax(220px, .45fr) minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 8px;
+    }
+    .comment-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .comment-stats span {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 5px;
+      min-height: 28px;
+      padding: 4px 10px;
+      border-radius: 980px;
+      background: rgba(0, 0, 0, 0.055);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .comment-stats strong {
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 650;
+    }
+    .compact-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      line-height: 1.2;
+    }
+    .compact-tags .tag {
+      margin: 0;
+      max-width: 100%;
+    }
+    .comment-limit {
+      margin: 4px 0 10px;
+    }
+    .comment-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .compact-voice {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 9px;
+      background: rgba(245, 245, 247, 0.62);
+      min-width: 0;
+    }
+    .compact-voice:first-child {
+      border-top: 1px solid var(--line);
+      padding-top: 9px;
+    }
+    .compact-voice blockquote,
+    .compact-voice p {
+      overflow-wrap: anywhere;
+    }
+    .voice {
+      border-top: 1px solid var(--line);
+      padding: 10px 0;
+    }
+    .voice:first-child { border-top: 0; padding-top: 0; }
+    .voice blockquote {
+      margin: 7px 0;
+      padding-left: 10px;
+      border-left: 2px solid var(--blue);
+      color: rgba(0, 0, 0, 0.82);
+      font-size: 13px;
+      line-height: 1.48;
+    }
+    .voice p {
+      margin: 5px 0;
+      color: rgba(0, 0, 0, 0.72);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 28px;
+      gap: 6px;
+      padding: 5px 11px;
+      border-radius: 980px;
+      background: transparent;
+      color: var(--blue-text);
+      text-decoration: none;
+      font-size: 12px;
+      border: 1px solid rgba(0, 102, 204, 0.26);
+      white-space: nowrap;
+    }
+    .btn:hover { text-decoration: underline; }
+    .btn.strong {
+      color: #fff;
+      background: var(--blue);
+      border-color: var(--blue);
+      text-decoration: none;
+    }
+    .filters { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 8px; }
+    select, input {
+      min-height: 32px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      padding: 6px 9px;
+      background: rgba(255, 255, 255, 0.78);
+      color: var(--ink);
+    }
+    .muted { color: var(--muted); }
+    .small { font-size: 11px; line-height: 1.35; }
+    [hidden] { display: none !important; }
+    body.comfortable main { padding-top: 28px; }
+    body.comfortable section { margin-bottom: 28px; }
+    body.comfortable th,
+    body.comfortable td { padding: 13px 14px; font-size: 13px; }
+    body.comfortable .panel,
+    body.comfortable .metric,
+    body.comfortable .status-strip > div { padding: 16px; }
+    body.comfortable .summary-panel p,
+    body.comfortable .voice p,
+    body.comfortable .voice blockquote { font-size: 14px; line-height: 1.6; }
+    @media (max-width: 1120px) {
+      .command-dock { grid-template-columns: 1fr; }
+      .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .cockpit, .two, .status-strip { grid-template-columns: 1fr; }
+      .summary-findings, .summary-cluster { grid-template-columns: 1fr; }
+      .cluster-meta { justify-content: flex-start; }
+      .comment-head, .comment-list { grid-template-columns: 1fr; }
+      .composition { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 760px) {
+      header { padding: 38px 16px 22px; }
+      header h1 { text-align: left; }
+      header .meta { justify-content: flex-start; }
+      nav { justify-content: flex-start; padding: 0 12px; }
+      main { padding: 14px 12px 40px; }
+      .command-dock { padding: 10px 12px; }
+      .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      table { display: block; overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>宠物、角色、养成 - Topic 分析</h1>
+    <div class="meta"><span>报告周：2026-P3</span><span>内容量：61</span><span>阈值：内容量超过 10 自动生成</span></div>
+  </header>
+  <main>
+    <p><a class="btn" href="../reports/2026-P3.html#topics">返回本周 Dashboard</a></p>
+    <section><h2>概览</h2><div class="grid metrics">
+      <div class="metric"><div class="label">内容量</div><div class="value">61</div><div class="sub">30 帖 / 31 评论</div></div>
+      <div class="metric"><div class="label">主要情绪</div><div class="value">中性</div><div class="sub">该 topic 内</div></div>
+      <div class="metric"><div class="label">活跃 Group</div><div class="value">6</div><div class="sub">涉及来源数</div></div>
+      <div class="metric"><div class="label">代表 case</div><div class="value">有</div><div class="sub">原帖需权限</div></div>
+    </div></section>
+    <section><h2>二级 Topic / 共现标签</h2><div class="panel tag-cloud"><span class="tag blue">玩法机制 16</span><span class="tag blue">充值、付费、礼包 8</span><span class="tag blue">诈骗、外挂、私服、黑产风险 8</span><span class="tag blue">社群互动、组队、公会 7</span><span class="tag blue">活动与福利 6</span><span class="tag blue">攻略分享 2</span></div></section>
+    <section><h2>情绪与来源</h2><div class="grid two"><div class="panel"><p><strong>高风险负面</strong> 5</p><div class="bar red"><span style="width:8.19672131147541%"></span></div><p><strong>中性</strong> 34</p><div class="bar blue"><span style="width:55.73770491803278%"></span></div><p><strong>混合</strong> 9</p><div class="bar amber"><span style="width:14.754098360655737%"></span></div><p><strong>正面</strong> 9</p><div class="bar green"><span style="width:14.754098360655737%"></span></div><p><strong>负面</strong> 4</p><div class="bar red"><span style="width:6.557377049180328%"></span></div></div><div class="panel"><div class="mini-row"><span>Cong Hoi Roco Kingdom Viet Nam</span><strong>19</strong></div><div class="bar"><span style="width:31.147540983606557%"></span></div><div class="mini-row"><span>Roco Kingdom Viet Nam</span><strong>15</strong></div><div class="bar"><span style="width:24.59016393442623%"></span></div><div class="mini-row"><span>ROCO KINGDOM VN</span><strong>13</strong></div><div class="bar"><span style="width:21.311475409836063%"></span></div><div class="mini-row"><span>Roco Kingdom: World Viet Nam Official</span><strong>12</strong></div><div class="bar"><span style="width:19.672131147540984%"></span></div><div class="mini-row"><span>Roco Kingdom Mobile Viet Nam</span><strong>1</strong></div><div class="bar"><span style="width:1.639344262295082%"></span></div><div class="mini-row"><span>ROCO KINGDOM VIET NAM</span><strong>1</strong></div><div class="bar"><span style="width:1.639344262295082%"></span></div></div></div></section>
+    <section><h2>内容明细</h2><table><thead><tr><th>#</th><th>类型</th><th>来源</th><th>情绪</th><th>越南语原文</th><th>中文翻译</th><th>原帖</th></tr></thead><tbody><tr><td>1</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag red">高风险负面</span></td><td>GÓC CẦU CỨU
+———-
+Acc cũ mình đã full album, full shiny, sồi full 1 nửa. Mua full ngoại trang, hành động, 1 đống ball thuộc tính các hệ, nhưng MÌNH MẤT ACC RỒI.
+——
+Thật khó khăn để đưa ra quyết định cày lại từ đầu  Cũng sắp hết mùa S1, mình tha thiết cần mọi người giúp đỡ.</td><td>内容讨论活动、赛季时间、奖励或宠物出现信息。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2139748036818268/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>2</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Trứng vịt tr[用户名已脱敏] k
+id[已脱敏]</td><td>内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2139260180200387/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>3</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag amber">混合</span></td><td>Trụ đầu dùng con ong trụ 2 dùng con sóc trụ 3 dùng con rùa nước cấp 1 á( con rùa nước chưa tiến hóa í)</td><td>玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2138853123574426/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>4</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>mọi ng[用户名已脱敏] chỉ mình build nhỏ này với ạ</td><td>该内容在讨论宠物养成细节，直译需结合图片或上下文复核；核心关注点是宠物获取、异色/配色、强度或养成路径。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2138534993606239/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>5</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag green">正面</span></td><td>Thay đổi tính cách và buff đi. Sỉ số xấu kìa</td><td>该内容在讨论宠物养成细节，直译需结合图片或上下文复核；核心关注点是宠物获取、异色/配色、强度或养成路径。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2138534993606239/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>6</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Thả nhiều pet là một đống luôn mỗi tội tốn bóng bắt thôi</td><td>该内容在讨论宠物养成细节，直译需结合图片或上下文复核；核心关注点是宠物获取、异色/配色、强度或养成路径。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2138275883632150/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>7</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag red">负面</span></td><td>Hôm nay vào Roco kingdom bị thế nào là đây mọi người</td><td>该内容在讨论宠物养成细节，直译需结合图片或上下文复核；核心关注点是宠物获取、异色/配色、强度或养成路径。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2138082166984855/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>8</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag green">正面</span></td><td>Ae hướng dẫn làm chi tiết với mấy cái này với mình làm nhưng nó chẳng được
+Nv1: đổi tên cho elf thì mik đg cày thân mật rồi k cần quan tâm
+Nv2: hoàn thành nvu của elf có cái nó yêu cầu đánh mấy boss để có huy hiệu anh hùng gì mà boss khỏe vkl mình nhờ mấy ông tung max lv cũng k sôca đước trước khi con rồng mình die
+Nv3: skip vì mình k có tiền mua lắm bóng v
+Nv4 : bắt ngẫu nhiên mà mình vất bóng tứ tung nó tính có 5 con v</td><td>玩家询问任务如何完成，包含要投放/使用哪类精灵或如何解锁机关。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2138053880321017/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>9</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>MN ơi ai có hạt sồi roco này cho mình bắt ké với</td><td>玩家询问如何进入好友地图或借好友宠物进行捕捉/完成任务。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2137226480403757/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>10</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Ngoài pet pass, 1 shiny 30k
+Bác nào cần chấm cái em tự ib</td><td>该内容在寻求社区互助，直译需结合图片或上下文复核；主要需求是借宠、进好友地图、组队或通过社群降低任务门槛。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1777094926589430/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>11</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>tiến hóa bé này kiểu gì vậy?</td><td>玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776965536602369/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>12</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Mn cho mình hỏi với bh học skill này từ con nào thế trc mình học từ con vịt r bh k học lại đc</td><td>该内容在讨论宠物养成细节，直译需结合图片或上下文复核；核心关注点是宠物获取、异色/配色、强度或养成路径。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776922649939991/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>13</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Skill chế sài dc nhiều lần k bác</td><td>该内容在讨论宠物养成细节，直译需结合图片或上下文复核；核心关注点是宠物获取、异色/配色、强度或养成路径。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776922649939991/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>14</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag green">正面</span></td><td>Đủ Level 30 nhận đc một trứng pet dị sắc tự chọn</td><td>内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776892976609625/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>15</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag amber">混合</span></td><td>Học skill này từ con nào v mn, mình chưa có con có skill này</td><td>该内容在讨论宠物养成细节，直译需结合图片或上下文复核；核心关注点是宠物获取、异色/配色、强度或养成路径。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776832879948968/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>16</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Con starter hệ nước</td><td>该内容在讨论宠物养成细节，直译需结合图片或上下文复核；核心关注点是宠物获取、异色/配色、强度或养成路径。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776832879948968/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>17</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Pve thì Dimo cân tất</td><td>该内容在讨论宠物养成细节，直译需结合图片或上下文复核；核心关注点是宠物获取、异色/配色、强度或养成路径。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776796903285899/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>18</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag red">负面</span></td><td>PVE thì trùng cỏ cân tất, đốt theo %máu tối đa 3 round là cút hết. Nhưng bị hệ lửa khắc, kẹp thêm con người đá là hết. 2 con đ</td><td>该内容在讨论宠物养成细节，直译需结合图片或上下文复核；核心关注点是宠物获取、异色/配色、强度或养成路径。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776796903285899/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>19</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag red">负面</span></td><td>Kiếm thức ăn cho pet tăng để lv ở đâu vậy ạ mn (newbie,đừng toxic ạ)</td><td>该内容在讨论宠物养成细节，直译需结合图片或上下文复核；核心关注点是宠物获取、异色/配色、强度或养成路径。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776671219965134/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>20</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Cho mình hỏi là khi kết bạn  xongvà vào thế giới rồi thì bắt mấy con pet ở thế giới của bạn kia khiểu gì ?</td><td>该内容在讨论宠物养成细节，直译需结合图片或上下文复核；核心关注点是宠物获取、异色/配色、强度或养成路径。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776589723306617/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>21</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Ng ta phải nắm tay với ôg , thì ôg mới đc bắt pet của ng ta ad</td><td>玩家询问如何进入好友地图或借好友宠物进行捕捉/完成任务。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776589723306617/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>22</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Tiến hoá con bay bay này như nào v mn :(( cả làm nv nào thì mới mở gia viên xây nhà vậy ạ</td><td>玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776473236651599/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>23</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Mình là newbie làm sao để trứng nở vậy</td><td>内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776219083343681/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>24</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag green">正面</span></td><td>đợi thôi b, nào đủ 100% r vào mở trứng</td><td>内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776219083343681/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>25</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Đr ôg , chỉ ấp trứng thôi</td><td>内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776017193363870/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>26</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Tích mãi mới đc nhiêu đây ai lấy đến nha 1 ng 1 quả ai cho ké con hệ cỏ khởi đầu thì +1 nữa
+id[已脱敏] (20h-20h30) còn lại thì hữu duyên</td><td>有人有这几只宠物吗？想借用/蹭一下完成捕捉或任务。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1775939763371613/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>27</td><td>评论</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag amber">混合</span></td><td>Lv bạn thấp hơn lv của roco thì roco nó ko nghe lời mà chạy á</td><td>该内容在讨论宠物养成细节，直译需结合图片或上下文复核；核心关注点是宠物获取、异色/配色、强度或养成路径。</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2362590977483312/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>28</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>Con này tiến hóa cấp cuối sao mọi người
+Ai bt chỉ mình với</td><td>玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2360913014317775/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>29</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>Con này sài được kh mn , mình ấp nở ra , với làm sao tiến hoá nó v mn</td><td>玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2359818444427232/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>30</td><td>评论</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>Level pháp sư thấp hơn level pet</td><td>该内容在讨论宠物养成细节，直译需结合图片或上下文复核；核心关注点是宠物获取、异色/配色、强度或养成路径。</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2359187497823660/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>31</td><td>评论</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>Bạn đi cày nhiệm vụ cho lên lv đi ạ
+Cấp của bn chỉ đc cách cấp của pet 10lv thôi</td><td>玩家询问任务如何完成，包含要投放/使用哪类精灵或如何解锁机关。</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2359187497823660/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>32</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>mọi người cho e hỏi cái skill đầu lấy ntn vậy ạ</td><td>该内容在讨论宠物养成细节，直译需结合图片或上下文复核；核心关注点是宠物获取、异色/配色、强度或养成路径。</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2358452864563790/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>33</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag amber">混合</span></td><td>Pet màu sắc đặc biệt mới trong phiên bản tiếp theo.</td><td>该内容在讨论宠物养成细节，直译需结合图片或上下文复核；核心关注点是宠物获取、异色/配色、强度或养成路径。</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2358443107898099/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>34</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>Cho em hỏi là đánh boss này kiểu gì thế ạ
+SOS</td><td>该内容在讨论宠物养成细节，直译需结合图片或上下文复核；核心关注点是宠物获取、异色/配色、强度或养成路径。</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2357944441281299/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>35</td><td>评论</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag red">负面</span></td><td>Ráng thụôc lòng mỗi con bạn ơi, nó bị ẩn skill, chọn skill sao cho tấn công, con nào mà chọn buff là thua đánh lại</td><td>该内容在讨论宠物养成细节，直译需结合图片或上下文复核；核心关注点是宠物获取、异色/配色、强度或养成路径。</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2357944441281299/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>36</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag green">正面</span></td><td>Hi mọi người mình là Paul =)))))))) Hướng dẫn chi tiết bấm vào từng ảnh nhé !!!
++3
+SƠ ĐỒ TIẾN HÓA PHÂN NHÁNH CỦA TINH LINH
+#RocoKingdom</td><td>玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2356826078059802/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>37</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag red">高风险负面</span></td><td>GÓC CẦU CỨU
+———-
+Acc cũ mình đã full album, full shiny, sồi full 1 nửa. Mua full ngoại trang, hành động, 1 đống ball thuộc tính các hệ, nhưng MÌNH MẤT ACC RỒI.
+——
+Thật khó khăn để đưa ra quyết định cày lại từ đầu  Cũng sắp hết mùa S1, mình tha thiết cần mọi người giúp đỡ.</td><td>内容讨论活动、赛季时间、奖励或宠物出现信息。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4045360109098951/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>38</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag blue">中性</span></td><td>Cho mình hỏi là khi kết bạn  xongvà vào thế giới rồi thì bắt mấy con pet ở thế giới của bạn kia khiểu gì vậy?</td><td>该内容在讨论宠物养成细节，直译需结合图片或上下文复核；核心关注点是宠物获取、异色/配色、强度或养成路径。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4044278199207142/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>39</td><td>评论</td><td>ROCO KINGDOM VN</td><td><span class="tag amber">混合</span></td><td>Xin bắt tay ng , vô đc nhóm ngt mới gọi là vào th bn bè ( rồi lúc đó mới bắt đc pet hoặc những pet sồi mà bn bè đawtj ổ cú)</td><td>该内容在讨论宠物养成细节，直译需结合图片或上下文复核；核心关注点是宠物获取、异色/配色、强度或养成路径。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4044278199207142/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>40</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag red">高风险负面</span></td><td>Còn vài quả trứng vịt hiếm ai mua ib 10k 1 quả</td><td>内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4041031229531839/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>41</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag amber">混合</span></td><td>Pet màu sắc đặc biệt mới trong phiên bản tiếp theo.</td><td>该内容在讨论宠物养成细节，直译需结合图片或上下文复核；核心关注点是宠物获取、异色/配色、强度或养成路径。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4039282369706725/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>42</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag green">正面</span></td><td>Hi mọi người mình là Paul =)))))))) Hướng dẫn chi tiết bấm vào từng ảnh nhé !!!!
++3
+SƠ ĐỒ TIẾN HÓA PHÂN NHÁNH CỦA TINH LINH
+#RocoKingdom</td><td>玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4037310316570597/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>43</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag green">正面</span></td><td>BÀI VIẾT NÀY HỖ TRỢ MỌI NGƯỜI
+——————-
+Ai đang gặp khó khăn gì khi chơi game thì bình luận ở dưới nhé.
+Về tất cả mọi thứ trong game như tiến hoá pet -
+kiên thức - nhiệm vụ - cách chơi - thu phục</td><td>玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4036941429940819/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>44</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag blue">中性</span></td><td>Ủa con này tiến hoá lên dạng nào vậy  mn sao tui không thấy nó trong sách ta</td><td>玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4036911313277164/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>45</td><td>评论</td><td>ROCO KINGDOM VN</td><td><span class="tag blue">中性</span></td><td>tiến hóa bình thường
+1周</td><td>玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4036911313277164/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>46</td><td>帖子</td><td>Roco Kingdom Mobile Viet Nam</td><td><span class="tag amber">混合</span></td><td>Pet màu sắc đặc biệt mới trong phiên bản tiếp theo.</td><td>该内容在讨论宠物养成细节，直译需结合图片或上下文复核；核心关注点是宠物获取、异色/配色、强度或养成路径。</td><td><a class="btn" href="https://www.facebook.com/groups/3223551104630521/posts/4387058508279769/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>47</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag red">高风险负面</span></td><td>GÓC CẦU CỨU
+———-
+Acc cũ mình đã full album, full shiny, sồi full 1 nửa. Mua full ngoại trang, hành động, 1 đống ball thuộc tính các hệ, nhưng MÌNH MẤT ACC RỒI.
+——
+Thật khó khăn để đưa ra quyết định cày lại từ đầu  Cũng sắp hết mùa S1, mình tha thiết cần mọi người giúp đỡ.
+Mình cần mua shiny thường, giá 30k/con
+Nắm tay bao ball mình. Mình treo, chỉ vào bắt shiny thôi
+Vì là acc mới nên mình không có lăng kính, mình bắt shiny bằng ball thường.
+——————-
+Mình mua hết toàn bộ con dưới đây. Khi hoàn thành, mình gửi thêm 50k tiền công. Bạn nào bao hết, sang mùa 2, mình tặng 1 pass bạn bè.
+Mình đặt trước mùa 2 và các mùa sau đó nữa.
+——
+Bạn nào nhận 1-2 con cũng được.
+Xin hãy hổ trợ mình.
+Con nào cũng được đk b
+ib
+S mà mất accc z bro
+Bắt hết sợ ko kịp
+Ủa s bị mất acc vậy</td><td>玩家询问如何进入好友地图或借好友宠物进行捕捉/完成任务。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2139748036818268/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>48</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Trứng vịt tr[用户名已脱敏] k
+id[已脱敏]
+Xin nơ
+Cho tui xin 1 quả với, tui add fr rồi á
+Tui xin 1 quả trứng vịt được khum
+Cho m xin trứng vịt đồng hồ với
+1条回复</td><td>内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2139260180200387/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>49</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Tui xin 1 quả trứng vịt được khum</td><td>内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2139260180200387/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>50</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Cho m xin trứng vịt đồng hồ với</td><td>内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2139260180200387/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>51</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>ẹ hem thông tin mới về mấy dạn shiny có trong ss2 đây ae tranh thủ đi thui
+S1 ko có nổi 1 con
+1条回复
+孵化公式是毒攻略
+1条回复
+Thỏ bth lai với con nào v
+1条回复
+Lại tiếp tục thỏ lửa cộng một à
+Cày hạt thui chứ trứng lâu ác</td><td>内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2137168277076244/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>52</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Cày hạt thui chứ trứng lâu ác</td><td>内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2137168277076244/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>53</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>3_tô_bún_bò
+Ngoài pet pass, 1 shiny 30k
+Bác nào cần chấm cái em tự ib
+….
+.
+1条回复
+.
+1条回复
+.
+1条回复
+.
+.
+.
+1条回复
+.
+.
+.</td><td>该内容在寻求社区互助，直译需结合图片或上下文复核；主要需求是借宠、进好友地图、组队或通过社群降低任务门槛。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1777094926589430/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>54</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag amber">混合</span></td><td>Tích mãi mới đc nhiêu đây ai lấy đến nha 1 ng 1 quả ai cho ké con hệ cỏ khởi đầu thì +1 nữa
+id[已脱敏] (20h-20h30) còn lại thì hữu duyên
+Tui có con mèo xanh kh[用户名已脱敏] này ôg
+[数字ID已脱敏] đã gửi kb nhé
+Còn ko ní
+Xin nơ ní ơi
+Tình hình là vẫn còn thấy mn xin quá tr mà ko ai đến tìm  mới đc thêm 3 quả nữa
+tui xin mũ ngủ với
+Sao ông nhìu dữ v
+Tôi có ne ong lấy thì t cho ké free k lấy j hết
+Tôi có ne ong oi
+5条回复
+Còn ko ní ơi, tui xin quả nơ với</td><td>有人有这几只宠物吗？想借用/蹭一下完成捕捉或任务。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1775939763371613/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>55</td><td>评论</td><td>ROCO KINGDOM VN</td><td><span class="tag red">高风险负面</span></td><td>Còn vài quả trứng vịt hiếm ai mua ib 10k 1 quả
+Vãi cả 10k quả, ai cần cho free nè
+1条回复
+Xin cách tải game an
+1条回复
+Ai cần trứng vịt đồng hồ thi cho free nha
+5条回复
+Vãi cả hiếm =)) 6 quả trứng vịt đội mũ ai cần thì ib rách vcl</td><td>内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4041031229531839/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>56</td><td>评论</td><td>ROCO KINGDOM VN</td><td><span class="tag blue">中性</span></td><td>Ai cần trứng vịt đồng hồ thi cho free nha</td><td>内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4041031229531839/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>57</td><td>评论</td><td>ROCO KINGDOM VN</td><td><span class="tag blue">中性</span></td><td>Vãi cả hiếm =)) 6 quả trứng vịt đội mũ ai cần thì ib rách vcl</td><td>内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4041031229531839/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>58</td><td>评论</td><td>ROCO KINGDOM VN</td><td><span class="tag green">正面</span></td><td>5月11日15:11
+BÀI VIẾT NÀY HỖ TRỢ MỌI NGƯỜI
+——————-
+Ai đang gặp khó khăn gì khi chơi game thì bình luận ở dưới nhé.
+Về tất cả mọi thứ trong game như tiến hoá pet -
+kiên thức - nhiệm vụ - cách chơi - thu phục
+Nào mình biết mình sẽ giải đáp, còn không thì mình lôi anh em mình vào giúp bạn
+#Giảiđáp #Hổtrợngườichơi
+Cách nào để gặp ô nhiễm nhiều như trên tiktok ạ
+1周
+1条回复
+Làm sao có con vịt mũ ạ?
+1周
+1条回复
+Ios tải như nào vậy ạ
+1条回复
+Xin cách tải game
+Cách bắt con rồng xương sao vậy
+1条回复</td><td>玩家在请求大家支持/关注自己的频道，并附带 TikTok 链接或兑换码信息。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4036941429940819/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>59</td><td>帖子</td><td>ROCO KINGDOM VIET NAM</td><td><span class="tag amber">混合</span></td><td>Pet màu sắc đặc biệt mới trong phiên bản tiếp theo.</td><td>该内容在讨论宠物养成细节，直译需结合图片或上下文复核；核心关注点是宠物获取、异色/配色、强度或养成路径。</td><td><a class="btn" href="https://www.facebook.com/groups/947481474801675/posts/972075292342293/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>60</td><td>评论</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag green">正面</span></td><td>5月8日16:18
+Nên chọn gì vậy mn
+Này có buff j ko ô hay chỉ cho đẹp thôi
+1周
+Sao để có cái này vậy ạ
+1周
+Bọ lửa hoặc ng đá ưu tiên bọ lửa farm trc r lmj làm
+1周
+1. muốn thử vật may kiếm tí thì có thể lấy sói s3 hoặc c băng s5 NẾU ĐỎ b sẽ có 300m vàng còn rách nátthì ...cx 7-9m
+2. Chắc cú lâu dài pvp ngon thì có thể lấy thỏ s1 lm team băng. C s4 thỏ sao tiến hoá đạng2 ma đi đc khá nhiều team. C s14 Ma  đi team đổi chiêu bắt team bạn hồi nl tăng dam cho
+3. Sói vẫn có thể chơi đc mn chỉ hợp với mức rank pvp thấp tầm rank đỏ là khó đánh nếu đi team 5?nn
+1周
+Maulana Maul PRophez
+Triệu Trung Đức pic nya
+1周
+Triệu Trung Đức con bọ lửa với con cạnh con vịt hàng 3 thì sao ạ
+1周</td><td>玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2353953228347087/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>61</td><td>评论</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>1. muốn thử vật may kiếm tí thì có thể lấy sói s3 hoặc c băng s5 NẾU ĐỎ b sẽ có 300m vàng còn rách nátthì ...cx 7-9m
+2. Chắc cú lâu dài pvp ngon thì có thể lấy thỏ s1 lm team băng. C s4 thỏ sao tiến hoá đạng2 ma đi đc khá nhiều team. C s14 Ma  đi team đổi chiêu bắt team bạn hồi nl tăng dam cho
+3. Sói vẫn có thể chơi đc mn chỉ hợp với mức rank pvp thấp tầm rank đỏ là khó đánh nếu đi team 5?nn
+1周</td><td>玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2353953228347087/" target="_blank" rel="noreferrer">查看原帖</a></td></tr></tbody></table></section>
+  </main>
+</body>
+</html>
