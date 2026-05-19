@@ -230,6 +230,80 @@
       line-height: 1.55;
     }
     .summary-panel p:last-child { margin-bottom: 0; }
+    .summary-headline {
+      padding: 10px 12px;
+      border-radius: 11px;
+      background: rgba(0, 113, 227, 0.08);
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.45;
+      font-weight: 650;
+      margin-bottom: 10px;
+    }
+    .summary-block {
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+      margin-top: 10px;
+    }
+    .summary-findings {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .summary-finding {
+      min-width: 0;
+      padding: 9px;
+      border-radius: 10px;
+      background: rgba(245, 245, 247, 0.72);
+      border: 1px solid var(--line);
+    }
+    .summary-finding strong {
+      display: block;
+      font-size: 13px;
+      line-height: 1.3;
+      margin-bottom: 5px;
+    }
+    .summary-finding p {
+      font-size: 12px;
+      line-height: 1.45;
+    }
+    .summary-clusters {
+      display: grid;
+      gap: 6px;
+    }
+    .summary-cluster {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(220px, .72fr);
+      gap: 10px;
+      align-items: start;
+      padding: 8px 0;
+      border-top: 1px solid var(--line);
+    }
+    .summary-cluster:first-child { border-top: 0; padding-top: 0; }
+    .summary-cluster strong {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 3px;
+    }
+    .summary-cluster p {
+      font-size: 12px;
+      line-height: 1.4;
+    }
+    .cluster-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      justify-content: flex-end;
+    }
+    .cluster-meta span {
+      min-height: 22px;
+      padding: 3px 7px;
+      border-radius: 980px;
+      background: rgba(0, 0, 0, 0.055);
+      color: var(--muted);
+      font-size: 11px;
+      white-space: nowrap;
+    }
     .metric .label {
       color: var(--muted);
       font-size: 12px;
@@ -514,6 +588,8 @@
       .command-dock { grid-template-columns: 1fr; }
       .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .cockpit, .two, .status-strip { grid-template-columns: 1fr; }
+      .summary-findings, .summary-cluster { grid-template-columns: 1fr; }
+      .cluster-meta { justify-content: flex-start; }
       .comment-head, .comment-list { grid-template-columns: 1fr; }
       .composition { grid-template-columns: 1fr; }
     }
