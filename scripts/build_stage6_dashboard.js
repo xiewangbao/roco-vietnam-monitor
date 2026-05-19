@@ -234,9 +234,9 @@ const html = `<!doctype html>
         <div class="panel summary-panel">${summaryOverview(report)}</div>
         <div class="panel">
           <h3>周选择</h3>
-          <div class="filters">${availableReports.map((r) => `<a class="btn" href="${r.file}">${r.week}</a>`).join('')}</div>
-          <div class="trend-list">${availableReports.map((r) => `<div class="trend-row"><span>${r.week}</span><div class="bar"><span style="width:${pct(r.valid, maxReportValid)}%"></span></div><strong>${r.valid}</strong></div>`).join('')}</div>
-          <p class="small muted">当前展示 ${report.reportWeek}。历史周页面已生成，可按周查看。</p>
+          <div class="filters">${availableReports.map((r) => `<a class="btn" href="${r.file}">${periodFullLabel(r.week)}</a>`).join('')}</div>
+          <div class="trend-list">${availableReports.map((r) => `<div class="trend-row"><span>${periodFullLabel(r.week)}</span><div class="bar"><span style="width:${pct(r.valid, maxReportValid)}%"></span></div><strong>${r.valid}</strong></div>`).join('')}</div>
+          <p class="small muted">当前展示 ${periodFullLabel(report.reportWeek)}。历史报告已生成，可按期查看。</p>
         </div>
       </div>
     </section>
@@ -343,7 +343,7 @@ const html = `<!doctype html>
       <h2>趋势观察</h2>
       <div class="grid two">
         <div class="panel trend-list">
-          ${availableReports.map((r) => `<div class="trend-row"><span>${r.week}</span><div class="bar"><span style="width:${pct(r.valid, maxReportValid)}%"></span></div><strong>${r.valid}</strong><em>健康 ${r.health} / 发行 ${r.launch}</em></div>`).join('')}
+          ${availableReports.map((r) => `<div class="trend-row"><span>${periodFullLabel(r.week)}</span><div class="bar"><span style="width:${pct(r.valid, maxReportValid)}%"></span></div><strong>${r.valid}</strong><em>健康 ${r.health} / 发行 ${r.launch}</em></div>`).join('')}
         </div>
         <div class="panel">
           ${Object.values(report.trendObservation).map(x => `<p>${escapeHtml(x)}</p>`).join('')}
@@ -1500,6 +1500,20 @@ function qualityStatusText() {
 function analysisFallback(item) {
   const topic = item.primaryTopic || item.topics?.[0] || '越南玩家自发讨论';
   return `该内容归入「${topic}」，情绪为「${item.sentiment || '中性'}」。它主要用于判断越南玩家在该主题下的自然兴趣、疑问密度和未来发行前需要持续观察的认知点。`;
+}
+
+function periodLabel(week) {
+  const labels = {
+    '2026-W18': '第 1 期',
+    '2026-W19': '第 2 期',
+    '2026-P3': '第 3 期',
+  };
+  return labels[week] || week;
+}
+
+function periodFullLabel(week) {
+  const label = periodLabel(week);
+  return label === week ? escapeHtml(week) : `${escapeHtml(label)} / ${escapeHtml(week)}`;
 }
 
 function pct(value, total) {
