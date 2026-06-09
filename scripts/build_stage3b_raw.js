@@ -59,6 +59,15 @@ function maybeCount(text, marker) {
   return match ? Number(match[1]) : null;
 }
 
+function firstNumber(...values) {
+  for (const value of values) {
+    if (value === null || value === undefined || value === '') continue;
+    const numeric = Number(value);
+    if (Number.isFinite(numeric)) return numeric;
+  }
+  return null;
+}
+
 function cleanVisibleText(text) {
   return (text || '')
     .split(/\n/)
@@ -124,9 +133,9 @@ for (const page of browserGroups) {
       rawTimeLabel: item.timeLabel,
       text,
       contentLanguage: item.contentLanguage || 'unknown',
-      reactionCount: null,
-      commentCount: maybeCount(text, '评论'),
-      shareCount: maybeCount(text, '分享'),
+      reactionCount: firstNumber(item.reactionCount, maybeCount(text, '赞')),
+      commentCount: firstNumber(item.commentCount, maybeCount(text, '评论')),
+      shareCount: firstNumber(item.shareCount, maybeCount(text, '分享')),
       hasImage: Boolean(item.hasImage),
       hasVideo: Boolean(item.hasVideo),
       hasLink: Boolean(item.hasLink),

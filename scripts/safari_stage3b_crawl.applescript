@@ -58,6 +58,27 @@ set collectorJs to "
     if (/[a-z]/i.test(text)) return 'en';
     return 'unknown';
   };
+  const parseCount = (text) => {
+    const raw = (text || '').replace(/,/g, '').trim();
+    const match = raw.match(/(\\d+(?:\\.\\d+)?)\\s*(万|萬|k|K)?/);
+    if (!match) return null;
+    const value = Number(match[1]);
+    if (!Number.isFinite(value)) return null;
+    if (match[2] === '万' || match[2] === '萬') return Math.round(value * 10000);
+    if (match[2] === 'k' || match[2] === 'K') return Math.round(value * 1000);
+    return Math.round(value);
+  };
+  const countByLabel = (root, patterns) => {
+    const controls = [...root.querySelectorAll('[aria-label], [role=button], button, a[href], span, div')];
+    for (const el of controls) {
+      const text = `${el.getAttribute('aria-label') || ''}\\n${el.innerText || ''}`.trim();
+      if (!text) continue;
+      if (!patterns.some((pattern) => pattern.test(text))) continue;
+      const count = parseCount(text);
+      if (count !== null) return count;
+    }
+    return null;
+  };
   const articles = [...document.querySelectorAll('[role=article]')];
   return JSON.stringify({
     pageTitle: document.title,
@@ -82,6 +103,9 @@ set collectorJs to "
       }
       const contentText = contentLines.join('\\n').slice(0, 4000);
       const hasMoreComments = /查看更多评论|查看.*评论/.test(text);
+      const reactionCount = countByLabel(a, [/赞|reaction|like/i]);
+      const commentCount = countByLabel(a, [/评论|comment/i]);
+      const shareCount = countByLabel(a, [/分享|share/i]);
       return {
         domIndex: idx,
         inferredType: looksLikePost ? 'post' : 'comment',
@@ -93,6 +117,9 @@ set collectorJs to "
         hasImage: !!a.querySelector('img'),
         hasVideo: !!a.querySelector('video'),
         hasLink: links.some(h => !h.includes('facebook.com') && !h.includes('fbcdn.net')),
+        reactionCount,
+        commentCount,
+        shareCount,
         visibleTextLength: text.length,
         hasMoreComments,
         captureQuality: postUrl ? 'has_post_url' : 'missing_post_url'

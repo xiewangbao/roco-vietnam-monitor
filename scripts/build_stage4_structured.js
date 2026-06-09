@@ -330,6 +330,13 @@ for (const record of raw.records) {
     sentiment: itemSentiment,
     riskLabels: risks,
     riskEvidenceSummary: risks.length ? cleaned.slice(0, 180) : null,
+    reactionCount: record.reactionCount,
+    commentCount: record.commentCount,
+    shareCount: record.shareCount,
+    interactionTotal: [record.reactionCount, record.commentCount, record.shareCount]
+      .every((value) => value === null || value === undefined)
+      ? null
+      : Number(record.reactionCount || 0) + Number(record.commentCount || 0) + Number(record.shareCount || 0),
     confidence: Number(confidence.toFixed(2)),
     lowConfidenceReason: lowReasons.length ? lowReasons.join('；') : null,
     marketObservationValue: marketValue(itemTopics, risks, cleaned),

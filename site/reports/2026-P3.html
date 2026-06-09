@@ -507,6 +507,89 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 8px;
     }
+    .report-picker {
+      display: grid;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .report-picker span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 650;
+    }
+    .report-picker select {
+      width: 100%;
+      font-weight: 650;
+    }
+    .top-posts {
+      display: grid;
+      gap: 10px;
+    }
+    .top-post {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 13px;
+      background: rgba(255, 255, 255, 0.74);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    }
+    .top-post-head {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .top-post-head strong {
+      margin-left: auto;
+      color: var(--ink);
+      font-size: 13px;
+    }
+    .rank-badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .interaction-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .interaction-line span {
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.055);
+    }
+    .top-post blockquote {
+      margin: 7px 0;
+      padding-left: 10px;
+      border-left: 2px solid var(--blue);
+      color: rgba(0, 0, 0, 0.82);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .top-post p {
+      margin: 6px 0;
+      color: rgba(0, 0, 0, 0.72);
+      font-size: 13px;
+      line-height: 1.48;
+    }
+    .empty-state {
+      color: var(--muted);
+    }
+    .empty-state strong {
+      color: var(--ink);
+      display: block;
+      margin-bottom: 5px;
+    }
     .compact-voice {
       border: 1px solid var(--line);
       border-radius: 10px;
@@ -612,18 +695,17 @@
     <h1>Roco Kingdom 越南 Facebook Group 每周舆情监测报告</h1>
     <div class="meta">
       <span>报告周：2026-P3</span>
-      <span>生成日期：2026-05-19</span>
+      <span>生成日期：2026-06-09</span>
       <span>统计范围：2026-05-07T00:00:00+08:00 至 2026-05-19T07:30:59.824Z</span>
       <span>数据方式：浏览器自动化</span>
     </div>
   </header>
   <nav>
     <a href="#latest">最新周报</a>
-    <a href="#groups">Group</a>
     <a href="#topics">热点</a>
     <a href="#comments">评论</a>
     <a href="#risks">风险</a>
-    <a href="#voices">玩家声音</a>
+    <a href="#top-posts">高互动帖子</a>
     <a href="#trends">趋势</a>
   </nav>
   <aside class="command-dock" aria-label="Dashboard controls">
@@ -769,7 +851,12 @@
   </div>
         <div class="panel">
           <h3>周选择</h3>
-          <div class="filters"><a class="btn" href="../reports/2026-P3.html">第 3 期 / 2026-P3</a><a class="btn" href="../reports/2026-W18.html">第 1 期 / 2026-W18</a><a class="btn" href="../reports/2026-W19.html">第 2 期 / 2026-W19</a></div>
+          <label class="report-picker">
+            <span>切换报告</span>
+            <select onchange="if (this.value) location.href = this.value">
+              <option value="../reports/2026-P3.html" selected>第 3 期 / 2026-P3</option><option value="../reports/2026-W18.html" >第 1 期 / 2026-W18</option><option value="../reports/2026-W19.html" >第 2 期 / 2026-W19</option>
+            </select>
+          </label>
           <div class="trend-list"><div class="trend-row"><span>第 3 期 / 2026-P3</span><div class="bar"><span style="width:100%"></span></div><strong>280</strong></div><div class="trend-row"><span>第 1 期 / 2026-W18</span><div class="bar"><span style="width:39%"></span></div><strong>108</strong></div><div class="trend-row"><span>第 2 期 / 2026-W19</span><div class="bar"><span style="width:39%"></span></div><strong>109</strong></div></div>
           <p class="small muted">当前展示 第 3 期 / 2026-P3。历史报告已生成，可按期查看。</p>
         </div>
@@ -794,37 +881,26 @@
       </div>
     </section>
 
-    <section id="groups">
-      <h2>Group 监测源</h2>
-      <table>
-        <thead><tr><th>Group</th><th>本周内容量</th><th>访问状态</th><th>数据完整性</th><th>备注</th></tr></thead>
-        <tbody>
-          <tr><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/" target="_blank" rel="noreferrer">查看 Group</a><br>Roco Kingdom Viet Nam</td><td><div class="volume-cell"><strong>91</strong><div class="bar"><span style="width:100%"></span></div></div></td><td>已加入 / 公开小组</td><td>可见帖子与可展开评论已抓取；受 Facebook 可见性限制，非保证全量评论</td><td>正式监测源。</td></tr><tr><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/" target="_blank" rel="noreferrer">查看 Group</a><br>Cong Hoi Roco Kingdom Viet Nam</td><td><div class="volume-cell"><strong>86</strong><div class="bar"><span style="width:95%"></span></div></div></td><td>已加入 / 公开小组</td><td>可见帖子与可展开评论已抓取；受 Facebook 可见性限制，非保证全量评论</td><td>正式监测源。</td></tr><tr><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/" target="_blank" rel="noreferrer">查看 Group</a><br>Roco Kingdom: World Viet Nam Official</td><td><div class="volume-cell"><strong>41</strong><div class="bar"><span style="width:45%"></span></div></div></td><td>已加入 / 公开小组</td><td>可见帖子与可展开评论已抓取；受 Facebook 可见性限制，非保证全量评论</td><td>名称含 Official，但不默认认定为官方渠道。</td></tr><tr><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/" target="_blank" rel="noreferrer">查看 Group</a><br>ROCO KINGDOM VN</td><td><div class="volume-cell"><strong>48</strong><div class="bar"><span style="width:53%"></span></div></div></td><td>已加入 / 公开小组</td><td>可见帖子与可展开评论已抓取；受 Facebook 可见性限制，非保证全量评论</td><td>正式监测源。</td></tr><tr><td><a class="btn" href="https://www.facebook.com/groups/947481474801675/" target="_blank" rel="noreferrer">查看 Group</a><br>ROCO KINGDOM VIET NAM</td><td><div class="volume-cell"><strong>9</strong><div class="bar"><span style="width:10%"></span></div></div></td><td>已加入 / 公开小组</td><td>可见帖子与可展开评论已抓取；受 Facebook 可见性限制，非保证全量评论</td><td>正式监测源。</td></tr><tr><td><a class="btn" href="https://www.facebook.com/groups/3223551104630521/" target="_blank" rel="noreferrer">查看 Group</a><br>Roco Kingdom Mobile Viet Nam</td><td><div class="volume-cell"><strong>5</strong><div class="bar"><span style="width:5%"></span></div></div></td><td>已加入 / 公开小组</td><td>可见帖子与可展开评论已抓取；受 Facebook 可见性限制，非保证全量评论</td><td>正式监测源。</td></tr>
-        </tbody>
-      </table>
-    </section>
-
     <section id="topics">
       <h2>热点排行</h2>
       <table>
-        <thead><tr><th>排名</th><th>热点</th><th>内容量</th><th>情绪</th><th>热度</th><th>市场观察价值</th><th>分析 / case</th></tr></thead>
+        <thead><tr><th>排名</th><th>热点</th><th>内容量</th><th>情绪</th><th>分析 / case</th></tr></thead>
         <tbody>
-          <tr data-bucket="topic"><td>1</td><td><strong>越南玩家自发讨论</strong><p class="small muted">该话题主要是玩家的非单一机制讨论，集中在：shiny / 异色外观与黑银配色、抓宠、出货、晒收获和运气分享、普通闲聊、短评论和跟帖互动。共 119 条，包含 44 帖 / 75 评论，情绪以「中性」为主；它更适合用于观察自然社区热度、玩家自传播内容和发行前认知扩散，而不是作为单个问题处理。</p></td><td><div class="volume-cell"><strong>119</strong><div class="bar"><span style="width:100%"></span></div></div></td><td><span class="tag blue">中性</span></td><td><div class="bar"><span style="width:100%"></span></div></td><td>高</td><td><a class="btn strong" href="../topics/2026-P3_6LaK5Y2X546p5a626Ieq5Y-R6K6o6K66.html">查看二级分析</a></td></tr><tr data-bucket="topic"><td>2</td><td><strong>玩法机制</strong><p class="small muted">玩家主要在问：任务如何完成、NPC / Boss 打法攻略、按钮、顺序和操作路径说明。共 66 条，包含 42 帖 / 24 评论，反映任务说明和机制学习成本较高，可作为未来越南本地化说明、FAQ 和新手引导的观察素材。</p></td><td><div class="volume-cell"><strong>66</strong><div class="bar"><span style="width:55%"></span></div></div></td><td><span class="tag blue">中性</span></td><td><div class="bar"><span style="width:100%"></span></div></td><td>高</td><td><a class="btn strong" href="../topics/2026-P3_546p5rOV5py65Yi2.html">查看二级分析</a></td></tr><tr data-bucket="topic"><td>3</td><td><strong>宠物、角色、养成</strong><p class="small muted">玩家主要讨论：宠物进化与阶段成长、shiny / 异色与外观配色、技能、队伍、PVP 与强度搭配、宠物获取、借宠和图鉴补齐。共 61 条，包含 30 帖 / 31 评论，说明越南玩家已经开始围绕宠物收藏、外观、强度和队伍搭配形成较细的经验交流。</p></td><td><div class="volume-cell"><strong>61</strong><div class="bar"><span style="width:51%"></span></div></div></td><td><span class="tag blue">中性</span></td><td><div class="bar"><span style="width:100%"></span></div></td><td>高</td><td><a class="btn strong" href="../topics/2026-P3_5a6g54mp44CB6KeS6Imy44CB5YW75oiQ.html">查看二级分析</a></td></tr><tr data-bucket="topic"><td>4</td><td><strong>充值、付费、礼包</strong><p class="small muted">玩家主要讨论：Battle Pass / 战令相关宠物或权益、充值、月卡和 gem pass、私下交易或付费借取。共 28 条，包含 13 帖 / 15 评论；它既代表潜在付费兴趣，也需要继续观察第三方充值、私下交易和误导渠道风险。</p></td><td><div class="volume-cell"><strong>28</strong><div class="bar"><span style="width:24%"></span></div></div></td><td><span class="tag red">高风险负面</span></td><td><div class="bar"><span style="width:100%"></span></div></td><td>高</td><td><a class="btn strong" href="../topics/2026-P3_5YWF5YC844CB5LuY6LS544CB56S85YyF.html">查看二级分析</a></td></tr><tr data-bucket="topic"><td>5</td><td><strong>社群互动、组队、公会</strong><p class="small muted">玩家主要围绕：借宠和蹭图鉴/任务、加好友、进地图和申请进入、组队互助和带 Boss展开。共 25 条，包含 8 帖 / 17 评论，说明 Group 已经承担互助入口作用，社区自传播和玩家协作正在自然形成。</p></td><td><div class="volume-cell"><strong>25</strong><div class="bar"><span style="width:21%"></span></div></div></td><td><span class="tag blue">中性</span></td><td><div class="bar"><span style="width:100%"></span></div></td><td>高</td><td><a class="btn strong" href="../topics/2026-P3_56S-576k5LqS5Yqo44CB57uE6Zif44CB5YWs5Lya.html">查看二级分析</a></td></tr><tr data-bucket="topic"><td>6</td><td><strong>活动与福利</strong><p class="small muted">该话题共 22 条，包含 12 帖 / 10 评论，情绪以「中性」为主；主要用于观察越南玩家在该主题下的讨论密度、需求类型和潜在发行前信号。</p></td><td><div class="volume-cell"><strong>22</strong><div class="bar"><span style="width:18%"></span></div></div></td><td><span class="tag blue">中性</span></td><td><div class="bar"><span style="width:100%"></span></div></td><td>高</td><td><a class="btn strong" href="../topics/2026-P3_5rS75Yqo5LiO56aP5Yip.html">查看二级分析</a></td></tr><tr data-bucket="topic"><td>7</td><td><strong>诈骗、外挂、私服、黑产风险</strong><p class="small muted">该话题主要包含账号买卖或代练交易、充值或付费引流、不可见/异常外链内容。共 22 条，包含 6 帖 / 16 评论，应作为社区风险样本持续观察，不宜与正常玩家需求混在一起解读。</p></td><td><div class="volume-cell"><strong>22</strong><div class="bar"><span style="width:18%"></span></div></div></td><td><span class="tag red">高风险负面</span></td><td><div class="bar"><span style="width:100%"></span></div></td><td>高</td><td><a class="btn strong" href="../topics/2026-P3_6K-I6aqX44CB5aSW5oyC44CB56eB5pyN44CB6buR5Lqn6aOO6Zmp.html">查看二级分析</a></td></tr><tr data-bucket="topic"><td>8</td><td><strong>攻略分享</strong><p class="small muted">玩家主要在分享或索取：新手强度与培养优先级、宠物获取和 shiny 难度、通关、Boss 和机制攻略。共 7 条，包含 5 帖 / 2 评论，适合用于判断越南玩家内容学习曲线和发行前内容教育重点。</p></td><td><div class="volume-cell"><strong>7</strong><div class="bar"><span style="width:6%"></span></div></div></td><td><span class="tag red">负面</span></td><td><div class="bar"><span style="width:35%"></span></div></td><td>中</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1777153873250202/" target="_blank" rel="noreferrer">查看原帖</a></td></tr>
+          <tr data-bucket="topic"><td>1</td><td><strong>越南玩家自发讨论</strong><p class="small muted">该话题主要是玩家的非单一机制讨论，集中在：shiny / 异色外观与黑银配色、抓宠、出货、晒收获和运气分享、普通闲聊、短评论和跟帖互动。共 119 条，包含 44 帖 / 75 评论，情绪以「中性」为主；它更适合用于观察自然社区热度、玩家自传播内容和发行前认知扩散，而不是作为单个问题处理。</p></td><td><div class="volume-cell"><strong>119</strong><div class="bar"><span style="width:100%"></span></div></div></td><td><span class="tag blue">中性</span></td><td><a class="btn strong" href="../topics/2026-P3_6LaK5Y2X546p5a626Ieq5Y-R6K6o6K66.html">查看二级分析</a></td></tr><tr data-bucket="topic"><td>2</td><td><strong>玩法机制</strong><p class="small muted">玩家主要在问：任务如何完成、NPC / Boss 打法攻略、按钮、顺序和操作路径说明。共 66 条，包含 42 帖 / 24 评论，反映任务说明和机制学习成本较高，可作为未来越南本地化说明、FAQ 和新手引导的观察素材。</p></td><td><div class="volume-cell"><strong>66</strong><div class="bar"><span style="width:55%"></span></div></div></td><td><span class="tag blue">中性</span></td><td><a class="btn strong" href="../topics/2026-P3_546p5rOV5py65Yi2.html">查看二级分析</a></td></tr><tr data-bucket="topic"><td>3</td><td><strong>宠物、角色、养成</strong><p class="small muted">玩家主要讨论：宠物进化与阶段成长、shiny / 异色与外观配色、技能、队伍、PVP 与强度搭配、宠物获取、借宠和图鉴补齐。共 61 条，包含 30 帖 / 31 评论，说明越南玩家已经开始围绕宠物收藏、外观、强度和队伍搭配形成较细的经验交流。</p></td><td><div class="volume-cell"><strong>61</strong><div class="bar"><span style="width:51%"></span></div></div></td><td><span class="tag blue">中性</span></td><td><a class="btn strong" href="../topics/2026-P3_5a6g54mp44CB6KeS6Imy44CB5YW75oiQ.html">查看二级分析</a></td></tr><tr data-bucket="topic"><td>4</td><td><strong>充值、付费、礼包</strong><p class="small muted">玩家主要讨论：Battle Pass / 战令相关宠物或权益、充值、月卡和 gem pass、私下交易或付费借取。共 28 条，包含 13 帖 / 15 评论；它既代表潜在付费兴趣，也需要继续观察第三方充值、私下交易和误导渠道风险。</p></td><td><div class="volume-cell"><strong>28</strong><div class="bar"><span style="width:24%"></span></div></div></td><td><span class="tag red">高风险负面</span></td><td><a class="btn strong" href="../topics/2026-P3_5YWF5YC844CB5LuY6LS544CB56S85YyF.html">查看二级分析</a></td></tr><tr data-bucket="topic"><td>5</td><td><strong>社群互动、组队、公会</strong><p class="small muted">玩家主要围绕：借宠和蹭图鉴/任务、加好友、进地图和申请进入、组队互助和带 Boss展开。共 25 条，包含 8 帖 / 17 评论，说明 Group 已经承担互助入口作用，社区自传播和玩家协作正在自然形成。</p></td><td><div class="volume-cell"><strong>25</strong><div class="bar"><span style="width:21%"></span></div></div></td><td><span class="tag blue">中性</span></td><td><a class="btn strong" href="../topics/2026-P3_56S-576k5LqS5Yqo44CB57uE6Zif44CB5YWs5Lya.html">查看二级分析</a></td></tr><tr data-bucket="topic"><td>6</td><td><strong>活动与福利</strong><p class="small muted">该话题共 22 条，包含 12 帖 / 10 评论，情绪以「中性」为主；主要用于观察越南玩家在该主题下的讨论密度、需求类型和潜在发行前信号。</p></td><td><div class="volume-cell"><strong>22</strong><div class="bar"><span style="width:18%"></span></div></div></td><td><span class="tag blue">中性</span></td><td><a class="btn strong" href="../topics/2026-P3_5rS75Yqo5LiO56aP5Yip.html">查看二级分析</a></td></tr><tr data-bucket="topic"><td>7</td><td><strong>诈骗、外挂、私服、黑产风险</strong><p class="small muted">该话题主要包含账号买卖或代练交易、充值或付费引流、不可见/异常外链内容。共 22 条，包含 6 帖 / 16 评论，应作为社区风险样本持续观察，不宜与正常玩家需求混在一起解读。</p></td><td><div class="volume-cell"><strong>22</strong><div class="bar"><span style="width:18%"></span></div></div></td><td><span class="tag red">高风险负面</span></td><td><a class="btn strong" href="../topics/2026-P3_6K-I6aqX44CB5aSW5oyC44CB56eB5pyN44CB6buR5Lqn6aOO6Zmp.html">查看二级分析</a></td></tr><tr data-bucket="topic"><td>8</td><td><strong>攻略分享</strong><p class="small muted">玩家主要在分享或索取：新手强度与培养优先级、宠物获取和 shiny 难度、通关、Boss 和机制攻略。共 7 条，包含 5 帖 / 2 评论，适合用于判断越南玩家内容学习曲线和发行前内容教育重点。</p></td><td><div class="volume-cell"><strong>7</strong><div class="bar"><span style="width:6%"></span></div></div></td><td><span class="tag red">负面</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1777153873250202/" target="_blank" rel="noreferrer">查看原帖</a></td></tr>
         </tbody>
       </table>
     </section>
 
     <section>
-      <h2>情绪分布</h2>
+      <h2>未来越南发行参考信号</h2>
       <div class="grid two">
         <div class="panel">
-          <p><strong>正面</strong> 8.9%</p><div class="bar green"><span style="width:8.9%"></span></div>
-          <p><strong>中性</strong> 71.4%</p><div class="bar blue"><span style="width:71.4%"></span></div>
-          <p><strong>负面</strong> 9.6%</p><div class="bar red"><span style="width:9.6%"></span></div>
+          <div class="signal-row"><strong>自然兴趣点</strong><p>宠物养成；异色/孵蛋；任务攻略；好友互助捕捉；Battle Pass 宠物</p></div><div class="signal-row"><strong>高频疑问</strong><p>任务如何完成；宠物如何进化；如何进入好友地图；设备能否运行；当前是否正式版</p></div><div class="signal-row"><strong>潜在付费关注点</strong><p>Battle Pass、月卡、gem pass、充值渠道相关内容已出现，需要观察非官方渠道风险。</p></div><div class="signal-row"><strong>本地化关注点</strong><p>任务说明、宠物名称、攻略翻译和中文内容转译是高频理解门槛。</p></div><div class="signal-row"><strong>社区自传播线索</strong><p>攻略帖、视频/音频讲解、跨 Group 重复转发已出现。</p></div><div class="signal-row"><strong>发行前认知问题</strong><p>部分玩家可能误以为已有越南正式版本；需持续区分中国区正式发行与越南区未正式发行。</p></div>
         </div>
         <div class="panel">
-          <h3>未来越南发行参考信号</h3>
-          <div class="signal-row"><strong>自然兴趣点</strong><p>宠物养成；异色/孵蛋；任务攻略；好友互助捕捉；Battle Pass 宠物</p></div><div class="signal-row"><strong>高频疑问</strong><p>任务如何完成；宠物如何进化；如何进入好友地图；设备能否运行；当前是否正式版</p></div><div class="signal-row"><strong>潜在付费关注点</strong><p>Battle Pass、月卡、gem pass、充值渠道相关内容已出现，需要观察非官方渠道风险。</p></div><div class="signal-row"><strong>本地化关注点</strong><p>任务说明、宠物名称、攻略翻译和中文内容转译是高频理解门槛。</p></div><div class="signal-row"><strong>社区自传播线索</strong><p>攻略帖、视频/音频讲解、跨 Group 重复转发已出现。</p></div><div class="signal-row"><strong>发行前认知问题</strong><p>部分玩家可能误以为已有越南正式版本；需持续区分中国区正式发行与越南区未正式发行。</p></div>
+          <h3>情绪结构摘要</h3>
+          <p>正面 8.9% / 中性 71.4% / 负面 9.6%</p>
+          <p class="small muted">详细情绪已经并入核心指标和评论舆情，避免重复占用页面空间。</p>
         </div>
       </div>
     </section>
@@ -864,10 +940,10 @@ Thật khó khăn để </td><td>11</td><td>可能造成玩家交易/充值误�
       </table>
     </section>
 
-    <section id="voices">
-      <h2>代表性玩家声音</h2>
-      <div class="panel">
-        <div class="voice" data-bucket="topic"><span class="tag blue">社群互动、组队、公会</span><span class="tag">中性</span><span class="tag">Roco Kingdom Viet Nam</span><blockquote>MN ơi ai có hạt sồi roco này cho mình bắt ké với</blockquote><p><strong>翻译：</strong>玩家询问如何进入好友地图或借好友宠物进行捕捉/完成任务。</p><p><strong>分析：</strong>情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容体现玩家愿意通过 Group 借宠、组队或互助完成目标，说明社区自传播和互助结构已经自然出现。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2137226480403757/" target="_blank" rel="noreferrer">查看原帖</a> <span class="small muted">需 Facebook / Group 权限</span></div><div class="voice" data-bucket="topic"><span class="tag blue">宠物、角色、养成</span><span class="tag">中性</span><span class="tag">Cong Hoi Roco Kingdom Viet Nam</span><blockquote>Đr ôg , chỉ ấp trứng thôi</blockquote><p><strong>翻译：</strong>内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。</p><p><strong>分析：</strong>情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容说明越南玩家对宠物外观、稀有度、进化、强度和队伍搭配已经有较深讨论，未来发行前可作为核心兴趣点和内容教育重点。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776017193363870/" target="_blank" rel="noreferrer">查看原帖</a> <span class="small muted">需 Facebook / Group 权限</span></div>
+    <section id="top-posts">
+      <h2>高互动帖子 Top 3</h2>
+      <div class="top-posts">
+        <div class="panel empty-state"><strong>当前期缺少可验证的转赞评字段</strong><p>高互动帖子按 reaction + comment + share 排序。当前结构化数据中这三个字段为空，因此不展示替代排名，避免把“可见讨论量”误当作互动量。下次抓取补齐互动字段后，本模块会自动展示 Top 3 原帖翻译和分析。</p></div>
       </div>
     </section>
 
@@ -900,7 +976,7 @@ Thật khó khăn để </td><td>11</td><td>可能造成玩家交易/充值误�
     let activeFilter = 'all';
 
     function searchableRows() {
-      return Array.from(document.querySelectorAll('tbody tr, .voice, .signal-row, .topic-brief'));
+      return Array.from(document.querySelectorAll('tbody tr, .voice, .top-post, .signal-row, .topic-brief'));
     }
 
     function applyFilters() {

@@ -506,6 +506,89 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 8px;
     }
+    .report-picker {
+      display: grid;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .report-picker span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 650;
+    }
+    .report-picker select {
+      width: 100%;
+      font-weight: 650;
+    }
+    .top-posts {
+      display: grid;
+      gap: 10px;
+    }
+    .top-post {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 13px;
+      background: rgba(255, 255, 255, 0.74);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    }
+    .top-post-head {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .top-post-head strong {
+      margin-left: auto;
+      color: var(--ink);
+      font-size: 13px;
+    }
+    .rank-badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .interaction-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .interaction-line span {
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.055);
+    }
+    .top-post blockquote {
+      margin: 7px 0;
+      padding-left: 10px;
+      border-left: 2px solid var(--blue);
+      color: rgba(0, 0, 0, 0.82);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .top-post p {
+      margin: 6px 0;
+      color: rgba(0, 0, 0, 0.72);
+      font-size: 13px;
+      line-height: 1.48;
+    }
+    .empty-state {
+      color: var(--muted);
+    }
+    .empty-state strong {
+      color: var(--ink);
+      display: block;
+      margin-bottom: 5px;
+    }
     .compact-voice {
       border: 1px solid var(--line);
       border-radius: 10px;

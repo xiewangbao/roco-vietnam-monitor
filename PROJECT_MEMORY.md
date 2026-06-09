@@ -28,6 +28,11 @@ This file records the standing product/content rules for future weekly dashboard
 - Group tables should visualize volume with bars, not only raw counts.
 - Sentiment and post/comment mix should be shown with stacked bars.
 - Data completeness notes must remain visible on the dashboard.
+- The report selector should be a compact dropdown, not a row of large buttons.
+- Do not show the standalone "Group 监测源" section on the main dashboard unless the user asks for source diagnostics.
+- In the hot topic ranking table, do not show separate "热度" or "市场观察价值" columns. Keep the table focused on rank, topic summary, volume, sentiment, and analysis/case action.
+- Do not show a large standalone "情绪分布" block if the same sentiment information already appears in core metrics and comment opinion. Keep only a compact sentiment summary where useful.
+- Replace the old "代表性玩家声音" main section with "高互动帖子 Top 3". High interaction must mean `reactionCount + commentCount + shareCount`. If these fields are missing or unreliable, show a clear missing-field note and do not substitute visible discussion count, sampled comment count, or topic volume.
 - The "本周总览" section must not be a long paragraph. It should render as structured summary cards containing only: one-sentence conclusion, 3-5 key findings, and 3-5 main discussion clusters.
 - "本周总览" must let overseas publishing, market research, and community observation teams quickly understand: what Vietnamese players discussed this week, which discussions represent natural interest, which signals matter for future Vietnam launch, and what friction/risk/localization signals appeared.
 - Each key finding must follow "finding + evidence + market meaning": what players discussed, what data supports it, and why it matters for future Vietnam publishing observation.

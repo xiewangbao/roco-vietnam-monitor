@@ -53,9 +53,9 @@ const availableReports = fs.readdirSync('data/reports')
   .sort((a, b) => a.week.localeCompare(b.week));
 
 const latestMaxTopicVolume = Math.max(...(report.hotTopics || []).map((topic) => topic.volume), 1);
-const latestMaxGroupVolume = Math.max(...(report.groupSourceStatus || []).map((group) => group.weeklyContentVolume), 1);
 const maxReportValid = Math.max(...availableReports.map((item) => item.valid), 1);
 const isAppleTheme = dashboardTheme === 'apple';
+const topInteractivePosts = getTopInteractivePosts();
 
 function interactionDock() {
   if (!isAppleTheme) return '';
@@ -88,7 +88,7 @@ function appleScript() {
     let activeFilter = 'all';
 
     function searchableRows() {
-      return Array.from(document.querySelectorAll('tbody tr, .voice, .signal-row, .topic-brief'));
+      return Array.from(document.querySelectorAll('tbody tr, .voice, .top-post, .signal-row, .topic-brief'));
     }
 
     function applyFilters() {
@@ -200,11 +200,10 @@ const html = `<!doctype html>
   </header>
   <nav>
     <a href="#latest">最新周报</a>
-    <a href="#groups">Group</a>
     <a href="#topics">热点</a>
     <a href="#comments">评论</a>
     <a href="#risks">风险</a>
-    <a href="#voices">玩家声音</a>
+    <a href="#top-posts">高互动帖子</a>
     <a href="#trends">趋势</a>
   </nav>
   ${interactionDock()}
@@ -234,7 +233,12 @@ const html = `<!doctype html>
         <div class="panel summary-panel">${summaryOverview(report)}</div>
         <div class="panel">
           <h3>周选择</h3>
-          <div class="filters">${availableReports.map((r) => `<a class="btn" href="${r.file}">${periodFullLabel(r.week)}</a>`).join('')}</div>
+          <label class="report-picker">
+            <span>切换报告</span>
+            <select onchange="if (this.value) location.href = this.value">
+              ${availableReports.map((r) => `<option value="${r.file}" ${r.week === report.reportWeek ? 'selected' : ''}>${periodFullLabel(r.week)}</option>`).join('')}
+            </select>
+          </label>
           <div class="trend-list">${availableReports.map((r) => `<div class="trend-row"><span>${periodFullLabel(r.week)}</span><div class="bar"><span style="width:${pct(r.valid, maxReportValid)}%"></span></div><strong>${r.valid}</strong></div>`).join('')}</div>
           <p class="small muted">当前展示 ${periodFullLabel(report.reportWeek)}。历史报告已生成，可按期查看。</p>
         </div>
@@ -266,37 +270,26 @@ const html = `<!doctype html>
       </div>
     </section>
 
-    <section id="groups">
-      <h2>Group 监测源</h2>
-      <table>
-        <thead><tr><th>Group</th><th>本周内容量</th><th>访问状态</th><th>数据完整性</th><th>备注</th></tr></thead>
-        <tbody>
-          ${report.groupSourceStatus.map(g => `<tr><td><a class="btn" href="${g.groupUrl}" target="_blank" rel="noreferrer">查看 Group</a><br>${escapeHtml(g.groupName)}</td><td><div class="volume-cell"><strong>${g.weeklyContentVolume}</strong><div class="bar"><span style="width:${pct(g.weeklyContentVolume, latestMaxGroupVolume)}%"></span></div></div></td><td>${escapeHtml(g.accessStatus)}</td><td>${escapeHtml(g.dataCompleteness)}</td><td>${escapeHtml(g.notes)}</td></tr>`).join('')}
-        </tbody>
-      </table>
-    </section>
-
     <section id="topics">
       <h2>热点排行</h2>
       <table>
-        <thead><tr><th>排名</th><th>热点</th><th>内容量</th><th>情绪</th><th>热度</th><th>市场观察价值</th><th>分析 / case</th></tr></thead>
+        <thead><tr><th>排名</th><th>热点</th><th>内容量</th><th>情绪</th><th>分析 / case</th></tr></thead>
         <tbody>
-          ${report.hotTopics.map(t => `<tr data-bucket="topic"><td>${t.rank}</td><td><strong>${escapeHtml(t.title)}</strong><p class="small muted">${escapeHtml(t.notes || '')}</p></td><td><div class="volume-cell"><strong>${t.volume}</strong><div class="bar"><span style="width:${pct(t.volume, latestMaxTopicVolume)}%"></span></div></div></td><td><span class="tag ${sentimentClass(t.sentiment)}">${escapeHtml(t.sentiment)}</span></td><td><div class="bar"><span style="width:${t.heatScore}%"></span></div></td><td>${escapeHtml(t.marketSignalValue)}</td><td>${t.volume >= 10 ? `<a class="btn strong" href="${topicDetailHref(t.title)}">查看二级分析</a>` : (t.representativePostUrl ? `<a class="btn" href="${t.representativePostUrl}" target="_blank" rel="noreferrer">查看原帖</a>` : '无')}</td></tr>`).join('')}
+          ${report.hotTopics.map(t => `<tr data-bucket="topic"><td>${t.rank}</td><td><strong>${escapeHtml(t.title)}</strong><p class="small muted">${escapeHtml(t.notes || '')}</p></td><td><div class="volume-cell"><strong>${t.volume}</strong><div class="bar"><span style="width:${pct(t.volume, latestMaxTopicVolume)}%"></span></div></div></td><td><span class="tag ${sentimentClass(t.sentiment)}">${escapeHtml(t.sentiment)}</span></td><td>${t.volume >= 10 ? `<a class="btn strong" href="${topicDetailHref(t.title)}">查看二级分析</a>` : (t.representativePostUrl ? `<a class="btn" href="${t.representativePostUrl}" target="_blank" rel="noreferrer">查看原帖</a>` : '无')}</td></tr>`).join('')}
         </tbody>
       </table>
     </section>
 
     <section>
-      <h2>情绪分布</h2>
+      <h2>未来越南发行参考信号</h2>
       <div class="grid two">
         <div class="panel">
-          ${sentimentBar('正面', report.metrics.positiveRate, 'green')}
-          ${sentimentBar('中性', report.metrics.neutralRate, 'blue')}
-          ${sentimentBar('负面', report.metrics.negativeRate, 'red')}
+          ${Object.entries(report.futureVietnamLaunchSignals).map(([k, v]) => `<div class="signal-row"><strong>${label(k)}</strong><p>${escapeHtml(Array.isArray(v) ? v.join('；') : v)}</p></div>`).join('')}
         </div>
         <div class="panel">
-          <h3>未来越南发行参考信号</h3>
-          ${Object.entries(report.futureVietnamLaunchSignals).map(([k, v]) => `<div class="signal-row"><strong>${label(k)}</strong><p>${escapeHtml(Array.isArray(v) ? v.join('；') : v)}</p></div>`).join('')}
+          <h3>情绪结构摘要</h3>
+          <p>正面 ${report.metrics.positiveRate}% / 中性 ${report.metrics.neutralRate}% / 负面 ${report.metrics.negativeRate}%</p>
+          <p class="small muted">详细情绪已经并入核心指标和评论舆情，避免重复占用页面空间。</p>
         </div>
       </div>
     </section>
@@ -332,10 +325,12 @@ const html = `<!doctype html>
       </table>
     </section>
 
-    <section id="voices">
-      <h2>代表性玩家声音</h2>
-      <div class="panel">
-        ${report.representativeVoices.map(v => `<div class="voice" data-bucket="topic"><span class="tag blue">${v.topic}</span><span class="tag">${v.sentiment}</span><span class="tag">${v.sourceGroup}</span><blockquote>${escapeHtml(v.originalText)}</blockquote><p><strong>翻译：</strong>${escapeHtml(v.translationZh)}</p>${v.analysisZh ? `<p><strong>分析：</strong>${escapeHtml(v.analysisZh)}</p>` : ''}<a class="btn" href="${v.postUrl}" target="_blank" rel="noreferrer">查看原帖</a> <span class="small muted">需 Facebook / Group 权限</span></div>`).join('')}
+    <section id="top-posts">
+      <h2>高互动帖子 Top 3</h2>
+      <div class="top-posts">
+        ${topInteractivePosts.length
+          ? topInteractivePosts.map((v, index) => `<article class="top-post" data-bucket="topic"><div class="top-post-head"><span class="rank-badge">#${index + 1}</span><span class="tag blue">${escapeHtml(v.topic)}</span><span class="tag">${escapeHtml(v.sentiment)}</span><span class="tag">${escapeHtml(v.sourceGroup)}</span><strong>${v.interactionTotal} 总互动</strong></div><div class="interaction-line"><span>赞/反应 ${v.reactionCount}</span><span>评论 ${v.commentCount}</span><span>分享 ${v.shareCount}</span></div><blockquote>${escapeHtml(v.originalText)}</blockquote><p><strong>翻译：</strong>${escapeHtml(v.translationZh)}</p><p><strong>分析：</strong>${escapeHtml(v.analysisZh)}</p><a class="btn" href="${v.postUrl}" target="_blank" rel="noreferrer">查看原帖</a> <span class="small muted">需 Facebook / Group 权限</span></article>`).join('')
+          : `<div class="panel empty-state"><strong>当前期缺少可验证的转赞评字段</strong><p>高互动帖子按 reaction + comment + share 排序。当前结构化数据中这三个字段为空，因此不展示替代排名，避免把“可见讨论量”误当作互动量。下次抓取补齐互动字段后，本模块会自动展示 Top 3 原帖翻译和分析。</p></div>`}
       </div>
     </section>
 
@@ -1074,6 +1069,89 @@ function appleCss() {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 8px;
     }
+    .report-picker {
+      display: grid;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .report-picker span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 650;
+    }
+    .report-picker select {
+      width: 100%;
+      font-weight: 650;
+    }
+    .top-posts {
+      display: grid;
+      gap: 10px;
+    }
+    .top-post {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 13px;
+      background: rgba(255, 255, 255, 0.74);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    }
+    .top-post-head {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .top-post-head strong {
+      margin-left: auto;
+      color: var(--ink);
+      font-size: 13px;
+    }
+    .rank-badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .interaction-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .interaction-line span {
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.055);
+    }
+    .top-post blockquote {
+      margin: 7px 0;
+      padding-left: 10px;
+      border-left: 2px solid var(--blue);
+      color: rgba(0, 0, 0, 0.82);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .top-post p {
+      margin: 6px 0;
+      color: rgba(0, 0, 0, 0.72);
+      font-size: 13px;
+      line-height: 1.48;
+    }
+    .empty-state {
+      color: var(--muted);
+    }
+    .empty-state strong {
+      color: var(--ink);
+      display: block;
+      margin-bottom: 5px;
+    }
     .compact-voice {
       border: 1px solid var(--line);
       border-radius: 10px;
@@ -1502,6 +1580,39 @@ function analysisFallback(item) {
   return `该内容归入「${topic}」，情绪为「${item.sentiment || '中性'}」。它主要用于判断越南玩家在该主题下的自然兴趣、疑问密度和未来发行前需要持续观察的认知点。`;
 }
 
+function numberOrNull(value) {
+  if (value === null || value === undefined || value === '') return null;
+  const numeric = Number(value);
+  return Number.isFinite(numeric) ? numeric : null;
+}
+
+function getTopInteractivePosts() {
+  const posts = (structured.items || [])
+    .filter((item) => item.recordType === 'post' && item.postUrl)
+    .map((item) => {
+      const reactionCount = numberOrNull(item.reactionCount);
+      const commentCount = numberOrNull(item.commentCount);
+      const shareCount = numberOrNull(item.shareCount);
+      if (reactionCount === null && commentCount === null && shareCount === null) return null;
+      return {
+        originalText: item.originalText,
+        translationZh: item.translationZh,
+        analysisZh: item.analysisZh || analysisFallback(item),
+        sentiment: item.sentiment,
+        topic: item.primaryTopic || item.topics?.[0] || '其他',
+        sourceGroup: item.sourceGroup,
+        postUrl: item.postUrl,
+        reactionCount: reactionCount || 0,
+        commentCount: commentCount || 0,
+        shareCount: shareCount || 0,
+        interactionTotal: (reactionCount || 0) + (commentCount || 0) + (shareCount || 0),
+      };
+    })
+    .filter(Boolean)
+    .sort((a, b) => b.interactionTotal - a.interactionTotal);
+  return posts.slice(0, 3);
+}
+
 function periodLabel(week) {
   const labels = {
     '2026-W18': '第 1 期',
@@ -1589,7 +1700,8 @@ function escapeHtml(value) {
 
 const reportHtml = html
   .replaceAll('href="reports/', 'href="../reports/')
-  .replaceAll('href="topics/', 'href="../topics/');
+  .replaceAll('href="topics/', 'href="../topics/')
+  .replaceAll('value="reports/', 'value="../reports/');
 fs.writeFileSync(`${outputDir}/reports/${report.reportWeek}.html`, reportHtml);
 fs.writeFileSync(`${outputDir}/index.html`, html);
 fs.copyFileSync(reportPath, `${outputDir}/weekly_report_${report.reportWeek}_real.json`);

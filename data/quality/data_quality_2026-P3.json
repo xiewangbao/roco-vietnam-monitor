@@ -1,7 +1,7 @@
 {
   "schemaVersion": "data_quality.v1",
   "reportWeek": "2026-P3",
-  "generatedAt": "2026-05-19T07:53:37.565Z",
+  "generatedAt": "2026-06-09T06:25:42.562Z",
   "status": "pass",
   "thresholds": {
     "minValidItems": 50,
