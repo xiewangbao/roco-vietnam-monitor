@@ -105,13 +105,24 @@
       top: 48px;
       z-index: 18;
       display: grid;
-      grid-template-columns: minmax(210px, .72fr) minmax(260px, 1fr) auto auto;
+      grid-template-columns: minmax(360px, .9fr) minmax(260px, 1fr) auto auto;
       gap: 10px;
       align-items: center;
       padding: 10px 24px;
       background: rgba(245, 245, 247, 0.78);
       border-bottom: 1px solid var(--line);
       backdrop-filter: saturate(180%) blur(20px);
+    }
+    .report-switcher {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: center;
+      min-width: 0;
+    }
+    .report-copy {
+      min-width: 0;
     }
     .dock-section strong {
       display: block;
@@ -123,6 +134,100 @@
       margin: 2px 0 0;
       color: var(--muted);
       font-size: 12px;
+    }
+    .report-menu {
+      position: relative;
+      justify-self: end;
+    }
+    .report-menu summary {
+      list-style: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 32px;
+      padding: 0 13px;
+      border-radius: 980px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 650;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 8px 20px rgba(0, 113, 227, 0.22);
+      white-space: nowrap;
+    }
+    .report-menu summary::-webkit-details-marker {
+      display: none;
+    }
+    .report-menu[open] summary {
+      background: #005bb5;
+    }
+    .report-popover {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      z-index: 60;
+      width: min(420px, calc(100vw - 32px));
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.16);
+      backdrop-filter: saturate(180%) blur(20px);
+    }
+    .report-popover::before {
+      content: "";
+      position: absolute;
+      top: -6px;
+      right: 28px;
+      width: 12px;
+      height: 12px;
+      background: rgba(255, 255, 255, 0.96);
+      border-left: 1px solid var(--line);
+      border-top: 1px solid var(--line);
+      transform: rotate(45deg);
+    }
+    .report-popover-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 4px 4px 8px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 6px;
+    }
+    .report-popover-head strong {
+      font-size: 13px;
+      line-height: 1.2;
+    }
+    .report-popover-head span {
+      color: var(--muted);
+      font-size: 11px;
+      white-space: nowrap;
+    }
+    .report-option {
+      display: grid;
+      grid-template-columns: minmax(118px, 1fr) minmax(104px, 1.1fr) 42px;
+      gap: 8px;
+      align-items: center;
+      padding: 9px 8px;
+      border-radius: 10px;
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 12px;
+    }
+    .report-option:hover,
+    .report-option.active {
+      background: rgba(0, 113, 227, 0.08);
+    }
+    .report-option span {
+      font-weight: 650;
+      white-space: nowrap;
+    }
+    .report-option strong {
+      text-align: right;
+      font-size: 13px;
+      font-weight: 700;
     }
     .dock-search {
       display: grid;
@@ -361,6 +466,18 @@
     tr:last-child td { border-bottom: 0; }
     tr:hover td { background: rgba(0, 113, 227, 0.035); }
     td strong { font-weight: 650; }
+    .translation-cell p {
+      margin: 0 0 4px;
+      color: var(--ink);
+      font-size: 12px;
+      line-height: 1.42;
+    }
+    .translation-cell span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.35;
+    }
     .tag {
       display: inline-flex;
       align-items: center;
@@ -506,20 +623,6 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 8px;
     }
-    .report-picker {
-      display: grid;
-      gap: 6px;
-      margin-bottom: 10px;
-    }
-    .report-picker span {
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 650;
-    }
-    .report-picker select {
-      width: 100%;
-      font-weight: 650;
-    }
     .top-posts {
       display: grid;
       gap: 10px;
@@ -604,6 +707,52 @@
     .compact-voice p {
       overflow-wrap: anywhere;
     }
+    .corpus-search {
+      scroll-margin-top: 150px;
+    }
+    .corpus-results {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .corpus-hit {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 9px;
+      background: rgba(245, 245, 247, 0.66);
+    }
+    .corpus-hit-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 6px;
+    }
+    .corpus-hit blockquote {
+      margin: 6px 0;
+      padding-left: 10px;
+      border-left: 2px solid var(--blue);
+      color: rgba(0, 0, 0, 0.82);
+      font-size: 13px;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+    .corpus-hit p {
+      margin: 5px 0;
+      color: rgba(0, 0, 0, 0.68);
+      font-size: 12px;
+      line-height: 1.42;
+    }
+    .corpus-hit-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 6px;
+    }
     .voice {
       border-top: 1px solid var(--line);
       padding: 10px 0;
@@ -669,11 +818,12 @@
     body.comfortable .voice blockquote { font-size: 14px; line-height: 1.6; }
     @media (max-width: 1120px) {
       .command-dock { grid-template-columns: 1fr; }
+      .report-switcher { grid-template-columns: minmax(0, 1fr) auto; }
       .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .cockpit, .two, .status-strip { grid-template-columns: 1fr; }
       .summary-findings, .summary-cluster { grid-template-columns: 1fr; }
       .cluster-meta { justify-content: flex-start; }
-      .comment-head, .comment-list { grid-template-columns: 1fr; }
+      .comment-head, .comment-list, .corpus-results { grid-template-columns: 1fr; }
       .composition { grid-template-columns: 1fr; }
     }
     @media (max-width: 760px) {
@@ -683,6 +833,12 @@
       nav { justify-content: flex-start; padding: 0 12px; }
       main { padding: 14px 12px 40px; }
       .command-dock { padding: 10px 12px; }
+      .report-switcher { grid-template-columns: 1fr; }
+      .report-menu { justify-self: stretch; }
+      .report-menu summary { width: 100%; }
+      .report-popover { left: 0; right: auto; width: min(100%, calc(100vw - 24px)); }
+      .report-popover::before { right: auto; left: 28px; }
+      .report-option { grid-template-columns: minmax(110px, 1fr) minmax(80px, .8fr) 34px; }
       .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       table { display: block; overflow-x: auto; }
     }
@@ -703,18 +859,19 @@
     </div></section>
     <section><h2>二级 Topic / 共现标签</h2><div class="panel tag-cloud"><span class="tag blue">玩法机制 11</span><span class="tag blue">充值、付费、礼包 6</span><span class="tag blue">社群互动、组队、公会 1</span><span class="tag blue">Bug、闪退、卡顿、登录问题 1</span><span class="tag blue">越南本地化期待 1</span></div></section>
     <section><h2>情绪与来源</h2><div class="grid two"><div class="panel"><p><strong>混合</strong> 9</p><div class="bar amber"><span style="width:22.5%"></span></div><p><strong>中性</strong> 23</p><div class="bar blue"><span style="width:57.49999999999999%"></span></div><p><strong>正面</strong> 7</p><div class="bar green"><span style="width:17.5%"></span></div><p><strong>负面</strong> 1</p><div class="bar red"><span style="width:2.5%"></span></div></div><div class="panel"><div class="mini-row"><span>Roco Kingdom Viet Nam</span><strong>13</strong></div><div class="bar"><span style="width:32.5%"></span></div><div class="mini-row"><span>ROCO KINGDOM VN</span><strong>8</strong></div><div class="bar"><span style="width:20%"></span></div><div class="mini-row"><span>Cong Hoi Roco Kingdom Viet Nam</span><strong>7</strong></div><div class="bar"><span style="width:17.5%"></span></div><div class="mini-row"><span>Roco Kingdom: World Viet Nam Official</span><strong>4</strong></div><div class="bar"><span style="width:10%"></span></div><div class="mini-row"><span>ROCO KINGDOM VIET NAM</span><strong>4</strong></div><div class="bar"><span style="width:10%"></span></div><div class="mini-row"><span>Roco Kingdom Mobile Viet Nam</span><strong>4</strong></div><div class="bar"><span style="width:10%"></span></div></div></div></section>
-    <section><h2>内容明细</h2><table><thead><tr><th>#</th><th>类型</th><th>来源</th><th>情绪</th><th>越南语原文</th><th>中文翻译</th><th>原帖</th></tr></thead><tbody><tr><td>1</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag amber">混合</span></td><td>Tiến hoá đii, hóng màu con đen trắng</td><td>玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2128443277948744/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>2</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag amber">混合</span></td><td>Như nhau, team 6 pet thì mỗi con có khắc chế, này là các con đổi màu, sau dùng bóng 7 màu thì con nào cũng như thế này.</td><td>大体差不多。6 宠队伍里每只都有克制关系；这些主要是换色形态，后面用了七彩球之类的道具后，很多宠物都会变成这种外观。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2128160144643724/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>3</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Ai cho mình xin full skill em này với</td><td>有人可以给我这只宠物的完整技能信息吗？</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2128089357984136/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>4</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Mã đổi thưởng nhập “洛神杯冠军之夜” có thể nhận trứng cưỡi chung.！！！！</td><td>内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2127573298035742/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>5</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Mn cho t hỏi skill này là sao v</td><td>想问这个技能是什么意思、具体怎么触发或使用？</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2127309468062125/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>6</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>nv đánh boss là con nào v mn</td><td>玩家询问任务如何完成，包含要投放/使用哪类精灵或如何解锁机关。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2126524451473960/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>7</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag green">正面</span></td><td>Mn cho mik hỏi là
+    <section><h2>评论区在聊什么</h2><div class="panel"><p>评论区共 13 条可见评论，主要在聊：宠物获取、进化、异色/闪光和养成搭配。（9 条）；求助任务步骤、机制规则或完成方法。（4 条）。</p></div></section>
+    <section><h2>内容明细</h2><table><thead><tr><th>#</th><th>类型</th><th>来源</th><th>情绪</th><th>越南语原文</th><th>中文翻译</th><th>原帖</th></tr></thead><tbody><tr><td>1</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag amber">混合</span></td><td>Tiến hoá đii, hóng màu con đen trắng</td><td class="translation-cell"><p>在问宠物怎么进化。</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2128443277948744/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>2</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag amber">混合</span></td><td>Như nhau, team 6 pet thì mỗi con có khắc chế, này là các con đổi màu, sau dùng bóng 7 màu thì con nào cũng như thế này.</td><td class="translation-cell"><p>大体差不多。6 宠队伍里每只都有克制关系；这些主要是换色形态，后面用了七彩球之类的道具后，很多宠物都会变成这种外观。</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2128160144643724/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>3</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Ai cho mình xin full skill em này với</td><td class="translation-cell"><p>有人可以给我这只宠物的完整技能信息吗？</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2128089357984136/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>4</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Mã đổi thưởng nhập “洛神杯冠军之夜” có thể nhận trứng cưỡi chung.！！！！</td><td class="translation-cell"><p>在聊异色/闪光、孵蛋或宠物培育。</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2127573298035742/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>5</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Mn cho t hỏi skill này là sao v</td><td class="translation-cell"><p>这个技能是什么意思？</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2127309468062125/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>6</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>nv đánh boss là con nào v mn</td><td class="translation-cell"><p>大意：求助任务步骤、机制规则或完成方法。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2126524451473960/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>7</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag green">正面</span></td><td>Mn cho mik hỏi là
 Game này xắp xếp pet có ghép theo đội hình kiểu
-Dps-sup dps-sp như ghenshin hay wuwa ko</td><td>想问这款游戏的宠物队伍是否像 Genshin/WuWa 那样分 DPS、辅助等定位来搭配。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2126426881483717/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>8</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Ai có mấy pet này cho e ké với ạ</td><td>有人有这几只宠物吗？想借用/蹭一下完成捕捉或任务。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1766690074296582/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>9</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Sao mik k chọn pet đánh dc v ạ?</td><td>为什么我不能选择宠物出战？</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1766484944317095/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>10</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Group mình có ai có sồi roco này cho mình xin bắt ké với ạ</td><td>玩家询问如何进入好友地图或借好友宠物进行捕捉/完成任务。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1766143331017923/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>11</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Thuốc chuyển đổi sang vương, đánh bại boss vương 1 lần, lấy bổ trợ vương miện, trong trận sài nó là lên được.</td><td>玩家询问这些王冠道具如何获得。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1766114121020844/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>12</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Các bác cho e hỏi lọ nào xài để kích hoạt huyết thống thủ lĩnh để tiến hoá mega vậy ạ ?</td><td>玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1766067207692202/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>13</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag amber">混合</span></td><td>Lọ màu đỏ có hình vương miện á</td><td>玩家询问这些王冠道具如何获得。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1766067207692202/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>14</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Mỗi lần thả roco ra ngoài là nó được tăng gì vậy mn, với chỉ mình cách thả một lúc 6 con khi mỗi lần đăng nhập với</td><td>每次把 Roco 放出去会提升什么？另外想知道怎样在每次登录时一次放出 6 只。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1765930851039171/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>15</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag green">正面</span></td><td>Vui lòng ra cửa hàng ngẫu nhiên mua trứng sặc sỡ.</td><td>内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2349026465506430/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>16</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>nên chọn em nào trong dàn pet này mn ơi</td><td>大家觉得这组宠物里应该选哪一只？</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2348145558927854/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>17</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>+10
-Thông tin của các thú cưng và cách phối kỹ năng.</td><td>内容整理了宠物信息和技能搭配方式。</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2347156119026798/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>18</td><td>评论</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>不过孵蛋的我今天已经发过了。现在他们更缺那种比如打龙息帕尔之类的，但是这个和翼王我今天发了，我打算明天发刷金币的。你可以发刷异色的。刷异色的我只给他们分享了最简单的一种。那种高效率的我不知道怎么翻译，太复杂了
-1周</td><td>不过孵蛋的我今天已经发过了。现在他们更缺那种比如打龙息帕尔之类的，但是这个和翼王我今天发了，我打算明天发刷金币的。你可以发刷异色的。刷异色的我只给他们分享了最简单的一种。那种高效率的我不知道怎么翻译，太复杂了</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2345357909206619/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>19</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag blue">中性</span></td><td>Cho mình hỏi con nấm trong đội hình tích điểm sao rơi có skill nào để rời sân và đưa con khác vào không</td><td>想问队伍里用于“星落积分/陨星”体系的蘑菇宠物，有没有可以离场并换其他宠物上场的技能？</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4031132630521699/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>20</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag blue">中性</span></td><td>Mã đổi thưởng nhập “洛神杯冠军之夜” có thể nhận trứng cưỡi chung.！！！！</td><td>内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4030626407238988/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>21</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag green">正面</span></td><td>BÀI VIẾT NÀY HỖ TRỢ MỌI NGƯỜI
+Dps-sup dps-sp như ghenshin hay wuwa ko</td><td class="translation-cell"><p>想问这款游戏的宠物队伍是否像 Genshin/WuWa 那样分 DPS、辅助等定位来搭配。</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2126426881483717/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>8</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Ai có mấy pet này cho e ké với ạ</td><td class="translation-cell"><p>有人有这几只宠物吗？想借用/蹭一下完成捕捉或任务。</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1766690074296582/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>9</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Sao mik k chọn pet đánh dc v ạ?</td><td class="translation-cell"><p>为什么我不能选择宠物出战？</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1766484944317095/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>10</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Group mình có ai có sồi roco này cho mình xin bắt ké với ạ</td><td class="translation-cell"><p>我有这个，你要抓吗？</p><span>借宠、加好友、进地图和互助完成任务。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1766143331017923/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>11</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Thuốc chuyển đổi sang vương, đánh bại boss vương 1 lần, lấy bổ trợ vương miện, trong trận sài nó là lên được.</td><td class="translation-cell"><p>玩家询问这些王冠道具如何获得。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1766114121020844/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>12</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Các bác cho e hỏi lọ nào xài để kích hoạt huyết thống thủ lĩnh để tiến hoá mega vậy ạ ?</td><td class="translation-cell"><p>在问宠物怎么进化。</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1766067207692202/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>13</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag amber">混合</span></td><td>Lọ màu đỏ có hình vương miện á</td><td class="translation-cell"><p>玩家询问这些王冠道具如何获得。</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1766067207692202/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>14</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Mỗi lần thả roco ra ngoài là nó được tăng gì vậy mn, với chỉ mình cách thả một lúc 6 con khi mỗi lần đăng nhập với</td><td class="translation-cell"><p>在问怎么登录游戏。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1765930851039171/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>15</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag green">正面</span></td><td>Vui lòng ra cửa hàng ngẫu nhiên mua trứng sặc sỡ.</td><td class="translation-cell"><p>在聊异色/闪光、孵蛋或宠物培育。</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2349026465506430/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>16</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>nên chọn em nào trong dàn pet này mn ơi</td><td class="translation-cell"><p>大家觉得这组宠物里应该选哪一只？</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2348145558927854/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>17</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>+10
+Thông tin của các thú cưng và cách phối kỹ năng.</td><td class="translation-cell"><p>内容整理了宠物信息和技能搭配方式。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2347156119026798/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>18</td><td>评论</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>不过孵蛋的我今天已经发过了。现在他们更缺那种比如打龙息帕尔之类的，但是这个和翼王我今天发了，我打算明天发刷金币的。你可以发刷异色的。刷异色的我只给他们分享了最简单的一种。那种高效率的我不知道怎么翻译，太复杂了
+1周</td><td class="translation-cell"><p>不过孵蛋的我今天已经发过了。现在他们更缺那种比如打龙息帕尔之类的，但是这个和翼王我今天发了，我打算明天发刷金币的。你可以发刷异色的。刷异色的我只给他们分享了最简单的一种。那种高效率的我不知道怎么翻译，太复杂了</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2345357909206619/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>19</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag blue">中性</span></td><td>Cho mình hỏi con nấm trong đội hình tích điểm sao rơi có skill nào để rời sân và đưa con khác vào không</td><td class="translation-cell"><p>想问队伍里用于“星落积分/陨星”体系的蘑菇宠物，有没有可以离场并换其他宠物上场的技能？</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4031132630521699/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>20</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag blue">中性</span></td><td>Mã đổi thưởng nhập “洛神杯冠军之夜” có thể nhận trứng cưỡi chung.！！！！</td><td class="translation-cell"><p>在聊异色/闪光、孵蛋或宠物培育。</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4030626407238988/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>21</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag green">正面</span></td><td>BÀI VIẾT NÀY HỖ TRỢ MỌI NGƯỜI
 ——————-
 Ai đang gặp khó khăn gì khi chơi game thì bình luận ở dưới nhé.
 Về tất cả mọi thứ trong game như tiến hoá pet -
-kiên thức - nhiệm vụ - cách chơi - thu phục</td><td>玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4028706274097668/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>22</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag green">正面</span></td><td>Vui lòng ra cửa hàng ngẫu nhiên mua trứng sặc sỡ.</td><td>内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4028574024110893/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>23</td><td>评论</td><td>ROCO KINGDOM VN</td><td><span class="tag amber">混合</span></td><td>作者
-lấy bắt 10 con đc sòi chưa tiến hoá vẫn tính luôn</td><td>玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4027209477580681/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>24</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag red">负面</span></td><td>Để phòng khi bạn không biết. #rocokingdom</td><td>给还不知道的玩家做一个提醒/科普。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4026710947630534/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>25</td><td>帖子</td><td>ROCO KINGDOM VIET NAM</td><td><span class="tag blue">中性</span></td><td>Mã đổi thưởng nhập “洛神杯冠军之夜” có thể nhận trứng cưỡi chung.！！！！</td><td>内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。</td><td><a class="btn" href="https://www.facebook.com/groups/947481474801675/posts/964713303078492/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>26</td><td>帖子</td><td>ROCO KINGDOM VIET NAM</td><td><span class="tag green">正面</span></td><td>Vui lòng ra cửa hàng ngẫu nhiên mua trứng sặc sỡ.</td><td>内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。</td><td><a class="btn" href="https://www.facebook.com/groups/947481474801675/posts/962981359918353/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>27</td><td>帖子</td><td>ROCO KINGDOM VIET NAM</td><td><span class="tag amber">混合</span></td><td>Thương nhân viễn du đang bán trứng màu. Mọi người mau đi đi.！！！</td><td>内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。</td><td><a class="btn" href="https://www.facebook.com/groups/947481474801675/posts/962239759992513/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>28</td><td>帖子</td><td>ROCO KINGDOM VIET NAM</td><td><span class="tag blue">中性</span></td><td>+10
-Thông tin của các thú cưng và cách phối kỹ năng.</td><td>内容整理了宠物信息和技能搭配方式。</td><td><a class="btn" href="https://www.facebook.com/groups/947481474801675/posts/961138896769266/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>29</td><td>帖子</td><td>Roco Kingdom Mobile Viet Nam</td><td><span class="tag blue">中性</span></td><td>Mã đổi thưởng nhập “洛神杯冠军之夜” có thể nhận trứng cưỡi chung.！！！！</td><td>内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。</td><td><a class="btn" href="https://www.facebook.com/groups/3223551104630521/posts/4377811539204466/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>30</td><td>帖子</td><td>Roco Kingdom Mobile Viet Nam</td><td><span class="tag green">正面</span></td><td>Vui lòng ra cửa hàng ngẫu nhiên mua trứng sặc sỡ.</td><td>内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。</td><td><a class="btn" href="https://www.facebook.com/groups/3223551104630521/posts/4375562822762671/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>31</td><td>帖子</td><td>Roco Kingdom Mobile Viet Nam</td><td><span class="tag amber">混合</span></td><td>Thương nhân viễn du đang bán trứng màu. Mọi người mau đi đi.！！！</td><td>内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。</td><td><a class="btn" href="https://www.facebook.com/groups/3223551104630521/posts/4374652889520331/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>32</td><td>帖子</td><td>Roco Kingdom Mobile Viet Nam</td><td><span class="tag blue">中性</span></td><td>+10
-Thông tin của các thú cưng và cách phối kỹ năng.</td><td>内容整理了宠物信息和技能搭配方式。</td><td><a class="btn" href="https://www.facebook.com/groups/3223551104630521/posts/4373309949654625/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>33</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag green">正面</span></td><td>阮氏玲儿
+kiên thức - nhiệm vụ - cách chơi - thu phục</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4028706274097668/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>22</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag green">正面</span></td><td>Vui lòng ra cửa hàng ngẫu nhiên mua trứng sặc sỡ.</td><td class="translation-cell"><p>在聊异色/闪光、孵蛋或宠物培育。</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4028574024110893/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>23</td><td>评论</td><td>ROCO KINGDOM VN</td><td><span class="tag amber">混合</span></td><td>作者
+lấy bắt 10 con đc sòi chưa tiến hoá vẫn tính luôn</td><td class="translation-cell"><p>在问宠物怎么进化。</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4027209477580681/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>24</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag red">负面</span></td><td>Để phòng khi bạn không biết. #rocokingdom</td><td class="translation-cell"><p>给还不知道的玩家做一个提醒/科普。</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4026710947630534/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>25</td><td>帖子</td><td>ROCO KINGDOM VIET NAM</td><td><span class="tag blue">中性</span></td><td>Mã đổi thưởng nhập “洛神杯冠军之夜” có thể nhận trứng cưỡi chung.！！！！</td><td class="translation-cell"><p>在聊异色/闪光、孵蛋或宠物培育。</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/947481474801675/posts/964713303078492/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>26</td><td>帖子</td><td>ROCO KINGDOM VIET NAM</td><td><span class="tag green">正面</span></td><td>Vui lòng ra cửa hàng ngẫu nhiên mua trứng sặc sỡ.</td><td class="translation-cell"><p>在聊异色/闪光、孵蛋或宠物培育。</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/947481474801675/posts/962981359918353/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>27</td><td>帖子</td><td>ROCO KINGDOM VIET NAM</td><td><span class="tag amber">混合</span></td><td>Thương nhân viễn du đang bán trứng màu. Mọi người mau đi đi.！！！</td><td class="translation-cell"><p>在聊异色/闪光、孵蛋或宠物培育。</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/947481474801675/posts/962239759992513/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>28</td><td>帖子</td><td>ROCO KINGDOM VIET NAM</td><td><span class="tag blue">中性</span></td><td>+10
+Thông tin của các thú cưng và cách phối kỹ năng.</td><td class="translation-cell"><p>内容整理了宠物信息和技能搭配方式。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/947481474801675/posts/961138896769266/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>29</td><td>帖子</td><td>Roco Kingdom Mobile Viet Nam</td><td><span class="tag blue">中性</span></td><td>Mã đổi thưởng nhập “洛神杯冠军之夜” có thể nhận trứng cưỡi chung.！！！！</td><td class="translation-cell"><p>在聊异色/闪光、孵蛋或宠物培育。</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3223551104630521/posts/4377811539204466/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>30</td><td>帖子</td><td>Roco Kingdom Mobile Viet Nam</td><td><span class="tag green">正面</span></td><td>Vui lòng ra cửa hàng ngẫu nhiên mua trứng sặc sỡ.</td><td class="translation-cell"><p>在聊异色/闪光、孵蛋或宠物培育。</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3223551104630521/posts/4375562822762671/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>31</td><td>帖子</td><td>Roco Kingdom Mobile Viet Nam</td><td><span class="tag amber">混合</span></td><td>Thương nhân viễn du đang bán trứng màu. Mọi người mau đi đi.！！！</td><td class="translation-cell"><p>在聊异色/闪光、孵蛋或宠物培育。</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3223551104630521/posts/4374652889520331/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>32</td><td>帖子</td><td>Roco Kingdom Mobile Viet Nam</td><td><span class="tag blue">中性</span></td><td>+10
+Thông tin của các thú cưng và cách phối kỹ năng.</td><td class="translation-cell"><p>内容整理了宠物信息和技能搭配方式。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3223551104630521/posts/4373309949654625/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>33</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag green">正面</span></td><td>阮氏玲儿
 Chia sẽ cho mn về 1 ngày trộm vía của tui~~~
 +2
 最相关
@@ -731,7 +888,7 @@ Bao nhiêu bóng con này Ct nay đi ké hơn 1k bóng rồi chưa ra
 2条回复
 Ra shiny dùng cầu mùa thay = cầu lăng kính v[用户名已脱敏] bạn .. và ra màu đen bạc 100% đk
 阮氏玲儿回复了
-5条回复</td><td>多少钱？</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2128443277948744/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>34</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Ai cho mình xin full skill em này với
+5条回复</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2128443277948744/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>34</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Ai cho mình xin full skill em này với
 最相关
 匿名互动者 891
 Hmm mấy con shiny toàn để xó ít khi dùng chỉ số toàn như cut
@@ -742,15 +899,15 @@ Võ Thành Tú được bác trên bili có mấy đội hình
 [用户名已脱敏] mình không dùng bili bạn ạ
 Bé này thấy đồ đen lấp lánh vẫn là đẹp nhất
 [用户名已脱敏] đẹp thật
-Tui build kiểu này thấy cũng ok phết</td><td>这只宠物能不能放进“流星/陨星”体系队伍里？</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2128089357984136/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>35</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Tui build kiểu này thấy cũng ok phết</td><td>我这样配队/培养下来感觉还挺可以。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2128089357984136/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>36</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Mn cho t hỏi skill này là sao v
+Tui build kiểu này thấy cũng ok phết</td><td class="translation-cell"><p>在聊异色/闪光、孵蛋或宠物培育。</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2128089357984136/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>35</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Tui build kiểu này thấy cũng ok phết</td><td class="translation-cell"><p>我这样配队/培养下来感觉还挺可以。</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2128089357984136/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>36</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Mn cho t hỏi skill này là sao v
 最相关
 Hình như nó lặp lại mấy chiêu vừa dùng
 FascinatingRabbit5928
-.</td><td>它好像会重复刚才用过的几个技能。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2127309468062125/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>37</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag amber">混合</span></td><td>Mn ơi làm cái nv đầu tiên kiểu j thế ạ
+.</td><td class="translation-cell"><p>这个技能是什么意思？</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2127309468062125/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>37</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag amber">混合</span></td><td>Mn ơi làm cái nv đầu tiên kiểu j thế ạ
 最相关
 đánh con boss này nha
-Tưởng viusss nhưng ko đó là Ngọc Kem :)))</td><td>一开始还以为是病毒/异常，结果其实是 Ngọc Kem 相关内容。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2126731584786580/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>38</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>đánh con boss này nha</td><td>这是用来打这个 Boss 的。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2126731584786580/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>39</td><td>评论</td><td>ROCO KINGDOM VN</td><td><span class="tag amber">混合</span></td><td>最相关
-lấy bắt 10 con đc sòi chưa tiến hoá vẫn tính luôn</td><td>玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4027209477580681/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>40</td><td>评论</td><td>ROCO KINGDOM VN</td><td><span class="tag amber">混合</span></td><td>lấy bắt 10 con đc sòi chưa tiến hoá vẫn tính luôn</td><td>玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4027209477580681/" target="_blank" rel="noreferrer">查看原帖</a></td></tr></tbody></table></section>
+Tưởng viusss nhưng ko đó là Ngọc Kem :)))</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2126731584786580/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>38</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>đánh con boss này nha</td><td class="translation-cell"><p>这是用来打这个 Boss 的。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2126731584786580/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>39</td><td>评论</td><td>ROCO KINGDOM VN</td><td><span class="tag amber">混合</span></td><td>最相关
+lấy bắt 10 con đc sòi chưa tiến hoá vẫn tính luôn</td><td class="translation-cell"><p>在问宠物怎么进化。</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4027209477580681/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>40</td><td>评论</td><td>ROCO KINGDOM VN</td><td><span class="tag amber">混合</span></td><td>lấy bắt 10 con đc sòi chưa tiến hoá vẫn tính luôn</td><td class="translation-cell"><p>在问宠物怎么进化。</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4027209477580681/" target="_blank" rel="noreferrer">查看原帖</a></td></tr></tbody></table></section>
   </main>
 </body>
 </html>

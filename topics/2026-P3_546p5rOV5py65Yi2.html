@@ -105,13 +105,24 @@
       top: 48px;
       z-index: 18;
       display: grid;
-      grid-template-columns: minmax(210px, .72fr) minmax(260px, 1fr) auto auto;
+      grid-template-columns: minmax(360px, .9fr) minmax(260px, 1fr) auto auto;
       gap: 10px;
       align-items: center;
       padding: 10px 24px;
       background: rgba(245, 245, 247, 0.78);
       border-bottom: 1px solid var(--line);
       backdrop-filter: saturate(180%) blur(20px);
+    }
+    .report-switcher {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: center;
+      min-width: 0;
+    }
+    .report-copy {
+      min-width: 0;
     }
     .dock-section strong {
       display: block;
@@ -123,6 +134,100 @@
       margin: 2px 0 0;
       color: var(--muted);
       font-size: 12px;
+    }
+    .report-menu {
+      position: relative;
+      justify-self: end;
+    }
+    .report-menu summary {
+      list-style: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 32px;
+      padding: 0 13px;
+      border-radius: 980px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 650;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 8px 20px rgba(0, 113, 227, 0.22);
+      white-space: nowrap;
+    }
+    .report-menu summary::-webkit-details-marker {
+      display: none;
+    }
+    .report-menu[open] summary {
+      background: #005bb5;
+    }
+    .report-popover {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      z-index: 60;
+      width: min(420px, calc(100vw - 32px));
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.16);
+      backdrop-filter: saturate(180%) blur(20px);
+    }
+    .report-popover::before {
+      content: "";
+      position: absolute;
+      top: -6px;
+      right: 28px;
+      width: 12px;
+      height: 12px;
+      background: rgba(255, 255, 255, 0.96);
+      border-left: 1px solid var(--line);
+      border-top: 1px solid var(--line);
+      transform: rotate(45deg);
+    }
+    .report-popover-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 4px 4px 8px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 6px;
+    }
+    .report-popover-head strong {
+      font-size: 13px;
+      line-height: 1.2;
+    }
+    .report-popover-head span {
+      color: var(--muted);
+      font-size: 11px;
+      white-space: nowrap;
+    }
+    .report-option {
+      display: grid;
+      grid-template-columns: minmax(118px, 1fr) minmax(104px, 1.1fr) 42px;
+      gap: 8px;
+      align-items: center;
+      padding: 9px 8px;
+      border-radius: 10px;
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 12px;
+    }
+    .report-option:hover,
+    .report-option.active {
+      background: rgba(0, 113, 227, 0.08);
+    }
+    .report-option span {
+      font-weight: 650;
+      white-space: nowrap;
+    }
+    .report-option strong {
+      text-align: right;
+      font-size: 13px;
+      font-weight: 700;
     }
     .dock-search {
       display: grid;
@@ -361,6 +466,18 @@
     tr:last-child td { border-bottom: 0; }
     tr:hover td { background: rgba(0, 113, 227, 0.035); }
     td strong { font-weight: 650; }
+    .translation-cell p {
+      margin: 0 0 4px;
+      color: var(--ink);
+      font-size: 12px;
+      line-height: 1.42;
+    }
+    .translation-cell span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.35;
+    }
     .tag {
       display: inline-flex;
       align-items: center;
@@ -506,20 +623,6 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 8px;
     }
-    .report-picker {
-      display: grid;
-      gap: 6px;
-      margin-bottom: 10px;
-    }
-    .report-picker span {
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 650;
-    }
-    .report-picker select {
-      width: 100%;
-      font-weight: 650;
-    }
     .top-posts {
       display: grid;
       gap: 10px;
@@ -604,6 +707,52 @@
     .compact-voice p {
       overflow-wrap: anywhere;
     }
+    .corpus-search {
+      scroll-margin-top: 150px;
+    }
+    .corpus-results {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .corpus-hit {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 9px;
+      background: rgba(245, 245, 247, 0.66);
+    }
+    .corpus-hit-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 6px;
+    }
+    .corpus-hit blockquote {
+      margin: 6px 0;
+      padding-left: 10px;
+      border-left: 2px solid var(--blue);
+      color: rgba(0, 0, 0, 0.82);
+      font-size: 13px;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+    .corpus-hit p {
+      margin: 5px 0;
+      color: rgba(0, 0, 0, 0.68);
+      font-size: 12px;
+      line-height: 1.42;
+    }
+    .corpus-hit-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 6px;
+    }
     .voice {
       border-top: 1px solid var(--line);
       padding: 10px 0;
@@ -669,11 +818,12 @@
     body.comfortable .voice blockquote { font-size: 14px; line-height: 1.6; }
     @media (max-width: 1120px) {
       .command-dock { grid-template-columns: 1fr; }
+      .report-switcher { grid-template-columns: minmax(0, 1fr) auto; }
       .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .cockpit, .two, .status-strip { grid-template-columns: 1fr; }
       .summary-findings, .summary-cluster { grid-template-columns: 1fr; }
       .cluster-meta { justify-content: flex-start; }
-      .comment-head, .comment-list { grid-template-columns: 1fr; }
+      .comment-head, .comment-list, .corpus-results { grid-template-columns: 1fr; }
       .composition { grid-template-columns: 1fr; }
     }
     @media (max-width: 760px) {
@@ -683,6 +833,12 @@
       nav { justify-content: flex-start; padding: 0 12px; }
       main { padding: 14px 12px 40px; }
       .command-dock { padding: 10px 12px; }
+      .report-switcher { grid-template-columns: 1fr; }
+      .report-menu { justify-self: stretch; }
+      .report-menu summary { width: 100%; }
+      .report-popover { left: 0; right: auto; width: min(100%, calc(100vw - 24px)); }
+      .report-popover::before { right: auto; left: 28px; }
+      .report-option { grid-template-columns: minmax(110px, 1fr) minmax(80px, .8fr) 34px; }
       .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       table { display: block; overflow-x: auto; }
     }
@@ -703,27 +859,28 @@
     </div></section>
     <section><h2>二级 Topic / 共现标签</h2><div class="panel tag-cloud"><span class="tag blue">宠物、角色、养成 16</span><span class="tag blue">攻略分享 4</span><span class="tag blue">活动与福利 4</span><span class="tag blue">充值、付费、礼包 3</span><span class="tag blue">社群互动、组队、公会 2</span><span class="tag blue">诈骗、外挂、私服、黑产风险 2</span><span class="tag blue">越南本地化期待 1</span></div></section>
     <section><h2>情绪与来源</h2><div class="grid two"><div class="panel"><p><strong>中性</strong> 41</p><div class="bar blue"><span style="width:62.121212121212125%"></span></div><p><strong>正面</strong> 12</p><div class="bar green"><span style="width:18.181818181818183%"></span></div><p><strong>负面</strong> 5</p><div class="bar red"><span style="width:7.575757575757576%"></span></div><p><strong>混合</strong> 7</p><div class="bar amber"><span style="width:10.606060606060606%"></span></div><p><strong>高风险负面</strong> 1</p><div class="bar red"><span style="width:1.5151515151515151%"></span></div></div><div class="panel"><div class="mini-row"><span>Cong Hoi Roco Kingdom Viet Nam</span><strong>21</strong></div><div class="bar"><span style="width:31.818181818181817%"></span></div><div class="mini-row"><span>Roco Kingdom Viet Nam</span><strong>16</strong></div><div class="bar"><span style="width:24.242424242424242%"></span></div><div class="mini-row"><span>ROCO KINGDOM VN</span><strong>14</strong></div><div class="bar"><span style="width:21.21212121212121%"></span></div><div class="mini-row"><span>Roco Kingdom: World Viet Nam Official</span><strong>11</strong></div><div class="bar"><span style="width:16.666666666666664%"></span></div><div class="mini-row"><span>ROCO KINGDOM VIET NAM</span><strong>2</strong></div><div class="bar"><span style="width:3.0303030303030303%"></span></div><div class="mini-row"><span>Roco Kingdom Mobile Viet Nam</span><strong>2</strong></div><div class="bar"><span style="width:3.0303030303030303%"></span></div></div></div></section>
-    <section><h2>内容明细</h2><table><thead><tr><th>#</th><th>类型</th><th>来源</th><th>情绪</th><th>越南语原文</th><th>中文翻译</th><th>原帖</th></tr></thead><tbody><tr><td>1</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Mn cho tui hỏi làm 2 nv này như nào z</td><td>玩家询问任务如何完成，包含要投放/使用哪类精灵或如何解锁机关。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2139929966800075/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>2</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Nhiệm vụ cuối làm s v ạ:(</td><td>玩家询问任务如何完成，包含要投放/使用哪类精灵或如何解锁机关。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2139478196845252/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>3</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Cho mình hỏi nhiệm vụ đầu tiên yêu cầu mình làm gì vậy ạ . Mò hoài k biết cách qua nv này</td><td>玩家询问任务如何完成，包含要投放/使用哪类精灵或如何解锁机关。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2139381740188231/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>4</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Nhiệm vuu này làm sao v mn</td><td>该内容在询问玩法或任务机制，直译需结合图片或上下文复核；核心诉求是看懂任务条件、找到完成方法或确认机制规则。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2139118423547896/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>5</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Ai bt lm nv này s kh ạ</td><td>玩家询问任务如何完成，包含要投放/使用哪类精灵或如何解锁机关。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2138853123574426/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>6</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag green">正面</span></td><td>Thay đổi tính cách và buff đi. Sỉ số xấu kìa</td><td>该内容在讨论宠物养成细节，直译需结合图片或上下文复核；核心关注点是宠物获取、异色/配色、强度或养成路径。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2138534993606239/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>7</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag red">负面</span></td><td>[用户名已脱敏] này làm sao z mn cứu emm</td><td>该内容在询问玩法或任务机制，直译需结合图片或上下文复核；核心诉求是看懂任务条件、找到完成方法或确认机制规则。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2138534990272906/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>8</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Bác nào chỉ em làm nv này chỗ nào vậy ạ</td><td>玩家询问任务如何完成，包含要投放/使用哪类精灵或如何解锁机关。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2138333786959693/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>9</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Có cách nào cày này nhiều không</td><td>该内容在询问玩法或任务机制，直译需结合图片或上下文复核；核心诉求是看懂任务条件、找到完成方法或确认机制规则。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2138275883632150/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>10</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag green">正面</span></td><td>Ae hướng dẫn làm chi tiết với mấy cái này với mình làm nhưng nó chẳng được
+    <section><h2>评论区在聊什么</h2><div class="panel"><p>评论区共 24 条可见评论，主要在聊：求助任务步骤、机制规则或完成方法。（22 条）；交易、充值或非官方渠道，需作为风险样本复核。（2 条）。</p></div></section>
+    <section><h2>内容明细</h2><table><thead><tr><th>#</th><th>类型</th><th>来源</th><th>情绪</th><th>越南语原文</th><th>中文翻译</th><th>原帖</th></tr></thead><tbody><tr><td>1</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Mn cho tui hỏi làm 2 nv này như nào z</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2139929966800075/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>2</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Nhiệm vụ cuối làm s v ạ:(</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2139478196845252/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>3</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Cho mình hỏi nhiệm vụ đầu tiên yêu cầu mình làm gì vậy ạ . Mò hoài k biết cách qua nv này</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2139381740188231/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>4</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Nhiệm vuu này làm sao v mn</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2139118423547896/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>5</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Ai bt lm nv này s kh ạ</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2138853123574426/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>6</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag green">正面</span></td><td>Thay đổi tính cách và buff đi. Sỉ số xấu kìa</td><td class="translation-cell"><p>大意：求助任务步骤、机制规则或完成方法。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2138534993606239/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>7</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag red">负面</span></td><td>[用户名已脱敏] này làm sao z mn cứu emm</td><td class="translation-cell"><p>救救我/帮帮我。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2138534990272906/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>8</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Bác nào chỉ em làm nv này chỗ nào vậy ạ</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2138333786959693/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>9</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Có cách nào cày này nhiều không</td><td class="translation-cell"><p>大意：求助任务步骤、机制规则或完成方法。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2138275883632150/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>10</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag green">正面</span></td><td>Ae hướng dẫn làm chi tiết với mấy cái này với mình làm nhưng nó chẳng được
 Nv1: đổi tên cho elf thì mik đg cày thân mật rồi k cần quan tâm
 Nv2: hoàn thành nvu của elf có cái nó yêu cầu đánh mấy boss để có huy hiệu anh hùng gì mà boss khỏe vkl mình nhờ mấy ông tung max lv cũng k sôca đước trước khi con rồng mình die
 Nv3: skip vì mình k có tiền mua lắm bóng v
-Nv4 : bắt ngẫu nhiên mà mình vất bóng tứ tung nó tính có 5 con v</td><td>玩家询问任务如何完成，包含要投放/使用哪类精灵或如何解锁机关。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2138053880321017/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>11</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag amber">混合</span></td><td>Cái nhiệm vụ 2 ông làm cái mà dùng chiêu ấy còn cái anh hùng bỏ qua đi</td><td>玩家询问任务如何完成，包含要投放/使用哪类精灵或如何解锁机关。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2138053880321017/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>12</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Em xin lên rank vàng ạ, hẹn mùa sau giảm rank rồi đánh tiếp.</td><td>该内容在询问玩法或任务机制，直译需结合图片或上下文复核；核心诉求是看懂任务条件、找到完成方法或确认机制规则。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2138005980325807/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>13</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag amber">混合</span></td><td>Muốn bắt thêm 3 em sói nữa T^T mà hết lăng kính ròi , lười chạy hang vs nhiệm vụ quá</td><td>玩家询问任务如何完成，包含要投放/使用哪类精灵或如何解锁机关。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2137462710380134/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>14</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag red">负面</span></td><td>Ai giúp mình vs , NV nào không biết làm sao luôn</td><td>玩家询问任务如何完成，包含要投放/使用哪类精灵或如何解锁机关。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2137323367060735/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>15</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>孵化公式是毒攻略</td><td>孵化公式是毒攻略</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2137168277076244/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>16</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Dạ mọi ng cho e hỏi 2 nhiệm vụ này làm sao vậy ạ</td><td>这个任务要怎么做？</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1777401893225400/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>17</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag amber">混合</span></td><td>Mình mới chơi và xong cốt truyện học viện. Xin mn chỉ cho mình cách bắt shiny với ạ, thấy mn bắt mà thèmm</td><td>我是新手，想问这些宠物里有没有哪只更强、而且 shiny 更难刷？还是它们强度和稀有度都差不多？</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1777153873250202/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>18</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Làm sao đây mn</td><td>该内容在询问玩法或任务机制，直译需结合图片或上下文复核；核心诉求是看懂任务条件、找到完成方法或确认机制规则。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776999233265666/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>19</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag green">正面</span></td><td>Cứ đánh bình thường thôi nhé, sẽ tích đủ điểm thôi</td><td>该内容在询问玩法或任务机制，直译需结合图片或上下文复核；核心诉求是看懂任务条件、找到完成方法或确认机制规则。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776999233265666/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>20</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Nhiệm vụ đầu với nhiệm vụ thứ 3 làm sao á mọi người</td><td>这个任务要怎么做？</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776983663267223/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>21</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>[用户名已脱敏] có cách nào kiếm lông vũ lấp lánh ko ạ</td><td>该内容在询问玩法或任务机制，直译需结合图片或上下文复核；核心诉求是看懂任务条件、找到完成方法或确认机制规则。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776714786627444/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>22</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>sos làm sao nữa vậy mn</td><td>该内容在询问玩法或任务机制，直译需结合图片或上下文复核；核心诉求是看懂任务条件、找到完成方法或确认机制规则。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776683229963933/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>23</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Ai chỉ tôi nv n[用户名已脱敏] không</td><td>玩家询问任务如何完成，包含要投放/使用哪类精灵或如何解锁机关。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776659746632948/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>24</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag amber">混合</span></td><td>Kệ nhiệm vụ đó ik chạy vòng vòng làm mấy nv khác xong quay lại thấy nó tự xong á( tui cũng k biết tại sao lun nhưng cái nào kh</td><td>玩家询问任务如何完成，包含要投放/使用哪类精灵或如何解锁机关。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776659746632948/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>25</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>2nv này làm sao z mn</td><td>玩家询问任务如何完成，包含要投放/使用哪类精灵或如何解锁机关。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776637743301815/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>26</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Tiến hoá con bay bay này như nào v mn :(( cả làm nv nào thì mới mở gia viên xây nhà vậy ạ</td><td>玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776473236651599/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>27</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Làm sao bắt đc vậy ạ</td><td>该内容在询问玩法或任务机制，直译需结合图片或上下文复核；核心诉求是看懂任务条件、找到完成方法或确认机制规则。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776473236651599/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>28</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Ai chỉ tui làm NV này với</td><td>玩家询问任务如何完成，包含要投放/使用哪类精灵或如何解锁机关。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776259080006348/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>29</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag amber">混合</span></td><td>làm nhiệm vụ màu vàng sang map học viện đi đã</td><td>玩家询问任务如何完成，包含要投放/使用哪类精灵或如何解锁机关。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776259080006348/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>30</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Dạ mọi người cho em hỏi nhiệm vụ này làm sao vậy ạ</td><td>这个任务要怎么做？</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776219843343605/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>31</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Mình là newbie làm sao để trứng nở vậy</td><td>内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776219083343681/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>32</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Ủa nhiệm vụ này là làm sao vậy mọi người</td><td>这个任务要怎么做？</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776032020029054/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>33</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Có cách nào có nhiều cái này hong</td><td>该内容在询问玩法或任务机制，直译需结合图片或上下文复核；核心诉求是看懂任务条件、找到完成方法或确认机制规则。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1775965340035722/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>34</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag amber">混合</span></td><td>Làm mấy cái nhiệm vụ màu xanh lá cây á</td><td>玩家询问任务如何完成，包含要投放/使用哪类精灵或如何解锁机关。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1775894253376164/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>35</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>Cho e hỏi cái nv này làm như thế nào ạ</td><td>玩家询问任务如何完成，包含要投放/使用哪类精灵或如何解锁机关。</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2360984350977308/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>36</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>Con này sài được kh mn , mình ấp nở ra , với làm sao tiến hoá nó v mn</td><td>玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2359818444427232/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>37</td><td>评论</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>Bạn đi cày nhiệm vụ cho lên lv đi ạ
-Cấp của bn chỉ đc cách cấp của pet 10lv thôi</td><td>玩家询问任务如何完成，包含要投放/使用哪类精灵或如何解锁机关。</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2359187497823660/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>38</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>Cho em hỏi là đánh boss này kiểu gì thế ạ
-SOS</td><td>该内容在讨论宠物养成细节，直译需结合图片或上下文复核；核心关注点是宠物获取、异色/配色、强度或养成路径。</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2357944441281299/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>39</td><td>评论</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag red">负面</span></td><td>Ráng thụôc lòng mỗi con bạn ơi, nó bị ẩn skill, chọn skill sao cho tấn công, con nào mà chọn buff là thua đánh lại</td><td>该内容在讨论宠物养成细节，直译需结合图片或上下文复核；核心关注点是宠物获取、异色/配色、强度或养成路径。</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2357944441281299/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>40</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag green">正面</span></td><td>Hi mọi người mình là Paul =)))))))) Hướng dẫn chi tiết bấm vào từng ảnh nhé !!!
+Nv4 : bắt ngẫu nhiên mà mình vất bóng tứ tung nó tính có 5 con v</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2138053880321017/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>11</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag amber">混合</span></td><td>Cái nhiệm vụ 2 ông làm cái mà dùng chiêu ấy còn cái anh hùng bỏ qua đi</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2138053880321017/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>12</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Em xin lên rank vàng ạ, hẹn mùa sau giảm rank rồi đánh tiếp.</td><td class="translation-cell"><p>大意：求助任务步骤、机制规则或完成方法。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2138005980325807/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>13</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag amber">混合</span></td><td>Muốn bắt thêm 3 em sói nữa T^T mà hết lăng kính ròi , lười chạy hang vs nhiệm vụ quá</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2137462710380134/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>14</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag red">负面</span></td><td>Ai giúp mình vs , NV nào không biết làm sao luôn</td><td class="translation-cell"><p>谁能帮帮我？</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2137323367060735/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>15</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>孵化公式是毒攻略</td><td class="translation-cell"><p>孵化公式是毒攻略</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2137168277076244/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>16</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Dạ mọi ng cho e hỏi 2 nhiệm vụ này làm sao vậy ạ</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1777401893225400/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>17</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag amber">混合</span></td><td>Mình mới chơi và xong cốt truyện học viện. Xin mn chỉ cho mình cách bắt shiny với ạ, thấy mn bắt mà thèmm</td><td class="translation-cell"><p>在聊异色/闪光、孵蛋或宠物培育。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1777153873250202/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>18</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Làm sao đây mn</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776999233265666/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>19</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag green">正面</span></td><td>Cứ đánh bình thường thôi nhé, sẽ tích đủ điểm thôi</td><td class="translation-cell"><p>大意：求助任务步骤、机制规则或完成方法。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776999233265666/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>20</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Nhiệm vụ đầu với nhiệm vụ thứ 3 làm sao á mọi người</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776983663267223/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>21</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>[用户名已脱敏] có cách nào kiếm lông vũ lấp lánh ko ạ</td><td class="translation-cell"><p>在问这个羽毛在哪里获得。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776714786627444/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>22</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>sos làm sao nữa vậy mn</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776683229963933/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>23</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Ai chỉ tôi nv n[用户名已脱敏] không</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776659746632948/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>24</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag amber">混合</span></td><td>Kệ nhiệm vụ đó ik chạy vòng vòng làm mấy nv khác xong quay lại thấy nó tự xong á( tui cũng k biết tại sao lun nhưng cái nào kh</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776659746632948/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>25</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>2nv này làm sao z mn</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776637743301815/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>26</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Tiến hoá con bay bay này như nào v mn :(( cả làm nv nào thì mới mở gia viên xây nhà vậy ạ</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776473236651599/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>27</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Làm sao bắt đc vậy ạ</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776473236651599/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>28</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Ai chỉ tui làm NV này với</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776259080006348/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>29</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag amber">混合</span></td><td>làm nhiệm vụ màu vàng sang map học viện đi đã</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776259080006348/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>30</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Dạ mọi người cho em hỏi nhiệm vụ này làm sao vậy ạ</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776219843343605/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>31</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Mình là newbie làm sao để trứng nở vậy</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776219083343681/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>32</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Ủa nhiệm vụ này là làm sao vậy mọi người</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776032020029054/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>33</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Có cách nào có nhiều cái này hong</td><td class="translation-cell"><p>大意：求助任务步骤、机制规则或完成方法。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1775965340035722/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>34</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag amber">混合</span></td><td>Làm mấy cái nhiệm vụ màu xanh lá cây á</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1775894253376164/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>35</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>Cho e hỏi cái nv này làm như thế nào ạ</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2360984350977308/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>36</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>Con này sài được kh mn , mình ấp nở ra , với làm sao tiến hoá nó v mn</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2359818444427232/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>37</td><td>评论</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>Bạn đi cày nhiệm vụ cho lên lv đi ạ
+Cấp của bn chỉ đc cách cấp của pet 10lv thôi</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2359187497823660/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>38</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>Cho em hỏi là đánh boss này kiểu gì thế ạ
+SOS</td><td class="translation-cell"><p>大意：求助任务步骤、机制规则或完成方法。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2357944441281299/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>39</td><td>评论</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag red">负面</span></td><td>Ráng thụôc lòng mỗi con bạn ơi, nó bị ẩn skill, chọn skill sao cho tấn công, con nào mà chọn buff là thua đánh lại</td><td class="translation-cell"><p>大意：求助任务步骤、机制规则或完成方法。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2357944441281299/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>40</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag green">正面</span></td><td>Hi mọi người mình là Paul =)))))))) Hướng dẫn chi tiết bấm vào từng ảnh nhé !!!
 +3
 SƠ ĐỒ TIẾN HÓA PHÂN NHÁNH CỦA TINH LINH
-#RocoKingdom</td><td>玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2356826078059802/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>41</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>Nhiệm vụ này làm sao ae mò mãi k bt làm</td><td>这个任务要怎么做？</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2355933831482360/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>42</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag green">正面</span></td><td>+2
-Hướng dẫn tốc chiến &quot;命定花种&quot; kỳ 4</td><td>该内容在询问玩法或任务机制，直译需结合图片或上下文复核；核心诉求是看懂任务条件、找到完成方法或确认机制规则。</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2354161888326221/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>43</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag green">正面</span></td><td>+2
-Hướng dẫn tốc chiến &quot;命定花种&quot; kỳ 4</td><td>该内容在询问玩法或任务机制，直译需结合图片或上下文复核；核心诉求是看懂任务条件、找到完成方法或确认机制规则。</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2354159571659786/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>44</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag blue">中性</span></td><td>Cho mình hỏi cách để qua đc nv đầu tiên với ạ.</td><td>玩家询问任务如何完成，包含要投放/使用哪类精灵或如何解锁机关。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4044878425813786/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>45</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag red">负面</span></td><td>Mình mới chơi mà mình kẹt ở nv mua đồ này. Mọi người giúp mình với ạ</td><td>有人可以教我/帮我看一下这个怎么做吗？</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4041078662860429/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>46</td><td>评论</td><td>ROCO KINGDOM VN</td><td><span class="tag blue">中性</span></td><td>Xin cách tải game ạ</td><td>该内容在询问玩法或任务机制，直译需结合图片或上下文复核；核心诉求是看懂任务条件、找到完成方法或确认机制规则。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4041044519530510/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>47</td><td>评论</td><td>ROCO KINGDOM VN</td><td><span class="tag blue">中性</span></td><td>Xin cách tải game an</td><td>该内容在询问玩法或任务机制，直译需结合图片或上下文复核；核心诉求是看懂任务条件、找到完成方法或确认机制规则。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4041031229531839/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>48</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag blue">中性</span></td><td>mn chỉ tui làm nhiệm vụ vẽ tranh minh hoạ cú đóm để lấy kỹ năng với</td><td>玩家询问任务如何完成，包含要投放/使用哪类精灵或如何解锁机关。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4040667219568240/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>49</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag green">正面</span></td><td>Hi mọi người mình là Paul =)))))))) Hướng dẫn chi tiết bấm vào từng ảnh nhé !!!!
+#RocoKingdom</td><td class="translation-cell"><p>在问宠物怎么进化。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2356826078059802/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>41</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>Nhiệm vụ này làm sao ae mò mãi k bt làm</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2355933831482360/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>42</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag green">正面</span></td><td>+2
+Hướng dẫn tốc chiến &quot;命定花种&quot; kỳ 4</td><td class="translation-cell"><p>大意：求助任务步骤、机制规则或完成方法。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2354161888326221/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>43</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag green">正面</span></td><td>+2
+Hướng dẫn tốc chiến &quot;命定花种&quot; kỳ 4</td><td class="translation-cell"><p>大意：求助任务步骤、机制规则或完成方法。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2354159571659786/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>44</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag blue">中性</span></td><td>Cho mình hỏi cách để qua đc nv đầu tiên với ạ.</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4044878425813786/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>45</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag red">负面</span></td><td>Mình mới chơi mà mình kẹt ở nv mua đồ này. Mọi người giúp mình với ạ</td><td class="translation-cell"><p>谁能帮帮我？</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4041078662860429/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>46</td><td>评论</td><td>ROCO KINGDOM VN</td><td><span class="tag blue">中性</span></td><td>Xin cách tải game ạ</td><td class="translation-cell"><p>大意：求助任务步骤、机制规则或完成方法。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4041044519530510/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>47</td><td>评论</td><td>ROCO KINGDOM VN</td><td><span class="tag blue">中性</span></td><td>Xin cách tải game an</td><td class="translation-cell"><p>大意：求助任务步骤、机制规则或完成方法。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4041031229531839/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>48</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag blue">中性</span></td><td>mn chỉ tui làm nhiệm vụ vẽ tranh minh hoạ cú đóm để lấy kỹ năng với</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4040667219568240/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>49</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag green">正面</span></td><td>Hi mọi người mình là Paul =)))))))) Hướng dẫn chi tiết bấm vào từng ảnh nhé !!!!
 +3
 SƠ ĐỒ TIẾN HÓA PHÂN NHÁNH CỦA TINH LINH
-#RocoKingdom</td><td>玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4037310316570597/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>50</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag green">正面</span></td><td>BÀI VIẾT NÀY HỖ TRỢ MỌI NGƯỜI
+#RocoKingdom</td><td class="translation-cell"><p>在问宠物怎么进化。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4037310316570597/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>50</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag green">正面</span></td><td>BÀI VIẾT NÀY HỖ TRỢ MỌI NGƯỜI
 ——————-
 Ai đang gặp khó khăn gì khi chơi game thì bình luận ở dưới nhé.
 Về tất cả mọi thứ trong game như tiến hoá pet -
-kiên thức - nhiệm vụ - cách chơi - thu phục</td><td>玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4036941429940819/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>51</td><td>评论</td><td>ROCO KINGDOM VN</td><td><span class="tag blue">中性</span></td><td>Cách nào để gặp ô nhiễm nhiều như trên tiktok ạ
-1周</td><td>玩家在请求大家支持/关注自己的频道，并附带 TikTok 链接或兑换码信息。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4036941429940819/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>52</td><td>评论</td><td>ROCO KINGDOM VN</td><td><span class="tag blue">中性</span></td><td>Làm sao có con vịt mũ ạ?
-1周</td><td>该内容在询问玩法或任务机制，直译需结合图片或上下文复核；核心诉求是看懂任务条件、找到完成方法或确认机制规则。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4036941429940819/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>53</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>ẹ hem thông tin mới về mấy dạn shiny có trong ss2 đây ae tranh thủ đi thui
+kiên thức - nhiệm vụ - cách chơi - thu phục</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4036941429940819/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>51</td><td>评论</td><td>ROCO KINGDOM VN</td><td><span class="tag blue">中性</span></td><td>Cách nào để gặp ô nhiễm nhiều như trên tiktok ạ
+1周</td><td class="translation-cell"><p>玩家在请求大家支持/关注自己的频道，并附带 TikTok 链接或兑换码信息。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4036941429940819/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>52</td><td>评论</td><td>ROCO KINGDOM VN</td><td><span class="tag blue">中性</span></td><td>Làm sao có con vịt mũ ạ?
+1周</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4036941429940819/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>53</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>ẹ hem thông tin mới về mấy dạn shiny có trong ss2 đây ae tranh thủ đi thui
 S1 ko có nổi 1 con
 1条回复
 孵化公式是毒攻略
@@ -731,20 +888,20 @@ S1 ko có nổi 1 con
 Thỏ bth lai với con nào v
 1条回复
 Lại tiếp tục thỏ lửa cộng một à
-Cày hạt thui chứ trứng lâu ác</td><td>内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2137168277076244/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>54</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag red">负面</span></td><td>Mình mới chơi và xong cốt truyện học viện. Xin mn chỉ cho mình cách bắt shiny với ạ, thấy mn bắt mà thèmm
+Cày hạt thui chứ trứng lâu ác</td><td class="translation-cell"><p>在聊异色/闪光、孵蛋或宠物培育。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2137168277076244/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>54</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag red">负面</span></td><td>Mình mới chơi và xong cốt truyện học viện. Xin mn chỉ cho mình cách bắt shiny với ạ, thấy mn bắt mà thèmm
 Lão_Nương_Thích_KhẩuNghiệp
 Có thời gian xin vô map ng khác bắt thôi. Mai rảnh ib tui mở map cho bắt
 Lão_Nương_Thích_KhẩuNghiệp cảm ơn b ạ
-Đây những con này bắt mấy con này mới ra chuẩn bị tầm 1k-2k bóng. Hôm nay với mai nữa là hết săn được S1 rồi</td><td>我是新手，想问这些宠物里有没有哪只更强、而且 shiny 更难刷？还是它们强度和稀有度都差不多？</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1777153873250202/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>55</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>sos làm sao nữa vậy mn
+Đây những con này bắt mấy con này mới ra chuẩn bị tầm 1k-2k bóng. Hôm nay với mai nữa là hết săn được S1 rồi</td><td class="translation-cell"><p>想进别人地图或借好友资源来捕捉/完成任务。</p><span>交易、充值或非官方渠道，需作为风险样本复核。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1777153873250202/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>55</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>sos làm sao nữa vậy mn
 Dùng dịch đi b
-anh thương em vô bờ bến</td><td>该内容在询问玩法或任务机制，直译需结合图片或上下文复核；核心诉求是看懂任务条件、找到完成方法或确认机制规则。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776683229963933/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>56</td><td>评论</td><td>ROCO KINGDOM VN</td><td><span class="tag red">高风险负面</span></td><td>Còn vài quả trứng vịt hiếm ai mua ib 10k 1 quả
+anh thương em vô bờ bến</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776683229963933/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>56</td><td>评论</td><td>ROCO KINGDOM VN</td><td><span class="tag red">高风险负面</span></td><td>Còn vài quả trứng vịt hiếm ai mua ib 10k 1 quả
 Vãi cả 10k quả, ai cần cho free nè
 1条回复
 Xin cách tải game an
 1条回复
 Ai cần trứng vịt đồng hồ thi cho free nha
 5条回复
-Vãi cả hiếm =)) 6 quả trứng vịt đội mũ ai cần thì ib rách vcl</td><td>内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4041031229531839/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>57</td><td>评论</td><td>ROCO KINGDOM VN</td><td><span class="tag green">正面</span></td><td>5月11日15:11
+Vãi cả hiếm =)) 6 quả trứng vịt đội mũ ai cần thì ib rách vcl</td><td class="translation-cell"><p>在聊异色/闪光、孵蛋或宠物培育。</p><span>交易、充值或非官方渠道，需作为风险样本复核。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4041031229531839/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>57</td><td>评论</td><td>ROCO KINGDOM VN</td><td><span class="tag green">正面</span></td><td>5月11日15:11
 BÀI VIẾT NÀY HỖ TRỢ MỌI NGƯỜI
 ——————-
 Ai đang gặp khó khăn gì khi chơi game thì bình luận ở dưới nhé.
@@ -762,9 +919,9 @@ Ios tải như nào vậy ạ
 1条回复
 Xin cách tải game
 Cách bắt con rồng xương sao vậy
-1条回复</td><td>玩家在请求大家支持/关注自己的频道，并附带 TikTok 链接或兑换码信息。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4036941429940819/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>58</td><td>评论</td><td>ROCO KINGDOM VN</td><td><span class="tag blue">中性</span></td><td>Xin cách tải game</td><td>该内容在询问玩法或任务机制，直译需结合图片或上下文复核；核心诉求是看懂任务条件、找到完成方法或确认机制规则。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4036941429940819/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>59</td><td>评论</td><td>ROCO KINGDOM VN</td><td><span class="tag blue">中性</span></td><td>Cách bắt con rồng xương sao vậy</td><td>该内容在询问玩法或任务机制，直译需结合图片或上下文复核；核心诉求是看懂任务条件、找到完成方法或确认机制规则。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4036941429940819/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>60</td><td>帖子</td><td>ROCO KINGDOM VIET NAM</td><td><span class="tag blue">中性</span></td><td>Dành cho người mới: Cách để vào game &quot;洛克王国&quot;</td><td>该内容在询问玩法或任务机制，直译需结合图片或上下文复核；核心诉求是看懂任务条件、找到完成方法或确认机制规则。</td><td><a class="btn" href="https://www.facebook.com/groups/947481474801675/posts/970928825790273/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>61</td><td>帖子</td><td>ROCO KINGDOM VIET NAM</td><td><span class="tag blue">中性</span></td><td>Dành cho người mới: Cách để vào game &quot;洛克王国&quot;</td><td>该内容在询问玩法或任务机制，直译需结合图片或上下文复核；核心诉求是看懂任务条件、找到完成方法或确认机制规则。</td><td><a class="btn" href="https://www.facebook.com/groups/947481474801675/posts/970928235790332/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>62</td><td>帖子</td><td>Roco Kingdom Mobile Viet Nam</td><td><span class="tag green">正面</span></td><td>+2
-Hướng dẫn tốc chiến &quot;命定花种&quot; kỳ 4</td><td>该内容在询问玩法或任务机制，直译需结合图片或上下文复核；核心诉求是看懂任务条件、找到完成方法或确认机制规则。</td><td><a class="btn" href="https://www.facebook.com/groups/3223551104630521/posts/4381824232136530/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>63</td><td>帖子</td><td>Roco Kingdom Mobile Viet Nam</td><td><span class="tag green">正面</span></td><td>+2
-Hướng dẫn tốc chiến &quot;命定花种&quot; kỳ 4</td><td>该内容在询问玩法或任务机制，直译需结合图片或上下文复核；核心诉求是看懂任务条件、找到完成方法或确认机制规则。</td><td><a class="btn" href="https://www.facebook.com/groups/3223551104630521/posts/4381821212136832/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>64</td><td>评论</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag green">正面</span></td><td>5月8日16:18
+1条回复</td><td class="translation-cell"><p>在问任务怎么做或下一步该怎么完成。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4036941429940819/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>58</td><td>评论</td><td>ROCO KINGDOM VN</td><td><span class="tag blue">中性</span></td><td>Xin cách tải game</td><td class="translation-cell"><p>大意：求助任务步骤、机制规则或完成方法。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4036941429940819/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>59</td><td>评论</td><td>ROCO KINGDOM VN</td><td><span class="tag blue">中性</span></td><td>Cách bắt con rồng xương sao vậy</td><td class="translation-cell"><p>大意：求助任务步骤、机制规则或完成方法。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4036941429940819/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>60</td><td>帖子</td><td>ROCO KINGDOM VIET NAM</td><td><span class="tag blue">中性</span></td><td>Dành cho người mới: Cách để vào game &quot;洛克王国&quot;</td><td class="translation-cell"><p>大意：求助任务步骤、机制规则或完成方法。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/947481474801675/posts/970928825790273/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>61</td><td>帖子</td><td>ROCO KINGDOM VIET NAM</td><td><span class="tag blue">中性</span></td><td>Dành cho người mới: Cách để vào game &quot;洛克王国&quot;</td><td class="translation-cell"><p>大意：求助任务步骤、机制规则或完成方法。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/947481474801675/posts/970928235790332/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>62</td><td>帖子</td><td>Roco Kingdom Mobile Viet Nam</td><td><span class="tag green">正面</span></td><td>+2
+Hướng dẫn tốc chiến &quot;命定花种&quot; kỳ 4</td><td class="translation-cell"><p>大意：求助任务步骤、机制规则或完成方法。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3223551104630521/posts/4381824232136530/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>63</td><td>帖子</td><td>Roco Kingdom Mobile Viet Nam</td><td><span class="tag green">正面</span></td><td>+2
+Hướng dẫn tốc chiến &quot;命定花种&quot; kỳ 4</td><td class="translation-cell"><p>大意：求助任务步骤、机制规则或完成方法。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3223551104630521/posts/4381821212136832/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>64</td><td>评论</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag green">正面</span></td><td>5月8日16:18
 Nên chọn gì vậy mn
 Này có buff j ko ô hay chỉ cho đẹp thôi
 1周
@@ -780,17 +937,17 @@ Maulana Maul PRophez
 Triệu Trung Đức pic nya
 1周
 Triệu Trung Đức con bọ lửa với con cạnh con vịt hàng 3 thì sao ạ
-1周</td><td>玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2353953228347087/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>65</td><td>评论</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>1. muốn thử vật may kiếm tí thì có thể lấy sói s3 hoặc c băng s5 NẾU ĐỎ b sẽ có 300m vàng còn rách nátthì ...cx 7-9m
+1周</td><td class="translation-cell"><p>在问宠物怎么进化。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2353953228347087/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>65</td><td>评论</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>1. muốn thử vật may kiếm tí thì có thể lấy sói s3 hoặc c băng s5 NẾU ĐỎ b sẽ có 300m vàng còn rách nátthì ...cx 7-9m
 2. Chắc cú lâu dài pvp ngon thì có thể lấy thỏ s1 lm team băng. C s4 thỏ sao tiến hoá đạng2 ma đi đc khá nhiều team. C s14 Ma  đi team đổi chiêu bắt team bạn hồi nl tăng dam cho
 3. Sói vẫn có thể chơi đc mn chỉ hợp với mức rank pvp thấp tầm rank đỏ là khó đánh nếu đi team 5?nn
-1周</td><td>玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2353953228347087/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>66</td><td>评论</td><td>ROCO KINGDOM VN</td><td><span class="tag amber">混合</span></td><td>Có gọi là sự may mắn không ạ 50 quả ra em nó liền
+1周</td><td class="translation-cell"><p>在问宠物怎么进化。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2353953228347087/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>66</td><td>评论</td><td>ROCO KINGDOM VN</td><td><span class="tag amber">混合</span></td><td>Có gọi là sự may mắn không ạ 50 quả ra em nó liền
 Sáng gio gần 300 rồi chưa thấy gì hết
 Văn Thắng ối dồi cứ từ từ á anh
 Xin cách tải game ạ
 An Bình iOS thì chuyển vùng sang Trung Quốc
 Còn androi thì tải qua taptap
 Ko may thì gọi là j nữa :))
-Trọng Tín hên xuii Á</td><td>该内容在询问玩法或任务机制，直译需结合图片或上下文复核；核心诉求是看懂任务条件、找到完成方法或确认机制规则。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4041044519530510/" target="_blank" rel="noreferrer">查看原帖</a></td></tr></tbody></table></section>
+Trọng Tín hên xuii Á</td><td class="translation-cell"><p>在聊异色/闪光、孵蛋或宠物培育。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4041044519530510/" target="_blank" rel="noreferrer">查看原帖</a></td></tr></tbody></table></section>
   </main>
 </body>
 </html>

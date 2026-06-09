@@ -105,13 +105,24 @@
       top: 48px;
       z-index: 18;
       display: grid;
-      grid-template-columns: minmax(210px, .72fr) minmax(260px, 1fr) auto auto;
+      grid-template-columns: minmax(360px, .9fr) minmax(260px, 1fr) auto auto;
       gap: 10px;
       align-items: center;
       padding: 10px 24px;
       background: rgba(245, 245, 247, 0.78);
       border-bottom: 1px solid var(--line);
       backdrop-filter: saturate(180%) blur(20px);
+    }
+    .report-switcher {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: center;
+      min-width: 0;
+    }
+    .report-copy {
+      min-width: 0;
     }
     .dock-section strong {
       display: block;
@@ -123,6 +134,100 @@
       margin: 2px 0 0;
       color: var(--muted);
       font-size: 12px;
+    }
+    .report-menu {
+      position: relative;
+      justify-self: end;
+    }
+    .report-menu summary {
+      list-style: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 32px;
+      padding: 0 13px;
+      border-radius: 980px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 650;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 8px 20px rgba(0, 113, 227, 0.22);
+      white-space: nowrap;
+    }
+    .report-menu summary::-webkit-details-marker {
+      display: none;
+    }
+    .report-menu[open] summary {
+      background: #005bb5;
+    }
+    .report-popover {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      z-index: 60;
+      width: min(420px, calc(100vw - 32px));
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.16);
+      backdrop-filter: saturate(180%) blur(20px);
+    }
+    .report-popover::before {
+      content: "";
+      position: absolute;
+      top: -6px;
+      right: 28px;
+      width: 12px;
+      height: 12px;
+      background: rgba(255, 255, 255, 0.96);
+      border-left: 1px solid var(--line);
+      border-top: 1px solid var(--line);
+      transform: rotate(45deg);
+    }
+    .report-popover-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 4px 4px 8px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 6px;
+    }
+    .report-popover-head strong {
+      font-size: 13px;
+      line-height: 1.2;
+    }
+    .report-popover-head span {
+      color: var(--muted);
+      font-size: 11px;
+      white-space: nowrap;
+    }
+    .report-option {
+      display: grid;
+      grid-template-columns: minmax(118px, 1fr) minmax(104px, 1.1fr) 42px;
+      gap: 8px;
+      align-items: center;
+      padding: 9px 8px;
+      border-radius: 10px;
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 12px;
+    }
+    .report-option:hover,
+    .report-option.active {
+      background: rgba(0, 113, 227, 0.08);
+    }
+    .report-option span {
+      font-weight: 650;
+      white-space: nowrap;
+    }
+    .report-option strong {
+      text-align: right;
+      font-size: 13px;
+      font-weight: 700;
     }
     .dock-search {
       display: grid;
@@ -361,6 +466,18 @@
     tr:last-child td { border-bottom: 0; }
     tr:hover td { background: rgba(0, 113, 227, 0.035); }
     td strong { font-weight: 650; }
+    .translation-cell p {
+      margin: 0 0 4px;
+      color: var(--ink);
+      font-size: 12px;
+      line-height: 1.42;
+    }
+    .translation-cell span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.35;
+    }
     .tag {
       display: inline-flex;
       align-items: center;
@@ -506,20 +623,6 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 8px;
     }
-    .report-picker {
-      display: grid;
-      gap: 6px;
-      margin-bottom: 10px;
-    }
-    .report-picker span {
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 650;
-    }
-    .report-picker select {
-      width: 100%;
-      font-weight: 650;
-    }
     .top-posts {
       display: grid;
       gap: 10px;
@@ -604,6 +707,52 @@
     .compact-voice p {
       overflow-wrap: anywhere;
     }
+    .corpus-search {
+      scroll-margin-top: 150px;
+    }
+    .corpus-results {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .corpus-hit {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 9px;
+      background: rgba(245, 245, 247, 0.66);
+    }
+    .corpus-hit-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 6px;
+    }
+    .corpus-hit blockquote {
+      margin: 6px 0;
+      padding-left: 10px;
+      border-left: 2px solid var(--blue);
+      color: rgba(0, 0, 0, 0.82);
+      font-size: 13px;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+    .corpus-hit p {
+      margin: 5px 0;
+      color: rgba(0, 0, 0, 0.68);
+      font-size: 12px;
+      line-height: 1.42;
+    }
+    .corpus-hit-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 6px;
+    }
     .voice {
       border-top: 1px solid var(--line);
       padding: 10px 0;
@@ -669,11 +818,12 @@
     body.comfortable .voice blockquote { font-size: 14px; line-height: 1.6; }
     @media (max-width: 1120px) {
       .command-dock { grid-template-columns: 1fr; }
+      .report-switcher { grid-template-columns: minmax(0, 1fr) auto; }
       .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .cockpit, .two, .status-strip { grid-template-columns: 1fr; }
       .summary-findings, .summary-cluster { grid-template-columns: 1fr; }
       .cluster-meta { justify-content: flex-start; }
-      .comment-head, .comment-list { grid-template-columns: 1fr; }
+      .comment-head, .comment-list, .corpus-results { grid-template-columns: 1fr; }
       .composition { grid-template-columns: 1fr; }
     }
     @media (max-width: 760px) {
@@ -683,6 +833,12 @@
       nav { justify-content: flex-start; padding: 0 12px; }
       main { padding: 14px 12px 40px; }
       .command-dock { padding: 10px 12px; }
+      .report-switcher { grid-template-columns: 1fr; }
+      .report-menu { justify-self: stretch; }
+      .report-menu summary { width: 100%; }
+      .report-popover { left: 0; right: auto; width: min(100%, calc(100vw - 24px)); }
+      .report-popover::before { right: auto; left: 28px; }
+      .report-option { grid-template-columns: minmax(110px, 1fr) minmax(80px, .8fr) 34px; }
       .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       table { display: block; overflow-x: auto; }
     }
@@ -703,10 +859,11 @@
     </div></section>
     <section><h2>二级 Topic / 共现标签</h2><div class="panel tag-cloud"><span class="muted">暂无明显共现标签</span></div></section>
     <section><h2>情绪与来源</h2><div class="grid two"><div class="panel"><p><strong>中性</strong> 11</p><div class="bar blue"><span style="width:57.89473684210527%"></span></div><p><strong>正面</strong> 5</p><div class="bar green"><span style="width:26.31578947368421%"></span></div><p><strong>高风险负面</strong> 1</p><div class="bar red"><span style="width:5.263157894736842%"></span></div><p><strong>负面</strong> 2</p><div class="bar red"><span style="width:10.526315789473683%"></span></div></div><div class="panel"><div class="mini-row"><span>Cong Hoi Roco Kingdom Viet Nam</span><strong>9</strong></div><div class="bar"><span style="width:47.368421052631575%"></span></div><div class="mini-row"><span>Roco Kingdom Viet Nam</span><strong>6</strong></div><div class="bar"><span style="width:31.57894736842105%"></span></div><div class="mini-row"><span>ROCO KINGDOM VN</span><strong>2</strong></div><div class="bar"><span style="width:10.526315789473683%"></span></div><div class="mini-row"><span>Roco Kingdom: World Viet Nam Official</span><strong>1</strong></div><div class="bar"><span style="width:5.263157894736842%"></span></div><div class="mini-row"><span>ROCO KINGDOM VIET NAM</span><strong>1</strong></div><div class="bar"><span style="width:5.263157894736842%"></span></div></div></div></section>
-    <section><h2>内容明细</h2><table><thead><tr><th>#</th><th>类型</th><th>来源</th><th>情绪</th><th>越南语原文</th><th>中文翻译</th><th>原帖</th></tr></thead><tbody><tr><td>1</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Làm đc 1sao r còn 2sao còn lại làm s v mn</td><td>已经完成 1 星了，剩下 2 星要怎么做？</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2123045795155159/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>2</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag green">正面</span></td><td>Đag chs và thấy cx ổn</td><td>正在玩，感觉整体还可以。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122892555170483/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>3</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>最新一期星光对决也是用咔咔鸟上分，有人加好友玩吗，id[已脱敏]，我有战令</td><td>最新一期星光对决也是用咔咔鸟上分，有人加好友玩吗，id[已脱敏]，我有战令</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122614075198331/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>4</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag green">正面</span></td><td>Má ơi 5p đc 2con .. thank god</td><td>天啊，5 分钟出了 2 只，太幸运了。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122611005198638/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>5</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>nhập đại vào đấy vài lần=)) htrc tui vừa ms bj xong</td><td>随便输入/尝试几次就行，我前阵子也刚遇到过。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122352235224515/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>6</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag red">高风险负面</span></td><td>Nhiu b</td><td>多少钱？</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122264441899961/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>7</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag green">正面</span></td><td>Cuối cùng thì cũng đã đủ</td><td>终于凑够了。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1761077491524507/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>8</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag red">负面</span></td><td>Huhu tui cũm kẹt nó bảo cần jjj đó thì phải</td><td>我也卡住了，它好像提示需要某个东西。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1761051448193778/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>9</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>À đâu, giờ là chơi trò chơi của 3 ng</td><td>哦不是，现在是 3 人小游戏/三人玩法。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1760728621559394/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>10</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>[数字ID已脱敏] kB tui</td><td>[数字ID已脱敏] kB tui</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1760720814893508/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>11</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Tui có con bướm nè</td><td>我有这只蝴蝶宠物。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1760720814893508/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>12</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Hóng ké</td><td>我也蹲一下/想顺便跟着看看。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1760703504895239/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>13</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>lại gần người muốn vào bấm vào tên họ sẽ hiện lên icon có mủi tên bấm vào xin họ</td><td>靠近想进入的玩家，点对方名字，会出现一个带箭头的图标，再点它向对方申请。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1760703504895239/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>14</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag red">负面</span></td><td>Lúc đầu cứ tưởng con này bị xổ mũi, sau mới nhận ra đấy là lưỡi của nó</td><td>一开始以为这只宠物流鼻涕，后来才发现那其实是它的舌头。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1760633431568913/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>15</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>thu thap 120 tinh linh se mo khoa</td><td>收集 120 只精灵后会解锁。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1760581981574058/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>16</td><td>评论</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>我抖音那个帖子来的嘛</td><td>我抖音那个帖子来的嘛</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2345357909206619/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>17</td><td>评论</td><td>ROCO KINGDOM VN</td><td><span class="tag blue">中性</span></td><td>Cứ theo thứ tự 12341 là đc nói chung bạn cứ làm đại theo chiều kim đồng hồ chừng2 vòng là đc
-已编辑</td><td>按 1-2-3-4-1 的顺序来，大致顺着顺时针绕两圈就可以。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4022362944732001/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>18</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag green">正面</span></td><td>Anh chị xem cho vui, mới kiếm thấy.
-+5</td><td>大家随便看看，刚找到的有趣内容。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4021959944772301/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>19</td><td>帖子</td><td>ROCO KINGDOM VIET NAM</td><td><span class="tag green">正面</span></td><td>Anh chị xem cho vui, mới kiếm thấy.
-+5</td><td>大家随便看看，刚找到的有趣内容。</td><td><a class="btn" href="https://www.facebook.com/groups/947481474801675/posts/957443363805486/" target="_blank" rel="noreferrer">查看原帖</a></td></tr></tbody></table></section>
+    <section><h2>评论区在聊什么</h2><div class="panel"><p>评论区共 12 条可见评论，主要在聊：简短求助、确认或跟帖互动。（11 条）；宠物获取、进化、异色/闪光和养成搭配。（1 条）。</p></div></section>
+    <section><h2>内容明细</h2><table><thead><tr><th>#</th><th>类型</th><th>来源</th><th>情绪</th><th>越南语原文</th><th>中文翻译</th><th>原帖</th></tr></thead><tbody><tr><td>1</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Làm đc 1sao r còn 2sao còn lại làm s v mn</td><td class="translation-cell"><p>已经完成 1 星了，剩下 2 星要怎么做？</p><span>发起问题、求助或分享。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2123045795155159/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>2</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag green">正面</span></td><td>Đag chs và thấy cx ổn</td><td class="translation-cell"><p>正在玩，感觉整体还可以。</p><span>简短求助、确认或跟帖互动。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122892555170483/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>3</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>最新一期星光对决也是用咔咔鸟上分，有人加好友玩吗，id[已脱敏]，我有战令</td><td class="translation-cell"><p>最新一期星光对决也是用咔咔鸟上分，有人加好友玩吗，id[已脱敏]，我有战令</p><span>发起问题、求助或分享。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122614075198331/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>4</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag green">正面</span></td><td>Má ơi 5p đc 2con .. thank god</td><td class="translation-cell"><p>天啊，5 分钟出了 2 只，太幸运了。</p><span>发起问题、求助或分享。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122611005198638/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>5</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>nhập đại vào đấy vài lần=)) htrc tui vừa ms bj xong</td><td class="translation-cell"><p>随便输入/尝试几次就行，我前阵子也刚遇到过。</p><span>简短求助、确认或跟帖互动。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122352235224515/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>6</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag red">高风险负面</span></td><td>Nhiu b</td><td class="translation-cell"><p>多少钱？</p><span>简短求助、确认或跟帖互动。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122264441899961/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>7</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag green">正面</span></td><td>Cuối cùng thì cũng đã đủ</td><td class="translation-cell"><p>终于凑够了。</p><span>发起问题、求助或分享。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1761077491524507/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>8</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag red">负面</span></td><td>Huhu tui cũm kẹt nó bảo cần jjj đó thì phải</td><td class="translation-cell"><p>我也卡住了，它好像提示需要某个东西。</p><span>简短求助、确认或跟帖互动。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1761051448193778/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>9</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>À đâu, giờ là chơi trò chơi của 3 ng</td><td class="translation-cell"><p>哦不是，现在是 3 人小游戏/三人玩法。</p><span>简短求助、确认或跟帖互动。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1760728621559394/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>10</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>[数字ID已脱敏] kB tui</td><td class="translation-cell"><p>[数字ID已脱敏] kB tui</p><span>简短求助、确认或跟帖互动。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1760720814893508/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>11</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Tui có con bướm nè</td><td class="translation-cell"><p>我有这只蝴蝶宠物。</p><span>发起问题、求助或分享。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1760720814893508/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>12</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Hóng ké</td><td class="translation-cell"><p>我也蹲一下/想顺便跟着看看。</p><span>简短求助、确认或跟帖互动。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1760703504895239/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>13</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>lại gần người muốn vào bấm vào tên họ sẽ hiện lên icon có mủi tên bấm vào xin họ</td><td class="translation-cell"><p>靠近想进入的玩家，点对方名字，会出现一个带箭头的图标，再点它向对方申请。</p><span>简短求助、确认或跟帖互动。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1760703504895239/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>14</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag red">负面</span></td><td>Lúc đầu cứ tưởng con này bị xổ mũi, sau mới nhận ra đấy là lưỡi của nó</td><td class="translation-cell"><p>一开始以为这只宠物流鼻涕，后来才发现那其实是它的舌头。</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1760633431568913/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>15</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>thu thap 120 tinh linh se mo khoa</td><td class="translation-cell"><p>收集 120 只精灵后会解锁。</p><span>简短求助、确认或跟帖互动。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1760581981574058/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>16</td><td>评论</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>我抖音那个帖子来的嘛</td><td class="translation-cell"><p>我抖音那个帖子来的嘛</p><span>简短求助、确认或跟帖互动。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2345357909206619/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>17</td><td>评论</td><td>ROCO KINGDOM VN</td><td><span class="tag blue">中性</span></td><td>Cứ theo thứ tự 12341 là đc nói chung bạn cứ làm đại theo chiều kim đồng hồ chừng2 vòng là đc
+已编辑</td><td class="translation-cell"><p>按 1-2-3-4-1 的顺序来，大致顺着顺时针绕两圈就可以。</p><span>简短求助、确认或跟帖互动。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4022362944732001/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>18</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag green">正面</span></td><td>Anh chị xem cho vui, mới kiếm thấy.
++5</td><td class="translation-cell"><p>大家随便看看，刚找到的有趣内容。</p><span>发起问题、求助或分享。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4021959944772301/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>19</td><td>帖子</td><td>ROCO KINGDOM VIET NAM</td><td><span class="tag green">正面</span></td><td>Anh chị xem cho vui, mới kiếm thấy.
++5</td><td class="translation-cell"><p>大家随便看看，刚找到的有趣内容。</p><span>发起问题、求助或分享。</span></td><td><a class="btn" href="https://www.facebook.com/groups/947481474801675/posts/957443363805486/" target="_blank" rel="noreferrer">查看原帖</a></td></tr></tbody></table></section>
   </main>
 </body>
 </html>
