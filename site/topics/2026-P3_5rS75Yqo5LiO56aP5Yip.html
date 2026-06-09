@@ -105,13 +105,24 @@
       top: 48px;
       z-index: 18;
       display: grid;
-      grid-template-columns: minmax(210px, .72fr) minmax(260px, 1fr) auto auto;
+      grid-template-columns: minmax(360px, .9fr) minmax(260px, 1fr) auto auto;
       gap: 10px;
       align-items: center;
       padding: 10px 24px;
       background: rgba(245, 245, 247, 0.78);
       border-bottom: 1px solid var(--line);
       backdrop-filter: saturate(180%) blur(20px);
+    }
+    .report-switcher {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: center;
+      min-width: 0;
+    }
+    .report-copy {
+      min-width: 0;
     }
     .dock-section strong {
       display: block;
@@ -123,6 +134,100 @@
       margin: 2px 0 0;
       color: var(--muted);
       font-size: 12px;
+    }
+    .report-menu {
+      position: relative;
+      justify-self: end;
+    }
+    .report-menu summary {
+      list-style: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 32px;
+      padding: 0 13px;
+      border-radius: 980px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 650;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 8px 20px rgba(0, 113, 227, 0.22);
+      white-space: nowrap;
+    }
+    .report-menu summary::-webkit-details-marker {
+      display: none;
+    }
+    .report-menu[open] summary {
+      background: #005bb5;
+    }
+    .report-popover {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      z-index: 60;
+      width: min(420px, calc(100vw - 32px));
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.16);
+      backdrop-filter: saturate(180%) blur(20px);
+    }
+    .report-popover::before {
+      content: "";
+      position: absolute;
+      top: -6px;
+      right: 28px;
+      width: 12px;
+      height: 12px;
+      background: rgba(255, 255, 255, 0.96);
+      border-left: 1px solid var(--line);
+      border-top: 1px solid var(--line);
+      transform: rotate(45deg);
+    }
+    .report-popover-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 4px 4px 8px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 6px;
+    }
+    .report-popover-head strong {
+      font-size: 13px;
+      line-height: 1.2;
+    }
+    .report-popover-head span {
+      color: var(--muted);
+      font-size: 11px;
+      white-space: nowrap;
+    }
+    .report-option {
+      display: grid;
+      grid-template-columns: minmax(118px, 1fr) minmax(104px, 1.1fr) 42px;
+      gap: 8px;
+      align-items: center;
+      padding: 9px 8px;
+      border-radius: 10px;
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 12px;
+    }
+    .report-option:hover,
+    .report-option.active {
+      background: rgba(0, 113, 227, 0.08);
+    }
+    .report-option span {
+      font-weight: 650;
+      white-space: nowrap;
+    }
+    .report-option strong {
+      text-align: right;
+      font-size: 13px;
+      font-weight: 700;
     }
     .dock-search {
       display: grid;
@@ -361,6 +466,18 @@
     tr:last-child td { border-bottom: 0; }
     tr:hover td { background: rgba(0, 113, 227, 0.035); }
     td strong { font-weight: 650; }
+    .translation-cell p {
+      margin: 0 0 4px;
+      color: var(--ink);
+      font-size: 12px;
+      line-height: 1.42;
+    }
+    .translation-cell span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.35;
+    }
     .tag {
       display: inline-flex;
       align-items: center;
@@ -506,20 +623,6 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 8px;
     }
-    .report-picker {
-      display: grid;
-      gap: 6px;
-      margin-bottom: 10px;
-    }
-    .report-picker span {
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 650;
-    }
-    .report-picker select {
-      width: 100%;
-      font-weight: 650;
-    }
     .top-posts {
       display: grid;
       gap: 10px;
@@ -604,6 +707,52 @@
     .compact-voice p {
       overflow-wrap: anywhere;
     }
+    .corpus-search {
+      scroll-margin-top: 150px;
+    }
+    .corpus-results {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .corpus-hit {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 9px;
+      background: rgba(245, 245, 247, 0.66);
+    }
+    .corpus-hit-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 6px;
+    }
+    .corpus-hit blockquote {
+      margin: 6px 0;
+      padding-left: 10px;
+      border-left: 2px solid var(--blue);
+      color: rgba(0, 0, 0, 0.82);
+      font-size: 13px;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+    .corpus-hit p {
+      margin: 5px 0;
+      color: rgba(0, 0, 0, 0.68);
+      font-size: 12px;
+      line-height: 1.42;
+    }
+    .corpus-hit-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 6px;
+    }
     .voice {
       border-top: 1px solid var(--line);
       padding: 10px 0;
@@ -669,11 +818,12 @@
     body.comfortable .voice blockquote { font-size: 14px; line-height: 1.6; }
     @media (max-width: 1120px) {
       .command-dock { grid-template-columns: 1fr; }
+      .report-switcher { grid-template-columns: minmax(0, 1fr) auto; }
       .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .cockpit, .two, .status-strip { grid-template-columns: 1fr; }
       .summary-findings, .summary-cluster { grid-template-columns: 1fr; }
       .cluster-meta { justify-content: flex-start; }
-      .comment-head, .comment-list { grid-template-columns: 1fr; }
+      .comment-head, .comment-list, .corpus-results { grid-template-columns: 1fr; }
       .composition { grid-template-columns: 1fr; }
     }
     @media (max-width: 760px) {
@@ -683,6 +833,12 @@
       nav { justify-content: flex-start; padding: 0 12px; }
       main { padding: 14px 12px 40px; }
       .command-dock { padding: 10px 12px; }
+      .report-switcher { grid-template-columns: 1fr; }
+      .report-menu { justify-self: stretch; }
+      .report-menu summary { width: 100%; }
+      .report-popover { left: 0; right: auto; width: min(100%, calc(100vw - 24px)); }
+      .report-popover::before { right: auto; left: 28px; }
+      .report-option { grid-template-columns: minmax(110px, 1fr) minmax(80px, .8fr) 34px; }
       .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       table { display: block; overflow-x: auto; }
     }
@@ -703,25 +859,26 @@
     </div></section>
     <section><h2>二级 Topic / 共现标签</h2><div class="panel tag-cloud"><span class="tag blue">宠物、角色、养成 6</span><span class="tag blue">社群互动、组队、公会 6</span><span class="tag blue">充值、付费、礼包 4</span><span class="tag blue">诈骗、外挂、私服、黑产风险 4</span><span class="tag blue">玩法机制 4</span><span class="tag blue">发行时间猜测 2</span><span class="tag blue">攻略分享 1</span></div></section>
     <section><h2>情绪与来源</h2><div class="grid two"><div class="panel"><p><strong>高风险负面</strong> 3</p><div class="bar red"><span style="width:13.636363636363635%"></span></div><p><strong>中性</strong> 12</p><div class="bar blue"><span style="width:54.54545454545454%"></span></div><p><strong>正面</strong> 3</p><div class="bar green"><span style="width:13.636363636363635%"></span></div><p><strong>混合</strong> 2</p><div class="bar amber"><span style="width:9.090909090909092%"></span></div><p><strong>负面</strong> 2</p><div class="bar red"><span style="width:9.090909090909092%"></span></div></div><div class="panel"><div class="mini-row"><span>Roco Kingdom Viet Nam</span><strong>8</strong></div><div class="bar"><span style="width:36.36363636363637%"></span></div><div class="mini-row"><span>Roco Kingdom: World Viet Nam Official</span><strong>6</strong></div><div class="bar"><span style="width:27.27272727272727%"></span></div><div class="mini-row"><span>Cong Hoi Roco Kingdom Viet Nam</span><strong>4</strong></div><div class="bar"><span style="width:18.181818181818183%"></span></div><div class="mini-row"><span>ROCO KINGDOM VN</span><strong>4</strong></div><div class="bar"><span style="width:18.181818181818183%"></span></div></div></div></section>
+    <section><h2>评论区在聊什么</h2><div class="panel"><p>评论区共 10 条可见评论，主要在聊：宠物获取、进化、异色/闪光和养成搭配。（3 条）；求助任务步骤、机制规则或完成方法。（3 条）；交易、充值或非官方渠道，需作为风险样本复核。（2 条）。</p></div></section>
     <section><h2>内容明细</h2><table><thead><tr><th>#</th><th>类型</th><th>来源</th><th>情绪</th><th>越南语原文</th><th>中文翻译</th><th>原帖</th></tr></thead><tbody><tr><td>1</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag red">高风险负面</span></td><td>GÓC CẦU CỨU
 ———-
 Acc cũ mình đã full album, full shiny, sồi full 1 nửa. Mua full ngoại trang, hành động, 1 đống ball thuộc tính các hệ, nhưng MÌNH MẤT ACC RỒI.
 ——
-Thật khó khăn để đưa ra quyết định cày lại từ đầu  Cũng sắp hết mùa S1, mình tha thiết cần mọi người giúp đỡ.</td><td>内容讨论活动、赛季时间、奖励或宠物出现信息。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2139748036818268/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>2</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Ní săn bao lâu v tui săn quài con này kh ra
-已编辑</td><td>该内容为玩家自发讨论，直译需结合图片或上下文复核；可用于判断社区活跃度、兴趣扩散和潜在发行前认知。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2138534993606239/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>3</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>ẹ hem thông tin mới về mấy dạn shiny có trong ss2 đây ae tranh thủ đi thui</td><td>内容讨论活动、赛季时间、奖励或宠物出现信息。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2137168277076244/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>4</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>S1 ko có nổi 1 con</td><td>内容讨论活动、赛季时间、奖励或宠物出现信息。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2137168277076244/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>5</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag green">正面</span></td><td>Ổn áp s1 chờ s2 cày tiếp</td><td>内容讨论活动、赛季时间、奖励或宠物出现信息。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2137156403744098/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>6</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Thế là full shiny s1</td><td>内容讨论活动、赛季时间、奖励或宠物出现信息。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776279596670963/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>7</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>Chi tiết thông tin bấm vào từng ảnh nhé !!!
+Thật khó khăn để đưa ra quyết định cày lại từ đầu  Cũng sắp hết mùa S1, mình tha thiết cần mọi người giúp đỡ.</td><td class="translation-cell"><p>救救我/帮帮我。</p><span>交易、充值或非官方渠道，需作为风险样本复核。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2139748036818268/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>2</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Ní săn bao lâu v tui săn quài con này kh ra
+已编辑</td><td class="translation-cell"><p>大意：宠物获取、进化、异色/闪光和养成搭配。</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2138534993606239/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>3</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>ẹ hem thông tin mới về mấy dạn shiny có trong ss2 đây ae tranh thủ đi thui</td><td class="translation-cell"><p>在聊异色/闪光、孵蛋或宠物培育。</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2137168277076244/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>4</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>S1 ko có nổi 1 con</td><td class="translation-cell"><p>大意：简短求助、确认或跟帖互动。</p><span>简短求助、确认或跟帖互动。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2137168277076244/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>5</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag green">正面</span></td><td>Ổn áp s1 chờ s2 cày tiếp</td><td class="translation-cell"><p>大意：发起问题、求助或分享。</p><span>发起问题、求助或分享。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2137156403744098/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>6</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Thế là full shiny s1</td><td class="translation-cell"><p>在聊异色/闪光、孵蛋或宠物培育。</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776279596670963/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>7</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>Chi tiết thông tin bấm vào từng ảnh nhé !!!
 +4
 =&gt;Chi tiết thông tin bấm vào từng ảnh nhé !!!
-《洛克王国：世界》 S2 – Bộ sưu tập tinh linh kỳ ngộ mới</td><td>内容讨论活动、赛季时间、奖励或宠物出现信息。</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2360109221064821/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>8</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>NPH đã chính thức công bố Mùa 2 nhé !!!
-Bản tin Ma Pháp mùa S2 “Cuồng Hoan Quái Đàm”</td><td>玩家询问当前版本是测试版还是正式版；评论中有人误称已经正式。</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2359369877805422/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>9</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>Event đợt cuối của mùa 1 !!!!
-“✦ Thông báo sự kiện cuối tuần: ‘Hạt Giống Gralan xuất hiện hàng loạt’”</td><td>内容讨论活动、赛季时间、奖励或宠物出现信息。</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2359201347822275/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>10</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag amber">混合</span></td><td>Hé lộ mùa 2 nhé !!!!
-《洛克王国：世界》 mùa S2 “Cuồng Hoan Quái Đàm” – “Gánh Xiếc Rock” sắp khai màn! Một bữa tiệc quái đàm đầy hấp dẫn đang chờ bạn tham gia!</td><td>内容讨论活动、赛季时间、奖励或宠物出现信息。</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2358844204524656/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>11</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag red">高风险负面</span></td><td>GÓC CẦU CỨU
+《洛克王国：世界》 S2 – Bộ sưu tập tinh linh kỳ ngộ mới</td><td class="translation-cell"><p>大意：发起问题、求助或分享。</p><span>发起问题、求助或分享。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2360109221064821/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>8</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>NPH đã chính thức công bố Mùa 2 nhé !!!
+Bản tin Ma Pháp mùa S2 “Cuồng Hoan Quái Đàm”</td><td class="translation-cell"><p>玩家询问当前版本是测试版还是正式版；评论中有人误称已经正式。</p><span>发起问题、求助或分享。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2359369877805422/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>9</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>Event đợt cuối của mùa 1 !!!!
+“✦ Thông báo sự kiện cuối tuần: ‘Hạt Giống Gralan xuất hiện hàng loạt’”</td><td class="translation-cell"><p>大意：借宠、加好友、进地图和互助完成任务。</p><span>借宠、加好友、进地图和互助完成任务。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2359201347822275/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>10</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag amber">混合</span></td><td>Hé lộ mùa 2 nhé !!!!
+《洛克王国：世界》 mùa S2 “Cuồng Hoan Quái Đàm” – “Gánh Xiếc Rock” sắp khai màn! Một bữa tiệc quái đàm đầy hấp dẫn đang chờ bạn tham gia!</td><td class="translation-cell"><p>大意：发起问题、求助或分享。</p><span>发起问题、求助或分享。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2358844204524656/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>11</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag red">高风险负面</span></td><td>GÓC CẦU CỨU
 ———-
 Acc cũ mình đã full album, full shiny, sồi full 1 nửa. Mua full ngoại trang, hành động, 1 đống ball thuộc tính các hệ, nhưng MÌNH MẤT ACC RỒI.
 ——
-Thật khó khăn để đưa ra quyết định cày lại từ đầu  Cũng sắp hết mùa S1, mình tha thiết cần mọi người giúp đỡ.</td><td>内容讨论活动、赛季时间、奖励或宠物出现信息。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4045360109098951/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>12</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag blue">中性</span></td><td>NPH đã chính thức công bố Mùa 2 nhé !!!
-Bản tin Ma Pháp mùa S2 “Cuồng Hoan Quái Đàm”</td><td>玩家询问当前版本是测试版还是正式版；评论中有人误称已经正式。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4040551826246446/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>13</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag blue">中性</span></td><td>Event đợt cuối của mùa 1 !!!!
-“✦ Thông báo sự kiện cuối tuần: ‘Hạt Giống Gralan xuất hiện hàng loạt’”</td><td>内容讨论活动、赛季时间、奖励或宠物出现信息。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4040300076271621/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>14</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag amber">混合</span></td><td>Hé lộ mùa 2 nhé !!!!
-《洛克王国：世界》 mùa S2 “Cuồng Hoan Quái Đàm” – “Gánh Xiếc Rock” sắp khai màn! Một bữa tiệc quái đàm đầy hấp dẫn đang chờ bạn tham gia!</td><td>内容讨论活动、赛季时间、奖励或宠物出现信息。</td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4039810529653909/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>15</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag red">高风险负面</span></td><td>GÓC CẦU CỨU
+Thật khó khăn để đưa ra quyết định cày lại từ đầu  Cũng sắp hết mùa S1, mình tha thiết cần mọi người giúp đỡ.</td><td class="translation-cell"><p>救救我/帮帮我。</p><span>交易、充值或非官方渠道，需作为风险样本复核。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4045360109098951/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>12</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag blue">中性</span></td><td>NPH đã chính thức công bố Mùa 2 nhé !!!
+Bản tin Ma Pháp mùa S2 “Cuồng Hoan Quái Đàm”</td><td class="translation-cell"><p>玩家询问当前版本是测试版还是正式版；评论中有人误称已经正式。</p><span>发起问题、求助或分享。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4040551826246446/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>13</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag blue">中性</span></td><td>Event đợt cuối của mùa 1 !!!!
+“✦ Thông báo sự kiện cuối tuần: ‘Hạt Giống Gralan xuất hiện hàng loạt’”</td><td class="translation-cell"><p>大意：借宠、加好友、进地图和互助完成任务。</p><span>借宠、加好友、进地图和互助完成任务。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4040300076271621/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>14</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag amber">混合</span></td><td>Hé lộ mùa 2 nhé !!!!
+《洛克王国：世界》 mùa S2 “Cuồng Hoan Quái Đàm” – “Gánh Xiếc Rock” sắp khai màn! Một bữa tiệc quái đàm đầy hấp dẫn đang chờ bạn tham gia!</td><td class="translation-cell"><p>大意：发起问题、求助或分享。</p><span>发起问题、求助或分享。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4039810529653909/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>15</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag red">高风险负面</span></td><td>GÓC CẦU CỨU
 ———-
 Acc cũ mình đã full album, full shiny, sồi full 1 nửa. Mua full ngoại trang, hành động, 1 đống ball thuộc tính các hệ, nhưng MÌNH MẤT ACC RỒI.
 ——
@@ -739,7 +896,7 @@ Con nào cũng được đk b
 ib
 S mà mất accc z bro
 Bắt hết sợ ko kịp
-Ủa s bị mất acc vậy</td><td>玩家询问如何进入好友地图或借好友宠物进行捕捉/完成任务。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2139748036818268/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>16</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>ẹ hem thông tin mới về mấy dạn shiny có trong ss2 đây ae tranh thủ đi thui
+Ủa s bị mất acc vậy</td><td class="translation-cell"><p>哪只都可以，对吧？</p><span>交易、充值或非官方渠道，需作为风险样本复核。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2139748036818268/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>16</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>ẹ hem thông tin mới về mấy dạn shiny có trong ss2 đây ae tranh thủ đi thui
 S1 ko có nổi 1 con
 1条回复
 孵化公式是毒攻略
@@ -747,17 +904,17 @@ S1 ko có nổi 1 con
 Thỏ bth lai với con nào v
 1条回复
 Lại tiếp tục thỏ lửa cộng một à
-Cày hạt thui chứ trứng lâu ác</td><td>内容讨论异色宠物孵蛋条件、性别和蛋组等养成机制。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2137168277076244/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>17</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag green">正面</span></td><td>Ổn áp s1 chờ s2 cày tiếp
+Cày hạt thui chứ trứng lâu ác</td><td class="translation-cell"><p>在聊异色/闪光、孵蛋或宠物培育。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2137168277076244/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>17</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag green">正面</span></td><td>Ổn áp s1 chờ s2 cày tiếp
 Ôg có hạt 2 con pass k cho tui ké săn shiny vs
 2条回复
 Uầy cái màu đẹp nhất của con kalu luôn
 Adu shiny hắc bạch
-1/[数字ID已脱敏]</td><td>确实好看/这个黑色闪光外观最好看。</td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2137156403744098/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>18</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag red">负面</span></td><td>Mình mới chơi và xong cốt truyện học viện. Xin mn chỉ cho mình cách bắt shiny với ạ, thấy mn bắt mà thèmm
+1/[数字ID已脱敏]</td><td class="translation-cell"><p>谁能帮我刷闪光？赛季快结束了我还没有刷到。</p><span>借宠、加好友、进地图和互助完成任务。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2137156403744098/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>18</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag red">负面</span></td><td>Mình mới chơi và xong cốt truyện học viện. Xin mn chỉ cho mình cách bắt shiny với ạ, thấy mn bắt mà thèmm
 Lão_Nương_Thích_KhẩuNghiệp
 Có thời gian xin vô map ng khác bắt thôi. Mai rảnh ib tui mở map cho bắt
 Lão_Nương_Thích_KhẩuNghiệp cảm ơn b ạ
-Đây những con này bắt mấy con này mới ra chuẩn bị tầm 1k-2k bóng. Hôm nay với mai nữa là hết săn được S1 rồi</td><td>我是新手，想问这些宠物里有没有哪只更强、而且 shiny 更难刷？还是它们强度和稀有度都差不多？</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1777153873250202/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>19</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag red">负面</span></td><td>Đây những con này bắt mấy con này mới ra chuẩn bị tầm 1k-2k bóng. Hôm nay với mai nữa là hết săn được S1 rồi</td><td>内容讨论活动、赛季时间、奖励或宠物出现信息。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1777153873250202/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>20</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Thế là full shiny s1
-Dạng 2 con thỏ sao đâu ông</td><td>内容讨论活动、赛季时间、奖励或宠物出现信息。</td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776279596670963/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>21</td><td>评论</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag green">正面</span></td><td>5月8日16:18
+Đây những con này bắt mấy con này mới ra chuẩn bị tầm 1k-2k bóng. Hôm nay với mai nữa là hết săn được S1 rồi</td><td class="translation-cell"><p>想进别人地图或借好友资源来捕捉/完成任务。</p><span>交易、充值或非官方渠道，需作为风险样本复核。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1777153873250202/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>19</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag red">负面</span></td><td>Đây những con này bắt mấy con này mới ra chuẩn bị tầm 1k-2k bóng. Hôm nay với mai nữa là hết săn được S1 rồi</td><td class="translation-cell"><p>大意：宠物获取、进化、异色/闪光和养成搭配。</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1777153873250202/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>20</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Thế là full shiny s1
+Dạng 2 con thỏ sao đâu ông</td><td class="translation-cell"><p>在问兔子的二形态/星级。</p><span>宠物获取、进化、异色/闪光和养成搭配。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1776279596670963/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>21</td><td>评论</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag green">正面</span></td><td>5月8日16:18
 Nên chọn gì vậy mn
 Này có buff j ko ô hay chỉ cho đẹp thôi
 1周
@@ -773,10 +930,10 @@ Maulana Maul PRophez
 Triệu Trung Đức pic nya
 1周
 Triệu Trung Đức con bọ lửa với con cạnh con vịt hàng 3 thì sao ạ
-1周</td><td>玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2353953228347087/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>22</td><td>评论</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>1. muốn thử vật may kiếm tí thì có thể lấy sói s3 hoặc c băng s5 NẾU ĐỎ b sẽ có 300m vàng còn rách nátthì ...cx 7-9m
+1周</td><td class="translation-cell"><p>在问宠物怎么进化。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2353953228347087/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>22</td><td>评论</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>1. muốn thử vật may kiếm tí thì có thể lấy sói s3 hoặc c băng s5 NẾU ĐỎ b sẽ có 300m vàng còn rách nátthì ...cx 7-9m
 2. Chắc cú lâu dài pvp ngon thì có thể lấy thỏ s1 lm team băng. C s4 thỏ sao tiến hoá đạng2 ma đi đc khá nhiều team. C s14 Ma  đi team đổi chiêu bắt team bạn hồi nl tăng dam cho
 3. Sói vẫn có thể chơi đc mn chỉ hợp với mức rank pvp thấp tầm rank đỏ là khó đánh nếu đi team 5?nn
-1周</td><td>玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。</td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2353953228347087/" target="_blank" rel="noreferrer">查看原帖</a></td></tr></tbody></table></section>
+1周</td><td class="translation-cell"><p>在问宠物怎么进化。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2353953228347087/" target="_blank" rel="noreferrer">查看原帖</a></td></tr></tbody></table></section>
   </main>
 </body>
 </html>

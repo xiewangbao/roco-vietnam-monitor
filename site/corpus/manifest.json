@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "corpus.manifest.v1",
+  "generatedAt": "2026-06-09T08:14:15.526Z",
+  "visibility": "hidden_search_index_on_public_static_site",
+  "reports": [
+    {
+      "reportWeek": "2026-P3",
+      "label": "2026-P3",
+      "file": "corpus_2026-P3.json",
+      "recordCount": 312,
+      "postCount": 149,
+      "commentCount": 163,
+      "timeRange": {
+        "start": "2026-05-07T00:00:00+08:00",
+        "end": "2026-05-19T07:30:59.824Z",
+        "timezone": "Asia/Shanghai",
+        "completenessNote": "第三期报告，统计窗口从 2026-05-07 00:00 +08:00 至本次抓取时间；覆盖 5.7 至今，非标准周五到周四完整周。"
+      }
+    },
+    {
+      "reportWeek": "2026-W18",
+      "label": "2026-W18",
+      "file": "corpus_2026-W18.json",
+      "recordCount": 121,
+      "postCount": 93,
+      "commentCount": 28,
+      "timeRange": {
+        "start": "2026-04-24T00:00:00+08:00",
+        "end": "2026-04-29T08:24:46.014Z",
+        "timezone": "Asia/Shanghai",
+        "completenessNote": "Current week is still in progress on 2026-04-29; this is not the final full Friday-to-Thursday weekly run."
+      }
+    },
+    {
+      "reportWeek": "2026-W19",
+      "label": "2026-W19",
+      "file": "corpus_2026-W19.json",
+      "recordCount": 157,
+      "postCount": 108,
+      "commentCount": 49,
+      "timeRange": {
+        "start": "2026-04-30T00:00:00+08:00",
+        "end": "2026-05-06T04:21:50.275Z",
+        "timezone": "Asia/Shanghai",
+        "completenessNote": "Second in-progress run from 2026-04-30 00:00 +08:00 to crawl time on 2026-05-06; final Friday-to-Thursday run will be covered later."
+      }
+    }
+  ]
+}

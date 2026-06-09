@@ -60,14 +60,26 @@ const topInteractivePosts = getTopInteractivePosts();
 function interactionDock() {
   if (!isAppleTheme) return '';
   return `<aside class="command-dock" aria-label="Dashboard controls">
-    <div class="dock-section">
-      <span class="eyebrow">Report</span>
-      <strong>${escapeHtml(report.reportWeek)}</strong>
-      <p>${escapeHtml(report.timeRange.start)} - ${escapeHtml(report.timeRange.end)}</p>
+    <div class="dock-section report-switcher">
+      <div class="report-copy">
+        <span class="eyebrow">Report</span>
+        <strong>${periodFullLabel(report.reportWeek)}</strong>
+        <p>${escapeHtml(report.timeRange.start)} - ${escapeHtml(report.timeRange.end)}</p>
+      </div>
+      <details class="report-menu">
+        <summary>切换报告</summary>
+        <div class="report-popover">
+          <div class="report-popover-head">
+            <strong>历史报告</strong>
+            <span>按有效内容量排序展示</span>
+          </div>
+          ${availableReports.map((r) => `<a class="report-option ${r.week === report.reportWeek ? 'active' : ''}" href="${r.file}" ${r.week === report.reportWeek ? 'aria-current="page"' : ''}><span>${periodFullLabel(r.week)}</span><div class="bar"><span style="width:${pct(r.valid, maxReportValid)}%"></span></div><strong>${r.valid}</strong></a>`).join('')}
+        </div>
+      </details>
     </div>
     <label class="dock-search">
       <span>全局搜索</span>
-      <input id="globalSearch" type="search" placeholder="搜索 topic / group / 风险 / 玩家声音" autocomplete="off" />
+      <input id="globalSearch" type="search" placeholder="搜索 topic / group / 风险 / 隐藏语料" autocomplete="off" />
     </label>
     <div class="segmented" role="group" aria-label="Content filter">
       <button type="button" data-filter="all" class="active">全部</button>
@@ -83,9 +95,19 @@ function appleScript() {
   if (!isAppleTheme) return '';
   return `<script>
     const search = document.getElementById('globalSearch');
+    const corpusSection = document.getElementById('corpusSearch');
+    const corpusMeta = document.getElementById('corpusSearchMeta');
+    const corpusResults = document.getElementById('corpusSearchResults');
     const densityToggle = document.getElementById('densityToggle');
     const filterButtons = Array.from(document.querySelectorAll('[data-filter]'));
+    const reportMenu = document.querySelector('.report-menu');
     let activeFilter = 'all';
+    let corpusRecords = null;
+    let corpusLoading = null;
+
+    const corpusBasePath = location.pathname.includes('/reports/') || location.pathname.includes('/topics/')
+      ? '../corpus/'
+      : 'corpus/';
 
     function searchableRows() {
       return Array.from(document.querySelectorAll('tbody tr, .voice, .top-post, .signal-row, .topic-brief'));
@@ -100,6 +122,95 @@ function appleScript() {
         const searchOk = !q || text.includes(q);
         el.hidden = !(filterOk && searchOk);
       });
+      applyCorpusSearch(q);
+    }
+
+    async function loadCorpusRecords() {
+      if (corpusRecords) return corpusRecords;
+      if (corpusLoading) return corpusLoading;
+      corpusLoading = fetch(corpusBasePath + 'manifest.json')
+        .then((res) => res.ok ? res.json() : Promise.reject(new Error('manifest_missing')))
+        .then(async (manifest) => {
+          const reports = manifest.reports || [];
+          const datasets = await Promise.all(reports.map((entry) => fetch(corpusBasePath + entry.file)
+            .then((res) => res.ok ? res.json() : { records: [] })
+            .catch(() => ({ records: [] }))));
+          corpusRecords = datasets.flatMap((dataset) => dataset.records || []);
+          return corpusRecords;
+        })
+        .catch(() => {
+          corpusRecords = [];
+          return corpusRecords;
+        });
+      return corpusLoading;
+    }
+
+    function corpusText(record) {
+      return [
+        record.reportWeek,
+        record.recordType,
+        record.sourceGroup,
+        record.originalText,
+        record.translationZh,
+        record.primaryTopic,
+        ...(record.topics || []),
+        ...(record.riskLabels || []),
+        record.sentiment,
+      ].filter(Boolean).join(' ').toLowerCase();
+    }
+
+    function corpusPreview(text, q) {
+      const raw = String(text || '').replace(/\\s+/g, ' ').trim();
+      if (!raw) return '';
+      const index = raw.toLowerCase().indexOf(q.toLowerCase());
+      const start = index > 24 ? index - 24 : 0;
+      const preview = raw.slice(start, start + 180);
+      return (start > 0 ? '...' : '') + preview + (raw.length > start + 180 ? '...' : '');
+    }
+
+    function renderCorpusResults(q, records) {
+      if (!corpusSection || !corpusResults || !corpusMeta) return;
+      if (!q || q.length < 2) {
+        corpusSection.hidden = true;
+        corpusResults.innerHTML = '';
+        corpusMeta.textContent = '';
+        return;
+      }
+      const hits = records
+        .filter((record) => corpusText(record).includes(q))
+        .slice(0, 30);
+      corpusSection.hidden = false;
+      corpusMeta.textContent = hits.length
+        ? '显示前 ' + hits.length + ' 条命中；语料库为隐藏检索索引，不在页面默认外显。'
+        : '未在隐藏语料库中找到匹配内容。';
+      corpusResults.innerHTML = hits.map((record) => {
+        const type = record.recordType === 'comment' ? '评论' : '帖子';
+        const topics = (record.topics || []).slice(0, 2).map((topic) => '<span class="tag blue">' + escapeHtmlJs(topic) + '</span>').join('');
+        const risks = (record.riskLabels || []).slice(0, 2).map((risk) => '<span class="tag red">' + escapeHtmlJs(risk) + '</span>').join('');
+        return '<article class="corpus-hit" data-bucket="' + (record.recordType === 'comment' ? 'comment' : 'topic') + '">'
+          + '<div class="corpus-hit-meta"><span class="tag">' + escapeHtmlJs(record.reportWeek) + '</span><span class="tag">' + type + '</span><span class="tag">' + escapeHtmlJs(record.sourceGroup || '未知 Group') + '</span>' + topics + risks + '</div>'
+          + '<blockquote>' + escapeHtmlJs(corpusPreview(record.originalText, q)) + '</blockquote>'
+          + (record.translationZh ? '<p><strong>翻译：</strong>' + escapeHtmlJs(record.translationZh) + '</p>' : '')
+          + '<div class="corpus-hit-foot"><span>' + escapeHtmlJs(record.sentiment || '未分类') + '</span><a class="btn" href="' + encodeURI(record.postUrl || '#') + '" target="_blank" rel="noreferrer">查看原帖</a></div>'
+          + '</article>';
+      }).join('');
+    }
+
+    function escapeHtmlJs(value) {
+      return String(value || '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
+    }
+
+    function applyCorpusSearch(q) {
+      if (!q || q.length < 2) {
+        renderCorpusResults('', []);
+        return;
+      }
+      loadCorpusRecords().then((records) => renderCorpusResults(q, records));
     }
 
     search?.addEventListener('input', applyFilters);
@@ -111,6 +222,12 @@ function appleScript() {
     densityToggle?.addEventListener('click', () => {
       document.body.classList.toggle('comfortable');
       densityToggle.textContent = document.body.classList.contains('comfortable') ? '舒展视图' : '紧凑视图';
+    });
+    document.addEventListener('click', (event) => {
+      if (reportMenu && !reportMenu.contains(event.target)) reportMenu.open = false;
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && reportMenu) reportMenu.open = false;
     });
   </script>`;
 }
@@ -125,6 +242,115 @@ function topicDetailPath(topic) {
 
 function topicDetailHref(topic) {
   return topicDetailPath(topic);
+}
+
+function genericTranslation(text = '') {
+  return /该内容|直译需结合|可用于判断|短句\/昵称式|疑似风险内容|内容讨论活动|玩家询问任务如何完成/.test(text);
+}
+
+function normalizedText(text = '') {
+  return String(text)
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[đĐ]/g, 'd')
+    .toLowerCase()
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function displayTranslation(item) {
+  const original = String(item.originalText || '').trim();
+  const current = String(item.translationZh || '').trim();
+  const t = normalizedText(original);
+  const directRules = [
+    [/con nao cung duoc.*dk|con nao cung dc/, '哪只都可以，对吧？'],
+    [/lan dau dung bong lang kinh.*khong can suy nghi/, '第一次用棱镜球，不用犹豫。'],
+    [/giai cuu|cuu em|cứu/i, '救救我/帮帮我。'],
+    [/than lua.*ib/, '我有火神，私信我。'],
+    [/ai co 2 con nay.*cho minh ke|co 2 con nay.*cho.*ke/, '谁有这两只，能让我蹭一下吗？'],
+    [/ai co con nay.*cho minh ke|ai co.*cho minh ke/, '谁有这只，能让我蹭一下吗？'],
+    [/co ca 2 ne ban|co ca 2/, '这两只我都有，朋友。'],
+    [/cho tui xin 1 qua.*add fr/, '给我一个吧，我已经加好友了。'],
+    [/may cho nay.*kiem.*khong ra|may cho nay.*kiem ko ra/, '这些地方我找不到，大家帮帮我。'],
+    [/mac do truong.*len tau/, '穿上学校服装，然后上船，兄弟。'],
+    [/ko a ban|khong a ban/, '不是哦/没有哦，朋友。'],
+    [/where can i get this purple token/i, '这个紫色代币在哪里获得？'],
+    [/only buy/i, '只能购买。'],
+    [/no bi loi|bi loi/, '它出 bug 了吗？'],
+    [/ai giup san shiny|san shiny/, '谁能帮我刷闪光？赛季快结束了我还没有刷到。'],
+    [/cai nay kiem o dau|kiem o dau|hoa nay.*o dau|lay o dau/, '在问这个东西在哪里获得。'],
+    [/con lai chac.*biet roi/, '剩下的你应该知道了。'],
+    [/como fazer.*quest/i, '这个任务怎么做？'],
+    [/meu nick.*add/i, '我的游戏昵称是这个，想加我一起玩可以来找我。'],
+    [/minh co nay.*bat|mình có/i, '我有这个，你要抓吗？'],
+    [/ai giup.*vs|giup mik|giup minh/, '谁能帮帮我？'],
+    [/map nay mo sao/, '这个地图怎么开启？'],
+    [/loi nay la sao/, '这个错误是怎么回事？'],
+    [/nem gi.*xin chi/, '要扔什么？请教一下。'],
+    [/trong balo.*cong thuc/, '进背包打开配方就能制作。'],
+    [/sk nay la sao|skill nay la sao/, '这个技能是什么意思？'],
+    [/quest xanh la cay/, '做绿色任务。'],
+    [/o nui tuyet|len nui tuyet/, '在雪山，绕一绕/去采就能找到。'],
+    [/co nha ap.*trong hoa/, '有孵化屋的话可以进去种花；没有的话可能需要看攻略找位置。'],
+    [/nang sao len/, '升星就可以。'],
+    [/dang 2 con tho/, '在问兔子的二形态/星级。'],
+    [/trong o nha/, '种在他家里。'],
+    [/ngoi sao xanh|ngoi sao mau xanh/, '去拿蓝色星星。'],
+    [/gui kb|da gui kb/, '已经发送好友申请了。'],
+    [/long vu/, '在问这个羽毛在哪里获得。'],
+    [/pokemon.*toan chay|cu.*chay/, '在问为什么自己的宠物总是逃跑。'],
+    [/chia khoa.*lay o dau/, '在问这些钥匙在哪里获得。'],
+    [/tinh the xanh.*cu meo/, '在问开启猫头鹰所需的蓝色晶体在哪里。'],
+    [/an du trai cay.*lv/, '吃够水果就能升级。'],
+    [/xuong rong.*chay/, '在问为什么仙人掌使用技能后总是逃跑。'],
+    [/dr ong.*chi ap trung|chi ap trung thoi/, '对，只需要孵蛋。'],
+    [/thiet ko|thiet khong/, '真的假的？'],
+    [/xin no\b|xin n[oơ]\b/, '求一个/想要这个，具体物品需结合原帖上下文确认。'],
+    [/hat soi.*cho minh bat ke|cho minh bat ke/, '谁有这个宠物/道具，让我蹭一下捕捉吧。'],
+    [/vo map|nha ng|nha nguoi|bat ke/, '想进别人地图或借好友资源来捕捉/完成任务。'],
+    [/nhiem vu|nvu| nv |lam sao|lam nhu nao/, '在问任务怎么做或下一步该怎么完成。'],
+    [/tien hoa|tien hoá/, '在问宠物怎么进化。'],
+    [/di mau|shiny|ap trung|trung/, '在聊异色/闪光、孵蛋或宠物培育。'],
+    [/battle pass|gem pass|monthly|nap|top up/, '在问 Battle Pass、月卡、充值或付费渠道。'],
+    [/dang nhap|login/, '在问怎么登录游戏。'],
+    [/cap quyen|quyen app|may tinh/, '在问电脑/设备授权或权限提示。'],
+    [/qu[eê]n ten|quen ten/, '在问忘记名称或账号信息怎么找回。'],
+    [/ban ve|mua ib|ban acc|mua acc/, '在发布或询问私下交易，需要作为风险内容复核。'],
+  ];
+  const matched = directRules.find(([pattern]) => pattern.test(t) || pattern.test(original));
+  const translation = matched
+    ? matched[1]
+    : (!genericTranslation(current) && current ? current : `大意：${conversationBrief(item)}`);
+  return {
+    translation,
+    brief: conversationBrief(item),
+  };
+}
+
+function conversationBrief(item) {
+  const text = normalizedText(item.originalText || '');
+  const topics = item.topics || [item.primaryTopic].filter(Boolean);
+  if (/ban ve|mua ib|ban acc|mua acc|nap|top up/.test(text) || topics.includes('诈骗、外挂、私服、黑产风险')) return '交易、充值或非官方渠道，需作为风险样本复核。';
+  if (/giai cuu|cuu em|giup|help|lam sao|nhiem vu|nvu/.test(text) || topics.includes('玩法机制')) return '求助任务步骤、机制规则或完成方法。';
+  if (/bat ke|vo map|add fr|friend|cho tui xin|cho minh ke/.test(text) || topics.includes('社群互动、组队、公会')) return '借宠、加好友、进地图和互助完成任务。';
+  if (/tien hoa|di mau|shiny|ap trung|trung|con nay|pet/.test(text) || topics.includes('宠物、角色、养成')) return '宠物获取、进化、异色/闪光和养成搭配。';
+  if (/dang nhap|cap quyen|redmi|may tinh|may /.test(text) || topics.includes('Bug、闪退、卡顿、登录问题')) return '登录、设备兼容或权限提示。';
+  if (topics.includes('充值、付费、礼包')) return '付费、礼包、Battle Pass 或充值入口。';
+  return item.recordType === 'comment' ? '简短求助、确认或跟帖互动。' : '发起问题、求助或分享。';
+}
+
+function topicCommentSummary(topicItems) {
+  const comments = topicItems.filter((item) => item.recordType === 'comment');
+  const base = comments.length ? comments : topicItems;
+  const counts = {};
+  for (const item of base) {
+    const key = conversationBrief(item);
+    counts[key] = (counts[key] || 0) + 1;
+  }
+  const parts = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 3);
+  if (!parts.length) return '暂无足够文本判断评论区讨论重点。';
+  const source = comments.length ? `评论区共 ${comments.length} 条可见评论，` : '该 topic 可见内容中，';
+  return `${source}主要在聊：${parts.map(([k, v]) => `${k}（${v} 条）`).join('；')}。`;
 }
 
 function buildTopicDetail(topicRow) {
@@ -142,7 +368,10 @@ function buildTopicDetail(topicRow) {
       if (t !== topic) coTopics[t] = (coTopics[t] || 0) + 1;
     }
   }
-  const rows = topicItems.slice(0, 80).map((item, index) => `<tr><td>${index + 1}</td><td>${item.recordType === 'comment' ? '评论' : '帖子'}</td><td>${escapeHtml(item.sourceGroup)}</td><td><span class="tag ${sentimentClass(item.sentiment)}">${escapeHtml(item.sentiment)}</span></td><td>${escapeHtml(item.originalText)}</td><td>${escapeHtml(item.translationZh)}</td><td><a class="btn" href="${item.postUrl}" target="_blank" rel="noreferrer">查看原帖</a></td></tr>`).join('');
+  const rows = topicItems.slice(0, 80).map((item, index) => {
+    const translated = displayTranslation(item);
+    return `<tr><td>${index + 1}</td><td>${item.recordType === 'comment' ? '评论' : '帖子'}</td><td>${escapeHtml(item.sourceGroup)}</td><td><span class="tag ${sentimentClass(item.sentiment)}">${escapeHtml(item.sentiment)}</span></td><td>${escapeHtml(item.originalText)}</td><td class="translation-cell"><p>${escapeHtml(translated.translation)}</p><span>${escapeHtml(translated.brief)}</span></td><td><a class="btn" href="${item.postUrl}" target="_blank" rel="noreferrer">查看原帖</a></td></tr>`;
+  }).join('');
   return `<!doctype html>
 <html lang="zh-CN">
 <head>
@@ -166,6 +395,7 @@ function buildTopicDetail(topicRow) {
     </div></section>
     <section><h2>二级 Topic / 共现标签</h2><div class="panel tag-cloud">${Object.entries(coTopics).sort((a,b)=>b[1]-a[1]).map(([k,v]) => `<span class="tag blue">${escapeHtml(k)} ${v}</span>`).join('') || '<span class="muted">暂无明显共现标签</span>'}</div></section>
     <section><h2>情绪与来源</h2><div class="grid two"><div class="panel">${Object.entries(sentiment).map(([k,v]) => `<p><strong>${escapeHtml(k)}</strong> ${v}</p><div class="bar ${sentimentClass(k)}"><span style="width:${Math.min(100, v / topicItems.length * 100)}%"></span></div>`).join('')}</div><div class="panel">${Object.entries(groups).sort((a,b)=>b[1]-a[1]).map(([k,v]) => `<div class="mini-row"><span>${escapeHtml(k)}</span><strong>${v}</strong></div><div class="bar"><span style="width:${Math.min(100, v / topicItems.length * 100)}%"></span></div>`).join('')}</div></div></section>
+    <section><h2>评论区在聊什么</h2><div class="panel"><p>${escapeHtml(topicCommentSummary(topicItems))}</p></div></section>
     <section><h2>内容明细</h2><table><thead><tr><th>#</th><th>类型</th><th>来源</th><th>情绪</th><th>越南语原文</th><th>中文翻译</th><th>原帖</th></tr></thead><tbody>${rows}</tbody></table></section>
   </main>
 </body>
@@ -208,41 +438,19 @@ const html = `<!doctype html>
   </nav>
   ${interactionDock()}
   <main>
-    <section class="status-strip">
-      <div>
-        <span class="eyebrow">监测状态</span>
-        <strong>${qualityStatusText()}</strong>
-        <p>${escapeHtml(report.sourceStatus.dataCompleteness)}</p>
-      </div>
-      <div>
-        <span class="eyebrow">统计窗口</span>
-        <strong>${escapeHtml(report.reportWeek)}</strong>
-        <p>${escapeHtml(report.timeRange.start)} 至 ${escapeHtml(report.timeRange.end)}</p>
-      </div>
-      <div>
-        <span class="eyebrow">采集方式</span>
-        <strong>browser_automation</strong>
-        <p>新帖子排序，按周增量抓取，原帖链接保留用于复核。</p>
+    ${quality && quality.status !== 'pass' ? `<div class="notice"><strong>数据质量需要复核：</strong>${quality.issues.map((issue) => issue.title).join('；')}。本轮不应直接视为完整成品，请先确认是否重跑、加深评论或接受可见样本。</div>` : ''}
+
+    <section id="corpusSearch" class="corpus-search" hidden>
+      <h2>隐藏语料库检索结果</h2>
+      <div class="panel">
+        <p class="small muted" id="corpusSearchMeta"></p>
+        <div class="corpus-results" id="corpusSearchResults"></div>
       </div>
     </section>
-    ${quality && quality.status !== 'pass' ? `<div class="notice"><strong>数据质量需要复核：</strong>${quality.issues.map((issue) => issue.title).join('；')}。本轮不应直接视为完整成品，请先确认是否重跑、加深评论或接受可见样本。</div>` : ''}
 
     <section id="latest">
       <h2>本周总览</h2>
-      <div class="grid cockpit">
-        <div class="panel summary-panel">${summaryOverview(report)}</div>
-        <div class="panel">
-          <h3>周选择</h3>
-          <label class="report-picker">
-            <span>切换报告</span>
-            <select onchange="if (this.value) location.href = this.value">
-              ${availableReports.map((r) => `<option value="${r.file}" ${r.week === report.reportWeek ? 'selected' : ''}>${periodFullLabel(r.week)}</option>`).join('')}
-            </select>
-          </label>
-          <div class="trend-list">${availableReports.map((r) => `<div class="trend-row"><span>${periodFullLabel(r.week)}</span><div class="bar"><span style="width:${pct(r.valid, maxReportValid)}%"></span></div><strong>${r.valid}</strong></div>`).join('')}</div>
-          <p class="small muted">当前展示 ${periodFullLabel(report.reportWeek)}。历史报告已生成，可按期查看。</p>
-        </div>
-      </div>
+      <div class="panel summary-panel">${summaryOverview(report)}</div>
     </section>
 
     <section>
@@ -282,15 +490,8 @@ const html = `<!doctype html>
 
     <section>
       <h2>未来越南发行参考信号</h2>
-      <div class="grid two">
-        <div class="panel">
-          ${Object.entries(report.futureVietnamLaunchSignals).map(([k, v]) => `<div class="signal-row"><strong>${label(k)}</strong><p>${escapeHtml(Array.isArray(v) ? v.join('；') : v)}</p></div>`).join('')}
-        </div>
-        <div class="panel">
-          <h3>情绪结构摘要</h3>
-          <p>正面 ${report.metrics.positiveRate}% / 中性 ${report.metrics.neutralRate}% / 负面 ${report.metrics.negativeRate}%</p>
-          <p class="small muted">详细情绪已经并入核心指标和评论舆情，避免重复占用页面空间。</p>
-        </div>
+      <div class="panel">
+        ${Object.entries(report.futureVietnamLaunchSignals).map(([k, v]) => `<div class="signal-row"><strong>${label(k)}</strong><p>${escapeHtml(Array.isArray(v) ? v.join('；') : v)}</p></div>`).join('')}
       </div>
     </section>
 
@@ -310,7 +511,15 @@ const html = `<!doctype html>
         <p class="small muted comment-limit">${(report.commentOpinion?.limitations || []).join(' ')}</p>
         <h3>代表评论</h3>
         <div class="comment-list">
-          ${(report.commentOpinion?.representativeComments || []).map(v => `<div class="voice compact-voice" data-bucket="comment"><div><span class="tag">${escapeHtml(v.sentiment)}</span><span class="tag blue">${escapeHtml(v.topic)}</span></div><blockquote>${escapeHtml(v.originalText)}</blockquote><p><strong>翻译：</strong>${escapeHtml(v.translationZh)}</p>${v.analysisZh ? `<p><strong>分析：</strong>${escapeHtml(v.analysisZh)}</p>` : ''}<a class="btn" href="${v.postUrl}" target="_blank" rel="noreferrer">查看原帖</a></div>`).join('')}
+          ${(report.commentOpinion?.representativeComments || []).map((v) => {
+            const translated = displayTranslation({
+              ...v,
+              recordType: 'comment',
+              topics: [v.topic].filter(Boolean),
+              primaryTopic: v.topic,
+            });
+            return `<div class="voice compact-voice" data-bucket="comment"><div><span class="tag">${escapeHtml(v.sentiment)}</span><span class="tag blue">${escapeHtml(v.topic)}</span></div><blockquote>${escapeHtml(v.originalText)}</blockquote><p><strong>翻译：</strong>${escapeHtml(translated.translation)}</p><p class="small muted">${escapeHtml(translated.brief)}</p>${v.analysisZh ? `<p><strong>分析：</strong>${escapeHtml(v.analysisZh)}</p>` : ''}<a class="btn" href="${v.postUrl}" target="_blank" rel="noreferrer">查看原帖</a></div>`;
+          }).join('')}
         </div>
       </div>
     </section>
@@ -329,7 +538,15 @@ const html = `<!doctype html>
       <h2>高互动帖子 Top 3</h2>
       <div class="top-posts">
         ${topInteractivePosts.length
-          ? topInteractivePosts.map((v, index) => `<article class="top-post" data-bucket="topic"><div class="top-post-head"><span class="rank-badge">#${index + 1}</span><span class="tag blue">${escapeHtml(v.topic)}</span><span class="tag">${escapeHtml(v.sentiment)}</span><span class="tag">${escapeHtml(v.sourceGroup)}</span><strong>${v.interactionTotal} 总互动</strong></div><div class="interaction-line"><span>赞/反应 ${v.reactionCount}</span><span>评论 ${v.commentCount}</span><span>分享 ${v.shareCount}</span></div><blockquote>${escapeHtml(v.originalText)}</blockquote><p><strong>翻译：</strong>${escapeHtml(v.translationZh)}</p><p><strong>分析：</strong>${escapeHtml(v.analysisZh)}</p><a class="btn" href="${v.postUrl}" target="_blank" rel="noreferrer">查看原帖</a> <span class="small muted">需 Facebook / Group 权限</span></article>`).join('')
+          ? topInteractivePosts.map((v, index) => {
+            const translated = displayTranslation({
+              ...v,
+              recordType: 'post',
+              topics: [v.topic].filter(Boolean),
+              primaryTopic: v.topic,
+            });
+            return `<article class="top-post" data-bucket="topic"><div class="top-post-head"><span class="rank-badge">#${index + 1}</span><span class="tag blue">${escapeHtml(v.topic)}</span><span class="tag">${escapeHtml(v.sentiment)}</span><span class="tag">${escapeHtml(v.sourceGroup)}</span><strong>${v.interactionTotal} 总互动</strong></div><div class="interaction-line"><span>赞/反应 ${v.reactionCount}</span><span>评论 ${v.commentCount}</span><span>分享 ${v.shareCount}</span></div><blockquote>${escapeHtml(v.originalText)}</blockquote><p><strong>翻译：</strong>${escapeHtml(translated.translation)}</p><p class="small muted">${escapeHtml(translated.brief)}</p><p><strong>分析：</strong>${escapeHtml(v.analysisZh)}</p><a class="btn" href="${v.postUrl}" target="_blank" rel="noreferrer">查看原帖</a> <span class="small muted">需 Facebook / Group 权限</span></article>`;
+          }).join('')
           : `<div class="panel empty-state"><strong>当前期缺少可验证的转赞评字段</strong><p>高互动帖子按 reaction + comment + share 排序。当前结构化数据中这三个字段为空，因此不展示替代排名，避免把“可见讨论量”误当作互动量。下次抓取补齐互动字段后，本模块会自动展示 Top 3 原帖翻译和分析。</p></div>`}
       </div>
     </section>
@@ -668,13 +885,24 @@ function appleCss() {
       top: 48px;
       z-index: 18;
       display: grid;
-      grid-template-columns: minmax(210px, .72fr) minmax(260px, 1fr) auto auto;
+      grid-template-columns: minmax(360px, .9fr) minmax(260px, 1fr) auto auto;
       gap: 10px;
       align-items: center;
       padding: 10px 24px;
       background: rgba(245, 245, 247, 0.78);
       border-bottom: 1px solid var(--line);
       backdrop-filter: saturate(180%) blur(20px);
+    }
+    .report-switcher {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: center;
+      min-width: 0;
+    }
+    .report-copy {
+      min-width: 0;
     }
     .dock-section strong {
       display: block;
@@ -686,6 +914,100 @@ function appleCss() {
       margin: 2px 0 0;
       color: var(--muted);
       font-size: 12px;
+    }
+    .report-menu {
+      position: relative;
+      justify-self: end;
+    }
+    .report-menu summary {
+      list-style: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 32px;
+      padding: 0 13px;
+      border-radius: 980px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 650;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 8px 20px rgba(0, 113, 227, 0.22);
+      white-space: nowrap;
+    }
+    .report-menu summary::-webkit-details-marker {
+      display: none;
+    }
+    .report-menu[open] summary {
+      background: #005bb5;
+    }
+    .report-popover {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      z-index: 60;
+      width: min(420px, calc(100vw - 32px));
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.16);
+      backdrop-filter: saturate(180%) blur(20px);
+    }
+    .report-popover::before {
+      content: "";
+      position: absolute;
+      top: -6px;
+      right: 28px;
+      width: 12px;
+      height: 12px;
+      background: rgba(255, 255, 255, 0.96);
+      border-left: 1px solid var(--line);
+      border-top: 1px solid var(--line);
+      transform: rotate(45deg);
+    }
+    .report-popover-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 4px 4px 8px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 6px;
+    }
+    .report-popover-head strong {
+      font-size: 13px;
+      line-height: 1.2;
+    }
+    .report-popover-head span {
+      color: var(--muted);
+      font-size: 11px;
+      white-space: nowrap;
+    }
+    .report-option {
+      display: grid;
+      grid-template-columns: minmax(118px, 1fr) minmax(104px, 1.1fr) 42px;
+      gap: 8px;
+      align-items: center;
+      padding: 9px 8px;
+      border-radius: 10px;
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 12px;
+    }
+    .report-option:hover,
+    .report-option.active {
+      background: rgba(0, 113, 227, 0.08);
+    }
+    .report-option span {
+      font-weight: 650;
+      white-space: nowrap;
+    }
+    .report-option strong {
+      text-align: right;
+      font-size: 13px;
+      font-weight: 700;
     }
     .dock-search {
       display: grid;
@@ -924,6 +1246,18 @@ function appleCss() {
     tr:last-child td { border-bottom: 0; }
     tr:hover td { background: rgba(0, 113, 227, 0.035); }
     td strong { font-weight: 650; }
+    .translation-cell p {
+      margin: 0 0 4px;
+      color: var(--ink);
+      font-size: 12px;
+      line-height: 1.42;
+    }
+    .translation-cell span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.35;
+    }
     .tag {
       display: inline-flex;
       align-items: center;
@@ -1069,20 +1403,6 @@ function appleCss() {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 8px;
     }
-    .report-picker {
-      display: grid;
-      gap: 6px;
-      margin-bottom: 10px;
-    }
-    .report-picker span {
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 650;
-    }
-    .report-picker select {
-      width: 100%;
-      font-weight: 650;
-    }
     .top-posts {
       display: grid;
       gap: 10px;
@@ -1167,6 +1487,52 @@ function appleCss() {
     .compact-voice p {
       overflow-wrap: anywhere;
     }
+    .corpus-search {
+      scroll-margin-top: 150px;
+    }
+    .corpus-results {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .corpus-hit {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 9px;
+      background: rgba(245, 245, 247, 0.66);
+    }
+    .corpus-hit-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 6px;
+    }
+    .corpus-hit blockquote {
+      margin: 6px 0;
+      padding-left: 10px;
+      border-left: 2px solid var(--blue);
+      color: rgba(0, 0, 0, 0.82);
+      font-size: 13px;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+    .corpus-hit p {
+      margin: 5px 0;
+      color: rgba(0, 0, 0, 0.68);
+      font-size: 12px;
+      line-height: 1.42;
+    }
+    .corpus-hit-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 6px;
+    }
     .voice {
       border-top: 1px solid var(--line);
       padding: 10px 0;
@@ -1232,11 +1598,12 @@ function appleCss() {
     body.comfortable .voice blockquote { font-size: 14px; line-height: 1.6; }
     @media (max-width: 1120px) {
       .command-dock { grid-template-columns: 1fr; }
+      .report-switcher { grid-template-columns: minmax(0, 1fr) auto; }
       .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .cockpit, .two, .status-strip { grid-template-columns: 1fr; }
       .summary-findings, .summary-cluster { grid-template-columns: 1fr; }
       .cluster-meta { justify-content: flex-start; }
-      .comment-head, .comment-list { grid-template-columns: 1fr; }
+      .comment-head, .comment-list, .corpus-results { grid-template-columns: 1fr; }
       .composition { grid-template-columns: 1fr; }
     }
     @media (max-width: 760px) {
@@ -1246,6 +1613,12 @@ function appleCss() {
       nav { justify-content: flex-start; padding: 0 12px; }
       main { padding: 14px 12px 40px; }
       .command-dock { padding: 10px 12px; }
+      .report-switcher { grid-template-columns: 1fr; }
+      .report-menu { justify-self: stretch; }
+      .report-menu summary { width: 100%; }
+      .report-popover { left: 0; right: auto; width: min(100%, calc(100vw - 24px)); }
+      .report-popover::before { right: auto; left: 28px; }
+      .report-option { grid-template-columns: minmax(110px, 1fr) minmax(80px, .8fr) 34px; }
       .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       table { display: block; overflow-x: auto; }
     }

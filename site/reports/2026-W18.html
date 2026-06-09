@@ -106,13 +106,24 @@
       top: 48px;
       z-index: 18;
       display: grid;
-      grid-template-columns: minmax(210px, .72fr) minmax(260px, 1fr) auto auto;
+      grid-template-columns: minmax(360px, .9fr) minmax(260px, 1fr) auto auto;
       gap: 10px;
       align-items: center;
       padding: 10px 24px;
       background: rgba(245, 245, 247, 0.78);
       border-bottom: 1px solid var(--line);
       backdrop-filter: saturate(180%) blur(20px);
+    }
+    .report-switcher {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: center;
+      min-width: 0;
+    }
+    .report-copy {
+      min-width: 0;
     }
     .dock-section strong {
       display: block;
@@ -124,6 +135,100 @@
       margin: 2px 0 0;
       color: var(--muted);
       font-size: 12px;
+    }
+    .report-menu {
+      position: relative;
+      justify-self: end;
+    }
+    .report-menu summary {
+      list-style: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 32px;
+      padding: 0 13px;
+      border-radius: 980px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 650;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 8px 20px rgba(0, 113, 227, 0.22);
+      white-space: nowrap;
+    }
+    .report-menu summary::-webkit-details-marker {
+      display: none;
+    }
+    .report-menu[open] summary {
+      background: #005bb5;
+    }
+    .report-popover {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      z-index: 60;
+      width: min(420px, calc(100vw - 32px));
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.16);
+      backdrop-filter: saturate(180%) blur(20px);
+    }
+    .report-popover::before {
+      content: "";
+      position: absolute;
+      top: -6px;
+      right: 28px;
+      width: 12px;
+      height: 12px;
+      background: rgba(255, 255, 255, 0.96);
+      border-left: 1px solid var(--line);
+      border-top: 1px solid var(--line);
+      transform: rotate(45deg);
+    }
+    .report-popover-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 4px 4px 8px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 6px;
+    }
+    .report-popover-head strong {
+      font-size: 13px;
+      line-height: 1.2;
+    }
+    .report-popover-head span {
+      color: var(--muted);
+      font-size: 11px;
+      white-space: nowrap;
+    }
+    .report-option {
+      display: grid;
+      grid-template-columns: minmax(118px, 1fr) minmax(104px, 1.1fr) 42px;
+      gap: 8px;
+      align-items: center;
+      padding: 9px 8px;
+      border-radius: 10px;
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 12px;
+    }
+    .report-option:hover,
+    .report-option.active {
+      background: rgba(0, 113, 227, 0.08);
+    }
+    .report-option span {
+      font-weight: 650;
+      white-space: nowrap;
+    }
+    .report-option strong {
+      text-align: right;
+      font-size: 13px;
+      font-weight: 700;
     }
     .dock-search {
       display: grid;
@@ -362,6 +467,18 @@
     tr:last-child td { border-bottom: 0; }
     tr:hover td { background: rgba(0, 113, 227, 0.035); }
     td strong { font-weight: 650; }
+    .translation-cell p {
+      margin: 0 0 4px;
+      color: var(--ink);
+      font-size: 12px;
+      line-height: 1.42;
+    }
+    .translation-cell span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.35;
+    }
     .tag {
       display: inline-flex;
       align-items: center;
@@ -507,20 +624,6 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 8px;
     }
-    .report-picker {
-      display: grid;
-      gap: 6px;
-      margin-bottom: 10px;
-    }
-    .report-picker span {
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 650;
-    }
-    .report-picker select {
-      width: 100%;
-      font-weight: 650;
-    }
     .top-posts {
       display: grid;
       gap: 10px;
@@ -605,6 +708,52 @@
     .compact-voice p {
       overflow-wrap: anywhere;
     }
+    .corpus-search {
+      scroll-margin-top: 150px;
+    }
+    .corpus-results {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .corpus-hit {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 9px;
+      background: rgba(245, 245, 247, 0.66);
+    }
+    .corpus-hit-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 6px;
+    }
+    .corpus-hit blockquote {
+      margin: 6px 0;
+      padding-left: 10px;
+      border-left: 2px solid var(--blue);
+      color: rgba(0, 0, 0, 0.82);
+      font-size: 13px;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+    .corpus-hit p {
+      margin: 5px 0;
+      color: rgba(0, 0, 0, 0.68);
+      font-size: 12px;
+      line-height: 1.42;
+    }
+    .corpus-hit-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 6px;
+    }
     .voice {
       border-top: 1px solid var(--line);
       padding: 10px 0;
@@ -670,11 +819,12 @@
     body.comfortable .voice blockquote { font-size: 14px; line-height: 1.6; }
     @media (max-width: 1120px) {
       .command-dock { grid-template-columns: 1fr; }
+      .report-switcher { grid-template-columns: minmax(0, 1fr) auto; }
       .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .cockpit, .two, .status-strip { grid-template-columns: 1fr; }
       .summary-findings, .summary-cluster { grid-template-columns: 1fr; }
       .cluster-meta { justify-content: flex-start; }
-      .comment-head, .comment-list { grid-template-columns: 1fr; }
+      .comment-head, .comment-list, .corpus-results { grid-template-columns: 1fr; }
       .composition { grid-template-columns: 1fr; }
     }
     @media (max-width: 760px) {
@@ -684,6 +834,12 @@
       nav { justify-content: flex-start; padding: 0 12px; }
       main { padding: 14px 12px 40px; }
       .command-dock { padding: 10px 12px; }
+      .report-switcher { grid-template-columns: 1fr; }
+      .report-menu { justify-self: stretch; }
+      .report-menu summary { width: 100%; }
+      .report-popover { left: 0; right: auto; width: min(100%, calc(100vw - 24px)); }
+      .report-popover::before { right: auto; left: 28px; }
+      .report-option { grid-template-columns: minmax(110px, 1fr) minmax(80px, .8fr) 34px; }
       .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       table { display: block; overflow-x: auto; }
     }
@@ -709,14 +865,26 @@
     <a href="#trends">趋势</a>
   </nav>
   <aside class="command-dock" aria-label="Dashboard controls">
-    <div class="dock-section">
-      <span class="eyebrow">Report</span>
-      <strong>2026-W18</strong>
-      <p>2026-04-24T00:00:00+08:00 - 2026-04-29T08:24:46.014Z</p>
+    <div class="dock-section report-switcher">
+      <div class="report-copy">
+        <span class="eyebrow">Report</span>
+        <strong>第 1 期 / 2026-W18</strong>
+        <p>2026-04-24T00:00:00+08:00 - 2026-04-29T08:24:46.014Z</p>
+      </div>
+      <details class="report-menu">
+        <summary>切换报告</summary>
+        <div class="report-popover">
+          <div class="report-popover-head">
+            <strong>历史报告</strong>
+            <span>按有效内容量排序展示</span>
+          </div>
+          <a class="report-option " href="../reports/2026-P3.html" ><span>第 3 期 / 2026-P3</span><div class="bar"><span style="width:100%"></span></div><strong>280</strong></a><a class="report-option active" href="../reports/2026-W18.html" aria-current="page"><span>第 1 期 / 2026-W18</span><div class="bar"><span style="width:39%"></span></div><strong>108</strong></a><a class="report-option " href="../reports/2026-W19.html" ><span>第 2 期 / 2026-W19</span><div class="bar"><span style="width:39%"></span></div><strong>109</strong></a>
+        </div>
+      </details>
     </div>
     <label class="dock-search">
       <span>全局搜索</span>
-      <input id="globalSearch" type="search" placeholder="搜索 topic / group / 风险 / 玩家声音" autocomplete="off" />
+      <input id="globalSearch" type="search" placeholder="搜索 topic / group / 风险 / 隐藏语料" autocomplete="off" />
     </label>
     <div class="segmented" role="group" aria-label="Content filter">
       <button type="button" data-filter="all" class="active">全部</button>
@@ -727,41 +895,19 @@
     <button class="density-toggle" type="button" id="densityToggle">紧凑视图</button>
   </aside>
   <main>
-    <section class="status-strip">
-      <div>
-        <span class="eyebrow">监测状态</span>
-        <strong>未生成质量门禁</strong>
-        <p>partial_in_progress_week_visible_feed_crawl</p>
-      </div>
-      <div>
-        <span class="eyebrow">统计窗口</span>
-        <strong>2026-W18</strong>
-        <p>2026-04-24T00:00:00+08:00 至 2026-04-29T08:24:46.014Z</p>
-      </div>
-      <div>
-        <span class="eyebrow">采集方式</span>
-        <strong>browser_automation</strong>
-        <p>新帖子排序，按周增量抓取，原帖链接保留用于复核。</p>
+
+
+    <section id="corpusSearch" class="corpus-search" hidden>
+      <h2>隐藏语料库检索结果</h2>
+      <div class="panel">
+        <p class="small muted" id="corpusSearchMeta"></p>
+        <div class="corpus-results" id="corpusSearchResults"></div>
       </div>
     </section>
 
-
     <section id="latest">
       <h2>本周总览</h2>
-      <div class="grid cockpit">
-        <div class="panel summary-panel"><p>本次进行中周抓取显示，越南玩家社区已经出现持续的自然讨论，核心集中在宠物养成、任务攻略、好友地图/借宠完成任务、Battle Pass 相关宠物和设备/权限问题。讨论多为玩家互助和攻略询问，说明当前社区有自发学习和传播动力。负面内容主要不是大规模口碑崩坏，而是任务理解、账号/名称找回、设备权限和本地化理解上的摩擦。</p><p>风险侧出现少量账号/道具交易、充值渠道询问，以及“是否正式版/已经正式”的认知混淆。由于 Roco Kingdom 尚未在越南正式发行，这些讨论更适合作为未来发行前的兴趣、认知和风险观察信号，而不是即时运营响应对象。</p></div>
-        <div class="panel">
-          <h3>周选择</h3>
-          <label class="report-picker">
-            <span>切换报告</span>
-            <select onchange="if (this.value) location.href = this.value">
-              <option value="../reports/2026-P3.html" >第 3 期 / 2026-P3</option><option value="../reports/2026-W18.html" selected>第 1 期 / 2026-W18</option><option value="../reports/2026-W19.html" >第 2 期 / 2026-W19</option>
-            </select>
-          </label>
-          <div class="trend-list"><div class="trend-row"><span>第 3 期 / 2026-P3</span><div class="bar"><span style="width:100%"></span></div><strong>280</strong></div><div class="trend-row"><span>第 1 期 / 2026-W18</span><div class="bar"><span style="width:39%"></span></div><strong>108</strong></div><div class="trend-row"><span>第 2 期 / 2026-W19</span><div class="bar"><span style="width:39%"></span></div><strong>109</strong></div></div>
-          <p class="small muted">当前展示 第 1 期 / 2026-W18。历史报告已生成，可按期查看。</p>
-        </div>
-      </div>
+      <div class="panel summary-panel"><p>本次进行中周抓取显示，越南玩家社区已经出现持续的自然讨论，核心集中在宠物养成、任务攻略、好友地图/借宠完成任务、Battle Pass 相关宠物和设备/权限问题。讨论多为玩家互助和攻略询问，说明当前社区有自发学习和传播动力。负面内容主要不是大规模口碑崩坏，而是任务理解、账号/名称找回、设备权限和本地化理解上的摩擦。</p><p>风险侧出现少量账号/道具交易、充值渠道询问，以及“是否正式版/已经正式”的认知混淆。由于 Roco Kingdom 尚未在越南正式发行，这些讨论更适合作为未来发行前的兴趣、认知和风险观察信号，而不是即时运营响应对象。</p></div>
     </section>
 
     <section>
@@ -794,15 +940,8 @@
 
     <section>
       <h2>未来越南发行参考信号</h2>
-      <div class="grid two">
-        <div class="panel">
-          <div class="signal-row"><strong>自然兴趣点</strong><p>宠物养成；异色/孵蛋；任务攻略；好友互助捕捉；Battle Pass 宠物</p></div><div class="signal-row"><strong>高频疑问</strong><p>任务如何完成；宠物如何进化；如何进入好友地图；设备能否运行；当前是否正式版</p></div><div class="signal-row"><strong>潜在付费关注点</strong><p>Battle Pass、月卡、gem pass、充值渠道相关内容已出现，需要观察非官方渠道风险。</p></div><div class="signal-row"><strong>本地化关注点</strong><p>任务说明、宠物名称、攻略翻译和中文内容转译是高频理解门槛。</p></div><div class="signal-row"><strong>社区自传播线索</strong><p>攻略帖、视频/音频讲解、跨 Group 重复转发已出现。</p></div><div class="signal-row"><strong>发行前认知问题</strong><p>部分玩家可能误以为已有越南正式版本；需持续区分中国区正式发行与越南区未正式发行。</p></div>
-        </div>
-        <div class="panel">
-          <h3>情绪结构摘要</h3>
-          <p>正面 14.8% / 中性 53.7% / 负面 21.3%</p>
-          <p class="small muted">详细情绪已经并入核心指标和评论舆情，避免重复占用页面空间。</p>
-        </div>
+      <div class="panel">
+        <div class="signal-row"><strong>自然兴趣点</strong><p>宠物养成；异色/孵蛋；任务攻略；好友互助捕捉；Battle Pass 宠物</p></div><div class="signal-row"><strong>高频疑问</strong><p>任务如何完成；宠物如何进化；如何进入好友地图；设备能否运行；当前是否正式版</p></div><div class="signal-row"><strong>潜在付费关注点</strong><p>Battle Pass、月卡、gem pass、充值渠道相关内容已出现，需要观察非官方渠道风险。</p></div><div class="signal-row"><strong>本地化关注点</strong><p>任务说明、宠物名称、攻略翻译和中文内容转译是高频理解门槛。</p></div><div class="signal-row"><strong>社区自传播线索</strong><p>攻略帖、视频/音频讲解、跨 Group 重复转发已出现。</p></div><div class="signal-row"><strong>发行前认知问题</strong><p>部分玩家可能误以为已有越南正式版本；需持续区分中国区正式发行与越南区未正式发行。</p></div>
       </div>
     </section>
 
@@ -822,7 +961,7 @@
         <p class="small muted comment-limit">评论舆情基于 Facebook feed 中可见和已展开的评论。 未完全展开的完整评论线程已进入缺口日志，因此评论舆情代表可见样本，不代表全量评论。</p>
         <h3>代表评论</h3>
         <div class="comment-list">
-          <div class="voice compact-voice" data-bucket="comment"><div><span class="tag">正面</span><span class="tag blue">宠物、角色、养成</span></div><blockquote>Ông solo à hay có người vô kéo boss thế ông</blockquote><p><strong>翻译：</strong>你是自己单挑 Boss，还是有人进来帮你带 Boss？</p><p><strong>分析：</strong>情绪为「正面」，说明这条内容更偏兴趣表达或经验分享。 这类内容说明越南玩家对宠物外观、稀有度、进化、强度和队伍搭配已经有较深讨论，未来发行前可作为核心兴趣点和内容教育重点。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2123031268489945/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice compact-voice" data-bucket="comment"><div><span class="tag">中性</span><span class="tag blue">宠物、角色、养成</span></div><blockquote>Lv40 nâng nó lên 2 là tiến hoá được tới dạng cuối luôn</blockquote><p><strong>翻译：</strong>玩家询问某个宠物如何进化；评论提到升到 40 级并提升到 2 阶可进化到最终形态。</p><p><strong>分析：</strong>情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容说明越南玩家对宠物外观、稀有度、进化、强度和队伍搭配已经有较深讨论，未来发行前可作为核心兴趣点和内容教育重点。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2123031268489945/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice compact-voice" data-bucket="comment"><div><span class="tag">高风险负面</span><span class="tag blue">社群互动、组队、公会</span></div><blockquote>B cày k .mình cho acc có pass nè</blockquote><p><strong>翻译：</strong>你要不要帮忙代练/刷？我这里有带通行证的账号。</p><p><strong>分析：</strong>情绪为「高风险负面」，说明这条内容更偏信息询问和中性交流。 这类内容体现玩家愿意通过 Group 借宠、组队或互助完成目标，说明社区自传播和互助结构已经自然出现。风险上需关注「账号买卖」，避免其在发行前形成错误渠道或非官方认知。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122985531827852/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice compact-voice" data-bucket="comment"><div><span class="tag">正面</span><span class="tag blue">越南玩家自发讨论</span></div><blockquote>Đag chs và thấy cx ổn</blockquote><p><strong>翻译：</strong>正在玩，感觉整体还可以。</p><p><strong>分析：</strong>情绪为「正面」，说明这条内容更偏兴趣表达或经验分享。 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122892555170483/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice compact-voice" data-bucket="comment"><div><span class="tag">中性</span><span class="tag blue">越南玩家自发讨论</span></div><blockquote>nhập đại vào đấy vài lần=)) htrc tui vừa ms bj xong</blockquote><p><strong>翻译：</strong>随便输入/尝试几次就行，我前阵子也刚遇到过。</p><p><strong>分析：</strong>情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122352235224515/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice compact-voice" data-bucket="comment"><div><span class="tag">高风险负面</span><span class="tag blue">充值、付费、礼包</span></div><blockquote>Bán kiểu gì v bạn</blockquote><p><strong>翻译：</strong>这个要怎么卖/怎么交易？</p><p><strong>分析：</strong>情绪为「高风险负面」，说明这条内容更偏信息询问和中性交流。 这类内容代表潜在付费兴趣，但也容易连接到第三方充值、账号交易或礼包误导，需要在未来发行前持续观察。风险上需关注「账号买卖」，避免其在发行前形成错误渠道或非官方认知。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122264441899961/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice compact-voice" data-bucket="comment"><div><span class="tag">高风险负面</span><span class="tag blue">越南玩家自发讨论</span></div><blockquote>Nhiu b</blockquote><p><strong>翻译：</strong>多少钱？</p><p><strong>分析：</strong>情绪为「高风险负面」，说明这条内容更偏信息询问和中性交流。 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。风险上需关注「账号买卖」，避免其在发行前形成错误渠道或非官方认知。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122264441899961/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice compact-voice" data-bucket="comment"><div><span class="tag">正面</span><span class="tag blue">玩法机制</span></div><blockquote>Nhấp vào nút sẽ có hướng dẫn.</blockquote><p><strong>翻译：</strong>点击按钮后会出现指引。</p><p><strong>分析：</strong>情绪为「正面」，说明这条内容更偏兴趣表达或经验分享。 这类内容反映任务说明、机制理解或活动目标存在学习成本，适合作为未来越南本地化说明、FAQ 和新手引导的观察信号。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122225968570475/" target="_blank" rel="noreferrer">查看原帖</a></div>
+          <div class="voice compact-voice" data-bucket="comment"><div><span class="tag">正面</span><span class="tag blue">宠物、角色、养成</span></div><blockquote>Ông solo à hay có người vô kéo boss thế ông</blockquote><p><strong>翻译：</strong>你是自己单挑 Boss，还是有人进来帮你带 Boss？</p><p class="small muted">宠物获取、进化、异色/闪光和养成搭配。</p><p><strong>分析：</strong>情绪为「正面」，说明这条内容更偏兴趣表达或经验分享。 这类内容说明越南玩家对宠物外观、稀有度、进化、强度和队伍搭配已经有较深讨论，未来发行前可作为核心兴趣点和内容教育重点。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2123031268489945/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice compact-voice" data-bucket="comment"><div><span class="tag">中性</span><span class="tag blue">宠物、角色、养成</span></div><blockquote>Lv40 nâng nó lên 2 là tiến hoá được tới dạng cuối luôn</blockquote><p><strong>翻译：</strong>在问宠物怎么进化。</p><p class="small muted">宠物获取、进化、异色/闪光和养成搭配。</p><p><strong>分析：</strong>情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容说明越南玩家对宠物外观、稀有度、进化、强度和队伍搭配已经有较深讨论，未来发行前可作为核心兴趣点和内容教育重点。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2123031268489945/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice compact-voice" data-bucket="comment"><div><span class="tag">高风险负面</span><span class="tag blue">社群互动、组队、公会</span></div><blockquote>B cày k .mình cho acc có pass nè</blockquote><p><strong>翻译：</strong>你要不要帮忙代练/刷？我这里有带通行证的账号。</p><p class="small muted">借宠、加好友、进地图和互助完成任务。</p><p><strong>分析：</strong>情绪为「高风险负面」，说明这条内容更偏信息询问和中性交流。 这类内容体现玩家愿意通过 Group 借宠、组队或互助完成目标，说明社区自传播和互助结构已经自然出现。风险上需关注「账号买卖」，避免其在发行前形成错误渠道或非官方认知。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122985531827852/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice compact-voice" data-bucket="comment"><div><span class="tag">正面</span><span class="tag blue">越南玩家自发讨论</span></div><blockquote>Đag chs và thấy cx ổn</blockquote><p><strong>翻译：</strong>正在玩，感觉整体还可以。</p><p class="small muted">简短求助、确认或跟帖互动。</p><p><strong>分析：</strong>情绪为「正面」，说明这条内容更偏兴趣表达或经验分享。 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122892555170483/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice compact-voice" data-bucket="comment"><div><span class="tag">中性</span><span class="tag blue">越南玩家自发讨论</span></div><blockquote>nhập đại vào đấy vài lần=)) htrc tui vừa ms bj xong</blockquote><p><strong>翻译：</strong>随便输入/尝试几次就行，我前阵子也刚遇到过。</p><p class="small muted">简短求助、确认或跟帖互动。</p><p><strong>分析：</strong>情绪为「中性」，说明这条内容更偏信息询问和中性交流。 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122352235224515/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice compact-voice" data-bucket="comment"><div><span class="tag">高风险负面</span><span class="tag blue">充值、付费、礼包</span></div><blockquote>Bán kiểu gì v bạn</blockquote><p><strong>翻译：</strong>这个要怎么卖/怎么交易？</p><p class="small muted">付费、礼包、Battle Pass 或充值入口。</p><p><strong>分析：</strong>情绪为「高风险负面」，说明这条内容更偏信息询问和中性交流。 这类内容代表潜在付费兴趣，但也容易连接到第三方充值、账号交易或礼包误导，需要在未来发行前持续观察。风险上需关注「账号买卖」，避免其在发行前形成错误渠道或非官方认知。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122264441899961/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice compact-voice" data-bucket="comment"><div><span class="tag">高风险负面</span><span class="tag blue">越南玩家自发讨论</span></div><blockquote>Nhiu b</blockquote><p><strong>翻译：</strong>多少钱？</p><p class="small muted">简短求助、确认或跟帖互动。</p><p><strong>分析：</strong>情绪为「高风险负面」，说明这条内容更偏信息询问和中性交流。 这类内容体现越南玩家的自然讨论温度，可用于判断社区活跃度、兴趣扩散和潜在发行前认知。风险上需关注「账号买卖」，避免其在发行前形成错误渠道或非官方认知。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122264441899961/" target="_blank" rel="noreferrer">查看原帖</a></div><div class="voice compact-voice" data-bucket="comment"><div><span class="tag">正面</span><span class="tag blue">玩法机制</span></div><blockquote>Nhấp vào nút sẽ có hướng dẫn.</blockquote><p><strong>翻译：</strong>点击按钮后会出现指引。</p><p class="small muted">求助任务步骤、机制规则或完成方法。</p><p><strong>分析：</strong>情绪为「正面」，说明这条内容更偏兴趣表达或经验分享。 这类内容反映任务说明、机制理解或活动目标存在学习成本，适合作为未来越南本地化说明、FAQ 和新手引导的观察信号。暂未触发高风险标签，主要作为自然兴趣和需求观察。</p><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2122225968570475/" target="_blank" rel="noreferrer">查看原帖</a></div>
         </div>
       </div>
     </section>
@@ -870,9 +1009,19 @@
   </main>
   <script>
     const search = document.getElementById('globalSearch');
+    const corpusSection = document.getElementById('corpusSearch');
+    const corpusMeta = document.getElementById('corpusSearchMeta');
+    const corpusResults = document.getElementById('corpusSearchResults');
     const densityToggle = document.getElementById('densityToggle');
     const filterButtons = Array.from(document.querySelectorAll('[data-filter]'));
+    const reportMenu = document.querySelector('.report-menu');
     let activeFilter = 'all';
+    let corpusRecords = null;
+    let corpusLoading = null;
+
+    const corpusBasePath = location.pathname.includes('/reports/') || location.pathname.includes('/topics/')
+      ? '../corpus/'
+      : 'corpus/';
 
     function searchableRows() {
       return Array.from(document.querySelectorAll('tbody tr, .voice, .top-post, .signal-row, .topic-brief'));
@@ -887,6 +1036,95 @@
         const searchOk = !q || text.includes(q);
         el.hidden = !(filterOk && searchOk);
       });
+      applyCorpusSearch(q);
+    }
+
+    async function loadCorpusRecords() {
+      if (corpusRecords) return corpusRecords;
+      if (corpusLoading) return corpusLoading;
+      corpusLoading = fetch(corpusBasePath + 'manifest.json')
+        .then((res) => res.ok ? res.json() : Promise.reject(new Error('manifest_missing')))
+        .then(async (manifest) => {
+          const reports = manifest.reports || [];
+          const datasets = await Promise.all(reports.map((entry) => fetch(corpusBasePath + entry.file)
+            .then((res) => res.ok ? res.json() : { records: [] })
+            .catch(() => ({ records: [] }))));
+          corpusRecords = datasets.flatMap((dataset) => dataset.records || []);
+          return corpusRecords;
+        })
+        .catch(() => {
+          corpusRecords = [];
+          return corpusRecords;
+        });
+      return corpusLoading;
+    }
+
+    function corpusText(record) {
+      return [
+        record.reportWeek,
+        record.recordType,
+        record.sourceGroup,
+        record.originalText,
+        record.translationZh,
+        record.primaryTopic,
+        ...(record.topics || []),
+        ...(record.riskLabels || []),
+        record.sentiment,
+      ].filter(Boolean).join(' ').toLowerCase();
+    }
+
+    function corpusPreview(text, q) {
+      const raw = String(text || '').replace(/\s+/g, ' ').trim();
+      if (!raw) return '';
+      const index = raw.toLowerCase().indexOf(q.toLowerCase());
+      const start = index > 24 ? index - 24 : 0;
+      const preview = raw.slice(start, start + 180);
+      return (start > 0 ? '...' : '') + preview + (raw.length > start + 180 ? '...' : '');
+    }
+
+    function renderCorpusResults(q, records) {
+      if (!corpusSection || !corpusResults || !corpusMeta) return;
+      if (!q || q.length < 2) {
+        corpusSection.hidden = true;
+        corpusResults.innerHTML = '';
+        corpusMeta.textContent = '';
+        return;
+      }
+      const hits = records
+        .filter((record) => corpusText(record).includes(q))
+        .slice(0, 30);
+      corpusSection.hidden = false;
+      corpusMeta.textContent = hits.length
+        ? '显示前 ' + hits.length + ' 条命中；语料库为隐藏检索索引，不在页面默认外显。'
+        : '未在隐藏语料库中找到匹配内容。';
+      corpusResults.innerHTML = hits.map((record) => {
+        const type = record.recordType === 'comment' ? '评论' : '帖子';
+        const topics = (record.topics || []).slice(0, 2).map((topic) => '<span class="tag blue">' + escapeHtmlJs(topic) + '</span>').join('');
+        const risks = (record.riskLabels || []).slice(0, 2).map((risk) => '<span class="tag red">' + escapeHtmlJs(risk) + '</span>').join('');
+        return '<article class="corpus-hit" data-bucket="' + (record.recordType === 'comment' ? 'comment' : 'topic') + '">'
+          + '<div class="corpus-hit-meta"><span class="tag">' + escapeHtmlJs(record.reportWeek) + '</span><span class="tag">' + type + '</span><span class="tag">' + escapeHtmlJs(record.sourceGroup || '未知 Group') + '</span>' + topics + risks + '</div>'
+          + '<blockquote>' + escapeHtmlJs(corpusPreview(record.originalText, q)) + '</blockquote>'
+          + (record.translationZh ? '<p><strong>翻译：</strong>' + escapeHtmlJs(record.translationZh) + '</p>' : '')
+          + '<div class="corpus-hit-foot"><span>' + escapeHtmlJs(record.sentiment || '未分类') + '</span><a class="btn" href="' + encodeURI(record.postUrl || '#') + '" target="_blank" rel="noreferrer">查看原帖</a></div>'
+          + '</article>';
+      }).join('');
+    }
+
+    function escapeHtmlJs(value) {
+      return String(value || '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
+    }
+
+    function applyCorpusSearch(q) {
+      if (!q || q.length < 2) {
+        renderCorpusResults('', []);
+        return;
+      }
+      loadCorpusRecords().then((records) => renderCorpusResults(q, records));
     }
 
     search?.addEventListener('input', applyFilters);
@@ -898,6 +1136,12 @@
     densityToggle?.addEventListener('click', () => {
       document.body.classList.toggle('comfortable');
       densityToggle.textContent = document.body.classList.contains('comfortable') ? '舒展视图' : '紧凑视图';
+    });
+    document.addEventListener('click', (event) => {
+      if (reportMenu && !reportMenu.contains(event.target)) reportMenu.open = false;
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && reportMenu) reportMenu.open = false;
     });
   </script>
 </body>

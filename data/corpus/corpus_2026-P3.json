@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "corpus.archive.v1",
+  "reportWeek": "2026-P3",
+  "generatedAt": "2026-06-09T08:14:15.526Z",
+  "sourceRawPath": "data/raw/weekly_raw_2026-P3_stage3b_real_final2.json",
+  "sourceStructuredPath": "data/structured/structured_weekly_2026-P3_real.json",
+  "timeRange": {
+    "start": "2026-05-07T00:00:00+08:00",
+    "end": "2026-05-19T07:30:59.824Z",
+    "timezone": "Asia/Shanghai",
+    "completenessNote": "第三期报告，统计窗口从 2026-05-07 00:00 +08:00 至本次抓取时间；覆盖 5.7 至今，非标准周五到周四完整周。"
+  },
+  "visibility": {
+    "dataCorpus": "internal_archive",
+    "siteCorpus": "hidden_search_index_on_public_static_site",
+    "note": "Not shown as a dashboard module; searchable only after user enters a query. Public static files are still technically accessible by URL."
+  },
+  "counts": {
+    "totalRecords": 312,
+    "byRecordType": {
+      "post": 149,
+      "comment": 163
+    },
+    "byGroup": {
+      "Roco Kingdom Viet Nam": 93,
+      "Cong Hoi Roco Kingdom Viet Nam": 92,
+      "Roco Kingdom: World Viet Nam Official": 44,
+      "ROCO KINGDOM VN": 48,
+      "ROCO KINGDOM VIET NAM": 10,
+      "Roco Kingdom Mobile Viet Nam": 25
+    },
+    "excludedOrUnclassified": 32
+  },
+  "completeness": {
+    "source": "final_merged_visible_crawl",
+    "note": "Corpus contains all captured visible post/comment text with post URLs from the merged crawl source. Facebook permission or comment expansion gaps remain marked in dataCompleteness."
+  }
+}
