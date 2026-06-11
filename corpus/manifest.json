@@ -1,6 +1,6 @@
 {
   "schemaVersion": "corpus.manifest.v1",
-  "generatedAt": "2026-06-09T08:14:15.526Z",
+  "generatedAt": "2026-06-10T11:06:37.356Z",
   "visibility": "hidden_search_index_on_public_static_site",
   "reports": [
     {
@@ -15,6 +15,20 @@
         "end": "2026-05-19T07:30:59.824Z",
         "timezone": "Asia/Shanghai",
         "completenessNote": "第三期报告，统计窗口从 2026-05-07 00:00 +08:00 至本次抓取时间；覆盖 5.7 至今，非标准周五到周四完整周。"
+      }
+    },
+    {
+      "reportWeek": "2026-P4",
+      "label": "2026-P4",
+      "file": "corpus_2026-P4.json",
+      "recordCount": 200,
+      "postCount": 117,
+      "commentCount": 83,
+      "timeRange": {
+        "start": "2026-05-19T15:30:59+08:00",
+        "end": "2026-06-10T10:04:28.704Z",
+        "timezone": "Asia/Shanghai",
+        "completenessNote": "第四期报告，统计窗口从第三期结束时间 2026-05-19 15:30 +08 至本次抓取时间（2026-06-10）；非标准周五到周四完整周，按第三期后续期间观察。"
       }
     },
     {

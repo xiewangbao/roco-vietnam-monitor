@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>越南玩家自发讨论 - Topic 分析</title>
+  <title>版本更新、找队友、外观确认与短互动 - Topic 分析</title>
   <style>
     :root {
       --bg: #f5f5f7;
@@ -206,6 +206,7 @@
       white-space: nowrap;
     }
     .report-option {
+      position: relative;
       display: grid;
       grid-template-columns: minmax(118px, 1fr) minmax(104px, 1.1fr) 42px;
       gap: 8px;
@@ -219,6 +220,24 @@
     .report-option:hover,
     .report-option.active {
       background: rgba(0, 113, 227, 0.08);
+    }
+    .report-option:hover::after,
+    .report-option:focus-visible::after {
+      content: attr(data-window);
+      position: absolute;
+      left: 8px;
+      top: calc(100% + 6px);
+      z-index: 90;
+      max-width: min(360px, calc(100vw - 56px));
+      padding: 7px 9px;
+      border-radius: 9px;
+      background: #182230;
+      color: #ffffff;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
+      font-size: 11px;
+      line-height: 1.35;
+      white-space: normal;
+      pointer-events: none;
     }
     .report-option span {
       font-weight: 650;
@@ -328,6 +347,9 @@
     }
     .cockpit { grid-template-columns: minmax(0, 1.25fr) minmax(300px, .75fr); }
     .two { grid-template-columns: minmax(0, 1fr) minmax(320px, .72fr); }
+    .three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .negative-card p { margin: 7px 0 0; color: rgba(0, 0, 0, 0.72); font-size: 13px; line-height: 1.48; }
+    .negative-card strong { display: block; margin-bottom: 4px; }
     .summary-panel p {
       margin: 0 0 8px;
       color: rgba(0, 0, 0, 0.76);
@@ -820,7 +842,7 @@
       .command-dock { grid-template-columns: 1fr; }
       .report-switcher { grid-template-columns: minmax(0, 1fr) auto; }
       .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-      .cockpit, .two, .status-strip { grid-template-columns: 1fr; }
+      .cockpit, .two, .three, .status-strip { grid-template-columns: 1fr; }
       .summary-findings, .summary-cluster { grid-template-columns: 1fr; }
       .cluster-meta { justify-content: flex-start; }
       .comment-head, .comment-list, .corpus-results { grid-template-columns: 1fr; }
@@ -846,7 +868,7 @@
 </head>
 <body>
   <header>
-    <h1>越南玩家自发讨论 - Topic 分析</h1>
+    <h1>版本更新、找队友、外观确认与短互动 - Topic 分析</h1>
     <div class="meta"><span>报告周：2026-W19</span><span>内容量：48</span><span>阈值：内容量超过 10 自动生成</span></div>
   </header>
   <main>
