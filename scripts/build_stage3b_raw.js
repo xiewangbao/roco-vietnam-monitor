@@ -121,6 +121,7 @@ for (const page of browserGroups) {
 
     const anonymousContentId = sha(dedupeKey);
     const anonymousAuthorId = sha(`${groupUrl}:${postUrl}:author-redacted:${item.domIndex}`);
+    const interactionCountsReliable = item.interactionCountSource === 'facebook_visible_counts';
 
     records.push({
       recordType,
@@ -133,9 +134,10 @@ for (const page of browserGroups) {
       rawTimeLabel: item.timeLabel,
       text,
       contentLanguage: item.contentLanguage || 'unknown',
-      reactionCount: firstNumber(item.reactionCount, maybeCount(text, '赞')),
-      commentCount: firstNumber(item.commentCount, maybeCount(text, '评论')),
-      shareCount: firstNumber(item.shareCount, maybeCount(text, '分享')),
+      reactionCount: interactionCountsReliable ? firstNumber(item.reactionCount) : null,
+      commentCount: interactionCountsReliable ? firstNumber(item.commentCount) : null,
+      shareCount: interactionCountsReliable ? firstNumber(item.shareCount) : null,
+      interactionCountSource: interactionCountsReliable ? 'facebook_visible_counts' : null,
       hasImage: Boolean(item.hasImage),
       hasVideo: Boolean(item.hasVideo),
       hasLink: Boolean(item.hasLink),
@@ -156,6 +158,7 @@ for (const page of browserGroups) {
         postUrl: item.captureQuality === 'has_post_url' ? 'complete' : 'missing',
         publishedAt: item.timeLabel ? 'relative_time_only' : 'missing',
         text: text ? 'visible_text_captured' : 'missing',
+        interactions: interactionCountsReliable ? 'visible_counts_captured' : 'not_captured_reliably',
         comments: item.hasMoreComments ? 'partial_visible_feed_comments_only' : 'visible_comments_only',
         newestFirstSortObserved: sortApplied ? 'observed_or_selected' : 'not_confirmed',
       },

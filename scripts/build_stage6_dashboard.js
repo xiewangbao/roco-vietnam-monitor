@@ -39,6 +39,8 @@ const availableReports = fs.readdirSync('data/reports')
   .filter((file) => /^weekly_report_.*_real\.json$/.test(file))
   .map((file) => {
     const data = JSON.parse(fs.readFileSync(`data/reports/${file}`, 'utf8'));
+    const start = data.timeRange?.start || '';
+    const end = data.timeRange?.end || '';
     return {
       week: data.reportWeek,
       file: `reports/${data.reportWeek}.html`,
@@ -48,9 +50,14 @@ const availableReports = fs.readdirSync('data/reports')
       health: data.metrics?.sentimentHealthScore || 0,
       launch: data.metrics?.futureLaunchSignalScore || 0,
       risk: data.metrics?.highRiskCount || 0,
+      start,
+      end,
+      windowLabel: formatTimeWindow(data.timeRange),
+      sortKey: Number.isFinite(Date.parse(start)) ? Date.parse(start) : Number.MAX_SAFE_INTEGER,
     };
   })
-  .sort((a, b) => a.week.localeCompare(b.week));
+  .sort((a, b) => a.sortKey - b.sortKey || a.week.localeCompare(b.week));
+const reportSequence = new Map(availableReports.map((item, index) => [item.week, index + 1]));
 
 const latestMaxTopicVolume = Math.max(...(report.hotTopics || []).map((topic) => topic.volume), 1);
 const maxReportValid = Math.max(...availableReports.map((item) => item.valid), 1);
@@ -64,16 +71,16 @@ function interactionDock() {
       <div class="report-copy">
         <span class="eyebrow">Report</span>
         <strong>${periodFullLabel(report.reportWeek)}</strong>
-        <p>${escapeHtml(report.timeRange.start)} - ${escapeHtml(report.timeRange.end)}</p>
+        <p>${escapeHtml(formatTimeWindow(report.timeRange))}</p>
       </div>
       <details class="report-menu">
         <summary>切换报告</summary>
         <div class="report-popover">
           <div class="report-popover-head">
             <strong>历史报告</strong>
-            <span>按有效内容量排序展示</span>
+            <span>悬停查看统计窗口</span>
           </div>
-          ${availableReports.map((r) => `<a class="report-option ${r.week === report.reportWeek ? 'active' : ''}" href="${r.file}" ${r.week === report.reportWeek ? 'aria-current="page"' : ''}><span>${periodFullLabel(r.week)}</span><div class="bar"><span style="width:${pct(r.valid, maxReportValid)}%"></span></div><strong>${r.valid}</strong></a>`).join('')}
+          ${availableReports.map((r) => `<a class="report-option ${r.week === report.reportWeek ? 'active' : ''}" href="${r.file}" title="${escapeHtml(r.windowLabel)}" data-window="${escapeHtml(r.windowLabel)}" aria-label="${escapeHtml(`${periodLabel(r.week)}，统计窗口：${r.windowLabel}`)}" ${r.week === report.reportWeek ? 'aria-current="page"' : ''}><span>${periodFullLabel(r.week)}</span><div class="bar"><span style="width:${pct(r.valid, maxReportValid)}%"></span></div><strong>${r.valid}</strong></a>`).join('')}
         </div>
       </details>
     </div>
@@ -354,7 +361,8 @@ function topicCommentSummary(topicItems) {
 }
 
 function buildTopicDetail(topicRow) {
-  const topic = topicRow.title;
+  const topic = topicRow.sourceTopic || topicRow.title;
+  const displayTopic = topicRow.title;
   const topicItems = structured.items.filter((item) => item.topics.includes(topic));
   const coTopics = {};
   const sentiment = {};
@@ -377,12 +385,12 @@ function buildTopicDetail(topicRow) {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>${escapeHtml(topic)} - Topic 分析</title>
+  <title>${escapeHtml(displayTopic)} - Topic 分析</title>
   <style>${baseCss()}</style>
 </head>
 <body>
   <header>
-    <h1>${escapeHtml(topic)} - Topic 分析</h1>
+    <h1>${escapeHtml(displayTopic)} - Topic 分析</h1>
     <div class="meta"><span>报告周：${report.reportWeek}</span><span>内容量：${topicItems.length}</span><span>阈值：内容量超过 10 自动生成</span></div>
   </header>
   <main>
@@ -404,7 +412,7 @@ function buildTopicDetail(topicRow) {
 
 for (const topic of report.hotTopics || []) {
   if (topic.volume >= 10) {
-    fs.writeFileSync(`${outputDir}/${topicDetailPath(topic.title)}`, buildTopicDetail(topic));
+    fs.writeFileSync(`${outputDir}/${topicDetailPath(topic.sourceTopic || topic.title)}`, buildTopicDetail(topic));
   }
 }
 
@@ -420,20 +428,14 @@ const html = `<!doctype html>
 </head>
 <body>
   <header>
-    <h1>${report.reportTitle}</h1>
-    <div class="meta">
-      <span>报告周：${report.reportWeek}</span>
-      <span>生成日期：${report.dateGenerated}</span>
-      <span>统计范围：${report.timeRange.start} 至 ${report.timeRange.end}</span>
-      <span>数据方式：浏览器自动化</span>
-    </div>
+    <h1>${escapeHtml(displayReportTitle(report.reportTitle))}</h1>
   </header>
   <nav>
     <a href="#latest">最新周报</a>
     <a href="#topics">热点</a>
     <a href="#comments">评论</a>
     <a href="#risks">风险</a>
-    <a href="#top-posts">高互动帖子</a>
+    <a href="#top-posts">互动评估</a>
     <a href="#trends">趋势</a>
   </nav>
   ${interactionDock()}
@@ -483,7 +485,7 @@ const html = `<!doctype html>
       <table>
         <thead><tr><th>排名</th><th>热点</th><th>内容量</th><th>情绪</th><th>分析 / case</th></tr></thead>
         <tbody>
-          ${report.hotTopics.map(t => `<tr data-bucket="topic"><td>${t.rank}</td><td><strong>${escapeHtml(t.title)}</strong><p class="small muted">${escapeHtml(t.notes || '')}</p></td><td><div class="volume-cell"><strong>${t.volume}</strong><div class="bar"><span style="width:${pct(t.volume, latestMaxTopicVolume)}%"></span></div></div></td><td><span class="tag ${sentimentClass(t.sentiment)}">${escapeHtml(t.sentiment)}</span></td><td>${t.volume >= 10 ? `<a class="btn strong" href="${topicDetailHref(t.title)}">查看二级分析</a>` : (t.representativePostUrl ? `<a class="btn" href="${t.representativePostUrl}" target="_blank" rel="noreferrer">查看原帖</a>` : '无')}</td></tr>`).join('')}
+          ${report.hotTopics.map(t => `<tr data-bucket="topic"><td>${t.rank}</td><td><strong>${escapeHtml(t.title)}</strong><p class="small muted">${escapeHtml(t.notes || '')}</p></td><td><div class="volume-cell"><strong>${t.volume}</strong><div class="bar"><span style="width:${pct(t.volume, latestMaxTopicVolume)}%"></span></div></div></td><td><span class="tag ${sentimentClass(t.sentiment)}">${escapeHtml(t.sentiment)}</span></td><td>${t.volume >= 10 ? `<a class="btn strong" href="${topicDetailHref(t.sourceTopic || t.title)}">查看二级分析</a>` : (t.representativePostUrl ? `<a class="btn" href="${t.representativePostUrl}" target="_blank" rel="noreferrer">查看原帖</a>` : '无')}</td></tr>`).join('')}
         </tbody>
       </table>
     </section>
@@ -534,8 +536,17 @@ const html = `<!doctype html>
       </table>
     </section>
 
+    <section id="negative-analysis">
+      <h2>负面舆情分析</h2>
+      <div class="grid three negative-grid">
+        <div class="panel negative-card"><strong>负面舆情基本盘</strong><p>${escapeHtml(report.negativeOpinionAnalysis?.baseline || '暂无负面舆情分析。')}</p></div>
+        <div class="panel negative-card"><strong>主要负面主题</strong><div class="tag-cloud compact-tags">${(report.negativeOpinionAnalysis?.topNegativeTopics || []).map((item) => `<span class="tag amber">${escapeHtml(item.topic)} ${item.count}</span>`).join('') || '<span class="muted">暂无</span>'}</div><p class="small muted">来源 Group：${(report.negativeOpinionAnalysis?.topNegativeGroups || []).map((item) => `${escapeHtml(item.group)} ${item.count}`).join('；') || '暂无明显集中来源'}</p></div>
+        <div class="panel negative-card"><strong>为什么会出现</strong>${(report.negativeOpinionAnalysis?.reason || []).map((item) => `<p>${escapeHtml(item)}</p>`).join('')}<p><strong>发行准备含义：</strong>${escapeHtml(report.negativeOpinionAnalysis?.implication || '')}</p></div>
+      </div>
+    </section>
+
     <section id="top-posts">
-      <h2>高互动帖子 Top 3</h2>
+      <h2>高互动帖子评估</h2>
       <div class="top-posts">
         ${topInteractivePosts.length
           ? topInteractivePosts.map((v, index) => {
@@ -547,7 +558,7 @@ const html = `<!doctype html>
             });
             return `<article class="top-post" data-bucket="topic"><div class="top-post-head"><span class="rank-badge">#${index + 1}</span><span class="tag blue">${escapeHtml(v.topic)}</span><span class="tag">${escapeHtml(v.sentiment)}</span><span class="tag">${escapeHtml(v.sourceGroup)}</span><strong>${v.interactionTotal} 总互动</strong></div><div class="interaction-line"><span>赞/反应 ${v.reactionCount}</span><span>评论 ${v.commentCount}</span><span>分享 ${v.shareCount}</span></div><blockquote>${escapeHtml(v.originalText)}</blockquote><p><strong>翻译：</strong>${escapeHtml(translated.translation)}</p><p class="small muted">${escapeHtml(translated.brief)}</p><p><strong>分析：</strong>${escapeHtml(v.analysisZh)}</p><a class="btn" href="${v.postUrl}" target="_blank" rel="noreferrer">查看原帖</a> <span class="small muted">需 Facebook / Group 权限</span></article>`;
           }).join('')
-          : `<div class="panel empty-state"><strong>当前期缺少可验证的转赞评字段</strong><p>高互动帖子按 reaction + comment + share 排序。当前结构化数据中这三个字段为空，因此不展示替代排名，避免把“可见讨论量”误当作互动量。下次抓取补齐互动字段后，本模块会自动展示 Top 3 原帖翻译和分析。</p></div>`}
+          : `<div class="panel empty-state"><strong>当前不展示“高互动 Top 3”，改用可复核评估办法</strong><p>判定标准：只有当原帖页能稳定读取到 Facebook 可见的 reaction、comment、share 三个数字，并标记为 facebook_visible_counts 时，才计算 reaction + comment + share 排名。</p><p>本期状态：当前 Safari 抓取只稳定拿到了帖子正文、评论正文和 post URL，未稳定拿到三个互动按钮数字；因此不输出 Top 3，避免把正文里的价格、ID、时间或可见评论数误当互动量。</p><p>替代观察：本期先用“有效内容量、评论量、风险样本量、topic 讨论量”评估讨论强度。若下一轮要恢复 Top 3，需要做 post-detail 互动字段专项抓取，并在发布前抽样打开原帖核对。</p></div>`}
       </div>
     </section>
 
@@ -555,7 +566,7 @@ const html = `<!doctype html>
       <h2>趋势观察</h2>
       <div class="grid two">
         <div class="panel trend-list">
-          ${availableReports.map((r) => `<div class="trend-row"><span>${periodFullLabel(r.week)}</span><div class="bar"><span style="width:${pct(r.valid, maxReportValid)}%"></span></div><strong>${r.valid}</strong><em>健康 ${r.health} / 发行 ${r.launch}</em></div>`).join('')}
+          ${availableReports.map((r) => `<div class="trend-row" title="${escapeHtml(r.windowLabel)}"><span>${periodFullLabel(r.week)}</span><div class="bar"><span style="width:${pct(r.valid, maxReportValid)}%"></span></div><strong>${r.valid}</strong><em>健康 ${r.health} / 发行 ${r.launch}</em></div>`).join('')}
         </div>
         <div class="panel">
           ${Object.values(report.trendObservation).map(x => `<p>${escapeHtml(x)}</p>`).join('')}
@@ -986,6 +997,7 @@ function appleCss() {
       white-space: nowrap;
     }
     .report-option {
+      position: relative;
       display: grid;
       grid-template-columns: minmax(118px, 1fr) minmax(104px, 1.1fr) 42px;
       gap: 8px;
@@ -999,6 +1011,24 @@ function appleCss() {
     .report-option:hover,
     .report-option.active {
       background: rgba(0, 113, 227, 0.08);
+    }
+    .report-option:hover::after,
+    .report-option:focus-visible::after {
+      content: attr(data-window);
+      position: absolute;
+      left: 8px;
+      top: calc(100% + 6px);
+      z-index: 90;
+      max-width: min(360px, calc(100vw - 56px));
+      padding: 7px 9px;
+      border-radius: 9px;
+      background: #182230;
+      color: #ffffff;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
+      font-size: 11px;
+      line-height: 1.35;
+      white-space: normal;
+      pointer-events: none;
     }
     .report-option span {
       font-weight: 650;
@@ -1108,6 +1138,9 @@ function appleCss() {
     }
     .cockpit { grid-template-columns: minmax(0, 1.25fr) minmax(300px, .75fr); }
     .two { grid-template-columns: minmax(0, 1fr) minmax(320px, .72fr); }
+    .three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .negative-card p { margin: 7px 0 0; color: rgba(0, 0, 0, 0.72); font-size: 13px; line-height: 1.48; }
+    .negative-card strong { display: block; margin-bottom: 4px; }
     .summary-panel p {
       margin: 0 0 8px;
       color: rgba(0, 0, 0, 0.76);
@@ -1600,7 +1633,7 @@ function appleCss() {
       .command-dock { grid-template-columns: 1fr; }
       .report-switcher { grid-template-columns: minmax(0, 1fr) auto; }
       .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-      .cockpit, .two, .status-strip { grid-template-columns: 1fr; }
+      .cockpit, .two, .three, .status-strip { grid-template-columns: 1fr; }
       .summary-findings, .summary-cluster { grid-template-columns: 1fr; }
       .cluster-meta { justify-content: flex-start; }
       .comment-head, .comment-list, .corpus-results { grid-template-columns: 1fr; }
@@ -1966,7 +1999,10 @@ function getTopInteractivePosts() {
       const reactionCount = numberOrNull(item.reactionCount);
       const commentCount = numberOrNull(item.commentCount);
       const shareCount = numberOrNull(item.shareCount);
-      if (reactionCount === null && commentCount === null && shareCount === null) return null;
+      const hasAllInteractionFields = reactionCount !== null && commentCount !== null && shareCount !== null;
+      const interactionSourceReliable = item.interactionCountSource === 'facebook_visible_counts'
+        || item.dataCompleteness?.interactions === 'visible_counts_captured';
+      if (!hasAllInteractionFields || !interactionSourceReliable) return null;
       return {
         originalText: item.originalText,
         translationZh: item.translationZh,
@@ -1975,10 +2011,10 @@ function getTopInteractivePosts() {
         topic: item.primaryTopic || item.topics?.[0] || '其他',
         sourceGroup: item.sourceGroup,
         postUrl: item.postUrl,
-        reactionCount: reactionCount || 0,
-        commentCount: commentCount || 0,
-        shareCount: shareCount || 0,
-        interactionTotal: (reactionCount || 0) + (commentCount || 0) + (shareCount || 0),
+        reactionCount,
+        commentCount,
+        shareCount,
+        interactionTotal: reactionCount + commentCount + shareCount,
       };
     })
     .filter(Boolean)
@@ -1987,17 +2023,22 @@ function getTopInteractivePosts() {
 }
 
 function periodLabel(week) {
-  const labels = {
-    '2026-W18': '第 1 期',
-    '2026-W19': '第 2 期',
-    '2026-P3': '第 3 期',
-  };
-  return labels[week] || week;
+  const sequence = reportSequence.get(week);
+  return sequence ? `第${sequence}期` : week;
 }
 
 function periodFullLabel(week) {
-  const label = periodLabel(week);
-  return label === week ? escapeHtml(week) : `${escapeHtml(label)} / ${escapeHtml(week)}`;
+  return escapeHtml(periodLabel(week));
+}
+
+function formatTimeWindow(range) {
+  const start = range?.start || '未知开始时间';
+  const end = range?.end || '未知结束时间';
+  return `${start} 至 ${end}`;
+}
+
+function displayReportTitle(title) {
+  return String(title || 'Roco Kingdom 越南 Facebook Group 舆情监测报告').replace('每周', '').replace(/\s+/g, ' ').trim();
 }
 
 function pct(value, total) {

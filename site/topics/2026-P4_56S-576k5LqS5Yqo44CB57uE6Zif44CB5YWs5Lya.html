@@ -1,0 +1,1020 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>社群互动、组队、公会 - Topic 分析</title>
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --ink: #1d1d1f;
+      --muted: rgba(0, 0, 0, 0.56);
+      --soft: rgba(0, 0, 0, 0.34);
+      --line: rgba(0, 0, 0, 0.08);
+      --panel: rgba(255, 255, 255, 0.86);
+      --panel-solid: #ffffff;
+      --blue: #0071e3;
+      --blue-text: #0066cc;
+      --green: #128a43;
+      --amber: #b25f00;
+      --red: #c9271f;
+      --teal: #007d75;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      letter-spacing: 0;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    header {
+      min-height: 164px;
+      padding: 52px 32px 28px;
+      background: #000;
+      color: #fff;
+    }
+    header h1 {
+      margin: 0 auto 12px;
+      max-width: 1180px;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", "PingFang SC", sans-serif;
+      font-size: clamp(30px, 4vw, 54px);
+      line-height: 1.08;
+      font-weight: 650;
+      text-align: center;
+    }
+    header .meta {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      max-width: 1180px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 12px;
+      line-height: 1.33;
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      height: 48px;
+      display: flex;
+      justify-content: center;
+      gap: 2px;
+      align-items: center;
+      padding: 0 20px;
+      background: rgba(0, 0, 0, 0.78);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: saturate(180%) blur(20px);
+      overflow-x: auto;
+    }
+    nav a {
+      color: rgba(255, 255, 255, 0.82);
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 980px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    nav a:hover { color: #fff; background: rgba(255, 255, 255, 0.12); }
+    main {
+      width: min(100%, 1440px);
+      margin: 0 auto;
+      padding: 18px 24px 56px;
+    }
+    section { margin-bottom: 16px; scroll-margin-top: 150px; }
+    h2 {
+      margin: 0 0 8px;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", "PingFang SC", sans-serif;
+      font-size: 20px;
+      line-height: 1.14;
+      font-weight: 650;
+    }
+    h3 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      line-height: 1.25;
+      font-weight: 650;
+    }
+    .command-dock {
+      position: sticky;
+      top: 48px;
+      z-index: 18;
+      display: grid;
+      grid-template-columns: minmax(360px, .9fr) minmax(260px, 1fr) auto auto;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 24px;
+      background: rgba(245, 245, 247, 0.78);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: saturate(180%) blur(20px);
+    }
+    .report-switcher {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: center;
+      min-width: 0;
+    }
+    .report-copy {
+      min-width: 0;
+    }
+    .dock-section strong {
+      display: block;
+      font-size: 15px;
+      line-height: 1.2;
+      font-weight: 650;
+    }
+    .dock-section p {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .report-menu {
+      position: relative;
+      justify-self: end;
+    }
+    .report-menu summary {
+      list-style: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 32px;
+      padding: 0 13px;
+      border-radius: 980px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 650;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 8px 20px rgba(0, 113, 227, 0.22);
+      white-space: nowrap;
+    }
+    .report-menu summary::-webkit-details-marker {
+      display: none;
+    }
+    .report-menu[open] summary {
+      background: #005bb5;
+    }
+    .report-popover {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      z-index: 60;
+      width: min(420px, calc(100vw - 32px));
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.16);
+      backdrop-filter: saturate(180%) blur(20px);
+    }
+    .report-popover::before {
+      content: "";
+      position: absolute;
+      top: -6px;
+      right: 28px;
+      width: 12px;
+      height: 12px;
+      background: rgba(255, 255, 255, 0.96);
+      border-left: 1px solid var(--line);
+      border-top: 1px solid var(--line);
+      transform: rotate(45deg);
+    }
+    .report-popover-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 4px 4px 8px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 6px;
+    }
+    .report-popover-head strong {
+      font-size: 13px;
+      line-height: 1.2;
+    }
+    .report-popover-head span {
+      color: var(--muted);
+      font-size: 11px;
+      white-space: nowrap;
+    }
+    .report-option {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(118px, 1fr) minmax(104px, 1.1fr) 42px;
+      gap: 8px;
+      align-items: center;
+      padding: 9px 8px;
+      border-radius: 10px;
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 12px;
+    }
+    .report-option:hover,
+    .report-option.active {
+      background: rgba(0, 113, 227, 0.08);
+    }
+    .report-option:hover::after,
+    .report-option:focus-visible::after {
+      content: attr(data-window);
+      position: absolute;
+      left: 8px;
+      top: calc(100% + 6px);
+      z-index: 90;
+      max-width: min(360px, calc(100vw - 56px));
+      padding: 7px 9px;
+      border-radius: 9px;
+      background: #182230;
+      color: #ffffff;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
+      font-size: 11px;
+      line-height: 1.35;
+      white-space: normal;
+      pointer-events: none;
+    }
+    .report-option span {
+      font-weight: 650;
+      white-space: nowrap;
+    }
+    .report-option strong {
+      text-align: right;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .dock-search {
+      display: grid;
+      grid-template-columns: auto minmax(160px, 1fr);
+      gap: 8px;
+      align-items: center;
+      height: 36px;
+      padding: 0 12px;
+      border-radius: 980px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid var(--line);
+    }
+    .dock-search span {
+      color: var(--soft);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .dock-search input {
+      min-height: 0;
+      width: 100%;
+      border: 0;
+      background: transparent;
+      color: var(--ink);
+      outline: 0;
+      font-size: 13px;
+    }
+    .segmented {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px;
+      border-radius: 980px;
+      background: rgba(0, 0, 0, 0.06);
+      white-space: nowrap;
+    }
+    .segmented button,
+    .density-toggle {
+      min-height: 32px;
+      border: 0;
+      border-radius: 980px;
+      padding: 0 12px;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .segmented button.active,
+    .density-toggle {
+      background: #fff;
+      color: var(--ink);
+      box-shadow: 0 1px 10px rgba(0, 0, 0, 0.08);
+    }
+    .eyebrow {
+      display: block;
+      color: var(--soft);
+      font-size: 11px;
+      line-height: 1.2;
+      font-weight: 600;
+    }
+    .notice {
+      border-radius: 12px;
+      background: #fff4dc;
+      color: #5d3500;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .grid { display: grid; gap: 10px; }
+    .status-strip,
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .status-strip { grid-template-columns: 1fr 1fr 1fr; margin-bottom: 14px; }
+    .status-strip > div,
+    .metric,
+    .panel {
+      background: var(--panel);
+      border: 0;
+      border-radius: 12px;
+      padding: 12px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 10px 30px rgba(0, 0, 0, 0.035);
+    }
+    .status-strip strong {
+      display: block;
+      margin: 3px 0;
+      font-size: 15px;
+      line-height: 1.2;
+      font-weight: 650;
+    }
+    .status-strip p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+    .cockpit { grid-template-columns: minmax(0, 1.25fr) minmax(300px, .75fr); }
+    .two { grid-template-columns: minmax(0, 1fr) minmax(320px, .72fr); }
+    .three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .negative-card p { margin: 7px 0 0; color: rgba(0, 0, 0, 0.72); font-size: 13px; line-height: 1.48; }
+    .negative-card strong { display: block; margin-bottom: 4px; }
+    .summary-panel p {
+      margin: 0 0 8px;
+      color: rgba(0, 0, 0, 0.76);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .summary-panel p:last-child { margin-bottom: 0; }
+    .summary-headline {
+      padding: 10px 12px;
+      border-radius: 11px;
+      background: rgba(0, 113, 227, 0.08);
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.45;
+      font-weight: 650;
+      margin-bottom: 10px;
+    }
+    .summary-block {
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+      margin-top: 10px;
+    }
+    .summary-findings {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .summary-finding {
+      min-width: 0;
+      padding: 9px;
+      border-radius: 10px;
+      background: rgba(245, 245, 247, 0.72);
+      border: 1px solid var(--line);
+    }
+    .summary-finding strong {
+      display: block;
+      font-size: 13px;
+      line-height: 1.3;
+      margin-bottom: 5px;
+    }
+    .summary-finding p {
+      font-size: 12px;
+      line-height: 1.45;
+    }
+    .summary-clusters {
+      display: grid;
+      gap: 6px;
+    }
+    .summary-cluster {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(220px, .72fr);
+      gap: 10px;
+      align-items: start;
+      padding: 8px 0;
+      border-top: 1px solid var(--line);
+    }
+    .summary-cluster:first-child { border-top: 0; padding-top: 0; }
+    .summary-cluster strong {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 3px;
+    }
+    .summary-cluster p {
+      font-size: 12px;
+      line-height: 1.4;
+    }
+    .cluster-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      justify-content: flex-end;
+    }
+    .cluster-meta span {
+      min-height: 22px;
+      padding: 3px 7px;
+      border-radius: 980px;
+      background: rgba(0, 0, 0, 0.055);
+      color: var(--muted);
+      font-size: 11px;
+      white-space: nowrap;
+    }
+    .metric .label {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.2;
+    }
+    .metric .value {
+      margin-top: 4px;
+      font-size: 28px;
+      line-height: 1.05;
+      font-weight: 650;
+      letter-spacing: 0;
+    }
+    .metric .sub {
+      margin-top: 4px;
+      color: var(--soft);
+      font-size: 12px;
+      line-height: 1.25;
+    }
+    .composition {
+      display: grid;
+      grid-template-columns: 170px minmax(0, 1fr);
+      gap: 8px 12px;
+      align-items: center;
+      margin-top: 10px;
+    }
+    .composition strong,
+    .composition span { display: block; }
+    .composition span {
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: var(--panel-solid);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 10px 30px rgba(0, 0, 0, 0.03);
+    }
+    th, td {
+      text-align: left;
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      font-size: 12px;
+      line-height: 1.38;
+    }
+    th {
+      background: rgba(250, 250, 252, 0.94);
+      color: rgba(0, 0, 0, 0.54);
+      font-weight: 600;
+    }
+    tr:last-child td { border-bottom: 0; }
+    tr:hover td { background: rgba(0, 113, 227, 0.035); }
+    td strong { font-weight: 650; }
+    .translation-cell p {
+      margin: 0 0 4px;
+      color: var(--ink);
+      font-size: 12px;
+      line-height: 1.42;
+    }
+    .translation-cell span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.35;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 22px;
+      padding: 2px 8px;
+      border-radius: 980px;
+      border: 0;
+      background: rgba(0, 0, 0, 0.055);
+      color: var(--ink);
+      font-size: 12px;
+      line-height: 1.1;
+      margin: 1px 4px 1px 0;
+      white-space: nowrap;
+    }
+    .tag.green { color: var(--green); background: rgba(18, 138, 67, 0.1); }
+    .tag.red { color: var(--red); background: rgba(201, 39, 31, 0.1); }
+    .tag.blue { color: var(--blue-text); background: rgba(0, 113, 227, 0.1); }
+    .tag.amber { color: var(--amber); background: rgba(178, 95, 0, 0.1); }
+    .tag.teal { color: var(--teal); background: rgba(0, 125, 117, 0.1); }
+    .bar {
+      height: 6px;
+      background: rgba(0, 0, 0, 0.07);
+      border-radius: 980px;
+      overflow: hidden;
+    }
+    .bar span {
+      display: block;
+      height: 100%;
+      background: var(--blue);
+      border-radius: inherit;
+    }
+    .bar.green span { background: var(--green); }
+    .bar.red span { background: var(--red); }
+    .bar.amber span { background: var(--amber); }
+    .bar.teal span { background: var(--teal); }
+    .stacked {
+      display: flex;
+      height: 10px;
+      background: rgba(0, 0, 0, 0.07);
+      border-radius: 980px;
+      overflow: hidden;
+    }
+    .stacked span { min-width: 2px; }
+    .stacked .green { background: var(--green); }
+    .stacked .blue { background: var(--blue); }
+    .stacked .red { background: var(--red); }
+    .stacked .teal { background: var(--teal); }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+    .legend i {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      margin-right: 4px;
+    }
+    .legend .green i { background: var(--green); }
+    .legend .blue i { background: var(--blue); }
+    .legend .red i { background: var(--red); }
+    .legend .teal i { background: var(--teal); }
+    .volume-cell { min-width: 92px; }
+    .volume-cell strong { display: inline-block; margin-bottom: 4px; }
+    .mini-row, .trend-row {
+      display: grid;
+      grid-template-columns: minmax(92px, 1fr) minmax(88px, 1.5fr) 38px;
+      gap: 7px;
+      align-items: center;
+      margin: 6px 0;
+      font-size: 12px;
+    }
+    .trend-row em {
+      color: var(--muted);
+      font-style: normal;
+      font-size: 11px;
+      grid-column: 2 / 4;
+    }
+    .signal-row {
+      border-top: 1px solid var(--line);
+      padding: 8px 0;
+    }
+    .signal-row:first-of-type { border-top: 0; padding-top: 0; }
+    .signal-row p {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+    .tag-cloud { line-height: 1.9; }
+    .comments-panel {
+      overflow: hidden;
+    }
+    .comment-head {
+      display: grid;
+      grid-template-columns: minmax(220px, .45fr) minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 8px;
+    }
+    .comment-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .comment-stats span {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 5px;
+      min-height: 28px;
+      padding: 4px 10px;
+      border-radius: 980px;
+      background: rgba(0, 0, 0, 0.055);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .comment-stats strong {
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 650;
+    }
+    .compact-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      line-height: 1.2;
+    }
+    .compact-tags .tag {
+      margin: 0;
+      max-width: 100%;
+    }
+    .comment-limit {
+      margin: 4px 0 10px;
+    }
+    .comment-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .top-posts {
+      display: grid;
+      gap: 10px;
+    }
+    .top-post {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 13px;
+      background: rgba(255, 255, 255, 0.74);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    }
+    .top-post-head {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .top-post-head strong {
+      margin-left: auto;
+      color: var(--ink);
+      font-size: 13px;
+    }
+    .rank-badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .interaction-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .interaction-line span {
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.055);
+    }
+    .top-post blockquote {
+      margin: 7px 0;
+      padding-left: 10px;
+      border-left: 2px solid var(--blue);
+      color: rgba(0, 0, 0, 0.82);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .top-post p {
+      margin: 6px 0;
+      color: rgba(0, 0, 0, 0.72);
+      font-size: 13px;
+      line-height: 1.48;
+    }
+    .empty-state {
+      color: var(--muted);
+    }
+    .empty-state strong {
+      color: var(--ink);
+      display: block;
+      margin-bottom: 5px;
+    }
+    .compact-voice {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 9px;
+      background: rgba(245, 245, 247, 0.62);
+      min-width: 0;
+    }
+    .compact-voice:first-child {
+      border-top: 1px solid var(--line);
+      padding-top: 9px;
+    }
+    .compact-voice blockquote,
+    .compact-voice p {
+      overflow-wrap: anywhere;
+    }
+    .corpus-search {
+      scroll-margin-top: 150px;
+    }
+    .corpus-results {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .corpus-hit {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 9px;
+      background: rgba(245, 245, 247, 0.66);
+    }
+    .corpus-hit-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 6px;
+    }
+    .corpus-hit blockquote {
+      margin: 6px 0;
+      padding-left: 10px;
+      border-left: 2px solid var(--blue);
+      color: rgba(0, 0, 0, 0.82);
+      font-size: 13px;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+    .corpus-hit p {
+      margin: 5px 0;
+      color: rgba(0, 0, 0, 0.68);
+      font-size: 12px;
+      line-height: 1.42;
+    }
+    .corpus-hit-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 6px;
+    }
+    .voice {
+      border-top: 1px solid var(--line);
+      padding: 10px 0;
+    }
+    .voice:first-child { border-top: 0; padding-top: 0; }
+    .voice blockquote {
+      margin: 7px 0;
+      padding-left: 10px;
+      border-left: 2px solid var(--blue);
+      color: rgba(0, 0, 0, 0.82);
+      font-size: 13px;
+      line-height: 1.48;
+    }
+    .voice p {
+      margin: 5px 0;
+      color: rgba(0, 0, 0, 0.72);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 28px;
+      gap: 6px;
+      padding: 5px 11px;
+      border-radius: 980px;
+      background: transparent;
+      color: var(--blue-text);
+      text-decoration: none;
+      font-size: 12px;
+      border: 1px solid rgba(0, 102, 204, 0.26);
+      white-space: nowrap;
+    }
+    .btn:hover { text-decoration: underline; }
+    .btn.strong {
+      color: #fff;
+      background: var(--blue);
+      border-color: var(--blue);
+      text-decoration: none;
+    }
+    .filters { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 8px; }
+    select, input {
+      min-height: 32px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      padding: 6px 9px;
+      background: rgba(255, 255, 255, 0.78);
+      color: var(--ink);
+    }
+    .muted { color: var(--muted); }
+    .small { font-size: 11px; line-height: 1.35; }
+    [hidden] { display: none !important; }
+    body.comfortable main { padding-top: 28px; }
+    body.comfortable section { margin-bottom: 28px; }
+    body.comfortable th,
+    body.comfortable td { padding: 13px 14px; font-size: 13px; }
+    body.comfortable .panel,
+    body.comfortable .metric,
+    body.comfortable .status-strip > div { padding: 16px; }
+    body.comfortable .summary-panel p,
+    body.comfortable .voice p,
+    body.comfortable .voice blockquote { font-size: 14px; line-height: 1.6; }
+    @media (max-width: 1120px) {
+      .command-dock { grid-template-columns: 1fr; }
+      .report-switcher { grid-template-columns: minmax(0, 1fr) auto; }
+      .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .cockpit, .two, .three, .status-strip { grid-template-columns: 1fr; }
+      .summary-findings, .summary-cluster { grid-template-columns: 1fr; }
+      .cluster-meta { justify-content: flex-start; }
+      .comment-head, .comment-list, .corpus-results { grid-template-columns: 1fr; }
+      .composition { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 760px) {
+      header { padding: 38px 16px 22px; }
+      header h1 { text-align: left; }
+      header .meta { justify-content: flex-start; }
+      nav { justify-content: flex-start; padding: 0 12px; }
+      main { padding: 14px 12px 40px; }
+      .command-dock { padding: 10px 12px; }
+      .report-switcher { grid-template-columns: 1fr; }
+      .report-menu { justify-self: stretch; }
+      .report-menu summary { width: 100%; }
+      .report-popover { left: 0; right: auto; width: min(100%, calc(100vw - 24px)); }
+      .report-popover::before { right: auto; left: 28px; }
+      .report-option { grid-template-columns: minmax(110px, 1fr) minmax(80px, .8fr) 34px; }
+      .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      table { display: block; overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>社群互动、组队、公会 - Topic 分析</h1>
+    <div class="meta"><span>报告周：2026-P4</span><span>内容量：40</span><span>阈值：内容量超过 10 自动生成</span></div>
+  </header>
+  <main>
+    <p><a class="btn" href="../reports/2026-P4.html#topics">返回本周 Dashboard</a></p>
+    <section><h2>概览</h2><div class="grid metrics">
+      <div class="metric"><div class="label">内容量</div><div class="value">40</div><div class="sub">27 帖 / 13 评论</div></div>
+      <div class="metric"><div class="label">主要情绪</div><div class="value">中性</div><div class="sub">该 topic 内</div></div>
+      <div class="metric"><div class="label">活跃 Group</div><div class="value">5</div><div class="sub">涉及来源数</div></div>
+      <div class="metric"><div class="label">代表 case</div><div class="value">有</div><div class="sub">原帖需权限</div></div>
+    </div></section>
+    <section><h2>二级 Topic / 共现标签</h2><div class="panel tag-cloud"><span class="tag blue">充值、付费、礼包 25</span><span class="tag blue">诈骗、外挂、私服、黑产风险 17</span><span class="tag blue">宠物、角色、养成 8</span><span class="tag blue">活动与福利 5</span><span class="tag blue">玩法机制 3</span><span class="tag blue">Bug、闪退、卡顿、登录问题 1</span><span class="tag blue">攻略分享 1</span></div></section>
+    <section><h2>情绪与来源</h2><div class="grid two"><div class="panel"><p><strong>中性</strong> 24</p><div class="bar blue"><span style="width:60%"></span></div><p><strong>正面</strong> 4</p><div class="bar green"><span style="width:10%"></span></div><p><strong>高风险负面</strong> 10</p><div class="bar red"><span style="width:25%"></span></div><p><strong>混合</strong> 1</p><div class="bar amber"><span style="width:2.5%"></span></div><p><strong>负面</strong> 1</p><div class="bar red"><span style="width:2.5%"></span></div></div><div class="panel"><div class="mini-row"><span>Cong Hoi Roco Kingdom Viet Nam</span><strong>13</strong></div><div class="bar"><span style="width:32.5%"></span></div><div class="mini-row"><span>Roco Kingdom: World Viet Nam Official</span><strong>9</strong></div><div class="bar"><span style="width:22.5%"></span></div><div class="mini-row"><span>Roco Kingdom Viet Nam</span><strong>8</strong></div><div class="bar"><span style="width:20%"></span></div><div class="mini-row"><span>ROCO KINGDOM VN</span><strong>5</strong></div><div class="bar"><span style="width:12.5%"></span></div><div class="mini-row"><span>Roco Kingdom Mobile Viet Nam</span><strong>5</strong></div><div class="bar"><span style="width:12.5%"></span></div></div></div></section>
+    <section><h2>评论区在聊什么</h2><div class="panel"><p>评论区共 13 条可见评论，主要在聊：借宠、加好友、进地图和互助完成任务。（7 条）；交易、充值或非官方渠道，需作为风险样本复核。（4 条）；求助任务步骤、机制规则或完成方法。（2 条）。</p></div></section>
+    <section><h2>内容明细</h2><table><thead><tr><th>#</th><th>类型</th><th>来源</th><th>情绪</th><th>越南语原文</th><th>中文翻译</th><th>原帖</th></tr></thead><tbody><tr><td>1</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Nhóm tụi mình bắt free shiny cho mấy bạn nè , không cần tốn 100 mấy 1 con đâu , nhắn ngay để được vào discord
++5</td><td class="translation-cell"><p>在聊异色/闪光、孵蛋或宠物培育。</p><span>借宠、加好友、进地图和互助完成任务。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2158709448255460/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>2</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag green">正面</span></td><td>Pass thì ko nói shiny thường tr[用户名已脱敏] ko đủ bóng lăn kính để bắt cho ae bắt để hít vàng vậy mà vẫn có ng mua bán</td><td class="translation-cell"><p>在聊异色/闪光、孵蛋或宠物培育。</p><span>借宠、加好友、进地图和互助完成任务。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2158709448255460/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>3</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag red">高风险负面</span></td><td>Nhận săn shiny thường 60/1 ( trừ cây mèo và mấy con chưa có sồi) pass 80/1 ra shiny bank xog bắt
+Có nhận log vô acc nếu không thể treo được
++4</td><td class="translation-cell"><p>谁能帮我刷闪光？赛季快结束了我还没有刷到。</p><span>交易、充值或非官方渠道，需作为风险样本复核。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2157551481704590/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>4</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>+30
+Mình nhận chạy :
+- Chạy đá full map 3000 đá/ lần phí: 30k
+- Shiny pass mùa 1/ ngựa lửa mùa 1
+- Shiny pass mùa 2 : 80k/ bé
+- Shiny thường mùa 2 : 40k/ bé</td><td class="translation-cell"><p>在聊异色/闪光、孵蛋或宠物培育。</p><span>借宠、加好友、进地图和互助完成任务。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2157329595060112/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>5</td><td>帖子</td><td>Roco Kingdom Viet Nam</td><td><span class="tag red">高风险负面</span></td><td>Nhận săn shiny thường 60/1 ( trừ cây mèo và mấy con chưa có sồi) pass 80/1 ra shiny bank xog bắt
+Có nhận log vô acc nếu không thể treo được
+Nhận săn shiny thường 60/1 ( trừ cây mèo và mấy con chưa có sồi) pass 80/1 ra shiny bank xog bắt
++4</td><td class="translation-cell"><p>谁能帮我刷闪光？赛季快结束了我还没有刷到。</p><span>交易、充值或非官方渠道，需作为风险样本复核。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2156707078455697/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>6</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag red">高风险负面</span></td><td>Nhận săn shiny thường 60/1 ( trừ cây mèo và mấy con chưa có sồi) pass 80/1 ra shiny bank xog bắt
+Có nhận log vô acc nếu không thể treo được
++4</td><td class="translation-cell"><p>谁能帮我刷闪光？赛季快结束了我还没有刷到。</p><span>交易、充值或非官方渠道，需作为风险样本复核。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4066075313694097/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>7</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag blue">中性</span></td><td>+30
+Mình nhận chạy :
+- Chạy đá full map 3000 đá/ lần phí: 30k
+- Shiny pass mùa 1/ ngựa lửa mùa 1
+- Shiny pass mùa 2 : 80k/ bé
+- Shiny thường mùa 2 : 40k/ bé</td><td class="translation-cell"><p>在聊异色/闪光、孵蛋或宠物培育。</p><span>借宠、加好友、进地图和互助完成任务。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4065836190384676/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>8</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag red">高风险负面</span></td><td>Nhận săn shiny thường 60/1 ( trừ cây mèo và mấy con chưa có sồi) pass 80/1 ra shiny bank xog bắt
+Có nhận log vô acc nếu không thể treo được
+Nhận săn shiny thường 60/1 ( trừ cây mèo và mấy con chưa có sồi) pass 80/1 ra shiny bank xog bắt
++4</td><td class="translation-cell"><p>谁能帮我刷闪光？赛季快结束了我还没有刷到。</p><span>交易、充值或非官方渠道，需作为风险样本复核。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4065116107123351/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>9</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag red">高风险负面</span></td><td>Nhận săn shiny thường 60/1 ( trừ cây mèo và mấy con chưa có sồi) pass 80/1 ra shiny bank xog bắt
+Có nhận log vô acc nếu không thể treo được
++6</td><td class="translation-cell"><p>谁能帮我刷闪光？赛季快结束了我还没有刷到。</p><span>交易、充值或非官方渠道，需作为风险样本复核。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4064007340567561/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>10</td><td>帖子</td><td>ROCO KINGDOM VN</td><td><span class="tag blue">中性</span></td><td>+28
+Nhận bắt shiny các mùa:
+- Mùa 1: Shiny Pass, Ngựa lửa…
+- Mùa 2: Shiny Pass 80k/ bé
+Shiny thường 40k/ bé</td><td class="translation-cell"><p>在聊异色/闪光、孵蛋或宠物培育。</p><span>借宠、加好友、进地图和互助完成任务。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3072730653028573/posts/4063712830597012/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>11</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Nhận săn shiny pass 80/1
+Nhận Chạy tài nguyên full map cả hoa và đá 50/1map
++4</td><td class="translation-cell"><p>谁能帮我刷闪光？赛季快结束了我还没有刷到。</p><span>借宠、加好友、进地图和互助完成任务。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1796480921317497/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>12</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Này giờ xin bắt ké nhà mấy ng có hạt sồi thôi á chứ giờ hình như không kết hợp hạt được nữa. Hoặc lên lv30 được tặng trứng tự chọn thì chọn á</td><td class="translation-cell"><p>想进别人地图或借好友资源来捕捉/完成任务。</p><span>借宠、加好友、进地图和互助完成任务。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1795824284716494/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>13</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag red">高风险负面</span></td><td>Cần bán acc full shiny s1 đã nạp pass xịn s2 cầu xịn mùa 2 chưa dùng cầu nào. Cầu độc nhất vô nhị còn 2</td><td class="translation-cell"><p>在聊异色/闪光、孵蛋或宠物培育。</p><span>交易、充值或非官方渠道，需作为风险样本复核。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1795387958093460/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>14</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>mn ai có mấy pet mùa s1 cho mình bắt ké đc hok</td><td class="translation-cell"><p>谁有这个宠物/道具，让我蹭一下捕捉吧。</p><span>借宠、加好友、进地图和互助完成任务。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1795026388129617/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>15</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>tui xin id ô cho tui chế ít skill vớ
+已编辑</td><td class="translation-cell"><p>大意：借宠、加好友、进地图和互助完成任务。</p><span>借宠、加好友、进地图和互助完成任务。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1794782398154016/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>16</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>xin id bác ơi</td><td class="translation-cell"><p>大意：借宠、加好友、进地图和互助完成任务。</p><span>借宠、加好友、进地图和互助完成任务。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1794782398154016/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>17</td><td>帖子</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag red">高风险负面</span></td><td>Nhận săn shiny thường 60/1 ( trừ cây mèo và mấy con chưa có sồi) pass 80/1 ra shiny bank xog bắt
+Có nhận log vô acc nếu không thể treo được
++4</td><td class="translation-cell"><p>谁能帮我刷闪光？赛季快结束了我还没有刷到。</p><span>交易、充值或非官方渠道，需作为风险样本复核。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1794780624820860/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>18</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag red">高风险负面</span></td><td>Nhận săn shiny thường 60/1 ( trừ cây mèo và mấy con chưa có sồi) pass 80/1 ra shiny bank xog bắt
+Có nhận log vô acc nếu không thể treo được
++4</td><td class="translation-cell"><p>谁能帮我刷闪光？赛季快结束了我还没有刷到。</p><span>交易、充值或非官方渠道，需作为风险样本复核。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2381373342271742/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>19</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>+30
+Mình nhận chạy :
+- Chạy đá full map 3000 đá/ lần phí: 30k
+- Shiny pass mùa 1/ ngựa lửa mùa 1
+- Shiny pass mùa 2 : 80k/ bé
+- Shiny thường mùa 2 : 40k/ bé</td><td class="translation-cell"><p>在聊异色/闪光、孵蛋或宠物培育。</p><span>借宠、加好友、进地图和互助完成任务。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2381153412293735/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>20</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>+28
+Nhận bắt shiny các mùa:
+- Mùa 1: Shiny Pass, Ngựa lửa…
+- Mùa 2: Shiny Pass 80k/ bé
+Shiny thường 40k/ bé</td><td class="translation-cell"><p>在聊异色/闪光、孵蛋或宠物培育。</p><span>借宠、加好友、进地图和互助完成任务。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2379325462476530/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>21</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag red">高风险负面</span></td><td>Dạ em cần tìm acc full vật phẩm giới hạn season 1, pass 1 2
++2</td><td class="translation-cell"><p>大意：交易、充值或非官方渠道，需作为风险样本复核。</p><span>交易、充值或非官方渠道，需作为风险样本复核。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2378562792552797/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>22</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag amber">混合</span></td><td>Nhận săn shiny thường 60/1 (trừ mèo, cây và mấy con chưa có sồi) pass 80/1 ra shiny bank xog bắt bao ball
+Cần bắt cứ ib nhé
+Nhận săn shiny thường 60/1 (trừ mèo, cây và mấy con chưa có sồi) pass 80/1 ra shiny bank xog bắt bao ball</td><td class="translation-cell"><p>谁能帮我刷闪光？赛季快结束了我还没有刷到。</p><span>交易、充值或非官方渠道，需作为风险样本复核。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2377662179309525/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>23</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>Cho mình hỏi làm sao để bắt ké vậy</td><td class="translation-cell"><p>想进别人地图或借好友资源来捕捉/完成任务。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2377139116028498/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>24</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag green">正面</span></td><td>HƯỚNG DẪN NHẬN TRANG PHỤC HẠT DẺ
+--------------------------------
+Xin chào, mình là Admin Đỗ Tĩnh. Hôm nay mình sẽ hướng dẫn mọi người nhận trang phục free từ sự kiện.
+-------------
+Bước 1: Nhận free 6 xu mỗi ngày
+Bước 2: Gặp chuột trộm cắp -&gt; dùng hành động &quot;Gật đầu chào&quot; để nhận 6xu</td><td class="translation-cell"><p>大意：求助任务步骤、机制规则或完成方法。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2375842752824801/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>25</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>Ai có sồi con pass này cho mình ké với</td><td class="translation-cell"><p>谁有这只，能让我蹭一下吗？</p><span>借宠、加好友、进地图和互助完成任务。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2375101299565613/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>26</td><td>帖子</td><td>Roco Kingdom: World Viet Nam Official</td><td><span class="tag blue">中性</span></td><td>mọi người ai có con này cho em bắt ké vài con thường về lai với</td><td class="translation-cell"><p>想进别人地图或借好友资源来捕捉/完成任务。</p><span>借宠、加好友、进地图和互助完成任务。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1729046980837718/posts/2373877246354685/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>27</td><td>帖子</td><td>Roco Kingdom Mobile Viet Nam</td><td><span class="tag blue">中性</span></td><td>Mình nhận chạy :
+- Chạy đá full map 3000 đá/ lần phí: 30k
+- Shiny pass mùa 1/ ngựa lửa mùa 1
+- Shiny pass mùa 2 : 80k/ bé
+- Shiny thường mùa 2 : 40k/ bé</td><td class="translation-cell"><p>在聊异色/闪光、孵蛋或宠物培育。</p><span>借宠、加好友、进地图和互助完成任务。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3223551104630521/posts/4414154258903527/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>28</td><td>帖子</td><td>Roco Kingdom Mobile Viet Nam</td><td><span class="tag blue">中性</span></td><td>Nhận bắt shiny các mùa:
+- Mùa 1: Shiny Pass, Ngựa lửa…
+- Mùa 2: Shiny Pass 80k/ bé
+Shiny thường 40k/ bé</td><td class="translation-cell"><p>在聊异色/闪光、孵蛋或宠物培育。</p><span>借宠、加好友、进地图和互助完成任务。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3223551104630521/posts/4411980379120915/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>29</td><td>帖子</td><td>Roco Kingdom Mobile Viet Nam</td><td><span class="tag blue">中性</span></td><td>Nhận bắt shiny :
+- Pass mùa 1
+- Pass mùa 2 80k/ bé
+- Shiny thường 40k/ bé
+Ai có nhu cầu ib e nha</td><td class="translation-cell"><p>在聊异色/闪光、孵蛋或宠物培育。</p><span>交易、充值或非官方渠道，需作为风险样本复核。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3223551104630521/posts/4410862105899409/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>30</td><td>帖子</td><td>Roco Kingdom Mobile Viet Nam</td><td><span class="tag blue">中性</span></td><td>Nhận bắt shiny :
+- Pass mùa 1
+- Pass mùa 2 80k/ bé
+- Shiny thường 40k/ bé
+Ai có nhu cầu ib e nha</td><td class="translation-cell"><p>在聊异色/闪光、孵蛋或宠物培育。</p><span>交易、充值或非官方渠道，需作为风险样本复核。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3223551104630521/posts/4409794286006191/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>31</td><td>帖子</td><td>Roco Kingdom Mobile Viet Nam</td><td><span class="tag blue">中性</span></td><td>6月2日10:56
+6月2日10:55
+Nhận kèo all shiny mùa 2:
+- Shiny thường ngẫu nhiên 30k/ bé
+- Shiny thường chỉ định 40k/ bé
+- Shiny pass 80k/ bé
+Ai có nhu cầu ib em nhé.</td><td class="translation-cell"><p>在聊异色/闪光、孵蛋或宠物培育。</p><span>交易、充值或非官方渠道，需作为风险样本复核。</span></td><td><a class="btn" href="https://www.facebook.com/groups/3223551104630521/posts/4407578629561090/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>32</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag red">负面</span></td><td>Roco Kingdom Mobile - Cộng Đồng Thủ Lĩnh Việt Nam  ·
+加入
+SỰ KIỆN XUẤT HIỆN HÀNG LOẠT TIỂU DẠ
+———-
+Xin chào, mình là Admin Đỗ Tĩnh, gửi mọi người lịch sự kiện sắp tới.
+Thời gian: Thứ 6 - thứ 7 - chủ nhật (12-13-14/6)
+Lưu ý: Mọi người chuẩn bị cầu Bóng tối để bắt nhé
+Hướng dẫn cho người mới:
+- Mở hộp ra roco thường thì đập chết cho tiết kiệm thời gian, hoặc bắt nếu muốn tăng tỉ lệ ra hộp
+- Ra ô nhiễm thì bắt bằng cầu mùa 2 giá 80.000 vàng trong sự kiện
+- Spam đến khi ra shiny
+-------------
+CHÚC MỌI NGƯỜI CHƠI GAME VUI VẺ. CẦN HỔ TRỢ GÌ THÌ INB CHO MÌNH (FREE)
+--------------
+Những bài viết khác ở đây
+Hướng dẫn Setting chơi game không nóng máy, tụt pin nhanh:
+https://www.facebook.com/share/p/1CuEKexe7Z/
+Những thông tin cơ bản người cần nắm:
+https://www.facebook.com/share/p/1JJKgza7g5/
+Lịch săn Shiny theo sự kiện Xuất hiện ồ ạt:
+https://www.facebook.com/share/p/17d4LwGG9f/
+Hướng dẫn nhận trang phục hạt dẻ
+https://www.facebook.com/share/p/1DyZh6BSdU/?mibextid=wwXIfr
+Chi tiết bản cập nhật 05.06.2026
+https://www.facebook.com/share/p/1FWrTU1fGN/
+Hình như có cái dì đó sai sai adm à tui nhớ Tiểu Dạ hệ Ác nên bắt bằng cầu Ám Tinh chứ nhỉ</td><td class="translation-cell"><p>谁能帮我刷闪光？赛季快结束了我还没有刷到。</p><span>交易、充值或非官方渠道，需作为风险样本复核。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2159105791549159/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>33</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag green">正面</span></td><td>Nhóm tụi mình bắt free shiny cho mấy bạn nè , không cần tốn 100 mấy 1 con đâu , nhắn ngay để được vào discord
++5
+Pass thì ko nói shiny thường tr[用户名已脱敏] ko đủ bóng lăn kính để bắt cho ae bắt để hít vàng vậy mà vẫn có ng mua bán
+Người tham gia ẩn danh 685 bé th 100k táp đấy
+Đẹp trai thế kbt
+ib ạ
+Cho dô chơi với
+Xin sl
+Xin sl vs ạ
+Tên:@Ziinne24</td><td class="translation-cell"><p>在聊异色/闪光、孵蛋或宠物培育。</p><span>交易、充值或非官方渠道，需作为风险样本复核。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2158709448255460/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>34</td><td>评论</td><td>Roco Kingdom Viet Nam</td><td><span class="tag red">高风险负面</span></td><td>Nhận săn shiny thường 60/1 ( trừ cây mèo và mấy con chưa có sồi) pass 80/1 ra shiny bank xog bắt
+Có nhận log vô acc nếu không thể treo được
++4
+Ngừi ơi ib tui đc hong ạa
+[用户名已脱敏] ko nt cho b đc á</td><td class="translation-cell"><p>谁能帮我刷闪光？赛季快结束了我还没有刷到。</p><span>交易、充值或非官方渠道，需作为风险样本复核。</span></td><td><a class="btn" href="https://www.facebook.com/groups/1410112269781852/posts/2157551481704590/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>35</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>2 tụi mình mới chơi game , giờ tụi mình nên làm gì mng
+Làm hết cốt truyện s1 đi r tính tiếp:))
+NgcMeii0w0 làm tý hết
+https://discord.gg/D8HHMAcTz
+Vào nhóm anh em giúp nhau bác ơi.
+Join the Anh Em Cột Chèo Roco Kingdom Discord Server!
+Join the Anh Em Cột Chèo Roco Kingdom Discord Server!
+Pvp nhau
+Thành Nhân vô giúp b newbie kè</td><td class="translation-cell"><p>大意：求助任务步骤、机制规则或完成方法。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1795943584704564/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>36</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>https://discord.gg/D8HHMAcTz
+Vào nhóm anh em giúp nhau bác ơi.
+Join the Anh Em Cột Chèo Roco Kingdom Discord Server!
+Join the Anh Em Cột Chèo Roco Kingdom Discord Server!</td><td class="translation-cell"><p>大意：求助任务步骤、机制规则或完成方法。</p><span>求助任务步骤、机制规则或完成方法。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1795943584704564/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>37</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag green">正面</span></td><td>Một ngày rãnh rỗi-))
+lấy fun skill mà ms đc 280skill th ( được 2/3 rồi)
+Thôi mai lấy típ kkkk
+0:00 / 0:18
+tui xin id ô cho tui chế ít skill vớ
+TaupePomegranate6304 ib đi
+xin id bác ơi
+Hoài Phương check ib
+chắc xin id bác, xong rồi thiếu gì thì qua w bác chế á
+Hoài Phương kkk đc thì cứ ib , hỗ trợ nhiệt tình luôn
+Cho tui xin id tui kb với bác ơi
+Chế skill lm s v ạ</td><td class="translation-cell"><p>大意：交易、充值或非官方渠道，需作为风险样本复核。</p><span>交易、充值或非官方渠道，需作为风险样本复核。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1794782398154016/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>38</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>tui xin id ô cho tui chế ít skill vớ</td><td class="translation-cell"><p>大意：借宠、加好友、进地图和互助完成任务。</p><span>借宠、加好友、进地图和互助完成任务。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1794782398154016/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>39</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>chắc xin id bác, xong rồi thiếu gì thì qua w bác chế á</td><td class="translation-cell"><p>大意：借宠、加好友、进地图和互助完成任务。</p><span>借宠、加好友、进地图和互助完成任务。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1794782398154016/" target="_blank" rel="noreferrer">查看原帖</a></td></tr><tr><td>40</td><td>评论</td><td>Cong Hoi Roco Kingdom Viet Nam</td><td><span class="tag blue">中性</span></td><td>Cho tui xin id tui kb với bác ơi</td><td class="translation-cell"><p>大意：借宠、加好友、进地图和互助完成任务。</p><span>借宠、加好友、进地图和互助完成任务。</span></td><td><a class="btn" href="https://www.facebook.com/groups/roco.legend/posts/1794782398154016/" target="_blank" rel="noreferrer">查看原帖</a></td></tr></tbody></table></section>
+  </main>
+</body>
+</html>

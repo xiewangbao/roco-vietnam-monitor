@@ -333,6 +333,7 @@ for (const record of raw.records) {
     reactionCount: record.reactionCount,
     commentCount: record.commentCount,
     shareCount: record.shareCount,
+    interactionCountSource: record.interactionCountSource || null,
     interactionTotal: [record.reactionCount, record.commentCount, record.shareCount]
       .every((value) => value === null || value === undefined)
       ? null

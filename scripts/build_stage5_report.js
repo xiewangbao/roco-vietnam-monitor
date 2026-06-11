@@ -93,6 +93,11 @@ function includesAny(text, patterns) {
   return patterns.some((pattern) => pattern.test(text));
 }
 
+function displayTopicName(topicName) {
+  if (topicName === '越南玩家自发讨论') return '版本更新、找队友、外观确认与短互动';
+  return topicName;
+}
+
 function topicDiscussionSummary(topicName, topicItems, topicMeta) {
   const text = topicItems.map((item) => `${item.originalText}\n${item.translationZh}`).join('\n').toLowerCase();
   const postCount = topicItems.filter((item) => item.recordType === 'post').length;
@@ -105,12 +110,12 @@ function topicDiscussionSummary(topicName, topicItems, topicMeta) {
   };
 
   if (topicName === '越南玩家自发讨论') {
-    add('shiny / 异色外观与黑银配色', [/shiny|异色|đen bạc|黑银|lấp lánh|闪光/]);
-    add('抓宠、出货、晒收获和运气分享', [/抓|捕捉|出货|运气|trộm vía|thank god|vận may|đẹp|好看|đc 2con/]);
-    add('全球版/上线时间猜测', [/global|上线|coming out|什么时候|bản global/]);
-    add('VPN、Bilibili、抖音等跨平台获取信息', [/vpn|bili|bilibili|抖音|tiktok/]);
-    add('普通闲聊、短评论和跟帖互动', [/真的假的|太上头|hóng|ké|ok|ổn/]);
-    return `该话题主要是玩家的非单一机制讨论，集中在：${subthemes.slice(0, 4).join('、') || '晒图、跟帖、求证和日常交流'}。共 ${topicItems.length} 条，包含 ${postCount} 帖 / ${commentCount} 评论，情绪以「${dominantSentiment}」为主；它更适合用于观察自然社区热度、玩家自传播内容和发行前认知扩散，而不是作为单个问题处理。`;
+    add('版本更新/补丁信息搬运', [/cập nhật|bản vá|update|phiên bản|补丁|更新/]);
+    add('找队友、求 slot、一起玩', [/tìm bạn|slot|chơi cùng|xin 1 slot|vào với|一起玩|找人/]);
+    add('shiny / 异色外观确认', [/shiny|异色|đen bạc|黑银|lấp lánh|闪光|con xanh/]);
+    add('抓宠、出货、晒收获和运气分享', [/抓|捕捉|出货|运气|trộm vía|thank god|vận may|đẹp|好看|đc 2con|đủ/]);
+    add('短评论、围观和跟帖确认', [/真的假的|太上头|hóng|ké|ok|ổn|mạnh|giúp với|đẹp trai/]);
+    return `这不是一个“单点问题”话题，而是社区日常活跃池：${subthemes.slice(0, 4).join('、') || '版本搬运、找人一起玩、外观确认和短评论互动'}。共 ${topicItems.length} 条，包含 ${postCount} 帖 / ${commentCount} 评论，情绪以「${dominantSentiment}」为主。可用价值在于判断玩家是否还在主动搬运信息、约人协作、验证外观/进度和维持日常讨论；不适合作为单个产品问题处理，但适合观察社区留存温度和自传播素材类型。`;
   }
 
   if (topicName === '宠物、角色、养成') {
@@ -172,7 +177,8 @@ const topTopics = topics.slice(0, 8).map((topic, index) => {
   const topicItems = items.filter((item) => item.topics.includes(topic.topic));
   return {
     rank: index + 1,
-    title: topic.topic,
+    title: displayTopicName(topic.topic),
+    sourceTopic: topic.topic,
     volume: topic.itemCount,
     sentiment: Object.entries(topic.sentimentMix || {}).sort((a, b) => b[1] - a[1])[0]?.[0] || '中性',
     heatScore: Math.min(100, Math.round(topic.itemCount * 5)),
@@ -215,7 +221,8 @@ function buildKeyFindings() {
   const findings = [];
 
   for (const topic of top3) {
-    const topicItems = items.filter((item) => item.topics.includes(topic.title));
+    const sourceTopic = topic.sourceTopic || topic.title;
+    const topicItems = items.filter((item) => item.topics.includes(sourceTopic));
     const split = postCommentSplit(topicItems);
     findings.push({
       title: `${topic.title}是本周期核心讨论之一`,
@@ -238,15 +245,17 @@ function buildKeyFindings() {
 
 function buildDiscussionClusters() {
   return topTopics.slice(0, 5).map((topic) => {
-    const topicItems = items.filter((item) => item.topics.includes(topic.title));
+    const sourceTopic = topic.sourceTopic || topic.title;
+    const topicItems = items.filter((item) => item.topics.includes(sourceTopic));
     const split = postCommentSplit(topicItems);
     return {
       topic: topic.title,
+      sourceTopic,
       volume: topic.volume,
       posts: split.posts,
       comments: split.comments,
-      sentiment: dominantSentiment(topics.find((item) => item.topic === topic.title) || {}),
-      playerFocus: clusterFocus(topic.title, topicItems),
+      sentiment: dominantSentiment(topics.find((item) => item.topic === sourceTopic) || {}),
+      playerFocus: clusterFocus(sourceTopic, topicItems),
       marketSignalValue: topic.marketSignalValue,
     };
   });
@@ -271,6 +280,44 @@ function commentTopicSummary() {
     for (const topic of item.topics) acc[topic] = (acc[topic] || 0) + 1;
     return acc;
   }, {})).sort((a, b) => b[1] - a[1]).slice(0, 6).map(([topic, count]) => ({ topic, count }));
+}
+
+function buildNegativeOpinionAnalysis() {
+  const negativeItems = items.filter((item) => item.sentiment === '负面' || item.sentiment === '高风险负面');
+  const highRiskItems = items.filter((item) => item.sentiment === '高风险负面');
+  const normalNegativeItems = items.filter((item) => item.sentiment === '负面');
+  const negativeTopicCounts = {};
+  const negativeGroupCounts = {};
+  for (const item of negativeItems) {
+    for (const topic of item.topics || []) negativeTopicCounts[displayTopicName(topic)] = (negativeTopicCounts[displayTopicName(topic)] || 0) + 1;
+    negativeGroupCounts[item.sourceGroup] = (negativeGroupCounts[item.sourceGroup] || 0) + 1;
+  }
+  const topNegativeTopics = Object.entries(negativeTopicCounts).sort((a, b) => b[1] - a[1]).slice(0, 5).map(([topic, count]) => ({ topic, count }));
+  const topNegativeGroups = Object.entries(negativeGroupCounts).sort((a, b) => b[1] - a[1]).slice(0, 4).map(([group, count]) => ({ group, count }));
+  const riskLabelCounts = {};
+  for (const item of negativeItems) {
+    for (const label of item.riskLabels || []) riskLabelCounts[label] = (riskLabelCounts[label] || 0) + 1;
+  }
+  const riskMix = Object.entries(riskLabelCounts).sort((a, b) => b[1] - a[1]).map(([label, count]) => ({ label, count }));
+  const baseline = `本期负面相关样本 ${negativeItems.length} 条，占有效内容 ${pct(negativeItems.length)}%；其中普通负面 ${normalNegativeItems.length} 条，高风险负面 ${highRiskItems.length} 条。负面并非集中在“游戏不好玩”，而主要集中在非官方交易、账号/代练、充值渠道风险，以及任务/机制理解成本。`;
+  const reason = [
+    '越南区尚未正式发行，玩家主要依赖中国区内容、民间攻略和 Group 转译，信息不完整会放大求助和误解。',
+    '稀有宠物、shiny、Battle Pass 和账号进度具有可交易价值，容易催生代抓、账号买卖、私聊报价和充值引流。',
+    '玩法任务、宠物名称和活动说明仍以中文/国服语境流通，越南玩家需要二次解释，因此负面更多表现为卡关、看不懂和找人帮忙。',
+  ];
+  const implication = '发行准备上应把负面舆情拆成两类处理：一类是可通过本地化 FAQ、任务说明、宠物/活动词表缓解的理解成本；另一类是需要社区规则、官方渠道声明和交易风险提示压制的黑产/灰产风险。';
+  return {
+    totalNegative: negativeItems.length,
+    normalNegative: normalNegativeItems.length,
+    highRiskNegative: highRiskItems.length,
+    negativeRate: pct(negativeItems.length),
+    topNegativeTopics,
+    topNegativeGroups,
+    riskMix,
+    baseline,
+    reason,
+    implication,
+  };
 }
 
 const riskObservations = risks.map((risk) => {
@@ -317,7 +364,7 @@ const report = {
   schemaVersion: 'stage5.weekly_report.v1',
   exampleOnly: false,
   sourceSchemaVersion: structured.schemaVersion,
-  reportTitle: 'Roco Kingdom 越南 Facebook Group 每周舆情监测报告',
+  reportTitle: 'Roco Kingdom 越南 Facebook Group 舆情监测报告',
   reportWeek: structured.reportWeek,
   dateGenerated: new Date().toISOString().slice(0, 10),
   timeRange: structured.timeRange,
@@ -409,6 +456,7 @@ const report = {
     preLaunchAwarenessIssues: ['部分玩家可能误以为已有越南正式版本；需持续区分中国区正式发行与越南区未正式发行。'],
   },
   riskObservations,
+  negativeOpinionAnalysis: buildNegativeOpinionAnalysis(),
   representativeVoices,
   trendObservation: {
     discussionVolumeTrend: '首个真实抓取周，暂无环比。',
@@ -487,6 +535,15 @@ ${Object.entries(report.futureVietnamLaunchSignals).map(([k, v]) => `- ${k}：${
 
 ## 7. 风险观察
 ${report.riskObservations.map((r) => `- ${r.level} ${r.name}：${r.evidenceSummary}。影响判断：${r.impact}`).join('\n')}
+
+## 7.1 负面舆情分析
+${report.negativeOpinionAnalysis.baseline}
+
+主要负面主题：${report.negativeOpinionAnalysis.topNegativeTopics.map((item) => `${item.topic} ${item.count}`).join('；')}
+
+形成原因：${report.negativeOpinionAnalysis.reason.join(' ')}
+
+发行准备含义：${report.negativeOpinionAnalysis.implication}
 
 ## 8. 代表性玩家声音
 ${report.representativeVoices.map((v) => `- 原文：${v.originalText}\n  翻译：${v.translationZh}\n  来源：${v.sourceGroup}；主题：${v.topic}；情绪：${v.sentiment}；原帖：${v.postUrl}`).join('\n')}

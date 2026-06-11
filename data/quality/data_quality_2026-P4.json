@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "data_quality.v1",
+  "reportWeek": "2026-P4",
+  "generatedAt": "2026-06-10T11:06:37.325Z",
+  "status": "pass",
+  "thresholds": {
+    "minValidItems": 50,
+    "minCommentItems": 20,
+    "minCommentRate": 0.2,
+    "minRecordsPerActiveGroup": 5,
+    "expectedGroups": 6
+  },
+  "summary": {
+    "validItems": 173,
+    "postItems": 96,
+    "commentItems": 77,
+    "commentRate": 0.445,
+    "activeGroups": 6,
+    "expectedGroups": 6,
+    "failureCount": 0
+  },
+  "groups": [
+    {
+      "groupName": "Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/1410112269781852/",
+      "capturedRecordCount": 46,
+      "failureCount": 0,
+      "status": "ok"
+    },
+    {
+      "groupName": "Cong Hoi Roco Kingdom Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/roco.legend/",
+      "capturedRecordCount": 67,
+      "failureCount": 0,
+      "status": "ok"
+    },
+    {
+      "groupName": "Roco Kingdom: World Viet Nam Official",
+      "groupUrl": "https://www.facebook.com/groups/1729046980837718/",
+      "capturedRecordCount": 31,
+      "failureCount": 0,
+      "status": "ok"
+    },
+    {
+      "groupName": "ROCO KINGDOM VN",
+      "groupUrl": "https://www.facebook.com/groups/3072730653028573/",
+      "capturedRecordCount": 15,
+      "failureCount": 0,
+      "status": "ok"
+    },
+    {
+      "groupName": "ROCO KINGDOM VIET NAM",
+      "groupUrl": "https://www.facebook.com/groups/947481474801675/",
+      "capturedRecordCount": 27,
+      "failureCount": 0,
+      "status": "ok"
+    },
+    {
+      "groupName": "Roco Kingdom Mobile Viet Nam",
+      "groupUrl": "https://www.facebook.com/groups/3223551104630521/",
+      "capturedRecordCount": 24,
+      "failureCount": 0,
+      "status": "ok"
+    }
+  ],
+  "issues": [],
+  "userReviewRule": "If status is needs_user_review, pause before treating the run as final and discuss remediation options with the user."
+}
